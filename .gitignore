@@ -1,5 +1,8 @@
-# Created by https://www.toptal.com/developers/gitignore/api/windows,java,eclipse,gradle
-# Edit at https://www.toptal.com/developers/gitignore?templates=windows,java,eclipse,gradle
+# Servers 제외
+Servers/
+
+# Created by https://www.toptal.com/developers/gitignore/api/windows,java,gradle,eclipse
+# Edit at https://www.toptal.com/developers/gitignore?templates=windows,java,gradle,eclipse
 
 ### Eclipse ###
 .metadata
@@ -146,4 +149,4 @@ gradle-app.setting
 # Java heap dump
 *.hprof
 
-# End of https://www.toptal.com/developers/gitignore/api/windows,java,eclipse,gradle
+# End of https://www.toptal.com/developers/gitignore/api/windows,java,gradle,eclipse
