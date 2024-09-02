@@ -1,4 +1,4 @@
-# Servers 제외
+# Servers(Tomcat 등) 제외
 Servers/
 
 # Created by https://www.toptal.com/developers/gitignore/api/windows,python,pycharm,jupyternotebooks,java,eclipse,gradle,dbeaver,visualstudiocode
