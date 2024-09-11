@@ -1,3 +1,6 @@
+# .idea 폴더 일괄 무시
+.idea/
+
 # Servers(Tomcat 등) 제외
 Servers/
 
