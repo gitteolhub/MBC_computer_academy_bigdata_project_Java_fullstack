@@ -72,7 +72,7 @@ print(response.content)
 
 # 응답 상태 코드가 200이면 성공, JSON 파일로 저장
 if response.status_code == 200:
-    with open('D:/student/LHT/works/crawling/food_data.json', 'w', encoding='utf-8') as f:
+    with open('D:\programming\works\crawling/food_data.json', 'w', encoding='utf-8') as f:  # 실행하는 PC에 따라 저장경로 지정
         json.dump(response.json(), f, ensure_ascii=False, indent=4)
     print("데이터가 food_data.json 파일로 저장되었습니다.")
 else:
