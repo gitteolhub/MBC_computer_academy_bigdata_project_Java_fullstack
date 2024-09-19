@@ -39,7 +39,7 @@ for page in range(1, 123):
         print(f"에러 메시지: {response.text}")
 
 # 모든 페이지의 데이터를 JSON 파일로 저장
-with open('D:/student/LHT/works/crawling/food_data.json', 'w', encoding='utf-8') as f:
+with open('D:/student/LHT/works/crawling/food_data.json', 'w', encoding='utf-8') as f:  # 실행하는 PC에 따라 저장경로 지정
     json.dump(all_items, f, ensure_ascii=False, indent=4)
 
 print("모든 페이지의 데이터가 food_data.json 파일로 저장되었습니다.")
