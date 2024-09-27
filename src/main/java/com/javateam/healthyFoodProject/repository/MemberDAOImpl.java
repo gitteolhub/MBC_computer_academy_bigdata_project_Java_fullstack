@@ -21,12 +21,14 @@ public class MemberDAOImpl implements MemberDAO {
 	
 	private static final String MAPPER_PATH="mapper.healthyFoodMapper.";
 	
+	// 주어진 ID로 회원 정보를 조회
 	@Override
 	public MemberVO selectMemberById(String strId) {
 		
 		return sqlSession.selectOne(MAPPER_PATH + "selectMemberById",strId);
 	}
 	
+	// 새로운 회원을 데이터베이스에 추가
 	@Override
 	public boolean insertMember(MemberVO objMemberVO) {
 		
@@ -42,6 +44,7 @@ public class MemberDAOImpl implements MemberDAO {
 		return blRetVal;
 	}
 	
+	// 회원정보 중복 점검(회원 가입)
 	@Override
 	public boolean hasMemberByFld(String strField, String strValue) {
 		
@@ -63,6 +66,7 @@ public class MemberDAOImpl implements MemberDAO {
 		
 	}
 	
+	// 회원정보 수정
 	@Override
 	public boolean updateMember (MemberVO objMemberVO) {
 		
@@ -85,6 +89,7 @@ public class MemberDAOImpl implements MemberDAO {
 		return blRetVal;
 	}
 	
+	// 회원정보 중복 점검(수정)
 	@Override
 	public boolean hasMemberForUpdate(String strId, String strField, String strValue) {
 		
@@ -97,6 +102,7 @@ public class MemberDAOImpl implements MemberDAO {
 		return (int)sqlSession.selectOne(MAPPER_PATH + "hasMemberForUpdate", map) == 1 ? true : false;
 	}
 	
+	// 회원 Role 생성
 	@Override
 	public boolean insertRole(String strNum, String strId, String strRole) { 
 		
@@ -120,6 +126,7 @@ public class MemberDAOImpl implements MemberDAO {
 		return blRetVal;
 	}
 	
+	// 회원 Role 삭제
 	@Override
 	public boolean deleteRoles(String strId) {
 	
@@ -138,6 +145,7 @@ public class MemberDAOImpl implements MemberDAO {
 		return blRetVal;
 	}
 	
+	// 회원 정보 삭제
 	@Override
 	public boolean deleteMemberById(String strId) {
 		
@@ -156,12 +164,14 @@ public class MemberDAOImpl implements MemberDAO {
 		return blRetVal;
 	}
 	
+	// 회원 role 정보 조회
 	@Override
 	public List<String> selectRolesById(String strId) {
 		
 		return sqlSession.selectList(MAPPER_PATH  + "selectRolesById", strId);
 	}
 	
+	// 회원 role 정보 삭제
 	@Override
 	public void deleteRoleById(String strId, String strRole) {
 
@@ -172,6 +182,7 @@ public class MemberDAOImpl implements MemberDAO {
 		sqlSession.delete(MAPPER_PATH + "deleteRoleById", map);
 	}
 	
+	// 회원 enabled 상태 변경
 	@Override
 	public void changeEnabled(String strId, int intEnabled) {
 
@@ -182,5 +193,17 @@ public class MemberDAOImpl implements MemberDAO {
 		log.info("상태 정보 : {}", intEnabled);
 
 		sqlSession.update(MAPPER_PATH  + "changeEnabled", map);
+	}
+	
+	// 회원정보 조회(role 포함)
+	@Override
+	public Map<String,Object> selectMemberByFld(String strField, Object objValue) {
+		
+		Map<String,Object> map = new HashMap<>();
+		
+		map.put("fld", strField);
+		map.put("val", objValue);
+		
+		return sqlSession.selectOne(MAPPER_PATH + "selectMemberByFld", map);
 	}
 }

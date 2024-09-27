@@ -19,21 +19,6 @@
 	
 	</select>
 	
-	<!-- 회원아이디로 회원정보를 조회하는 쿼리 
-	<select id= "findUserByUsername" resultType="com.javateam.healthyFoodProject.domain.CustomUser">
-		SELECT *
-		  FROM users
-		 WHERE username = #{username}
-	</select> 
-	-->
-	<!-- 회원아이디로 회원역할을 조회하는 쿼리
-	<select id="findRolesByUsername" resultType="com.javateam.healthyFoodProject.domain.Role">
-		SELECT username, role 
-		  FROM user_roles 
-		 WHERE username = #{username}
-	</select>
-	-->
-	
 	<!-- 회원정보 삽입(생성) -->
 	<insert id = "insertMember" parameterType = "com.javateam.healthyFoodProject.domain.MemberVO">
 		INSERT INTO USER_TBL(
@@ -115,4 +100,19 @@
 		 WHERE ID = #{id}
 	</update>
 	
+	<!-- 회원정보 조회(role 포함) -->
+	<select id ="selectMemberByFld" parameterType = "map" resultType = "map" >
+	SELECT DISTINCT m3.* 
+         ,(
+           SELECT LISTAGG(r2.ROLE, ',') WITHIN GROUP (ORDER BY m2.ID) 
+           FROM   USER_TBL m2
+                 ,USER_ROLES r2  
+           WHERE  r2.USERID = m2.ID
+             AND  r2.USERID = m3.ID
+            ) AS "ROLE"           
+  	  FROM  USER_TBL m3
+  	       ,USER_ROLES r3
+  	  WHERE m3.ID  = r3.USERID
+   	    AND ${fld} = #{val}
+	</select>
 </mapper>

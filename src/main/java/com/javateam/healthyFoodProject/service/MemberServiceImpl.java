@@ -103,15 +103,6 @@ public class MemberServiceImpl implements MemberService {
 			}
 		});
 	}
-
-	// 특정 필드에 대해 회원 정보의 중복 여부를 확인
-	@Transactional(readOnly = true)
-	@Override
-	public boolean hasMemberByFld(String strField, String strValue) {
-		
-		return memberDAO.hasMemberByFld(strField, strValue);
-		
-	}
 	
 	// 회원정보 수정
 	@Override
@@ -170,12 +161,38 @@ public class MemberServiceImpl implements MemberService {
 		});
 	}
 
+	// 회원정보 중복 점검(회원 가입)
+		@Transactional(readOnly = true)
+		@Override
+		public boolean hasMemberByFld(String strField, String strValue) {
+			
+			return memberDAO.hasMemberByFld(strField, strValue);
+			
+		}
+	
 	// 회원정보 중복 점검(수정)
 	@Transactional(readOnly = true)
 	@Override
 	public boolean hasMemberForUpdate(String strId, String strField, String strValue) {
 		
 		return memberDAO.hasMemberForUpdate(strId, strField, strValue);
+	}
+	
+	// 회원 role 생성
+	@Transactional
+	@Override
+	public boolean insertRole(Role role) {
+		
+		boolean result = false;
+		
+		try {
+			memberDAO.insertRole(role.getUsernum(), role.getUserid(), role.getRole());
+			result = true;
+		} catch (Exception ex) {
+			log.error("[MemberService][insertRole]: {}", ex);
+			ex.printStackTrace();
+		}
+		return result;
 	}
 	
 	// 회원 role 수정(관리자 권한)
@@ -207,22 +224,7 @@ public class MemberServiceImpl implements MemberService {
 		return result;
 	}
 	
-	@Transactional
-	@Override
-	public boolean insertRole(Role role) {
-		
-		boolean result = false;
-		
-		try {
-			memberDAO.insertRole(role.getUsernum(), role.getUserid(), role.getRole());
-			result = true;
-		} catch (Exception ex) {
-			log.error("[MemberService][insertRole]: {}", ex);
-			ex.printStackTrace();
-		}
-		return result;
-	}
-	
+	// 회원 role 삭제
 	@Transactional
 	@Override
 	public boolean deleteRoleById(String strId, String strRole) {
@@ -240,6 +242,7 @@ public class MemberServiceImpl implements MemberService {
 		return result;
 	}
 	
+	// 회원 enabled 상태 변경
 	@Transactional
 	@Override
 	public boolean changeEnabled(String strId, int intEnabled) {

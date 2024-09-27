@@ -15,7 +15,7 @@ import com.zaxxer.hikari.HikariDataSource;
 public class MyBatisConfig {
 	
 	@Bean
-	@ConfigurationProperties(prefix = "spring.datasource.hikari")	// properties파일에서 설정을 읽어오기 위한 애노테이션
+	@ConfigurationProperties(prefix = "spring.datasource.hikari")	// properties파일에서 설정을 읽어오기 위한 어노테이션
 	public DataSource getDataSource() {
 		
 		return DataSourceBuilder.create()

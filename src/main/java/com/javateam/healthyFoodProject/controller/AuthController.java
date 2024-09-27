@@ -51,11 +51,13 @@ public class AuthController {
 	}
 	
 	
-	// (일반)사용자용 주소
+	// (일반)회원용 주소
 	@GetMapping("/secured/home")
 	public String securedHome(ModelMap model) {
 		
 		log.info("[/secured/home]");
+		
+		// 인증된 회원의 정보를 가져옴
 		Object principal = SecurityContextHolder.getContext()
 												.getAuthentication()
 												.getPrincipal();
@@ -74,15 +76,15 @@ public class AuthController {
 		return "/secured/home";
 	}
 	
-	// 회원가입 폼
-	@GetMapping("/joinAjaxDemo")
-	public String demo(Model model) {
-		
-		log.info("회원가입 폼");
-		model.addAttribute("memberDTO", new MemberVO());
-		
-		return "joinAjaxDemo";
-	}
+//	// 회원가입 폼
+//	@GetMapping("/joinAjaxDemo")
+//	public String demo(Model model) {
+//		
+//		log.info("회원가입 폼");
+//		model.addAttribute("memberDTO", new MemberVO());
+//		
+//		return "joinAjaxDemo";
+//	}
 	
 	// 회원가입 폼
 	@GetMapping("/join")
@@ -104,15 +106,15 @@ public class AuthController {
 		return "joinDemo";
 	}
 	
-	// 회원가입 폼(Ajax)
-		@GetMapping("/joinAjax")
-		public String joinAjax(Model model) {
-				
-			log.info("회원가입 폼(Ajax)");
-			model.addAttribute("memberDTO", new MemberDTO());
-				
-			return "joinAjax";
-		}
+//	// 회원가입 폼(Ajax)
+//		@GetMapping("/joinAjax")
+//		public String joinAjax(Model model) {
+//				
+//			log.info("회원가입 폼(Ajax)");
+//			model.addAttribute("memberDTO", new MemberDTO());
+//				
+//			return "joinAjax";
+//		}
 	
 	// 로그인 폼
 	@GetMapping("/login")
@@ -151,7 +153,7 @@ public class AuthController {
 		
 		log.info("[logout]");
 		
-		// 혅대 인증 정보
+		// 현재 인증 정보
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		log.info("[auth: {}]", auth);
 		

@@ -40,17 +40,6 @@ public class SecurityConfig {
 		this.userDetailsService = objUserDetailsService;
 	}
 	
-//	@Bean
-//	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
-//	
-//		http
-//			.authorizeHttpRequests((authorize) -> authorize
-//					.anyRequest().authenticated()
-//			)
-//			.httpBasic(withDefaults())
-//			.formLogin(withDefaults());
-	
-	
 	// 비밀번호를 안전하게 암호화하기 위해 BCryptPasswordEncoder 빈 생성
 	@Bean
 	public BCryptPasswordEncoder bCryptPasswordEncoder() {
@@ -60,8 +49,10 @@ public class SecurityConfig {
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity objHttpSecurity) throws Exception {
 		
+		// 사용자 세부 정보를 제공하는 서비스 설정
 		objHttpSecurity.userDetailsService(userDetailsService);
 		
+		// custom 인증 제공자 설정
 		objHttpSecurity.authenticationProvider(customProviderService);
 		
 		// HTTP 헤더 설정
