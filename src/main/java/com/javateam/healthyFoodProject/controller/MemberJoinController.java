@@ -62,5 +62,5 @@ public class MemberJoinController {
 		model.addAttribute("msg", strMsg);
 		return "/member/result"; // result.html (thymeleaf)
 	}
-	
+	//로그 테스트
 }
