@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+ 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+ 	  layout:decorate="~{layout}"
+ 	  lang="ko-kr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>회원 정보 조회</title>
+</head>
+<body>
+
+<div style="width: 600px; margin: auto;">
+    <h2>회원 정보 조회</h2>
+
+	<div>
+		<!-- 회원 번호 -->
+		<div>
+			<label for="num">회원번호</label>
+			<span th:text=${memberDTO.num}"></span>
+		</div>
+		
+		<!-- 회원 아이디 -->
+		<div>
+			<label for="id">아이디</label>
+			<span th:text=${memberDTO.id}"></span>
+		</div>
+		
+		<!-- 회원 이름 -->
+		<div>
+            <label for="name">이름:</label>
+            <span th:text="${memberDTO.name}"></span>
+        </div>
+        
+        <!-- 회원 성별 -->
+        <div>
+            <label>성별:</label>
+            <span th:text="${memberDTO.gender == '남자' ? '남자' : '여자'}"></span>
+        </div>
+        
+        <!-- 회원 이메일 -->
+        <div>
+            <label for="email">이메일:</label>
+            <span th:text="${memberDTO.email}"></span>
+        </div>
+        
+        <!-- 회원 연락처 -->
+         <div>
+            <label for="phone">휴대폰:</label>
+            <span th:text="${memberDTO.phone}"></span>
+        </div>
+        
+        <!-- 회원 생일 -->
+         <div>
+            <label>생일:</label>
+            <span th:text="${#dates.format(memberDTO.birthday, 'yyyy년 MM월 dd일')}"></span>
+        </div>
+        
+        <!-- 가입일 -->
+        <div>
+            <label>가입일:</label>
+            <span th:text="${#dates.format(memberDTO.joindate, 'yyyy년 MM월 dd일 HH:mm:ss')}"></span>
+        </div>
+	</div>
+</div>
+
+</body>
+</html>

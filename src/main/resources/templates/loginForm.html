@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+       layout:decorate="~{layout_login}"
+       lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Login</title>
+
+<!-- 로그인 에러 메시지 -->
+<script th:inline="javascript" th:if="${error == 'true'}"> alert ([[${msg}]]);</script>
+</head>
+
+<body>
+	<div id="wrap" layout:fragment="content" class="main_sect_pnl">
+	
+		<!--
+		<div th:if="${session.error == 'true'}" class="msg" th:text="${session.msg}"></div>
+		
+		<span th:if="${session.SPRING_SECURITY_LAST_EXCEPTION != null}" 
+			  th:text="${'메시지1 : ' + session.SPRING_SECURITY_LAST_EXCEPTION.message}">
+		</span><br>
+			
+		<span th:if="${session.msg != null}" th:text="${'메시지2 : ' + session.msg.message}"></span><br>	
+	﻿	 -->
+	
+	<div id="login-box" class="border border-light-subtle border-5 rounded-4">
+	<h2>Login Page</h2>
+	<form id="loginForm" 
+			  name="loginForm" 
+			  th:action="@{'/login'}"
+			  method="POST">
+		<div>
+			<label>ID:</label>
+			<input type="text" name="userid" required pattern="[a-zA-Z]{1}\w{7,19}" title="아이디는 8~20사이의 영문으로 시작하여 영문 대소문자 및 숫자로 작성하십시오" >
+		</div>
+		<div>
+			<label>Password:</label>
+			<input type="text" name="password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,20}" title="비밀번호는 영문 대소문자, 숫자, 특수문자 1자 이상 포함하여 8~20자로 작성하십시오">
+		</div>
+		<div>
+			<button type="submit">Login</button>
+		</div>
+	</form>
+	</div>
+	</div>
+
+</body>
+</html>

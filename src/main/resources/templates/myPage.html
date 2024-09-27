@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko-kr" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+				   layout:decorate="~{layout_login}" >
+<head>
+<meta charset="UTF-8">
+<title>myPage</title>
+</head>
+<body>
+		<div layout:fragment="content" class = "main_sect_pnl">
+		
+		<div sec:authorize="isAuthenticated()">
+		
+			<span sec:authentication="name"></span>님 환영합니다.&nbsp;
+			<input type = "button" value="로그아웃" th:onclick="|location.href='@{/logoutProc}'|" />
+			
+		</div>
+		
+		</div>
+		
+		
+</body>
+</html>
