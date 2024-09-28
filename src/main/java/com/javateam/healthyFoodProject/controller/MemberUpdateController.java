@@ -57,10 +57,10 @@ public class MemberUpdateController {
 			model.addAttribute("memberUpdateDTO", memberUpdateDTO);
 		}
 		
-		return "/member/update";
+		return "member/update";
 	}
 	
-	@PostMapping("/updateProc")
+	@PostMapping("/updateProc") 
 	public String updateProc(@ModelAttribute("memberUpdateDTO") MemberUpdateDTO memberUpdateDTO, RedirectAttributes redirectAttributes) {
 		
 		log.info("회원정보 수정 처리: {}", memberUpdateDTO);
@@ -88,7 +88,7 @@ public class MemberUpdateController {
 		} else {
 			
 			msg = "회원정보 수정에 실패했습니다.";
-			movePath = "redurect:/member/update";
+			movePath = "redirect:/member/update";
 		}
 		log.info("result : {}", msg);
 		redirectAttributes.addAttribute("msg", msg);

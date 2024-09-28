@@ -66,7 +66,7 @@ public class SecurityConfig {
 		objHttpSecurity.authorizeHttpRequests((authorizeHttpRequests) -> 
 											   authorizeHttpRequests.requestMatchers("/resources/**", "/loginError",      "/join",             "/joinAjax",            "/joinDemo", 
 													   								 "/joinAjaxDemo", "/member/joinProc", "/member/joinProc2", "/member/joinProcDemo", "/member/joinProcAjax", 
-													   								 "/login/idCheck", "/login",          "/member/hasFld/**")
+													   								 "/login/idCheck", "/login",          "/member/hasFld/**", "/captcha/**")
 											   						.permitAll()
 											   						.requestMatchers("/admin/**").hasAnyAuthority("ROLE_ADMIN")				// ROLE_ADMIN 권한이 필요한 경로
 											   						.requestMatchers("/secured/**", "/myPage", "/member/view","/member/hasFldForUpdate/**", "member/update",
@@ -127,6 +127,6 @@ public class SecurityConfig {
 	@Bean
 	public WebSecurityCustomizer webSecurityCustomizer() {
 		
-		return (web) -> web.ignoring().requestMatchers("/bootstrap/**", "/css/**", "/js/**", "/axios/**");
+		return (web) -> web.ignoring().requestMatchers("/bootstrap/**", "/css/**", "/js/**", "/axios/**", "/captcha/**");
 	}
 }

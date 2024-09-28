@@ -6,8 +6,10 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>회원 정보 수정</title>
+	<title>회원정보 수정</title>
 	<script th:src="@{'/axios/1.7.4/dist/axios.min.js'}"></script>
+	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+	 <script th:src="@{'/js/member_update.js'}" charset="UTF-8"></script>
 	<script th:inline="javascript" th:if="${msg != null}">
         alert([[${msg}]]);
     </script>
@@ -18,11 +20,7 @@
 	<h2>회원 정보 수정</h2>
 	
 	<form id="frm" th:action="@{'/member/updateProc'}" method="post" th:object="${memberUpdateDTO}">
-		<!-- 회원번호 -->
-		<div>
-			<label for="num">회원번호</label>
-			<div th:text="*{num}"></div>
-	
+		
         <!-- 회원 아이디 -->
         <div>
             <label for="id">아이디</label>
