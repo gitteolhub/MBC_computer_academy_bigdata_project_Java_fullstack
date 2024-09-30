@@ -84,14 +84,9 @@
 	</select>
 
 	<!-- 회원 Role 삭제 -->
-<<<<<<< HEAD
 	<delete id="deleteRoleById" parameterType="map">
 		DELETE 
 		  FROM USER_ROLES
-=======
-	<delete id = "deleteRoleById" parameterType="map">
-		DELETE FROM USER_ROLES
->>>>>>> 7f55daf0b67b41b393b3435ded52b6935a1a0049
 		 WHERE USERID = #{id}
 		   AND ROLE = #{role}
 	</delete>
