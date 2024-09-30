@@ -66,15 +66,13 @@
 	
 	<!-- 회원 Role 삭제 -->
 	<delete id = "deleteRoles" parameterType ="String">
-		DELETE
-		  FROM USER_ROLES
+		DELETE FROM USER_ROLES
 		 WHERE USERID = #{userid}
 	</delete>
 	
 	<!-- 회원정보 삭제 -->
 	<delete id = "deleteMemberById" parameterType = "String">
-		DELETE
-		  FROM USER_TBL
+		DELETE FROM USER_TBL
 		 WHERE ID = #{id}
 	</delete>
 	
@@ -87,15 +85,14 @@
 
 	<!-- 회원 Role 삭제 -->
 	<delete id = "deleteRoleById" parameterType="map">
-		DELETE USER_ROLES  <!-- TODO 뭘 어디서 삭제하는건지 확인하고 수정 -->
+		DELETE FROM USER_ROLES
 		 WHERE USERID = #{id}
 		   AND ROLE = #{role}
 	</delete>
 
 	<!-- 회원 활동/휴면  상태(enabled) 변경 -->
 	<update id = "changeEnabled" parameterType="map">
-		UPDATE
-			   USER_TBL
+		UPDATE USER_TBL
 		   SET ENABLED = #{enabled}
 		 WHERE ID = #{id}
 	</update>
