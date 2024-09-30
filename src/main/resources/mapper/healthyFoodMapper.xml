@@ -102,10 +102,10 @@
 	SELECT DISTINCT m3.* 
          ,(
            SELECT LISTAGG(r2.ROLE, ',') WITHIN GROUP (ORDER BY m2.ID) 
-           FROM   USER_TBL m2
+             FROM USER_TBL m2
                  ,USER_ROLES r2  
-           WHERE  r2.USERID = m2.ID
-             AND  r2.USERID = m3.ID
+            WHERE r2.USERID = m2.ID
+              AND r2.USERID = m3.ID
             ) AS "ROLE"           
   	  FROM  USER_TBL m3
   	       ,USER_ROLES r3
