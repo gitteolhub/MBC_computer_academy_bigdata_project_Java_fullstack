@@ -7,8 +7,8 @@
 			parameterType = "String" 
 			resultType = "com.javateam.healthyFoodProject.domain.MemberVO">
 		SELECT * 
-		  FROM   USER_TBL
- 		 WHERE  ID = #{id}
+		  FROM USER_TBL
+ 		 WHERE ID = #{id}
 	</select>
 
 	<!-- 특정 필드에 대한 회원 중복 체크 쿼리 -->
@@ -26,8 +26,8 @@
                            EMAIL, PHONE, BIRTHDAY, JOINDATE, ENABLED
 	                       )
 	                VALUES(
-	   	  	               USER_NUM_SEQ.NEXTVAL,   #{id},   #{pw},   #{name},   #{gender}, 
-	   	  	               #{email}, #{phone}, #{birthday}, SYSDATE, #{enabled}
+	   	  	               USER_NUM_SEQ.NEXTVAL, #{id},    #{pw},       #{name},  #{gender}, 
+	   	  	               #{email},             #{phone}, #{birthday}, SYSDATE,  #{enabled}
 	                       )
 	</insert>
 	
@@ -85,8 +85,7 @@
 
 	<!-- 회원 Role 삭제 -->
 	<delete id="deleteRoleById" parameterType="map">
-		DELETE 
-		  FROM USER_ROLES
+		DELETE FROM USER_ROLES
 		 WHERE USERID = #{id}
 		   AND ROLE = #{role}
 	</delete>
