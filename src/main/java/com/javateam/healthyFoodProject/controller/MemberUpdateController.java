@@ -78,9 +78,9 @@ public class MemberUpdateController {
 		String msg = "";
 		String movePath = "";
 		
-		boolean result = memberService.updateMember(memberUpdateDTO);
+		boolean blRetVal = memberService.updateMember(memberUpdateDTO);
 		
-		if(result == true) {
+		if(blRetVal == true) {
 			
 			msg = "회원정보를 수정했습니다.";
 			movePath = "redirect:/member/view";

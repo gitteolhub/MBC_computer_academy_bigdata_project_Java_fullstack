@@ -53,13 +53,13 @@ public class MemberJoinRestController {
 		
 		try {
 			
-			boolean result = memberService.insertMember(objMemberVO);
-			log.info("회원 가입 성공 여부: {}", result);
+			boolean blRetVal = memberService.insertMember(objMemberVO);
+			log.info("회원 가입 성공 여부: {}", blRetVal);
 			
-			if(result == true) {
-				responseEntity = new ResponseEntity<>(result, HttpStatus.OK);			// 회원가입 성공
+			if(blRetVal == true) {
+				responseEntity = new ResponseEntity<>(blRetVal, HttpStatus.OK);			// 회원가입 성공
 			} else {
-				responseEntity = new ResponseEntity<>(result, HttpStatus.NO_CONTENT);	// 회원가입 실패
+				responseEntity = new ResponseEntity<>(blRetVal, HttpStatus.NO_CONTENT);	// 회원가입 실패
 			}
 		} catch (Exception ex) {
 			log.error("[MemberJoinRestController][joinProcAjax] Exception: {}", ex);

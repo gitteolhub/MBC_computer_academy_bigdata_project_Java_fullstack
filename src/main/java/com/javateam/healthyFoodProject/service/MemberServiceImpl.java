@@ -183,23 +183,23 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public boolean insertRole(Role role) {
 		
-		boolean result = false;
+		boolean blRetVal = false;
 		
 		try {
 			memberDAO.insertRole(role.getUsernum(), role.getUserid(), role.getRole());
-			result = true;
+			blRetVal = true;
 		} catch (Exception ex) {
 			log.error("[MemberService][insertRole]: {}", ex);
 			ex.printStackTrace();
 		}
-		return result;
+		return blRetVal;
 	}
 	
 	// 회원 role 수정(관리자 권한)
 	@Override
 	public boolean updateRoles(String strId, boolean blRoleUserYn, boolean blRoleAdminYn) {
 		
-		boolean result = false;
+		boolean blRetVal = false;
 
 		List<String> roles = memberDAO.selectRolesById(strId);
 		// 회원(ROLE_USER)이면서 관리자 권한이 없는 경우
@@ -211,7 +211,7 @@ public class MemberServiceImpl implements MemberService {
 				role.setUserid(strId);
 				role.setRole("ROLE_ADMIN");
 				
-				result = this.insertRole(role);
+				blRetVal = this.insertRole(role);
 		}
 		// 회원(ROLE_USER)이면서 관리자 권한을 회수할 경우(관리자 권한 삭제)
 		else if (blRoleAdminYn == false && roles.contains("ROLE_USER") == true
@@ -219,9 +219,9 @@ public class MemberServiceImpl implements MemberService {
 			log.info("관리자 권한 회수");
 			
 			String role = "ROLE_ADMIN";
-			result = this.deleteRoleById(strId, role);
+			blRetVal = this.deleteRoleById(strId, role);
 		}
-		return result;
+		return blRetVal;
 	}
 	
 	// 회원 role 삭제
@@ -229,17 +229,17 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public boolean deleteRoleById(String strId, String strRole) {
 		
-		boolean result = false;
+		boolean blRetVal = false;
 		
 		try {
 			memberDAO.deleteRoleById(strId, strRole);
-			result = true;
+			blRetVal = true;
 			
 		} catch (Exception ex) {
 			log.error("[MemberService][deleteRoleById] : {}", ex);
 			ex.printStackTrace();
 		}
-		return result;
+		return blRetVal;
 	}
 	
 	// 회원 enabled 상태 변경
@@ -247,16 +247,16 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public boolean changeEnabled(String strId, int intEnabled) {
 		
-		boolean result = false;
+		boolean blRetVal = false;
 		
 		try {
 			memberDAO.changeEnabled(strId, intEnabled);
-			result = true;
+			blRetVal = true;
 			
 		} catch (Exception ex) {
 			log.error("[MemberServic][changeEnabled]: {}", ex);
 			ex.printStackTrace();
 		}
-		return result;
+		return blRetVal;
 	}
 }

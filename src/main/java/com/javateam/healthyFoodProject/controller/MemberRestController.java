@@ -28,17 +28,17 @@ public class MemberRestController {
 		ResponseEntity<Boolean> responseEntity = null;
 		
 		try {
-			boolean result = memberService.hasMemberByFld(strField, strValue);
+			boolean blRetVal = memberService.hasMemberByFld(strField, strValue);
 			
-			if(result == true) {
+			if(blRetVal == true) {
 				// 중복 값(아이디)이 있을 경우
 				// http 상태 코드 200 : OK (중복 : 사용불가능) 
-				responseEntity = new ResponseEntity<>(result, HttpStatus.OK);
+				responseEntity = new ResponseEntity<>(blRetVal, HttpStatus.OK);
 				
 			} else {
 				// 중복 값(아이디)이 없을 경우
 				// http 상태 코드 204 : NO Content (중복안됨 : 사용가능)
-				responseEntity = new ResponseEntity<>(result,HttpStatus.NO_CONTENT);
+				responseEntity = new ResponseEntity<>(blRetVal,HttpStatus.NO_CONTENT);
 			}
 		} catch (Exception ex) {
 			log.error("[MemberRestController][hasFld] Exception: {}", ex);
@@ -56,17 +56,17 @@ public class MemberRestController {
 												   @Parameter(name = "val", required = true) @PathVariable("val") String strValue){
 		ResponseEntity responseEntity = null;
 		try {
-			boolean result = memberService.hasMemberForUpdate(strId, strField, strValue);
+			boolean blRetVal = memberService.hasMemberForUpdate(strId, strField, strValue);
 			
-			if(result == true) {
+			if(blRetVal == true) {
 				// 중복 값(이메일)이 있을 경우
 				// http 상태 코드 200 : OK (중복 : 사용불가능) 
-				responseEntity = new ResponseEntity<>(result, HttpStatus.OK);
+				responseEntity = new ResponseEntity<>(blRetVal, HttpStatus.OK);
 				
 			} else {
 				// 증복 값(이메일)이 없을 경우 
 				// http 상태 코드 204 : NO Content (중복안됨 : 사용가능)
-				responseEntity = new ResponseEntity<>(result, HttpStatus.NO_CONTENT);
+				responseEntity = new ResponseEntity<>(blRetVal, HttpStatus.NO_CONTENT);
 			}
 		} catch (Exception ex) {
 			log.error("[MemberRestController][hasFldForUpdate] Exception: {}", ex);
