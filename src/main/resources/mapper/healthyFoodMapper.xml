@@ -87,7 +87,8 @@
 
 	<!-- 회원 Role 삭제 -->
 	<delete id="deleteRoleById" parameterType="map">
-		DELETE USER_ROLES
+		DELETE 
+		  FROM USER_ROLES
 		 WHERE USERID = #{id}
 		   AND ROLE = #{role}
 	</delete>
