@@ -81,7 +81,7 @@ public class CustomProviderService implements AuthenticationProvider, UserDetail
 	
 	@Override
 	public Authentication authenticate (Authentication authentication) throws AuthenticationException {
-		log.info("[authenticate]{} ",authentication);
+		log.info("[authenticate]: {} ",authentication);
 		
 		String     username = authentication.getName();
 		String     password = "";
@@ -99,12 +99,12 @@ public class CustomProviderService implements AuthenticationProvider, UserDetail
 			}
 			
 			user = this.loadUserByUsername(username);
-			log.info("[사용자현황 (user): {}]", user);
+			log.info("[사용자현황 (user)]: {}", user);
 			
 			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 			
 			password = (String) authentication.getCredentials();
-			log.info("[password: {}]", password);
+			log.info("[password]: {}", password);
 			
 			if (passwordEncoder.matches(password, user.getPassword()))
 				log.info("비밀번호가 일치합니다.");
