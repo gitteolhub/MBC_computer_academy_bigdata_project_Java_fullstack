@@ -36,7 +36,11 @@ public class CaptchaController {
 	public ServletContext servletContext;
 	
 	@GetMapping
-	public String join(Model model) {
+	public String login(Model model) {
+		log.info("[CaptchaController].login");
+		
+		apiCaptchaImageService = new ApiCaptchaImageService();
+		apiCaptchaNKeyService = new ApiCaptchaNkeyService();
 		
 		log.info("[clientId]: {}", clientId);
 		log.info("[clientSecret]: {}", clientSecret);
@@ -47,8 +51,11 @@ public class CaptchaController {
         Map<String, String> requestHeaders = new HashMap<>();
         requestHeaders.put("X-Naver-Client-Id", clientId);
         requestHeaders.put("X-Naver-Client-Secret", clientSecret);
+        
         String keyJson = apiCaptchaNKeyService.get(apiURL, requestHeaders);
-
+        if(keyJson == null) {
+        	model.addAttribute("error", "캡차 키를 가져오는데 실패했습니다.");
+        }
         log.info("[keyJson]: {}", keyJson);
 
         ObjectMapper objectMapper = new ObjectMapper();
@@ -66,13 +73,17 @@ public class CaptchaController {
         
         apiURL = "https://openapi.naver.com/v1/captcha/ncaptcha.bin?key=" + key;
         String filenameOrMsg = apiCaptchaImageService.get(apiURL,requestHeaders);
+        
+        if (filenameOrMsg == null) {
+        	model.addAttribute("error", "캡차 이미지를 가져오는데 실패 했습니다.");
+        }
 
         log.info("[filenameOrMsg(메시지)]: {}", filenameOrMsg);
 
 		model.addAttribute("captchaImage", filenameOrMsg);
 		model.addAttribute("key", key); // 발급받은 캡차키(key)
 
-		return "join";
+		return "login";
 	}
 	
 }

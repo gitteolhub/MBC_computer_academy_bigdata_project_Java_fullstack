@@ -42,8 +42,8 @@ public class CaptchaRestController {
 	@GetMapping("refreshImage")
 	public ResponseEntity<String> refreshImage() {
 		
-		log.info("clientId: {}", clientId);
-		log.info("clientSecret: {}", clientSecret);
+		log.info("[clientId]: {}", clientId);
+		log.info("[clientSecret]: {}", clientSecret);
 		
 		String responseBody = "";
 		
@@ -95,13 +95,13 @@ public class CaptchaRestController {
 	public ResponseEntity<String> rest(@RequestParam("captchaVal") String captchaVal,
 									   @RequestParam("key") String key) {
 
-		log.info("checkCaptcha");
+		log.info("[checkCaptcha]");
 
-		log.info("clientId: {}", clientId);
-		log.info("clientSecret: {}", clientSecret);
+		log.info("[clientId]: {}", clientId);
+		log.info("[clientSecret]: {}", clientSecret);
 
-		log.info("key: {}", key);
-		log.info("captchaVal: {}", captchaVal);
+		log.info("[key]: {}", key);
+		log.info("[captchaVal]: {}", captchaVal);
 		
 		// 키 발급시 0, 캡차 이미지 비교시 1로 세팅
 		String code = "1";
@@ -114,7 +114,7 @@ public class CaptchaRestController {
 
   		String responseBody = apiCaptchaNKeyService.get(apiURL, requestHeaders);
 
-  		log.info("responseBody: {}", responseBody);
+  		log.info("[responseBody]: {}", responseBody);
   		
   		return new ResponseEntity<String>(responseBody, HttpStatus.OK);
 	}	

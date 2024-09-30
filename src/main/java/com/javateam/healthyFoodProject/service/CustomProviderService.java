@@ -108,8 +108,9 @@ public class CustomProviderService implements AuthenticationProvider, UserDetail
 			
 			if (passwordEncoder.matches(password, user.getPassword()))
 				log.info("비밀번호가 일치합니다.");
-			else
+			else {
 				throw new BadCredentialsException("비밀번호가 일치하지 않습니다.");
+			}
 			
 			List<Role> roles = this.loadUserRole(username);
 			user.setAuthorities(roles);
@@ -132,6 +133,8 @@ public class CustomProviderService implements AuthenticationProvider, UserDetail
 			log.info("다른 종류 에러: ", ex.toString());
 			ex.printStackTrace();
 		}
+		
+		
 		
 		log.info("인증절차 끝");
 		

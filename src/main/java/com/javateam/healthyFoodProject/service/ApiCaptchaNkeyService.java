@@ -29,6 +29,7 @@ public class ApiCaptchaNkeyService {
 			}
 			
 			int responseCode = con.getResponseCode();
+			log.info("[responseCode]: {}", responseCode);
 			
 			if (responseCode == HttpURLConnection.HTTP_OK) {
 				return readBody(con.getInputStream());
@@ -65,14 +66,14 @@ public class ApiCaptchaNkeyService {
 		
 		InputStreamReader inputStreamReader = new InputStreamReader(body);
 		
-		try (BufferedReader lineReader = new BufferedReader(inputStreamReader)) {
-			StringBuilder responseBody = new StringBuilder();
+		try (BufferedReader lineReader   = new BufferedReader(inputStreamReader)) {
+			 StringBuilder  responseBody = new StringBuilder();
 			
 			String strLine;
 			
 			// InputStream에서 한 줄씩 읽음
 			while ((strLine = lineReader.readLine()) != null) {
-				responseBody.append(strLine);
+				    responseBody.append(strLine);
 			}
 			
 			return responseBody.toString();

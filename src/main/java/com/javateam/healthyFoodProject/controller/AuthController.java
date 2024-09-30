@@ -1,6 +1,7 @@
 package com.javateam.healthyFoodProject.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -18,6 +19,7 @@ import com.javateam.healthyFoodProject.domain.CustomUser;
 import com.javateam.healthyFoodProject.domain.MemberDTO;
 import com.javateam.healthyFoodProject.domain.MemberVO;
 import com.javateam.healthyFoodProject.service.MemberService;
+import com.javateam.healthyFoodProject.controller.CaptchaController;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -27,9 +29,13 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @Slf4j
 public class AuthController {
+	@Autowired
+	CaptchaController captchaController;
 	
 	@Autowired
 	private MemberService memberService;
+	private int loginErrorCount = -1;
+	private int maxCount = 5;
 	
 	@Autowired
 	BCryptPasswordEncoder passwordEncoder;
@@ -51,30 +57,30 @@ public class AuthController {
 	}
 	
 	
-	// (일반)회원용 주소
-	@GetMapping("/secured/home")
-	public String securedHome(ModelMap model) {
-		
-		log.info("[/secured/home]");
-		
-		// 인증된 회원의 정보를 가져옴
-		Object principal = SecurityContextHolder.getContext()
-												.getAuthentication()
-												.getPrincipal();
-		
-		CustomUser user = null;
-		
-		if (principal instanceof CustomUser) {
-			user = ((CustomUser)principal);
-		}
-		log.info("[user: {}]", user);
-		
-		String ID = user.getUsername();
-		model.addAttribute("username", ID);
-		model.addAttribute("message", "회원 페이지입니다.");
-		
-		return "/secured/home";
-	}
+//	// (일반)회원용 주소
+//	@GetMapping("/secured/home")
+//	public String securedHome(ModelMap model) {
+//		
+//		log.info("[/secured/home]");
+//		
+//		// 인증된 회원의 정보를 가져옴
+//		Object principal = SecurityContextHolder.getContext()
+//												.getAuthentication()
+//												.getPrincipal();
+//		
+//		CustomUser user = null;
+//		
+//		if (principal instanceof CustomUser) {
+//			user = ((CustomUser)principal);
+//		}
+//		log.info("[user: {}]", user);
+//		
+//		String ID = user.getUsername();
+//		model.addAttribute("username", ID);
+//		model.addAttribute("message", "회원 페이지입니다.");
+//		
+//		return "/secured/home";
+//	}
 	
 //	// 회원가입 폼
 //	@GetMapping("/joinAjaxDemo")
@@ -123,8 +129,8 @@ public class AuthController {
 		log.info("[loginForm]");
 		String error = request.getParameter("error")== null ? "없음" : request.getParameter("error");
 		String msg   = request.getParameter("msg")  == null ? "없음" : request.getParameter("msg");
-		log.info("[loginForm][error : {}]", error);
-		log.info("[loginForm][msg : {}]", msg);
+		log.info("[loginForm][error]: {}", error);
+		log.info("[loginForm][msg]: {}", msg);
 		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		log.info("login 인증정보: {}", auth);
@@ -132,10 +138,17 @@ public class AuthController {
 		String path="";
 		
 		if(auth.getPrincipal() == null || auth.getPrincipal().toString().equals("anonymousUser")) {
+			loginErrorCount += 1;
 			
 			log.info("로그인 인증 안됨");
 			model.addAttribute("error", error);
 			model.addAttribute("msg", msg);
+			
+			log.info("[loginErrorCount: {}]", loginErrorCount);
+			if(loginErrorCount >= maxCount) {
+				log.info("[if(loginErrorCount >= maxCount)]");
+				captchaController.login(model);
+			}
 			
 			path = "loginForm";
 			
@@ -155,7 +168,7 @@ public class AuthController {
 		
 		// 현재 인증 정보
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		log.info("[auth: {}]", auth);
+		log.info("[auth]:{}", auth);
 		
 		// 인증 정보가 존재하는 경우 로그아웃
 		if(auth != null) {
@@ -170,7 +183,7 @@ public class AuthController {
 		
 		// 마지막 보안 예외 가져오기
 		Exception secuSess =(Exception)session.getAttribute("SPRING_SECURITY_LAST_EXCEPTION");
-		log.info("[인증 오류 {}]", secuSess.getMessage());
+		log.info("[인증 오류: {}]", secuSess.getMessage());
 		
 		// 오류 flag 추가
 		redirectAttributes.addAttribute("error", "true");
@@ -186,11 +199,11 @@ public class AuthController {
 	@ResponseBody
 	public String idCheck(@RequestParam("username") String username, Model model) {
 		
-		log.info("[username: {}]", username);
+		log.info("[username]: {}", username);
 		
 		// 아이디 중복 확인
 		boolean flag = memberService.hasMemberByFld("ID",username);
-		log.info("[flag: {}]", flag);
+		log.info("[flag]: {}", flag);
 		
 		return flag + "";
 	}

@@ -69,9 +69,9 @@ public class SecurityConfig {
 													   								 "/login/idCheck", "/login",          "/member/hasFld/**", "/captcha/**")
 											   						.permitAll()
 											   						.requestMatchers("/admin/**").hasAnyAuthority("ROLE_ADMIN")				// ROLE_ADMIN 권한이 필요한 경로
-											   						.requestMatchers("/secured/**", "/myPage", "/member/view","/member/hasFldForUpdate/**", "member/update",
+											   						.requestMatchers("/secured/**", "/myPage", "/member/view","/member/hasFldForUpdate/**", "/member/update",
 											   										 "/member/updateProc")
-											   						.hasAnyAuthority("ROLE_USER")	// ROLE_USER 권한이 필요한 경로
+											   						.hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")	// ROLE_USER, ROLE_ADMIN 권한이 필요한 경로
 											   						.anyRequest().authenticated());
 		
 		// csrf 토큰 미사용

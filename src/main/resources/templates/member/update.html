@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	  layout:decorate="~{layout}"
+	  layout:decorate="~{layout_login}"
  	  lang="ko-kr">
 <head>
 	<meta charset="UTF-8">
@@ -16,7 +16,8 @@
 </head>
 <body>
 
-<div>
+<div id="wrap" layout:fragment="content" class="main_sect_pnl">
+
 	<h2>회원 정보 수정</h2>
 	
 	<form id="frm" th:action="@{'/member/updateProc'}" method="post" th:object="${memberUpdateDTO}">

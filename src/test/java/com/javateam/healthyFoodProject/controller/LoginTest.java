@@ -112,4 +112,5 @@ public class LoginTest {
 		
 		assertThat("회원 아이디가 없습니다.").isSubstringOf(sessionMsg);
 	}
+
 }

@@ -29,10 +29,10 @@ class ValidCaptchaServiceTest {
 	@Test
 	public void test() {
 
-		log.info("checkCaptcha");
+		log.info("[checkCaptcha]");
 
-		log.info("clientId: {}", clientId);
-		log.info("clientSecret: {}", clientSecret);
+		log.info("[clientId]: {}", clientId);
+		log.info("[clientSecret]: {}", clientSecret);
 		
 		String key = "발급된 키를 입력합니다.";
 		String captcha = "captcha 문자"; // 발행된 그림의 captcha 문자를 입력합니다.
