@@ -3,8 +3,8 @@ import json
 import os
 from datetime import datetime
 
-# 공공데이터포털에서 제공하는 식품영양성분 API URL
-url = 'http://api.data.go.kr/openapi/tn_pubr_public_nutri_food_info_api'
+# 공공데이터포털에서 제공하는 식품(원재료성식품) 영양성분 API URL
+url = 'http://api.data.go.kr/openapi/tn_pubr_public_nutri_material_info_api'
 
 # API 요청에 필요한 파라미터
 params = {
@@ -16,8 +16,8 @@ params = {
 }
 
 # 데이터를 저장할 파일 경로
-file_path = 'D:/student/LHT/works/crawling/food_data.json'
-log_file_path = 'D:/student/LHT/works/crawling/update_log.txt'
+file_path = 'D:/student/LHT/works/crawling/material_data.json'
+log_file_path = 'D:/student/LHT/works/crawling/material_update_log.txt'
 
 # 모든 페이지의 데이터를 저장할 리스트 초기화
 all_items = []
