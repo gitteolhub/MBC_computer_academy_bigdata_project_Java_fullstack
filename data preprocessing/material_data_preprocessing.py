@@ -14,8 +14,8 @@ if original_mtime > preprocessed_mtime:
     # JSON 파일 읽기
     df = pd.read_json(original_file_path)
 
-    # 과일류의 '식품코드', '식품명', '식품대분류명', '에너지(kcal)', '단백질(g)', '지방(g)', '탄수화물(g)', '식품중량' 열만 선택
-    df_preprocessed = df[df['foodLv3Nm'] == '과일류'][['foodCd', 'foodNm', 'foodLv3Nm', 'enerc', 'prot', 'fatce', 'chocdf', 'foodSize']]
+    # 과일류의 '식품코드', '식품명', '식품대분류명', '에너지(kcal)', '단백질(g)', '지방(g)', '탄수화물(g)' 열만 선택
+    df_preprocessed = df[df['foodLv3Nm'] == '과일류'][['foodCd', 'foodNm', 'foodLv3Nm', 'enerc', 'prot', 'fatce', 'chocdf']]
 
     # 처리한 데이터프레임을 JSON 파일로 저장
     df_preprocessed.to_json(preprocessed_file_path, orient='records', force_ascii=False, indent=4)
