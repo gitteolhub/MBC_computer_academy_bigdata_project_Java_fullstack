@@ -3,18 +3,18 @@
 <mapper namespace="mapper.healthyFoodMapper">
 
 	<!-- ID로 회원 정보를 조회하는 쿼리 -->
-	<select id="selectMemberById" 
-			parameterType="String" 
-			resultType="com.javateam.healthyFoodProject.domain.MemberVO">
+	<select id = "selectMemberById" 
+			parameterType = "String" 
+			resultType = "com.javateam.healthyFoodProject.domain.MemberVO">
 		SELECT * 
 		  FROM   USER_TBL
- 		 WHERE  id = #{id}
+ 		 WHERE  ID = #{id}
 	</select>
 
 	<!-- 특정 필드에 대한 회원 중복 체크 쿼리 -->
-	<select id="hasMemberByFld" parameterType = "map" resultType ="int">
-		SELECT count(*)
-		  FROM user_tbl
+	<select id = "hasMemberByFld" parameterType = "map" resultType = "int">
+		SELECT COUNT(*)
+		  FROM USER_TBL
 		 WHERE ${fld} = #{val}
 	
 	</select>
@@ -36,12 +36,12 @@
 		UPDATE USER_TBL
 		<set>
 			<if test = "pw != null">
-				,PW = #{pw}		
+				PW = #{pw}		
 			</if>
-			<if test = "EMAIL != null">
+			<if test = "email != null">
 				,EMAIL = #{email}		
 			</if>
-			<if test = "PHONE != null">
+			<if test = "phone != null">
 				,PHONE = #{phone}		
 			</if>
 		</set>
@@ -50,7 +50,7 @@
 	</update>
 
 	<!-- 회원정보 중복 점검(수정) -->
-	<select id="hasMemberForUpdate" parameterType="map" resultType="int">
+	<select id = "hasMemberForUpdate" parameterType = "map" resultType = "int">
 		SELECT COUNT(*)
 	  	  FROM (SELECT ${fld}
 	  			  FROM USER_TBL
@@ -59,50 +59,52 @@
 	</select>
 	
 	<!-- 회원 Role 생성 -->
-	<insert id ="insertRole" parameterType = "map">
+	<insert id = "insertRole" parameterType = "map">
 		INSERT INTO USER_ROLES (User_Role_Num, usernum, userid, role)
 						VALUES (USER_ROLES_SEQ.NEXTVAL, #{num,jdbcType=VARCHAR}, #{id,jdbcType=VARCHAR}, #{role,jdbcType=VARCHAR})
 	</insert>
 	
 	<!-- 회원 Role 삭제 -->
-	<delete id="deleteRoles" parameterType ="String">
-		DELETE
-		  FROM USER_ROLES
+	<delete id = "deleteRoles" parameterType ="String">
+		DELETE FROM USER_ROLES
 		 WHERE USERID = #{userid}
 	</delete>
 	
 	<!-- 회원정보 삭제 -->
-	<delete id ="deleteMemberById" parameterType = "String">
-		DELETE
-		  FROM USER_TBL
+	<delete id = "deleteMemberById" parameterType = "String">
+		DELETE FROM USER_TBL
 		 WHERE ID = #{id}
 	</delete>
 	
 	<!-- 회원 Role 조회 -->
-	<select id="selectRolesById" parameterType="String" resultType="String">
+	<select id = "selectRolesById" parameterType="String" resultType = "String">
 		SELECT ROLE
 		  FROM USER_ROLES
 		 WHERE USERID = #{id}
 	</select>
 
 	<!-- 회원 Role 삭제 -->
+<<<<<<< HEAD
 	<delete id="deleteRoleById" parameterType="map">
 		DELETE 
 		  FROM USER_ROLES
+=======
+	<delete id = "deleteRoleById" parameterType="map">
+		DELETE FROM USER_ROLES
+>>>>>>> 7f55daf0b67b41b393b3435ded52b6935a1a0049
 		 WHERE USERID = #{id}
 		   AND ROLE = #{role}
 	</delete>
 
 	<!-- 회원 활동/휴면  상태(enabled) 변경 -->
-	<update id="changeEnabled" parameterType="map">
-		UPDATE
-			   USER_TBL
+	<update id = "changeEnabled" parameterType="map">
+		UPDATE USER_TBL
 		   SET ENABLED = #{enabled}
 		 WHERE ID = #{id}
 	</update>
 	
 	<!-- 회원정보 조회(role 포함) -->
-	<select id ="selectMemberByFld" parameterType = "map" resultType = "map" >
+	<select id = "selectMemberByFld" parameterType = "map" resultType = "map" >
 	SELECT DISTINCT m3.* 
          ,(
            SELECT LISTAGG(r2.ROLE, ',') WITHIN GROUP (ORDER BY m2.ID) 
