@@ -41,5 +41,5 @@ public interface MemberDAO {
 	void changeEnabled(String strId, int intEnabled);
 	
 	// 회원정보 조회(role 포함)
-	Map<String,Object> selectMemberByFld(String strFld, Object objVal);
+	Map<String,Object> selectMemberByFld(String strField, Object strValue);
 }

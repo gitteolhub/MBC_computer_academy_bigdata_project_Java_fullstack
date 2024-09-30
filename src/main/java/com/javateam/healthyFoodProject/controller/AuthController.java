@@ -35,7 +35,7 @@ public class AuthController {
 	@Autowired
 	private MemberService memberService;
 	private int loginErrorCount = -1;
-	private int maxCount = 5;
+	private int maxCount = 3;
 	
 	@Autowired
 	BCryptPasswordEncoder passwordEncoder;
@@ -174,6 +174,8 @@ public class AuthController {
 		if(auth != null) {
 			new SecurityContextLogoutHandler().logout(request, response, auth);
 		}
+		
+		loginErrorCount = -1;
 		return "logout";
 	}
 	
