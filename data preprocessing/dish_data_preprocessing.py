@@ -2,8 +2,8 @@ import os
 import pandas as pd
 
 # 파일 경로 설정(PC에 따라 알맞은 경로 설정)
-original_file_path = 'D:/student/LHT/works/crawling/food_data.json'
-preprocessed_file_path = 'D:/student/LHT/works/crawling/preprocessed_food_data.json'
+original_file_path = 'D:/student/LHT/works/crawling/dish_data.json'
+preprocessed_file_path = 'D:/student/LHT/works/crawling/preprocessed_dish_data.json'
 
 # 파일의 수정 시간을 변수에 저장. 전처리 된 파일이 없을 경우 0을 저장하여 전처리 진행.
 original_mtime = os.path.getmtime(original_file_path)

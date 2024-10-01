@@ -16,8 +16,8 @@ params = {
 }
 
 # 데이터를 저장할 파일 경로
-file_path = 'D:/student/LHT/works/crawling/food_data.json'
-log_file_path = 'D:/student/LHT/works/crawling/food_update_log.txt'
+file_path = 'D:/student/LHT/works/crawling/dish_data.json'
+log_file_path = 'D:/student/LHT/works/crawling/dish_update_log.txt'
 
 # 모든 페이지의 데이터를 저장할 리스트 초기화
 all_items = []
