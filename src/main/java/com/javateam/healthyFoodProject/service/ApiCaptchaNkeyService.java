@@ -18,9 +18,9 @@ import lombok.extern.slf4j.Slf4j;
 public class ApiCaptchaNkeyService {
 	
 	// API 호출하여 응답을 받아오는 메서드
-	public String get(String apiUrl, Map<String, String> requestHeaders) {
+	public String get(String strApiUrl, Map<String, String> requestHeaders) {
 		
-		HttpURLConnection con = connect(apiUrl);
+		HttpURLConnection con = connect(strApiUrl);
 		
 		try {
 			con.setRequestMethod("GET");
@@ -46,18 +46,18 @@ public class ApiCaptchaNkeyService {
 	}
 	
 	// URL에 연결을 생성하는 메서드
-	public HttpURLConnection connect(String apiUrl) {
+	public HttpURLConnection connect(String strApiUrl) {
 		
 		try {
 			// URL 객체 생성
-			URL url = new URL(apiUrl);
+			URL url = new URL(strApiUrl);
 			return (HttpURLConnection)url.openConnection();
 			
 		} catch (MalformedURLException ex) {
-			throw new RuntimeException("API URL이 잘못되었습니다.: " + apiUrl, ex);
+			throw new RuntimeException("API URL이 잘못되었습니다.: " + strApiUrl, ex);
 			
 		} catch (IOException ex) {
-			throw new RuntimeException("연결이 실패했습니다.: " + apiUrl, ex);
+			throw new RuntimeException("연결이 실패했습니다.: " + strApiUrl, ex);
 		}
 	}
 	

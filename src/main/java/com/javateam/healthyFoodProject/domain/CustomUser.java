@@ -34,11 +34,11 @@ public class CustomUser implements UserDetails{
 		this.enabled  = users.getEnabled() == 1 ? true : false;
 	}
 	
-	public CustomUser(String usernum, String userid, String password, boolean enabled) {
-		this.usernum  = usernum;
-		this.username = userid;
-		this.password = password;
-		this.enabled  = enabled;
+	public CustomUser(String strUsernum, String strUserid, String strPassword, boolean blEnabled) {
+		this.usernum  = strUsernum;
+		this.username = strUserid;
+		this.password = strPassword;
+		this.enabled  = blEnabled;
 	
 	}
 }

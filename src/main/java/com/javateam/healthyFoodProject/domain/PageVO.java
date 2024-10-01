@@ -28,14 +28,14 @@ public class PageVO {
 
 	
 	// 총 인원, 게시글 수
-	public static int getMaxPage(int listCount, int limit) {
+	public static int getMaxPage(int listCount, int intLimit) {
 		
-		return (int)((double)listCount/limit+0.95); //0.95를 더해서 올림 처리
+		return (int)((double)listCount/intLimit+0.95); //0.95를 더해서 올림 처리
 	}
 	
 	// 현재 페이지
-	public static int getStartPage(int currentPage, int limit) {
+	public static int getStartPage(int currentPage, int intLimit) {
 		
-		return  (((int) ((double)currentPage / limit + 0.9)) - 1) * limit + 1;
+		return  (((int) ((double)currentPage / intLimit + 0.9)) - 1) * intLimit + 1;
 	}
 }

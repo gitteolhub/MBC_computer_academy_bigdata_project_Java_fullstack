@@ -24,19 +24,19 @@ import lombok.extern.slf4j.Slf4j;
 public class CaptchaRestController {
 	
 	@Value("${naver.captcha.clientId}")
-	String clientId; // 애플리케이션 클라이언트 아이디값
+	public String clientId; // 애플리케이션 클라이언트 아이디값
 
 	@Value("${naver.captcha.clientSecret}")
-	String clientSecret; // 애플리케이션 클라이언트 시크릿값
+	public String clientSecret; // 애플리케이션 클라이언트 시크릿값
 
 	@Autowired
-	ApiCaptchaImageService apiCaptchaImageService;
+	public ApiCaptchaImageService apiCaptchaImageService;
 
 	@Autowired
-	ApiCaptchaNkeyService apiCaptchaNKeyService;
+	public ApiCaptchaNkeyService apiCaptchaNKeyService;
 
 	@Autowired
-	ServletContext servletContext;
+	public ServletContext servletContext;
 
 	// captcha 이미지 갱신(refresh)
 	@GetMapping("refreshImage")
