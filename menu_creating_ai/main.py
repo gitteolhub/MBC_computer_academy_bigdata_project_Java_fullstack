@@ -4,7 +4,6 @@ import random as ran
 import threading as th
 import pandas as pd
 import ai_ctrl
-from menu_creating_ai.ai_ctrl import file_path
 
 data_path = 'Resources/food_data.json'
 data_str = ''
@@ -35,6 +34,9 @@ def get_data():
     _data = str(js_data).replace('\'', '\"')
     result = json.loads(_data)
     return result
+
+def food_naming(n):
+    keyword_list = ['채소', '부추', '양념장', '김치', '깻잎']
 
 def id_to_food(num):
     _df = pd.read_json(data_path)
@@ -568,7 +570,19 @@ def calculate_menus(count, returns_id):
 
         menu_df = pd.concat([menu_df, df2])
 
+def print_meal(meal):
+    for i in range(2, len(meal)):
+        if len(meal[i]) > 0:
+            _menu_str = ''
+            for j in range(len(meal[i])):
+                _menu_str += str(meal[i][j])
+                if j < len(meal[i]) - 1:
+                    if len(meal[i][j]) > 0:
+                        _menu_str += ', '
+            print('추천 식단 : ' + str(_menu_str))
+
 def find_meal(c, returns_id):
+    debug_process = False
     df = pd.read_json(data_path)
     meal = [[my_age], [my_gender]]
     for x in range(c):
@@ -584,7 +598,9 @@ def find_meal(c, returns_id):
             meal.append([name_to_id(rice, df), name_to_id(meat, df), name_to_id(vegetable, df), name_to_id(milk, df)])
         else:
             meal.append([rice, meat, vegetable, milk])
-        #print(x)
+    if not returns_id:
+        if debug_process:
+            print_meal(meal)
     return meal
 
 #문자열 형태의 리스트를 리스트 형태로 변환하는 함수
@@ -658,14 +674,16 @@ def train_ai_test(train_count, _data):
 
 def create_menu_from_ai():
     menu_count = 20
-
-    print('\n식단 짜는 중...')
+    debug_process = False
+    if debug_process:
+        print('\n식단 짜는 중...')
     _test_data = find_meal(menu_count, True)
     _test_data2 = find_meal(menu_count, False)
 
     #print('산출된 식단 : ' + str(_test_data))
 
-    print('사용자 취향에 맞는 식단 필터링 중...\n')
+    if debug_process:
+        print('식품군이 골고루 들어간 당뇨병 식단만으로 필터링 중...\n')
     ai_result = [[],[],[]]
     if len(user_reviews[1]) > 0:
         ai_result_index = 0
@@ -802,6 +820,8 @@ test_data = find_meal(test_data_count, True)
 thread1 = th.Thread(target=train_ai, args=[training_count, test_data])
 thread1.start()
 
+# find_meal(1000, False)
+
 is_test = True
 
 if is_test:
@@ -814,6 +834,8 @@ if is_test:
     #
     # save_file_path = file_path.replace('user_data.txt', str(my_id) + '.txt')
     # save_user_choice()
+
+    y_count = 0
 
     while not stop_event.is_set():
         menu = create_menu_from_ai()
@@ -828,8 +850,8 @@ if is_test:
                     if j < len(menu[i]) - 1:
                         if len(menu[i][j]) > 0:
                             _menu[i] += ', '
-        print('추천 식단 : ' + str(_menu[0]))
-        reviews = input('취향에 맞는 식단으로 추천되었나요? (y/n) : ')
+        print('\n추천 식단 : ' + str(_menu[0]))
+        reviews = input('식품군이 골고루 들어간 당뇨병 식단으로 추천되었나요? (y/n) : ')
         if 'y' in reviews.lower():
             user_menu = user_reviews[0]
             user_review = user_reviews[1]
@@ -837,8 +859,12 @@ if is_test:
             user_review.append(1)
             user_reviews[0] = user_menu
             user_reviews[1] = user_review
-
+            y_count += 1
             save_user_choice()
+            if y_count >= 10:
+                print('\n10번 연속 성공하여 학습을 종료합니다')
+                stop_event.set()
+
         elif 'n' in reviews.lower():
             user_menu = user_reviews[0]
             user_review = user_reviews[1]
@@ -846,7 +872,7 @@ if is_test:
             user_review.append(0)
             user_reviews[0] = user_menu
             user_reviews[1] = user_review
-
+            y_count = 0
             save_user_choice()
         else:
             save_user_choice()
@@ -877,7 +903,7 @@ else:
                                 if len(menu[i][j]) > 0:
                                     _menu[i] += ', '
                 print('아침 식단 : ' + str(_menu[0]) + '\n점심 식단 : ' + str(_menu[1]) + '\n저녁 식단 : ' + str(_menu[2]))
-                reviews = input('취향에 맞는 식단으로 추천되었나요? (y/n) : ')
+                reviews = input('식품군이 골고루 들어간 당뇨병 식단으로 추천되었나요? (y/n) : ')
                 if 'y' in reviews.lower():
                     user_menu = user_reviews[0]
                     user_review = user_reviews[1]

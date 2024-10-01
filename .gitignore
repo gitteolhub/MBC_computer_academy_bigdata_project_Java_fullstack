@@ -1,3 +1,6 @@
+# 가중치 데이터 무시
+Saved_files/
+
 # .idea 폴더 일괄 무시
 .idea/
 
