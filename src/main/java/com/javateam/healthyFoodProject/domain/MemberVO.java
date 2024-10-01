@@ -1,8 +1,11 @@
 package com.javateam.healthyFoodProject.domain;
 
+import java.lang.reflect.Field;
 import java.sql.Date;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -56,5 +59,41 @@ public class MemberVO {
 	public int hashCode() {
 		return Objects.hash(num,   id,    pw,      name, gender,
 							email, phone, birthday);
+	}
+	
+	public MemberVO(Map<String, Object> requestMap) {
+		
+		Set<String> set = requestMap.keySet();
+		Iterator<String> iterator = set.iterator();
+		
+		// reflection 정보 활용
+		Field field;
+		
+		while (iterator.hasNext()) {
+			
+			String fieldName = iterator.next();
+			
+			try {
+				try {
+					field = this.getClass().getDeclaredField(fieldName);
+					
+					// private 필드에 접근할 수 있다록 설정
+					field.setAccessible(true);
+					
+					
+					// birthday 와 joindate 필드는 설정하지 않음
+					if(!fieldName.equals("birthday") || !fieldName.equals("joindate")) {
+						
+						// 요청 맵에서 해당 필드의 값을 가져와 필드에 설정
+						field.set(this,requestMap.get(fieldName));
+					}
+				} catch (NoSuchFieldException ex) {
+					
+					log.info("인자와 필드가 일치하지 않습니다.");
+				}
+			} catch (SecurityException | IllegalArgumentException | IllegalAccessException ex) {
+				ex.printStackTrace();
+			}
+		}
 	}
 }

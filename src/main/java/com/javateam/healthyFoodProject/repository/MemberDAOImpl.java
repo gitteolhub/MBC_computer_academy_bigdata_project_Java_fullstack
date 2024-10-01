@@ -206,4 +206,71 @@ public class MemberDAOImpl implements MemberDAO {
 		
 		return sqlSession.selectOne(MAPPER_PATH + "selectMemberByFld", map);
 	}
+	
+	// 페이징에 의해(페이지 별) 회원정보 조회(검색)
+	@Override
+	public List<MemberVO> selectMembersByPaging(int intPage, int intLimit){
+		
+		HashMap<String, Object> hashMap = new HashMap<>();
+		
+		try {
+			hashMap.put("page",  intPage);
+			hashMap.put("limit", intLimit);
+			
+			return sqlSession.selectList(MAPPER_PATH + "selectMembersByPaging", hashMap);
+			
+		} catch (Exception ex) {
+			
+			log.error("[MemberDao][selectMembersByPaging] Exception: {}", ex);
+			ex.printStackTrace();
+			
+			return null;
+		}
+	}
+	
+	// 전체 회원정보 조회
+	@Override
+	public List<MemberVO> selectAllMembers(){
+		
+		return sqlSession.selectList(MAPPER_PATH + "selectAllMembers");
+	}
+	
+	// 회원정보 검색(페어링)
+	@Override
+	public List<Map<String, Object>> selectMembersBySearchingAndPaging(String strSearchKey,String strSearchWord, int intPage, int intLimit, String strIsLikeOrEquals, 
+																	   String strOrdering ){
+		
+		Map<String, Object> map = new HashMap<>();
+		
+		map.put("searchKey",      strSearchKey);
+		map.put("searchWord",     strSearchWord);
+		map.put("page",           intPage);
+		map.put("limit",          intLimit);
+		map.put("isLikeOrEquals", strIsLikeOrEquals);
+		
+		map.put("ordering", strOrdering);
+		
+		log.info("인자 출력: ");
+		map.entrySet().forEach(x -> {log.info(x + "");});
+		
+		return sqlSession.selectList(MAPPER_PATH + "selectMembersBySearchingAndPaging" , map);
+	}
+	
+	// 전체 회원수 조회
+	@Override
+	public int selectCountAll() {
+		
+		return sqlSession.selectOne(MAPPER_PATH + "selectCountAll");
+	}
+	
+	// 검색된 총 회원정보 수 조회
+	@Override
+	public int selectCountBySearching(String strSearchKey, String strSearchWord) {
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("SearchKey", strSearchKey);
+		map.put("searchWord", strSearchWord);
+		
+		return (int)sqlSession.selectOne(MAPPER_PATH + "selectCountBySearching", map);
+	}
 }

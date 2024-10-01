@@ -41,5 +41,21 @@ public interface MemberDAO {
 	void changeEnabled(String strId, int intEnabled);
 	
 	// 회원정보 조회(role 포함)
-	Map<String,Object> selectMemberByFld(String strField, Object strValue);
+	Map<String, Object> selectMemberByFld(String strField, Object strValue);
+	
+	// 페이징에 의해(페이지 별) 회원정보 조회(검색)
+	List<MemberVO> selectMembersByPaging(int intPage, int intLimit);
+	
+	// 전체 회원정보 조회
+	List<MemberVO> selectAllMembers();
+	
+	// 회원정보 검색(페어링)
+	List<Map<String, Object>> selectMembersBySearchingAndPaging(String strSearchKey,String strSearchWord, int intPage, int intLimit, String strIsLikeOrEquals, 
+																String strOrdering );
+	
+	// 전체 회원수 조회
+	int selectCountAll();
+	
+	// 검색된 총 회원정보 수 조회
+	int selectCountBySearching(String strSearchKey, String strSearchWord);
 }

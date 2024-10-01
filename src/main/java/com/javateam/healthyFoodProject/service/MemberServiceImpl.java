@@ -2,6 +2,7 @@ package com.javateam.healthyFoodProject.service;
 
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -258,5 +259,46 @@ public class MemberServiceImpl implements MemberService {
 			ex.printStackTrace();
 		}
 		return blRetVal;
+	}
+	
+	// 페이징에 의해(페이지 별) 회원정보 조회(검색)
+	@Transactional
+	@Override
+	public List<MemberVO> selectMembersByPaging(int intPage, int intLimit) {
+		
+		return memberDAO.selectMembersByPaging(intPage, intLimit);
+	}
+	
+	// 전체 회원정보 조회
+	@Transactional
+	@Override
+	public List<MemberVO> selectAllMembers(){
+		
+		return memberDAO.selectAllMembers();
+	}
+	
+	// 회원정보 검색(페어링)
+	@Transactional
+	@Override
+	public List<Map<String, Object>> selectMembersBySearchingAndPaging(String strSearchKey,String strSearchWord, int intPage, int intLimit, String strIsLikeOrEquals, 
+																	   String strOrdering ){
+		
+		return memberDAO.selectMembersBySearchingAndPaging(strSearchKey, strSearchWord, intPage, intLimit, strIsLikeOrEquals, 
+														   strOrdering);
+		
+	}
+	
+	// 전체 회원수 조회
+	@Transactional
+	@Override
+	public int selectCountAll() {
+		
+		return memberDAO.selectCountAll();
+	}
+	
+	// 검색된 총 회원정보 수 조회
+	public int selectCountBySearching(String strSearchKey, String strSearchWord) {
+		
+		return memberDAO.selectCountBySearching(strSearchKey, strSearchWord);
 	}
 }

@@ -99,17 +99,92 @@
 	
 	<!-- 회원정보 조회(role 포함) -->
 	<select id = "selectMemberByFld" parameterType = "map" resultType = "map" >
-	SELECT DISTINCT m3.* 
+	SELECT DISTINCT u3.* 
          ,(
-           SELECT LISTAGG(r2.ROLE, ',') WITHIN GROUP (ORDER BY m2.ID) 
-             FROM USER_TBL m2
+           SELECT LISTAGG(r2.ROLE, ',') WITHIN GROUP (ORDER BY u2.ID) 
+             FROM USER_TBL u2
                  ,USER_ROLES r2  
-            WHERE r2.USERID = m2.ID
-              AND r2.USERID = m3.ID
+            WHERE r2.USERID = u2.ID
+              AND r2.USERID = u3.ID
             ) AS "ROLE"           
-  	  FROM  USER_TBL m3
+  	  FROM  USER_TBL u3
   	       ,USER_ROLES r3
   	  WHERE m3.ID  = r3.USERID
    	    AND ${fld} = #{val}
 	</select>
+	
+	<!-- 페이징에 의해(페이지 별) 회원정보 조회(검색) -->
+	<select id="selectMembersByPaging"
+			parameterType="hashMap"
+			resultType="com.javateam.healthyFoodProject.domain.MemberVO">
+		SELECT *  
+		  FROM (SELECT u.*,  
+	         	       FLOOR((ROWNUM - 1) / #{limit} + 1) PAGE
+	      	      FROM(
+	             	   SELECT *
+				 	     FROM USER_TBL) u  
+	   			   )  
+		 WHERE PAGE = #{page}
+	</select>
+	
+	<!-- 전체 회원 조회 -->
+	<select id="selectAllMembers" resultType="com.javateam.healthyFoodProject.domain.MemberVO">
+		 SELECT * 
+		   FROM USER_TBL
+	</select>
+	
+	<select id="selectMembersBySearchingAndPaging" parameterType="map" resultType="map">
+		SELECT  *
+	  	  FROM  (
+	  	        SELECT u.*  
+	                    ,FLOOR((ROWNUM - 1) / #{limit} + 1) PAGE  
+	              FROM (
+	                    SELECT DISTINCT u3.* 
+	                       ,(
+	                         SELECT  LISTAGG(r2.ROLE, ',') WITHIN GROUP (ORDER BY u2.ID) 
+	                           FROM  USER_TBL u2
+	                                ,USER_ROLES r2  
+	                          WHERE  r2.USERID = u2.ID
+	                            AND  r2.USERID = u3.ID
+	                          )  AS  "ROLE"           
+	                     FROM  USER_TBL u3
+	                          ,USER_ROLES r3
+	                    WHERE  u3.ID = r3.USERID
+	                    
+	                    <if test="searchKey == 'JOINDATE'">
+			           AND JOINDATE LIKE TO_DATE(#{searchWord}, 'YYYY-MM-DD')
+			           </if>
+			           
+			      ORDER BY ID ${ordering} ) u
+	            )  
+	 	 WHERE PAGE = #{page}
+	</select>
+	
+	<!-- 전체 회원수 조회 -->
+	<select id="selectCountAll"	resultType="int">
+		SELECT COUNT(*)
+	   	  FROM USER_TBL
+	</select>
+	
+	<!-- 검색된 전체 회원정보 수 -->
+	<select id="selectCountBySearching" parameterType="map" resultType="int">
+		SELECT COUNT(*)
+		  FROM
+		<if test="searchKey == 'role'">
+		       USER_ROLES
+		</if>
+		<if test="searchKey != 'role'">
+		       USER_TBL
+		</if>
+		 WHERE 
+		 <if test="searchKey == 'name'">
+			   NAME LIKE '%${searchWord}%'
+   		</if>
+   		<if test="searchKey == 'joindate'">
+			   JOINDATE LIKE TO_DATE(#{searchWord}, 'YYYY-MM-DD')
+  		</if>
+  		<if test="searchKey != 'name' and searchKey != 'joindate'">
+			   ${searchKey} = #{searchWord}
+  		</if>
+  	</select>
 </mapper>

@@ -1,5 +1,6 @@
  package com.javateam.healthyFoodProject.service;
 
+import java.util.List;
 import java.util.Map;
 
 import com.javateam.healthyFoodProject.domain.MemberVO;
@@ -37,4 +38,19 @@ public interface MemberService {
 	// 회원 enabled 상태 변경
 	boolean changeEnabled(String strId, int intEnabled);
 	
+	// 페이징에 의해(페이지 별) 회원정보 조회(검색)
+	List<MemberVO> selectMembersByPaging(int intPage, int intLimit);
+		
+	// 전체 회원정보 조회
+	List<MemberVO> selectAllMembers();
+	
+	// 회원정보 검색(페어링)
+	List<Map<String, Object>> selectMembersBySearchingAndPaging(String strSearchKey,String strSearchWord, int intPage, int intLimit, String strIsLikeOrEquals, 
+																String strOrdering );
+
+	// 전체 회원수 조회
+	int selectCountAll();
+	
+	// 검색된 총 회원정보 수 조회
+	int selectCountBySearching(String strSearchKey, String strSearchWord);
 }

@@ -91,10 +91,11 @@ public class CustomProviderService implements AuthenticationProvider, UserDetail
 		
 		try {
 			if (username.trim().equals("")) {
-				throw new InternalAuthenticationServiceException("회원 아이디를 입력하십시오.");
 				
+				throw new InternalAuthenticationServiceException("회원 아이디를 입력하십시오.");
 			}
 			if (this.loadUserByUsername(username) == null) {
+				
 				throw new UsernameNotFoundException("회원 아이디가 없습니다.");
 			}
 			
@@ -107,7 +108,9 @@ public class CustomProviderService implements AuthenticationProvider, UserDetail
 			log.info("[password]: {}", password);
 			
 			if (passwordEncoder.matches(password, user.getPassword()))
+				
 				log.info("비밀번호가 일치합니다.");
+			
 			else {
 				throw new BadCredentialsException("비밀번호가 일치하지 않습니다.");
 			}
@@ -118,18 +121,22 @@ public class CustomProviderService implements AuthenticationProvider, UserDetail
 			authorities = user.getAuthorities();	
 			
 		} catch (InternalAuthenticationServiceException ex)  {
+			
 			log.info("회원 아이디 미입력: ", ex.toString());
 			throw new InternalAuthenticationServiceException(ex.getMessage());
 			
 		} catch(UsernameNotFoundException ex) {
+			
 			log.info("회원 아이디가 없음: ", ex.toString());
 			throw new InternalAuthenticationServiceException(ex.getMessage());
 			
 		} catch(BadCredentialsException ex) {
+			
 			log.info("비밀번호가 잘못되었음: ", ex.toString());
 			throw new BadCredentialsException(ex.getMessage());
 			
 		} catch(Exception ex) {
+			
 			log.info("다른 종류 에러: ", ex.toString());
 			ex.printStackTrace();
 		}

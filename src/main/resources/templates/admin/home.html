@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+			    xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>관리자 페이지</title>
+</head>
+<body>
+	<h3>관리자용 페이지</h3>
+	
+	<h4>관리자 [[${userid}]]님 [[${msg}]]</h4>
+
+	<span sec:authorize="${isAuthenticated()}">
+	
+		<span sec:authentication="principal.username"></span> 님 환영합니다.<br>
+		
+		<input type="button" value="로그아웃"
+			   th:onclick="|location.href='@{/logoutProc}'|" />
+	</span>
+	
+</body>
+</html>

@@ -56,6 +56,32 @@ public class AuthController {
 		return "myPage";
 	}
 	
+	// 관리자용 주소
+    @GetMapping("/admin/home")
+	public String securedAdminHome(ModelMap model) {
+	
+    	log.info("[/admin/home]");
+    	
+    	// Security pricipal 객체 (사용자 인증/인가 정보 객체)
+		Object principal = SecurityContextHolder.getContext()
+												.getAuthentication()
+												.getPrincipal();
+		
+		CustomUser user = null;
+		
+		if (principal instanceof CustomUser) {
+			user = ((CustomUser)principal);
+		}
+		
+		log.info("[user]: {}", user);
+		
+		String id = user.getUsername();
+		model.addAttribute("userid", id);
+		model.addAttribute("msg", "관리자 페이지입니다.");
+		
+		return "/admin/home";
+    }
+	
 	
 //	// (일반)회원용 주소
 //	@GetMapping("/secured/home")
