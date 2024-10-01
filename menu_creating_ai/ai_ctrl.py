@@ -2,7 +2,7 @@ import numpy as np
 import random as ran
 import pandas as pd
 
-data_path = 'Resources/food_data.json'
+data_path = 'Resources/merged_data.json'
 
 #가중치 저장 파일 경로
 file_path = 'Resources/Saved_files/weights.txt'
@@ -82,7 +82,7 @@ def calculate_straight(weights, biases, input_data, _hidden_layer_count):
     #variable to return
     result = []
 
-    # create variable : [input data, hidden layers[0...length of hidden layers], output data]
+    # create variable : [input data, hidden layers[0...length of hidden layers]]
     _datas = [input_data]
     #print("len(hidden_layer) : " + str(len(hidden_layer)))
     for k in range(_hidden_layer_count):
