@@ -13,9 +13,26 @@ food_data_mtime = os.path.getmtime(food_data_file_path) if os.path.exists(food_d
 
 # 전처리 파일 중 하나라도 변경되었을 시 코드 실행
 if (preprocessed_dish_data_mtime or preprocessed_material_data_mtime) > food_data_mtime:
-    # JSON 파일 읽기
-    preprocessed_dish_data_df = pd.read_json(preprocessed_dish_data_file_path)
-    preprocessed_material_data_df = pd.read_json(preprocessed_material_data_file_path)
+    # JSON 파일 읽기. 값이 float형으로 자동 변환되지 않도록 데이터 타입을 str로 명시.
+    preprocessed_dish_data_df = pd.read_json(preprocessed_dish_data_file_path, dtype={
+        'foodCd': str,
+        'foodNm': str,
+        'foodLv3Nm': str,
+        'enerc': str,
+        'prot': str,
+        'fatce': str,
+        'chocdf': str,
+        'foodSize': str
+    })
+    preprocessed_material_data_df = pd.read_json(preprocessed_material_data_file_path, dtype={
+        'foodCd': str,
+        'foodNm': str,
+        'foodLv3Nm': str,
+        'enerc': str,
+        'prot': str,
+        'fatce': str,
+        'chocdf': str,
+    })
 
     # 식품(음식)과 식품(원재료) 병합
     df_food = pd.concat([preprocessed_dish_data_df, preprocessed_material_data_df], ignore_index=True)

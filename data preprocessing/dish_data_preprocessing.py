@@ -11,8 +11,17 @@ preprocessed_mtime = os.path.getmtime(preprocessed_file_path) if os.path.exists(
 
 # 원본 파일이 전처리 파일보다 최신일 경우에만 코드 실행
 if original_mtime > preprocessed_mtime:
-    # JSON 파일 읽기
-    df = pd.read_json(original_file_path)
+    # JSON 파일 읽기. 값이 float형으로 자동 변환되지 않도록 데이터 타입을 str로 명시.
+    df = pd.read_json(original_file_path, dtype={
+        'foodCd': str,
+        'foodNm': str,
+        'foodLv3Nm': str,
+        'enerc': str,
+        'prot': str,
+        'fatce': str,
+        'chocdf': str,
+        'foodSize': str
+    })
 
     # 차례대로 '식품코드', '식품명', '식품대분류명', '에너지(kcal)', '단백질(g)', '지방(g)', '탄수화물(g)', '식품중량' 열만 선택
     df_preprocessed = df[['foodCd', 'foodNm', 'foodLv3Nm', 'enerc', 'prot', 'fatce', 'chocdf', 'foodSize']]
