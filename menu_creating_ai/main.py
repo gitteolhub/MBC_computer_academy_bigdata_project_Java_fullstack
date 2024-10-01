@@ -608,9 +608,9 @@ def ask_exercise():
         return ask_exercise()
 
 #인공지능 학습 횟수
-training_count = 100
+training_count = 50
 #인공지능에게 주어질 학습 데이터 갯수
-test_data_count = 100
+test_data_count = 30
 
 #인공지능에게 주어질 학습 데이터 생성
 test_data = find_meal(test_data_count, True)
@@ -625,6 +625,8 @@ is_test = True
 if is_test:
     #연속으로 y를 선택한 횟수
     y_count = 0
+    #몇 번 연속으로 y를 선택해야 성공인지
+    max_y_count = 30
 
     while not stop_event.is_set():
         menu = create_menu_from_ai()
@@ -651,8 +653,8 @@ if is_test:
             user_reviews[1] = user_review
             y_count += 1
             save_user_choice()
-            if y_count >= 10:
-                print('\n10번 연속 성공하여 학습을 종료합니다')
+            if y_count >= max_y_count:
+                print('\n' + str(max_y_count) + '번 연속 성공하여 학습을 종료합니다')
                 stop_event.set()
 
         elif 'n' in reviews.lower():

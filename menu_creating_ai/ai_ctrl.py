@@ -2,7 +2,7 @@ import numpy as np
 import random as ran
 import pandas as pd
 
-data_path = 'Resources/merged_data.json'
+data_path = 'Resources/food_data.json'
 
 #가중치 저장 파일 경로
 file_path = 'Resources/Saved_files/weights.txt'
@@ -17,7 +17,7 @@ hidden_layer_count = 3
 output_count = 1
 
 #은닉 레이어당 가지는 노드 갯수
-hidden_count = 3
+hidden_count = 4
 
 #오차에 대한 가중치 계산 반영률
 learning_rate = 0.5
