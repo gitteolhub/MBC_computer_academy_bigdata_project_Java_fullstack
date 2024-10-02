@@ -61,11 +61,102 @@ def get_data():
 
 #정리가 안된 식품명을 정리하는 함수
 def food_naming(n):
-    keyword_list = ['채소', '부추', '양념장', '김치', '깻잎']
+    under_keyword_list = ['오이', '감자', '미역줄기', '표고버섯', '건표고버섯', '느타리버섯', '가지', '씨', '김치', '깻잎', '초밥', '아이스티', '국밥', '숙주', '파래', '부추', '식초', '채소']
+    space_keyword_list = ['제거', '포함', '식혜', '스무디']
+    order_keyword_list = ['얼린것', '삶은것']
+    delete_keyword_list = ['양념장', '생것']
+
+    name = n
+    for k in delete_keyword_list:
+        name = name.replace('_' + str(k), '')
+    _sp = name.split(' ')[0].split('_')
+    sp = []
+    for k in under_keyword_list:
+        key_count = 0
+        for p in range(len(_sp)):
+            if k in _sp[p]:
+                if p > 0:
+                    if key_count > 0:
+                        key_count += 1
+                    else:
+                        key_count += 1
+                        if not _sp[p] in sp:
+                            sp.append(_sp[p])
+                else:
+                    key_count += 1
+                    if not _sp[p] in sp:
+                        sp.append(_sp[p])
+            else:
+                if p > 0:
+                    if not _sp[p] in sp:
+                        sp.append(_sp[p])
+                else:
+                    break
+
+    if len(sp) == 0:
+        sp = _sp
+
+    #print('_sp : ' + str(_sp) + ' => sp : ' + str(sp))
+    contains_keys = ''
+    for keys in order_keyword_list:
+        if keys in sp:
+            contains_keys = keys
+
+    if len(contains_keys) > 0:
+        if len(sp) > 2:
+            re_name = str(sp[0]) + '_' + str(sp[1])
+            for x in range(2, len(sp)):
+                if not str(sp[x]) in re_name:
+                    re_name += '_' + str(sp[x])
+
+            if len(name.split(' ')) > 1:
+                if len(name.split(' ')[len(name.split(' ')) - 1]) > 0:
+                    for k in space_keyword_list:
+                        if not k in str(name.split(' ')[len(name.split(' ')) - 1]):
+                            if not str(name.split(' ')[len(name.split(' ')) - 1]) in re_name:
+                                re_name += ' ' + str(name.split(' ')[len(name.split(' ')) - 1])
+            return re_name
+        elif len(sp) > 1:
+            re_name = str(sp[0]) + '_' + str(sp[1])
+            if len(name.split(' ')) > 1:
+                if len(name.split(' ')[len(name.split(' ')) - 1]) > 0:
+                    for k in space_keyword_list:
+                        if not k in str(name.split(' ')[len(name.split(' ')) - 1]):
+                            if not str(name.split(' ')[len(name.split(' ')) - 1]) in re_name:
+                                re_name += ' ' + str(name.split(' ')[len(name.split(' ')) - 1])
+            return re_name
+        else:
+            return str(sp[0])
+    else:
+        if len(sp) > 2:
+            re_name = str(sp[1]) + '_' + str(sp[0])
+            for x in range(2, len(sp)):
+                if not str(sp[x]) in re_name:
+                    re_name += '_' + str(sp[x])
+
+            if len(name.split(' ')) > 1:
+                if len(name.split(' ')[len(name.split(' ')) - 1]) > 0:
+                    for k in space_keyword_list:
+                        if not k in str(name.split(' ')[len(name.split(' ')) - 1]):
+                            if not str(name.split(' ')[len(name.split(' ')) - 1]) in re_name:
+                                re_name += ' ' + str(name.split(' ')[len(name.split(' ')) - 1])
+            return re_name
+        elif len(sp) > 1:
+            re_name = str(sp[1]) + '_' + str(sp[0])
+            if len(name.split(' ')) > 1:
+                if len(name.split(' ')[len(name.split(' ')) - 1]) > 0:
+                    for k in space_keyword_list:
+                        if not k in str(name.split(' ')[len(name.split(' ')) - 1]):
+                            if not str(name.split(' ')[len(name.split(' ')) - 1]) in re_name:
+                                re_name += ' ' + str(name.split(' ')[len(name.split(' ')) - 1])
+            return re_name
+        else:
+            return str(sp[0])
+
+#print('test : ' + str(food_naming('달걀_삶은것_흰자')))
 
 #실수를 다시 식품명으로 변환하는 함수
-def id_to_food(num):
-    _df = pd.read_json(data_path)
+def id_to_food(num, _df):
     for i in range(16):
         num = num * 10.0
     num = str(int(num))
@@ -75,12 +166,12 @@ def id_to_food(num):
     return ''
 
 #식품명을 학습 데이터로 사용 가능하도록 실수로 변환하는 함수
-def name_to_id(n, df):
+def name_to_id(n, _df):
     is_name = True
     name = str(n)
     if is_name:
-        if len(df['foodCd'].where(df['foodNm'] == str(name)).dropna()) > 0:
-            id_num = df['foodCd'].where(df['foodNm'] == str(name)).dropna().values[0]
+        if len(df['foodCd'].where(_df['foodNm'] == str(name)).dropna()) > 0:
+            id_num = _df['foodCd'].where(_df['foodNm'] == str(name)).dropna().values[0]
             result = str(id_num).replace('D', '').replace('R', '').replace('-', '')
             result = int(result)
             for i in range(16):
@@ -104,7 +195,7 @@ def read_weights_file():
     result = sp
 
     f.close()
-    # print(result)
+    #print(result)
     return result
 
 #기준 칼로리 및 영양소를 입력하여, 적합한 식품 리스트를 반환하는 함수
@@ -308,80 +399,99 @@ else:
                       [int(amount[6] / 3) + 1, int(amount[6] / 3) + 1, int(amount[6] / 3)]]
 
 #교환단위에 의한 식사 가능한 곡류군 식품 리스트를 반환하는 함수
-def get_rice_per_day(debug):
+def get_rice_per_day(debug, to_name, _df):
     sp = ['밥류']
     food = [[], [], []]
     for x in sp:
         breakfast = get_food_by_kcal(x, amount_per_day[0][0] * 100, amount_per_day[0][0] * 23, amount_per_day[0][0] * 2, amount_per_day[0][0] * 1000)
         lunch = get_food_by_kcal(x, amount_per_day[0][1] * 100, amount_per_day[0][1] * 23, amount_per_day[0][1] * 2, amount_per_day[0][1] * 1000)
         dinner = get_food_by_kcal(x, amount_per_day[0][2] * 100, amount_per_day[0][2] * 23, amount_per_day[0][2] * 2, amount_per_day[0][2] * 1000)
-        food = [food[0] + breakfast, food[1] + lunch, food[2] + dinner]
+        if to_name:
+            food = [food[0] + [name_to_id(breakfast, _df)], food[1] + [name_to_id(lunch, _df)], food[2] + [name_to_id(dinner, _df)]]
+        else:
+            food = [food[0] + breakfast, food[1] + lunch, food[2] + dinner]
     if debug:
         print('Lunch Option : ' + str(food[0]))
     return food
 
 
 #교환단위에 의한 식사 가능한 육류군 식품 리스트를 반환하는 함수
-def get_meat_per_day(debug):
+def get_meat_per_day(debug, to_name, _df):
     sp = ['수·조·어·육류', '구이류', '조림류', '장아찌·절임류', '두류, 견과 및 종실류']
     food = [[], [], []]
     for x in sp:
         breakfast = get_food_by_kcal(x, amount_per_day[2][0] * 50, amount_per_day[2][0] * 1000, amount_per_day[2][0] * 8, amount_per_day[2][0] * 5)
         lunch = get_food_by_kcal(x, amount_per_day[2][1] * 50, amount_per_day[2][1] * 1000, amount_per_day[2][1] * 8, amount_per_day[2][1] * 5)
         dinner = get_food_by_kcal(x, amount_per_day[2][2] * 50, amount_per_day[2][2] * 1000, amount_per_day[2][2] * 8, amount_per_day[2][2] * 5)
-        food = [food[0] + breakfast, food[1] + lunch, food[2] + dinner]
+        if to_name:
+            food = [food[0] + [name_to_id(breakfast, _df)], food[1] + [name_to_id(lunch, _df)], food[2] + [name_to_id(dinner, _df)]]
+        else:
+            food = [food[0] + breakfast, food[1] + lunch, food[2] + dinner]
     if debug:
         print('Lunch Option : ' + str(food[1]))
     return food
 
 #교환단위에 의한 식사 가능한 채소군 식품 리스트를 반환하는 함수
-def get_vegetable_per_day(debug):
+def get_vegetable_per_day(debug, to_name, _df):
     sp = ['생채·무침류', '나물·숙채류', '김치류', '볶음류']
     food = [[], [], []]
     for x in sp:
         breakfast = get_food_by_kcal(x, amount_per_day[3][0] * 20, amount_per_day[3][0] * 3, amount_per_day[3][0] * 2, amount_per_day[3][0] * 1000)
         lunch = get_food_by_kcal(x, amount_per_day[3][1] * 20, amount_per_day[3][1] * 3, amount_per_day[3][1] * 2, amount_per_day[3][1] * 1000)
         dinner = get_food_by_kcal(x, amount_per_day[3][2] * 20, amount_per_day[3][2] * 3, amount_per_day[3][2] * 2, amount_per_day[3][2] * 1000)
-        food = [food[0] + breakfast, food[1] + lunch, food[2] + dinner]
+        if to_name:
+            food = [food[0] + [name_to_id(breakfast, _df)], food[1] + [name_to_id(lunch, _df)], food[2] + [name_to_id(dinner, _df)]]
+        else:
+            food = [food[0] + breakfast, food[1] + lunch, food[2] + dinner]
     if debug:
         print('Lunch Option : ' + str(food[1]))
     return food
 
 #교환단위에 의한 식사 가능한 지방군 식품 리스트를 반환하는 함수
-def get_province_per_day(debug):
+def get_province_per_day(debug, to_name, _df):
     sp = ['장류, 양념류', '튀김류']
     food = [[], [], []]
     for x in sp:
         breakfast = get_food_by_kcal(x, amount_per_day[4][0] * 45, amount_per_day[4][0] * 1000, amount_per_day[4][0] * 1000, amount_per_day[4][0] * 5)
         lunch = get_food_by_kcal(x, amount_per_day[4][1] * 45, amount_per_day[4][1] * 1000, amount_per_day[4][1] * 1000, amount_per_day[4][1] * 5)
         dinner = get_food_by_kcal(x, amount_per_day[4][2] * 45, amount_per_day[4][2] * 1000, amount_per_day[4][2] * 1000, amount_per_day[4][2] * 5)
-        food = [food[0] + breakfast, food[1] + lunch, food[2] + dinner]
+        if to_name:
+            food = [food[0] + [name_to_id(breakfast, _df)], food[1] + [name_to_id(lunch, _df)], food[2] + [name_to_id(dinner, _df)]]
+        else:
+            food = [food[0] + breakfast, food[1] + lunch, food[2] + dinner]
     if debug:
         print('Lunch Option : ' + str(food[1]))
     return food
 
 #교환단위에 의한 식사 가능한 우유군 식품 리스트를 반환하는 함수
-def get_milk_per_day(debug):
+def get_milk_per_day(debug, to_name, _df):
     sp = ['유제품류 및 빙과류', '음료 및 차류']
     food = [[], [], []]
     for x in sp:
         breakfast = get_food_by_kcal(x, amount_per_day[5][0] * 90, amount_per_day[5][0] * 11, amount_per_day[5][0] * 1100, amount_per_day[5][0] * 1100)
         lunch = get_food_by_kcal(x, amount_per_day[5][1] * 90, amount_per_day[5][1] * 11, amount_per_day[5][1] * 1100, amount_per_day[5][1] * 1100)
         dinner = get_food_by_kcal(x, amount_per_day[5][2] * 90, amount_per_day[5][2] * 11, amount_per_day[5][2] * 1100, amount_per_day[5][2] * 1100)
-        food = [food[0] + breakfast, food[1] + lunch, food[2] + dinner]
+        if to_name:
+            food = [food[0] + [name_to_id(breakfast, _df)], food[1] + [name_to_id(lunch, _df)], food[2] + [name_to_id(dinner, _df)]]
+        else:
+            food = [food[0] + breakfast, food[1] + lunch, food[2] + dinner]
     if debug:
         print('Lunch Option : ' + str(food[1]))
     return food
 
 #교환단위에 의한 식사 가능한 과일군 식품 리스트를 반환하는 함수
-def get_fruit_per_day(debug):
+def get_fruit_per_day(debug, to_name, _df):
     sp = ['과일류']
     food = [[], [], []]
     for x in sp:
         breakfast = get_food_by_kcal(x, amount_per_day[6][0] * 50, amount_per_day[6][0] * 12, amount_per_day[6][0] * 1000, amount_per_day[6][0] * 1000)
         lunch = get_food_by_kcal(x, amount_per_day[6][1] * 50, amount_per_day[6][1] * 12, amount_per_day[6][1] * 1000, amount_per_day[6][1] * 1000)
         dinner = get_food_by_kcal(x, amount_per_day[6][2] * 50, amount_per_day[6][2] * 12, amount_per_day[6][2] * 1000, amount_per_day[6][2] * 1000)
-        food = [food[0] + breakfast, food[1] + lunch, food[2] + dinner]
+        if to_name:
+            food = [food[0] + [name_to_id(breakfast, _df)], food[1] + [name_to_id(lunch, _df)], food[2] + [name_to_id(dinner, _df)]]
+        else:
+            food = [food[0] + breakfast, food[1] + lunch, food[2] + dinner]
+            
     if debug:
         print('Lunch Option : ' + str(food[1]))
     return food
@@ -394,13 +504,24 @@ def get_random_from_array(arr):
     else:
         return ''
 
+
+df = pd.read_json(data_path)
+
 #식품 데이터에서 식품군별로 식품 리스트를 저장하는 변수들
-rices = get_rice_per_day(False)
-meats = get_meat_per_day(False)
-vegetables = get_vegetable_per_day(False)
-provinces = get_province_per_day(False)
-milks = get_milk_per_day(False)
-fruits = get_fruit_per_day(False)
+rices = get_rice_per_day(False, False, df)
+meats = get_meat_per_day(False, False, df)
+vegetables = get_vegetable_per_day(False, False, df)
+provinces = get_province_per_day(False, False, df)
+milks = get_milk_per_day(False, False, df)
+fruits = get_fruit_per_day(False, False, df)
+
+rices_id = get_rice_per_day(False, True, df)
+meats_id = get_meat_per_day(False, True, df)
+vegetables_id = get_vegetable_per_day(False, True, df)
+provinces_id = get_province_per_day(False, True, df)
+milks_id = get_milk_per_day(False, True, df)
+fruits_id = get_fruit_per_day(False, True, df)
+
 
 #식품의 열량을 해당 식품의 중량으로 변환하는 함수
 def convert_kcal_to_gram(name, cal):
@@ -422,12 +543,12 @@ def convert_kcal_to_gram(name, cal):
 #반환된 식단 메뉴를 출력하는 함수
 def print_meal(meal):
     for i in range(2, len(meal)):
-        if len(meal[i]) > 0:
+        if len(str(meal[i])) > 0:
             _menu_str = ''
-            for j in range(len(meal[i])):
+            for j in range(len(str(meal[i]))):
                 _menu_str += str(meal[i][j])
-                if j < len(meal[i]) - 1:
-                    if len(meal[i][j]) > 0:
+                if j < len(str(meal[i])) - 1:
+                    if len(str(meal[i][j])) > 0:
                         _menu_str += ', '
             print('추천 식단 : ' + str(_menu_str))
 
@@ -436,21 +557,34 @@ def find_meal(c, returns_id, _df):
     debug_process = False
     meal = [[my_age], [my_gender]]
     for x in range(c):
-        ind = 1
-        rice = rices[ind][ran.randint(0, len(rices[ind]) - 1)]
-        meat = meats[ind][ran.randint(0, len(meats[ind]) - 1)]
-        vegetable = vegetables[ind][ran.randint(0, len(vegetables[ind]) - 1)]
-        # province = provinces[ind][ran.randint(0, len(provinces[ind]) - 1)]
-        milk = milks[ind][ran.randint(0, len(milks[ind]) - 1)]
-        fruit = fruits[ind][ran.randint(0, len(fruits[ind]) - 1)]
-
         if returns_id:
-            meal.append([name_to_id(rice, _df), name_to_id(meat, _df), name_to_id(vegetable, _df), name_to_id(fruit, _df), name_to_id(milk, _df)])
-        else:
+            #print(str(x) + '번째 식단 제작 중...')
+
+            ind = 1
+            rice = rices_id[ind][ran.randint(0, len(rices_id[ind]) - 1)]
+            meat = meats_id[ind][ran.randint(0, len(meats_id[ind]) - 1)]
+            vegetable = vegetables_id[ind][ran.randint(0, len(vegetables_id[ind]) - 1)]
+            # province = provinces_id[ind][ran.randint(0, len(provinces_id[ind]) - 1)]
+            milk = milks_id[ind][ran.randint(0, len(milks_id[ind]) - 1)]
+            fruit = fruits_id[ind][ran.randint(0, len(fruits_id[ind]) - 1)]
+
             meal.append([rice, meat, vegetable, fruit, milk])
-    if not returns_id:
+        else:
+            print(str(x) + '번째 식단 제작 중...')
+
+            ind = 1
+            rice = rices[ind][ran.randint(0, len(rices[ind]) - 1)]
+            meat = meats[ind][ran.randint(0, len(meats[ind]) - 1)]
+            vegetable = vegetables[ind][ran.randint(0, len(vegetables[ind]) - 1)]
+            # province = provinces[ind][ran.randint(0, len(provinces[ind]) - 1)]
+            milk = milks[ind][ran.randint(0, len(milks[ind]) - 1)]
+            fruit = fruits[ind][ran.randint(0, len(fruits[ind]) - 1)]
+
+            meal.append([rice, meat, vegetable, fruit, milk])
+
         if debug_process:
             print_meal(meal)
+
     return meal
 
 #문자열 형태의 리스트를 리스트 형태로 변환하는 함수
@@ -528,7 +662,7 @@ def train_ai(train_count):
 #인공지능에 입력할 식단 데이터를 생성 및 입력하여, 적합한지 판별하는 함수
 def create_menu_from_ai(_df, _saved_data):
     #인공지능에 입력할 식단 데이터 갯수
-    menu_count = 50
+    menu_count = 100
 
     #과정을 출력할지 지정하는 변수
     debug_process = True
@@ -709,7 +843,7 @@ if is_test:
         for i in range(len(menu)):
             for j in range(len(menu[i])):
                 if len(menu[i][j]) > 0:
-                    _menu[i] += menu[i][j]
+                    _menu[i] += food_naming(str(menu[i][j]))
                     if j < len(menu[i]) - 1:
                         if len(menu[i][j]) > 0:
                             _menu[i] += ', '
@@ -782,7 +916,7 @@ else:
                 for i in range(len(menu)):
                     for j in range(len(menu[i])):
                         if len(menu[i][j]) > 0:
-                            _menu[i] += menu[i][j]
+                            _menu[i] += food_naming(str(menu[i][j]))
                             if j < len(menu[i]) - 1:
                                 if len(menu[i][j]) > 0:
                                     _menu[i] += ', '
@@ -824,7 +958,7 @@ else:
             for i in range(len(menu)):
                 for j in range(len(menu[i])):
                     if len(menu[i][j]) > 0:
-                        _menu[i] += menu[i][j]
+                        _menu[i] += food_naming(str(menu[i][j]))
                         if j < len(menu[i]) - 2:
                             _menu[i] += ', '
             print('아침 식단 : ' + str(_menu[0]) + '\n점심 식단 : ' + str(_menu[1]) + '\n저녁 식단 : ' + str(_menu[2]))
