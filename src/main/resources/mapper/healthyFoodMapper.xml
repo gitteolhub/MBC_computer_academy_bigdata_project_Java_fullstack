@@ -114,9 +114,7 @@
 	</select>
 	
 	<!-- 페이징에 의해(페이지 별) 회원정보 조회(검색) -->
-	<select id="selectMembersByPaging"
-			parameterType="hashMap"
-			resultType="com.javateam.healthyFoodProject.domain.MemberVO">
+	<select id="selectMembersByPaging" parameterType="hashMap" resultType="com.javateam.healthyFoodProject.domain.MemberVO">
 		SELECT *  
 		  FROM (SELECT u.*,  
 	         	       FLOOR((ROWNUM - 1) / #{limit} + 1) PAGE
