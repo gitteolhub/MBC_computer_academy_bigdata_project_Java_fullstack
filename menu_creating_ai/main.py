@@ -78,7 +78,7 @@ def food_naming(n):
     for k in under_keyword_list:
         key_count = 0
         for p in range(len(_sp)):
-            if k == _sp[p]:
+            if k in _sp[p]:
                 if p > 0:
                     if key_count > 0:
                         key_count += 1
@@ -182,7 +182,7 @@ def food_naming(n):
                 re_name += '(' + str(name.split(' ')[0].split('(')[1])
             return re_name
 
-# nm = '아이스크림_쌀떡궁합 아이스크림'
+# nm = '부추무침_부추_채소'
 # print('test : ' + str(food_naming(nm)))
 
 #실수를 다시 식품명으로 변환하는 함수
