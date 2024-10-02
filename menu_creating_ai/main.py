@@ -64,17 +64,21 @@ def food_naming(n):
     under_keyword_list = ['오이', '감자', '미역줄기', '표고버섯', '건표고버섯', '느타리버섯', '새송이버섯', '가지', '씨', '김치', '깻잎', '초밥', '아이스티', '국밥', '숙주', '파래', '부추', '식초', '채소', '취나물']
     space_keyword_list = ['제거', '포함', '식혜', '스무디']
     order_keyword_list = ['얼린것', '삶은것', '자몽차', '레몬차']
-    delete_keyword_list = ['양념장', '생것']
+    delete_keyword_list = ['쌀', '양념장', '생것']
 
     name = n
     for k in delete_keyword_list:
-        name = name.replace('_' + str(k), '')
-    _sp = (name.split(' ')[0].split('(')[0].split('_'))
+        x = name.split(' ')[0].split('(')[0]
+        if '_' + str(k) == x[len(x) - len(k) - 1:len(x)]:
+            name = name.replace('_' + str(k), '')
+
+    _sp = name.split(' ')[0].split('(')[0].split('_')
     sp = []
+
     for k in under_keyword_list:
         key_count = 0
         for p in range(len(_sp)):
-            if k in _sp[p]:
+            if k == _sp[p]:
                 if p > 0:
                     if key_count > 0:
                         key_count += 1
@@ -178,7 +182,7 @@ def food_naming(n):
                 re_name += '(' + str(name.split(' ')[0].split('(')[1])
             return re_name
 
-# nm = '자몽차_자몽 네이블 오렌지 아이스(ICED)'
+# nm = '아이스크림_쌀떡궁합 아이스크림'
 # print('test : ' + str(food_naming(nm)))
 
 #실수를 다시 식품명으로 변환하는 함수
