@@ -61,15 +61,15 @@ def get_data():
 
 #정리가 안된 식품명을 정리하는 함수
 def food_naming(n):
-    under_keyword_list = ['오이', '감자', '미역줄기', '표고버섯', '건표고버섯', '느타리버섯', '가지', '씨', '김치', '깻잎', '초밥', '아이스티', '국밥', '숙주', '파래', '부추', '식초', '채소']
+    under_keyword_list = ['오이', '감자', '미역줄기', '표고버섯', '건표고버섯', '느타리버섯', '새송이버섯', '가지', '씨', '김치', '깻잎', '초밥', '아이스티', '국밥', '숙주', '파래', '부추', '식초', '채소', '취나물']
     space_keyword_list = ['제거', '포함', '식혜', '스무디']
-    order_keyword_list = ['얼린것', '삶은것']
+    order_keyword_list = ['얼린것', '삶은것', '자몽차', '레몬차']
     delete_keyword_list = ['양념장', '생것']
 
     name = n
     for k in delete_keyword_list:
         name = name.replace('_' + str(k), '')
-    _sp = name.split(' ')[0].split('_')
+    _sp = (name.split(' ')[0].split('(')[0].split('_'))
     sp = []
     for k in under_keyword_list:
         key_count = 0
@@ -109,24 +109,36 @@ def food_naming(n):
                 if not str(sp[x]) in re_name:
                     re_name += '_' + str(sp[x])
 
+            if len(name.split(' ')[0].split('(')) > 1:
+                re_name += '(' + str(name.split(' ')[0].split('(')[1])
+
             if len(name.split(' ')) > 1:
-                if len(name.split(' ')[len(name.split(' ')) - 1]) > 0:
-                    for k in space_keyword_list:
-                        if not k in str(name.split(' ')[len(name.split(' ')) - 1]):
-                            if not str(name.split(' ')[len(name.split(' ')) - 1]) in re_name:
-                                re_name += ' ' + str(name.split(' ')[len(name.split(' ')) - 1])
+                for q in range(1, len(name.split(' '))):
+                    if len(name.split(' ')[q]) > 0:
+                        for k in space_keyword_list:
+                            if not k in str(name.split(' ')[q]):
+                                if not str(name.split(' ')[q]) in re_name:
+                                    re_name += ' ' + str(name.split(' ')[q])
             return re_name
         elif len(sp) > 1:
             re_name = str(sp[0]) + '_' + str(sp[1])
+
+            if len(name.split(' ')[0].split('(')) > 1:
+                re_name += '(' + str(name.split(' ')[0].split('(')[1])
+
             if len(name.split(' ')) > 1:
-                if len(name.split(' ')[len(name.split(' ')) - 1]) > 0:
-                    for k in space_keyword_list:
-                        if not k in str(name.split(' ')[len(name.split(' ')) - 1]):
-                            if not str(name.split(' ')[len(name.split(' ')) - 1]) in re_name:
-                                re_name += ' ' + str(name.split(' ')[len(name.split(' ')) - 1])
+                for q in range(1, len(name.split(' '))):
+                    if len(name.split(' ')[q]) > 0:
+                        for k in space_keyword_list:
+                            if not k in str(name.split(' ')[q]):
+                                if not str(name.split(' ')[q]) in re_name:
+                                    re_name += ' ' + str(name.split(' ')[q])
             return re_name
         else:
-            return str(sp[0])
+            re_name = str(sp[0])
+            if len(name.split(' ')[0].split('(')) > 1:
+                re_name += '(' + str(name.split(' ')[0].split('(')[1])
+            return re_name
     else:
         if len(sp) > 2:
             re_name = str(sp[1]) + '_' + str(sp[0])
@@ -134,26 +146,40 @@ def food_naming(n):
                 if not str(sp[x]) in re_name:
                     re_name += '_' + str(sp[x])
 
+            if len(name.split(' ')[0].split('(')) > 1:
+                re_name += '(' + str(name.split(' ')[0].split('(')[1])
+
             if len(name.split(' ')) > 1:
-                if len(name.split(' ')[len(name.split(' ')) - 1]) > 0:
-                    for k in space_keyword_list:
-                        if not k in str(name.split(' ')[len(name.split(' ')) - 1]):
-                            if not str(name.split(' ')[len(name.split(' ')) - 1]) in re_name:
-                                re_name += ' ' + str(name.split(' ')[len(name.split(' ')) - 1])
+                for q in range(1, len(name.split(' '))):
+                    if len(name.split(' ')[q]) > 0:
+                        for k in space_keyword_list:
+                            if not k in str(name.split(' ')[q]):
+                                if not str(name.split(' ')[q]) in re_name:
+                                    re_name += ' ' + str(name.split(' ')[q])
             return re_name
         elif len(sp) > 1:
             re_name = str(sp[1]) + '_' + str(sp[0])
+
+            if len(name.split(' ')[0].split('(')) > 1:
+                re_name += '(' + str(name.split(' ')[0].split('(')[1])
+            
+            
             if len(name.split(' ')) > 1:
-                if len(name.split(' ')[len(name.split(' ')) - 1]) > 0:
-                    for k in space_keyword_list:
-                        if not k in str(name.split(' ')[len(name.split(' ')) - 1]):
-                            if not str(name.split(' ')[len(name.split(' ')) - 1]) in re_name:
-                                re_name += ' ' + str(name.split(' ')[len(name.split(' ')) - 1])
+                for q in range(1, len(name.split(' '))):
+                    if len(name.split(' ')[q]) > 0:
+                        for k in space_keyword_list:
+                            if not k in str(name.split(' ')[q]):
+                                if not str(name.split(' ')[q]) in re_name:
+                                    re_name += ' ' + str(name.split(' ')[q])
             return re_name
         else:
-            return str(sp[0])
+            re_name = str(sp[0])
+            if len(name.split(' ')[0].split('(')) > 1:
+                re_name += '(' + str(name.split(' ')[0].split('(')[1])
+            return re_name
 
-#print('test : ' + str(food_naming('달걀_삶은것_흰자')))
+# nm = '자몽차_자몽 네이블 오렌지 아이스(ICED)'
+# print('test : ' + str(food_naming(nm)))
 
 #실수를 다시 식품명으로 변환하는 함수
 def id_to_food(num, _df):
@@ -684,7 +710,7 @@ def create_menu_from_ai(_df, _saved_data):
     if len(user_reviews[1]) > 0:
         ai_result_index = 0
         for x in range(2, len(_test_data)):
-            is_ok = ai_ctrl.detect_favorite_menu(_test_data[x], 0.7, _df, _saved_data)
+            is_ok = ai_ctrl.detect_favorite_menu(3, _test_data[x], 0.7, _df, _saved_data)
             if is_ok:
                 ai_result[ai_result_index] = _test_data2[x]
                 ai_result_index += 1

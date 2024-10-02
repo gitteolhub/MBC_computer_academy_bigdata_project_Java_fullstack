@@ -295,9 +295,14 @@ def train(train_count, input_data, _hidden_layer_count, output_data, _df, saved_
 
         save_weights_file(_weight, _bios)
 
-def detect_favorite_menu(input_data, like_percent, _df, saved_data):
+def detect_favorite_menu(_hidden_layer_count, input_data, like_percent, _df, saved_data):
     menu_result = False
     debug_process = False
+
+    if len(hidden_layer) <= 0:
+        for n in range(_hidden_layer_count):
+            hidden_layer.append([])
+            hidden_net_layer.append([])
 
     if len(saved_data) > 1:
         if debug_process:
