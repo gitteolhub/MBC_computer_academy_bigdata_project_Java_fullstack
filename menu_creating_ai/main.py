@@ -570,7 +570,7 @@ def find_meal(c, returns_id, _df):
 
             meal.append([rice, meat, vegetable, fruit, milk])
         else:
-            print(str(x) + '번째 식단 제작 중...')
+            #print(str(x) + '번째 식단 제작 중...')
 
             ind = 1
             rice = rices[ind][ran.randint(0, len(rices[ind]) - 1)]
