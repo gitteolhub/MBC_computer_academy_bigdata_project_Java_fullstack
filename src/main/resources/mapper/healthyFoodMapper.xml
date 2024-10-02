@@ -109,7 +109,7 @@
             ) AS "ROLE"           
   	  FROM  USER_TBL u3
   	       ,USER_ROLES r3
-  	  WHERE m3.ID  = r3.USERID
+  	  WHERE u3.ID  = r3.USERID
    	    AND ${fld} = #{val}
 	</select>
 	
