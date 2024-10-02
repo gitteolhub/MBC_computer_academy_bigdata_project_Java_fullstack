@@ -1,6 +1,5 @@
 import numpy as np
 import random as ran
-import pandas as pd
 
 data_path = 'Resources/food_data.json'
 
@@ -17,7 +16,7 @@ hidden_layer_count = 3
 output_count = 1
 
 #은닉 레이어당 가지는 노드 갯수
-hidden_count = 4
+hidden_count = 3
 
 #오차에 대한 가중치 계산 반영률
 learning_rate = 0.5
@@ -202,7 +201,7 @@ def calculate_backward(_datas, weights):
     return weights
 
 #학습된 가중치 데이터들을 파일 형태로 저장하는 함수
-def save_weights_file(weights):
+def save_weights_file(weights, _bios):
     open(file_path, 'w').close()
 
     f = open(file_path, 'a')
@@ -223,10 +222,10 @@ def save_weights_file(weights):
 
     #write bios data into save file
     f.write('|[')
-    for i in range(len(bios)):
-        data = str(bios[i])
+    for i in range(len(_bios)):
+        data = str(_bios[i])
         f.write(data)
-        if i < len(bios) - 1:
+        if i < len(_bios) - 1:
             f.write(',')
     f.write(']')
 
@@ -249,8 +248,7 @@ def read_weights_file():
     return result
 
 #문자열 형태의 리스트를 리스트 형태로 변환하는 함수
-def str_to_list(s):
-    df = pd.read_json(data_path)
+def str_to_list(s, _df):
     result0 = []
     if '[[' in s:
         sp = s[1:len(s) - 1].split(',')
@@ -258,63 +256,59 @@ def str_to_list(s):
             res = []
             sp1 = str(x).replace('[', '').replace(']', '').split(',')
             for y in sp1:
-                res.append(float(name_to_id(y, df)))
+                res.append(float(y))
             result0.append(res)
         return result0
     else:
         sp = s[1:len(s) - 1].split(',')
         for x in sp:
-            result0.append(float(name_to_id(x, df)))
+            result0.append(float(x))
         return result0
 
 #사용자의 취향 데이터를 학습하는 함수
-def train(train_count, input_data, _hidden_layer_count, output_data):
-    input_count = len(input_data)
-    output_count = len(output_data)
+def train(train_count, input_data, _hidden_layer_count, output_data, _df, saved_data):
+    _input_count = len(input_data)
+    _output_count = len(output_data)
     if len(hidden_layer) <= 0:
         for n in range(_hidden_layer_count):
             hidden_layer.append([])
             hidden_net_layer.append([])
 
-    bios = sign_bios_value(_hidden_layer_count)
-    weights = sign_weight_value(input_count, _hidden_layer_count, output_count)
-    saved_data = read_weights_file()
     if len(saved_data) > 1:
-        weights = str_to_list(str(saved_data[0]))
-        weight = weights
-        bios = str_to_list(str(saved_data[1]))
+        _weight = str_to_list(str(saved_data[0]), _df)
+        _bios = str_to_list(str(saved_data[1]), _df)
+    else:
+        _weight = sign_weight_value(_input_count, _hidden_layer_count, _output_count)
+        _bios = sign_bios_value(_hidden_layer_count)
 
     for t in range(train_count):
 
         #순전파 함수 호출
-        input_index = ran.randint(0, input_count - 1)
-        straight_result = calculate_straight(weights, bios, input_data[input_index], _hidden_layer_count)
-
-        #오차 계산 함수 호출
-        #error = calculate_error(straight_result, output_data)
+        input_index = ran.randint(0, _input_count - 1)
+        straight_result = calculate_straight(_weight, _bios, input_data[input_index], _hidden_layer_count)
 
         #역전파 함수 호출
-        output_index = ran.randint(0, output_count - 1)
+        output_index = ran.randint(0, _output_count - 1)
         _datas = [input_data[input_index], hidden_layer, straight_result, output_data[output_index]]
-        weight = calculate_backward(_datas, weights)
+        _weight = calculate_backward(_datas, _weight)
 
-        #print('Trained Data : ' + str(input_data[input_index]) + ' = ' + str(output_data[output_index]))
 
-        weights = weight
-        save_weights_file(weights)
+        save_weights_file(_weight, _bios)
 
-def detect_favorite_menu(input_data, like_percent):
+def detect_favorite_menu(input_data, like_percent, _df, saved_data):
     menu_result = False
-    bios = sign_bios_value(hidden_layer_count)
-    weights = sign_weight_value(1, hidden_layer_count, 1)
-    saved_data = read_weights_file()
+    debug_process = False
 
     if len(saved_data) > 1:
-        weights = str_to_list(str(saved_data[0]))
-        weight = weights
-        bios = str_to_list(str(saved_data[1]))
+        if debug_process:
+            print('가중치 데이터 불러오는 중...')
+        _weight = str_to_list(str(saved_data[0]), _df)
+        _bios = str_to_list(str(saved_data[1]), _df)
+    else:
+        _weight = sign_weight_value(1, hidden_layer_count, 1)
+        _bios = sign_bios_value(hidden_layer_count)
 
-    result = calculate_straight(weights, bios, input_data, hidden_layer_count)
+    result = calculate_straight(_weight, _bios, input_data, hidden_layer_count)
     if result[0] > like_percent:
         menu_result = True
 

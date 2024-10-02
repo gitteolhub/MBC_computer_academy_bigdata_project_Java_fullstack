@@ -1,8 +1,12 @@
+import datetime
 import json
 import random as ran
 import threading as th
+
 import pandas as pd
+
 import ai_ctrl
+from menu_creating_ai.ai_ctrl import str_to_list
 
 #과일류 식품 데이터와 그 외에 식품 데이터를 병합한 json 데이터 파일의 경로
 data_path = 'Resources/food_data.json'
@@ -15,6 +19,8 @@ data_str = ''
 
 #사용자에 의한 식단 학습 데이터들을 저장하는 텍스트 파일 경로
 save_file_path = 'Resources/Saved_files/user_data.txt'
+#가중치 저장 파일 경로
+file_path = 'Resources/Saved_files/weights.txt'
 #사용자에 의한 식단 학습 데이터들을 저장하는 변수
 user_reviews = [[],[]]
 
@@ -22,6 +28,13 @@ user_reviews = [[],[]]
 stop_event = th.Event()
 
 menu_df = pd.DataFrame(columns=['breakfast', 'lunch', 'dinner'])
+
+def count_and_print(c, t):
+    delta_t = datetime.datetime.now() - t
+    s = str(c + 1) + '번째 : ' + str(delta_t)
+    print(s)
+
+    return [c + 1, datetime.datetime.now()]
 
 #json 데이터 파일 경로를 입력하여 데이터를 읽는 함수
 def load_data_from_json_file(path):
@@ -77,6 +90,22 @@ def name_to_id(n, df):
             return 0.0
 
     return n
+
+#저장된 가중치와 바이오스 데이터들을 파일로부터 읽는 함수
+def read_weights_file():
+    f = open(file_path, 'r')
+    read_str = ''
+    while True:
+        line = f.readline()
+        if not line: break
+        read_str += line.replace(' ', '').replace('array(', '').replace(')', '').replace('\n', '').replace('\r', '')
+
+    sp = read_str.split('|')
+    result = sp
+
+    f.close()
+    # print(result)
+    return result
 
 #기준 칼로리 및 영양소를 입력하여, 적합한 식품 리스트를 반환하는 함수
 def get_food_by_kcal(spec, cal, choc, protein, province):
@@ -403,9 +432,8 @@ def print_meal(meal):
             print('추천 식단 : ' + str(_menu_str))
 
 #지정된 갯수만큼 식단을 반환하는 함수(returns_id : 식품명 또는 아이디 형태로 반환할지 지정하는 매개변수)
-def find_meal(c, returns_id):
+def find_meal(c, returns_id, _df):
     debug_process = False
-    df = pd.read_json(data_path)
     meal = [[my_age], [my_gender]]
     for x in range(c):
         ind = 1
@@ -417,7 +445,7 @@ def find_meal(c, returns_id):
         fruit = fruits[ind][ran.randint(0, len(fruits[ind]) - 1)]
 
         if returns_id:
-            meal.append([name_to_id(rice, df), name_to_id(meat, df), name_to_id(vegetable, df), name_to_id(fruit, df), name_to_id(milk, df)])
+            meal.append([name_to_id(rice, _df), name_to_id(meat, _df), name_to_id(vegetable, _df), name_to_id(fruit, _df), name_to_id(milk, _df)])
         else:
             meal.append([rice, meat, vegetable, fruit, milk])
     if not returns_id:
@@ -426,7 +454,7 @@ def find_meal(c, returns_id):
     return meal
 
 #문자열 형태의 리스트를 리스트 형태로 변환하는 함수
-def str_to_list(s, df):
+def str_to_list(s, _df):
     result0 = []
     if '[[[' in s:
         sp = s[1:len(s) - 1].split(',')
@@ -437,7 +465,7 @@ def str_to_list(s, df):
                 res1 = []
                 sp2 = str(y).replace('[', '').replace(']', '').split(',')
                 for z in sp2:
-                    res1.append(float(name_to_id(z, df)))
+                    res1.append(float(name_to_id(z, _df)))
                 res.append(res1)
             result0.append(res)
         return result0
@@ -447,14 +475,14 @@ def str_to_list(s, df):
             res = []
             sp1 = str(x).replace('[', '').replace(']', '').split(',')
             for y in sp1:
-                res.append(float(name_to_id(y, df)))
+                res.append(float(name_to_id(y, _df)))
             result0.append(res)
         return result0
     elif '[' in s:
         if s[1:len(s) - 1] != '':
             sp = s[1:len(s) - 1].split(',')
             for x in sp:
-                result0.append(float(name_to_id(x, df)))
+                result0.append(float(name_to_id(x, _df)))
             return result0
         else:
             return result0
@@ -462,13 +490,29 @@ def str_to_list(s, df):
         return result0
 
 #식단을 추천하는 인공지능을 학습시키는 함수
-def train_ai(train_count, _test_data):
+def train_ai(train_count):
+    _save_time = datetime.datetime.now()
+    _save_time2 = datetime.datetime.now()
+
+    _df2 = pd.read_json(data_path)
+    _save_time = _save_time + datetime.timedelta(days=1)
+
+    _saved_data = read_weights_file()
+    _save_time2 = _save_time + datetime.timedelta(seconds=10)
+
     while not stop_event.is_set():
-        df = pd.read_json(data_path)
+        if _save_time == datetime.datetime.now():
+            _df2 = pd.read_json(data_path)
+            _save_time = _save_time + datetime.timedelta(days=1)
+
+        if _save_time2 == datetime.datetime.now():
+            _saved_data = read_weights_file()
+            _save_time2 = _save_time + datetime.timedelta(seconds=10)
+
         _data_sp = load_user_choice()
         _data = []
-        if len(str_to_list(_data_sp[0], df)) > 0:
-            _data = [str_to_list(_data_sp[0], df), str_to_list(_data_sp[1], df)]
+        if len(str_to_list(_data_sp[0], _df2)) > 0:
+            _data = [str_to_list(_data_sp[0], _df2), str_to_list(_data_sp[1], _df2)]
 
             input_learning_data = []
             for p in _data[0]:
@@ -479,25 +523,25 @@ def train_ai(train_count, _test_data):
                 answer = q
                 output_learning_data.append(float(answer))
 
-            ai_ctrl.train(train_count, input_learning_data, 3, output_learning_data)
+            ai_ctrl.train(train_count, input_learning_data, 3, output_learning_data, _df2, _saved_data)
 
 #인공지능에 입력할 식단 데이터를 생성 및 입력하여, 적합한지 판별하는 함수
-def create_menu_from_ai():
+def create_menu_from_ai(_df, _saved_data):
     #인공지능에 입력할 식단 데이터 갯수
-    menu_count = 20
+    menu_count = 50
 
     #과정을 출력할지 지정하는 변수
-    debug_process = False
+    debug_process = True
     if debug_process:
-        print('\n식단 짜는 중...')
+        print('\n====================================================================================================\n식단 짜는 중...')
 
     #인공지능에 입력할 아이디 형태의 식단 데이터
-    _test_data = find_meal(menu_count, True)
+    _test_data = find_meal(menu_count, True, _df)
     #인공지능이 판단한 후 표시할 식품명 형태의 식단 데이터
-    _test_data2 = find_meal(menu_count, False)
+    _test_data2 = find_meal(menu_count, False, _df)
 
     if debug_process:
-        print('식품군이 골고루 들어간 당뇨병 식단만으로 필터링 중...\n')
+        print('식품군이 골고루 들어간 당뇨병 식단만으로 필터링 중...')
 
     #인공지능의 판단에 의하여 반환된 식단 데이터들
     ai_result = [[],[],[]]
@@ -506,7 +550,7 @@ def create_menu_from_ai():
     if len(user_reviews[1]) > 0:
         ai_result_index = 0
         for x in range(2, len(_test_data)):
-            is_ok = ai_ctrl.detect_favorite_menu(_test_data[x], 0.7)
+            is_ok = ai_ctrl.detect_favorite_menu(_test_data[x], 0.7, _df, _saved_data)
             if is_ok:
                 ai_result[ai_result_index] = _test_data2[x]
                 ai_result_index += 1
@@ -613,23 +657,51 @@ training_count = 50
 test_data_count = 30
 
 #인공지능에게 주어질 학습 데이터 생성
-test_data = find_meal(test_data_count, True)
+df = pd.read_json(data_path)
+test_data = find_meal(test_data_count, True, df)
 
 #쓰레드로 백그라운드에서 인공지능 학습 진행
-thread1 = th.Thread(target=train_ai, args=[training_count, test_data])
+thread1 = th.Thread(target=train_ai, args=[training_count])
 thread1.start()
 
 #테스트 모드인지 지정하는 변수
 is_test = True
+
+count_time = 0
+delta_time = datetime.datetime.now()
+c_dt = [count_time, delta_time]
 
 if is_test:
     #연속으로 y를 선택한 횟수
     y_count = 0
     #몇 번 연속으로 y를 선택해야 성공인지
     max_y_count = 30
+    #df를 갱신하는 시간 변수
+    save_time = datetime.datetime.now()
+    #가중치 변수를 갱신하는 시간 변수
+    save_time2 = datetime.datetime.now()
 
+    _df = pd.read_json(data_path)
+    
+    #저장된 가중치 변수
+    saved_data = read_weights_file()
+    if len(saved_data) > 1:
+        saved_data = [str_to_list(read_weights_file()[0], _df), str_to_list(read_weights_file()[1], _df)]
+
+    save_time = save_time + datetime.timedelta(days=1)
+    save_time2 = save_time2 + datetime.timedelta(seconds=10)
     while not stop_event.is_set():
-        menu = create_menu_from_ai()
+        if save_time == datetime.datetime.now():
+            _df = pd.read_json(data_path)
+            save_time = save_time + datetime.timedelta(days=1)
+            
+        if save_time2 == datetime.datetime.now():
+            saved_data = read_weights_file()
+            if len(saved_data) > 1:
+                saved_data = [str_to_list(read_weights_file()[0], _df), str_to_list(read_weights_file()[1], _df)]
+            save_time2 = save_time2 + datetime.timedelta(seconds=10)
+
+        menu = create_menu_from_ai(_df, saved_data)
         breakfast = ''
         lunch = ''
         dinner = ''
@@ -681,8 +753,28 @@ else:
             stop_event.set()
 
         if command_str == 'review':
+            save_time = datetime.datetime.now()
+            save_time2 = datetime.datetime.now()
+
+            saved_data = read_weights_file()
+            if len(saved_data) > 1:
+                saved_data = [str_to_list(read_weights_file()[0], _df), str_to_list(read_weights_file()[1], _df)]
+
+            _df = pd.read_json(data_path)
+            save_time = save_time + datetime.timedelta(days=1)
+            save_time2 = save_time2 + datetime.timedelta(seconds=10)
             while True:
-                menu = create_menu_from_ai()
+                if save_time == datetime.datetime.now():
+                    _df = pd.read_json(data_path)
+                    save_time = save_time + datetime.timedelta(days=1)
+
+                if save_time2 == datetime.datetime.now():
+                    saved_data = read_weights_file()
+                    if len(saved_data) > 1:
+                        saved_data = [str_to_list(read_weights_file()[0], _df), str_to_list(read_weights_file()[1], _df)]
+                    save_time2 = save_time2 + datetime.timedelta(seconds=10)
+
+                menu = create_menu_from_ai(_df, saved_data)
                 breakfast = ''
                 lunch = ''
                 dinner = ''
@@ -720,7 +812,11 @@ else:
                     break
 
         if command_str == 'menu':
-            menu = create_menu_from_ai()
+            _df = pd.read_json(data_path)
+            saved_data = read_weights_file()
+            if len(saved_data) > 1:
+                saved_data = [str_to_list(read_weights_file()[0], _df), str_to_list(read_weights_file()[1], _df)]
+            menu = create_menu_from_ai(_df, saved_data)
             breakfast = ''
             lunch = ''
             dinner = ''
