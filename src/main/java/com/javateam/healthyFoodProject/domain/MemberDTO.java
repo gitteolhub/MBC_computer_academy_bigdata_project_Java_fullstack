@@ -47,16 +47,16 @@ public class MemberDTO {
 		MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
 		Field[] fields = memberDTO.getClass().getDeclaredFields();
 		
-		for (Field fld: fields) {
+		for (Field field: fields) {
 			
-			if (fld.getName().equals("log") == false) {
-				Method method = memberDTO.getClass().getDeclaredMethod("get" + StringUtils.capitalize(fld.getName()));
+			if (field.getName().equals("log") == false) {
+				Method method = memberDTO.getClass().getDeclaredMethod("get" + StringUtils.capitalize(field.getName()));
 				
-				if (fld.getName().equals("birthday") || fld.getName().equals("joindate")) {
-					map.put(fld.getName(), Arrays.asList(new SimpleDateFormat("yyyy-MM-dd").format(method.invoke(memberDTO))));
+				if (field.getName().equals("birthday") || field.getName().equals("joindate")) {
+					map.put(field.getName(), Arrays.asList(new SimpleDateFormat("yyyy-MM-dd").format(method.invoke(memberDTO))));
 					
 				} else {
-					map.put(fld.getName(), Arrays.asList(method.invoke(memberDTO).toString()));
+					map.put(field.getName(), Arrays.asList(method.invoke(memberDTO).toString()));
 				}
 			}
 		}
@@ -66,12 +66,12 @@ public class MemberDTO {
 	public MemberDTO(Map<String, Object> requestMap) {
 		
 		Set<String> set = requestMap.keySet();
-		Iterator<String> it = set.iterator();
+		Iterator<String> iterator = set.iterator();
 		Field field;
 		
-		while (it.hasNext()) {
+		while (iterator.hasNext()) {
 			
-			String fldName = it.next();
+			String fldName = iterator.next();
 			
 			try {
 				try {

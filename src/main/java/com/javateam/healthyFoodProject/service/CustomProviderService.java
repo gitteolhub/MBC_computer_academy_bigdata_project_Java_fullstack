@@ -85,7 +85,7 @@ public class CustomProviderService implements AuthenticationProvider, UserDetail
 		
 		String     username = authentication.getName();
 		String     password = "";
-		CustomUser user     = null;
+		CustomUser customUser     = null;
 		
 		Collection<? extends GrantedAuthority> authorities = null;
 		
@@ -99,15 +99,15 @@ public class CustomProviderService implements AuthenticationProvider, UserDetail
 				throw new UsernameNotFoundException("회원 아이디가 없습니다.");
 			}
 			
-			user = this.loadUserByUsername(username);
-			log.info("[사용자현황 (user)]: {}", user);
+			customUser = this.loadUserByUsername(username);
+			log.info("[사용자현황 (customUser)]: {}", customUser);
 			
 			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 			
 			password = (String) authentication.getCredentials();
 			log.info("[password]: {}", password);
 			
-			if (passwordEncoder.matches(password, user.getPassword()))
+			if (passwordEncoder.matches(password, customUser.getPassword()))
 				
 				log.info("비밀번호가 일치합니다.");
 			
@@ -116,9 +116,9 @@ public class CustomProviderService implements AuthenticationProvider, UserDetail
 			}
 			
 			List<Role> roles = this.loadUserRole(username);
-			user.setAuthorities(roles);
+			customUser.setAuthorities(roles);
 			
-			authorities = user.getAuthorities();	
+			authorities = customUser.getAuthorities();	
 			
 		} catch (InternalAuthenticationServiceException ex)  {
 			
@@ -145,7 +145,7 @@ public class CustomProviderService implements AuthenticationProvider, UserDetail
 		
 		log.info("인증절차 끝");
 		
-		return new UsernamePasswordAuthenticationToken(user, password, authorities);
+		return new UsernamePasswordAuthenticationToken(customUser, password, authorities);
 	}
 	
 	@Override

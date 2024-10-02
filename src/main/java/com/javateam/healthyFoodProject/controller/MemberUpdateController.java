@@ -75,19 +75,19 @@ public class MemberUpdateController {
 		}
 		log.info("[updateProc] 암호화 이후 : {}", memberUpdateDTO);
 		
-		String msg = "";
+		String msg      = "";
 		String movePath = "";
 		
 		boolean blRetVal = memberService.updateMember(memberUpdateDTO);
 		
 		if(blRetVal == true) {
 			
-			msg = "회원정보를 수정했습니다.";
+			msg      = "회원정보를 수정했습니다.";
 			movePath = "redirect:/member/view";
 			
 		} else {
 			
-			msg = "회원정보 수정에 실패했습니다.";
+			msg      = "회원정보 수정에 실패했습니다.";
 			movePath = "redirect:/member/update";
 		}
 		log.info("result : {}", msg);

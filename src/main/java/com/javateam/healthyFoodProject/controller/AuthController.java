@@ -67,15 +67,15 @@ public class AuthController {
 												.getAuthentication()
 												.getPrincipal();
 		
-		CustomUser user = null;
+		CustomUser customUser = null;
 		
 		if (principal instanceof CustomUser) {
-			user = ((CustomUser)principal);
+			customUser = ((CustomUser)principal);
 		}
 		
-		log.info("[user]: {}", user);
+		log.info("[customUser]: {}", customUser);
 		
-		String id = user.getUsername();
+		String id = customUser.getUsername();
 		model.addAttribute("userid", id);
 		model.addAttribute("msg", "관리자 페이지입니다.");
 		
@@ -94,14 +94,14 @@ public class AuthController {
 //												.getAuthentication()
 //												.getPrincipal();
 //		
-//		CustomUser user = null;
+//		CustomUser customUser = null;
 //		
 //		if (principal instanceof CustomUser) {
-//			user = ((CustomUser)principal);
+//			customUser = ((CustomUser)principal);
 //		}
 //		log.info("[user: {}]", user);
 //		
-//		String ID = user.getUsername();
+//		String ID = customUser.getUsername();
 //		model.addAttribute("username", ID);
 //		model.addAttribute("message", "회원 페이지입니다.");
 //		
@@ -161,7 +161,7 @@ public class AuthController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		log.info("login 인증정보: {}", auth);
 		
-		String path="";
+		String movePath="";
 		
 		if(auth.getPrincipal() == null || auth.getPrincipal().toString().equals("anonymousUser")) {
 			loginErrorCount += 1;
@@ -176,14 +176,14 @@ public class AuthController {
 				captchaController.login(model);
 			}
 			
-			path = "loginForm";
+			movePath = "loginForm";
 			
 		} else {
 			log.info("로그인 인증됨");
-			path = "myPage";
+			movePath = "myPage";
 		}
 		
-		return path;
+		return movePath;
 	}
 	
 	// 로그아웃 처리 메서드

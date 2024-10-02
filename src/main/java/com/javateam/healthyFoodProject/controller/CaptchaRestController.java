@@ -55,11 +55,11 @@ public class CaptchaRestController {
         String apiURL  = "https://openapi.naver.com/v1/captcha/nkey?code=" + code;
         String keyJson = apiCaptchaNKeyService.get(apiURL, requestHeaders);
         
-        ObjectMapper ObjectMapper = new ObjectMapper();
+        ObjectMapper objectMapper = new ObjectMapper();
         String key = "";
         
         try {
-        	key = ObjectMapper.readValue(keyJson, Map.class).get("key").toString();
+        	key = objectMapper.readValue(keyJson, Map.class).get("key").toString();
         	log.info("[key(result)]: {}", key);
         	
         } catch (IOException ex) {
@@ -78,7 +78,7 @@ public class CaptchaRestController {
 		map.put("key", key);
 		
 		try {
-			responseBody = ObjectMapper.writeValueAsString(map);
+			responseBody = objectMapper.writeValueAsString(map);
 			
 		} catch (IOException ex) {
 			log.error("[JSON 생성 에러]");

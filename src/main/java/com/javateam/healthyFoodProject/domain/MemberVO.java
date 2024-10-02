@@ -34,21 +34,21 @@ public class MemberVO {
 	
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(Object object) {
 		
 		// 같은 객체인지 비교
-		if (this == obj)
+		if (this == object)
 			return true;
 		
 		// 비교 대상이 null인지 확인
-		if (obj == null)
+		if (object == null)
 			return false;
 		
 		// 클래스 타입이 같은지 확인
-		if (getClass() != obj.getClass())
+		if (getClass() != object.getClass())
 			return false;
 		
-		MemberVO other = (MemberVO) obj;
+		MemberVO other = (MemberVO) object;
 		return Objects.equals(num,    other.num)   && Objects.equals(id,       other.id)
 			&& Objects.equals(pw,     other.pw)    && Objects.equals(name,     other.name)
 			&& Objects.equals(gender, other.gender)&& Objects.equals(email,    other.email)

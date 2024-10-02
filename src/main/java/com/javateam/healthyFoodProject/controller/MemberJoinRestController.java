@@ -28,19 +28,19 @@ public class MemberJoinRestController {
 	public String joinProc2(@ModelAttribute("memberDTO") MemberVO objMemberVO, Model model) {
 		
 		log.info("회원가입처리: {}", objMemberVO);
-		String strMsg  = "";				// 저장 성공,실패 메시지
-		String strPath = "";				// 처리 후 이동 경로
+		String msg  = "";				// 저장 성공,실패 메시지
+		String movePath = "";				// 처리 후 이동 경로
 		
 		if(memberService.insertMember(objMemberVO) == true) {
-			strMsg  = "회원가입에 성공하셨습니다.";
-			strPath = "/login";
+			msg  = "회원가입에 성공하셨습니다.";
+			movePath = "/login";
 		} else {
-			strMsg  = "회원가입에 실패하였습니다.";
-			strPath = "/joinDemo";
+			msg  = "회원가입에 실패하였습니다.";
+			movePath = "/joinDemo";
 		}
 		
-		model.addAttribute("msg", strMsg);
-		model.addAttribute("path", strPath);
+		model.addAttribute("msg", msg);
+		model.addAttribute("path", movePath);
 		
 		return "/member/result";
 	}
