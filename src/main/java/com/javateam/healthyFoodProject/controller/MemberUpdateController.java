@@ -25,7 +25,6 @@ public class MemberUpdateController {
 
 	@Autowired
 	public MemberService memberService;
-	public BCryptPasswordEncoder bCryptPasswordEncoder;
 	
 	@GetMapping("/update")
 	public String update(Model model) {
@@ -64,16 +63,6 @@ public class MemberUpdateController {
 	public String updateProc(@ModelAttribute("memberUpdateDTO") MemberUpdateDTO memberUpdateDTO, RedirectAttributes redirectAttributes) {
 		
 		log.info("회원정보 수정 처리: {}", memberUpdateDTO);
-		
-		// 신규 비밀번호가 공백이 아니면 비밀번호 변경
-		// 공백이면 비밀번호 변경 안 함
-		if (memberUpdateDTO.getPasswordUpdate().trim().equals("") != true) {
-			
-			// 비밀번호 암호화
-			bCryptPasswordEncoder = new BCryptPasswordEncoder();
-			memberUpdateDTO.setPw(bCryptPasswordEncoder.encode(memberUpdateDTO.getPasswordUpdate()));
-		}
-		log.info("[updateProc] 암호화 이후 : {}", memberUpdateDTO);
 		
 		String msg      = "";
 		String movePath = "";
