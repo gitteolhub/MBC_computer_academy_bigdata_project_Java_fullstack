@@ -5,6 +5,7 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
@@ -17,17 +18,24 @@ import org.springframework.security.web.authentication.rememberme.PersistentToke
 import org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices;
 import org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices.RememberMeTokenAlgorithm;
 
+import com.javateam.healthyFoodProject.domain.SocialRole;
+import com.javateam.healthyFoodProject.service.CustomOAuth2UserService;
 import com.javateam.healthyFoodProject.service.CustomProviderService;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Configuration
 @EnableWebSecurity
+@RequiredArgsConstructor
 @Slf4j
 public class SecurityConfig {
 	
 	@Autowired
-	CustomProviderService customProviderService;
+	private CustomOAuth2UserService customOAuth2UserService;
+	
+	@Autowired
+	private CustomProviderService customProviderService;
 	
 	private UserDetailsService userDetailsService;
 	
@@ -91,6 +99,11 @@ public class SecurityConfig {
 							.logoutSuccessUrl("/myPage")	// 로그아웃 이후 이동 주소
 							.permitAll());
 		
+		objHttpSecurity.oauth2Login(oauth2LoginCustomizer -> oauth2LoginCustomizer
+							.defaultSuccessUrl("/home")
+							.userInfoEndpoint(userInfoEndpointCustomizer -> userInfoEndpointCustomizer
+		  							.userService(customOAuth2UserService)));
+		
 		// 예외처리 이용 주소
 		objHttpSecurity.exceptionHandling(handler -> handler.accessDeniedPage("/403"));
 		
@@ -127,6 +140,6 @@ public class SecurityConfig {
 	@Bean
 	public WebSecurityCustomizer webSecurityCustomizer() {
 		
-		return (web) -> web.ignoring().requestMatchers("/bootstrap/**", "/css/**", "/js/**", "/axios/**", "/captcha/**");
+		return (web) -> web.ignoring().requestMatchers("/bootstrap/**", "/css/**", "/js/**", "/axios/**", "/captcha/**", "/webjars/**");
 	}
 }

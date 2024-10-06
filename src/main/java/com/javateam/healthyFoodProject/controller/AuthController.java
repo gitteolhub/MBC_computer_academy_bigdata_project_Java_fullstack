@@ -1,10 +1,8 @@
 package com.javateam.healthyFoodProject.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,9 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.javateam.healthyFoodProject.domain.CustomUser;
 import com.javateam.healthyFoodProject.domain.MemberDTO;
-import com.javateam.healthyFoodProject.domain.MemberVO;
 import com.javateam.healthyFoodProject.service.MemberService;
-import com.javateam.healthyFoodProject.controller.CaptchaController;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -37,9 +33,6 @@ public class AuthController {
 	private int loginErrorCount = -1;
 	private int maxCount = 3;
 	
-	@Autowired
-	BCryptPasswordEncoder passwordEncoder;
-
 	// 홈 페이지로 redirection (return문 >> 경로)
 	@RequestMapping("/")
 	public String home() {
