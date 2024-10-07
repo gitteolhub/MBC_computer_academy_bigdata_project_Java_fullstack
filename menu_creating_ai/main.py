@@ -2,11 +2,10 @@ import datetime
 import json
 import random as ran
 import threading as th
-
 import pandas as pd
+from statsmodels.tools.sequences import primes_from_2_to
 
 import ai_ctrl
-from menu_creating_ai.ai_ctrl import str_to_list
 
 #과일류 식품 데이터와 그 외에 식품 데이터를 병합한 json 데이터 파일의 경로
 data_path = 'Resources/food_data.json'
@@ -28,6 +27,13 @@ user_reviews = [[],[]]
 stop_event = th.Event()
 
 menu_df = pd.DataFrame(columns=['breakfast', 'lunch', 'dinner'])
+
+#배열 변수의 내용이 없는지 체크하는 함수(없으면 False, 있다면 True 반환)
+def check_list_null(arr):
+    if len(arr) > 0:
+        return True
+    else:
+        return False
 
 def count_and_print(c, t):
     delta_t = datetime.datetime.now() - t
@@ -202,7 +208,7 @@ def name_to_id(n, _df):
     is_name = True
     name = str(n)
     if is_name:
-        if len(df['foodCd'].where(_df['foodNm'] == str(name)).dropna()) > 0:
+        if len(_df['foodCd'].where(_df['foodNm'] == str(name)).dropna()) > 0:
             id_num = _df['foodCd'].where(_df['foodNm'] == str(name)).dropna().values[0]
             result = str(id_num).replace('D', '').replace('R', '').replace('-', '')
             result = int(result)
@@ -620,40 +626,68 @@ def find_meal(c, returns_id, _df):
     return meal
 
 #문자열 형태의 리스트를 리스트 형태로 변환하는 함수
-def str_to_list(s, _df):
-    result0 = []
+def str_to_list(s, to_id, _df):
     if '[[[' in s:
-        sp = s[1:len(s) - 1].split(',')
-        for x in sp:
-            res = []
-            sp1 = str(x).replace('[', '').replace(']', '').split(',')
-            for y in sp1:
-                res1 = []
-                sp2 = str(y).replace('[', '').replace(']', '').split(',')
-                for z in sp2:
-                    res1.append(float(name_to_id(z, _df)))
-                res.append(res1)
-            result0.append(res)
-        return result0
+        result0 = []
+        sp = s[1:len(s) - 1].split('],[')
+        if len(sp) > 1:
+            for x in sp:
+                res = []
+                sp1 = str(x).replace('[', '').replace(']', '').split(',')
+                for y in sp1:
+                    res1 = []
+                    sp2 = str(y).replace('[', '').replace(']', '').split(',')
+                    for z in sp2:
+                        if to_id:
+                            res1.append(float(name_to_id(z, _df)))
+                        else:
+                            print(z)
+                            res1.append(z)
+                    res.append(res1)
+                result0.append(res)
+            return result0
+        else:
+            for x in sp:
+                res = []
+                sp1 = str(x).replace('[', '').replace(']', '').split(',')
+                for y in sp1:
+                    if to_id:
+                        res.append(float(name_to_id(y, _df)))
+                    else:
+                        res.append(y)
+                result0.append(res)
+            return result0
     elif '[[' in s:
-        sp = s[1:len(s) - 1].split(',')
+        result0 = []
+        sp = s[1:len(s) - 1].replace(', ', ',').split('],[')
         for x in sp:
             res = []
             sp1 = str(x).replace('[', '').replace(']', '').split(',')
             for y in sp1:
-                res.append(float(name_to_id(y, _df)))
+                if to_id:
+                    res.append(float(name_to_id(y, _df)))
+                else:
+                    res.append(y)
             result0.append(res)
         return result0
     elif '[' in s:
+        result0 = []
         if s[1:len(s) - 1] != '':
             sp = s[1:len(s) - 1].split(',')
             for x in sp:
-                result0.append(float(name_to_id(x, _df)))
+                if to_id:
+                    result0.append(float(name_to_id(x, _df)))
+                else:
+                    result0.append(x)
             return result0
         else:
             return result0
     else:
+        result0 = []
         return result0
+
+# _df0 = pd.read_json(data_path)
+# print('str_to_list results : ' + str(str_to_list("[[콩밥_완두콩, 감자조림, 얼갈이배추김치, 살구_생것, 스무디_얼음수박], [리소토/리조또_간편조리세트_베이컨버섯크림리조또, 버섯구이_새송이버섯, 겉절이_치커리, 귤_임온주_생것, 커피_헥사메리카노 핫(HOT)]]", False, _df0)))
 
 #식단을 추천하는 인공지능을 학습시키는 함수
 def train_ai(train_count):
@@ -675,10 +709,10 @@ def train_ai(train_count):
             _saved_data = read_weights_file()
             _save_time2 = _save_time + datetime.timedelta(seconds=10)
 
-        _data_sp = load_user_choice()
+        _data_sp = load_user_choice(_df2)
         _data = []
-        if len(str_to_list(_data_sp[0], _df2)) > 0:
-            _data = [str_to_list(_data_sp[0], _df2), str_to_list(_data_sp[1], _df2)]
+        if len(str_to_list(_data_sp[0], True, _df2)) > 0:
+            _data = [[str_to_list(_data_sp[0], True, _df2)], str_to_list(_data_sp[1], True, _df2)]
 
             input_learning_data = []
             for p in _data[0]:
@@ -688,6 +722,8 @@ def train_ai(train_count):
             for q in _data[1]:
                 answer = q
                 output_learning_data.append(float(answer))
+
+            #print('input_learning_data : ' + str(input_learning_data))
 
             ai_ctrl.train(train_count, input_learning_data, 3, output_learning_data, _df2, _saved_data)
 
@@ -745,50 +781,61 @@ def create_menu_from_ai(_df, _saved_data):
 
 #사용자가 선택 또는 새로고침한 식단 데이터를 학습 데이터로써 파일 형태로 저장하는 함수
 def save_user_choice():
-    open(save_file_path, 'w', encoding='utf-8').close()
-    f = open(save_file_path, 'a', encoding='utf-8')
+    f = open(save_file_path, 'w', encoding='utf-8')
 
-    f.write('[')
+    add_str = ''
+
+    #print('saving user_reviews : ' + str(user_reviews))
+
+    add_str += str('[')
     for i in range(len(user_reviews[0])):
-        f.write('[')
+        add_str += str('[')
         for j in range(len(user_reviews[0][i])):
-            f.write('[')
-            for l in range(len(user_reviews[0][i][j])):
-                _data = str(user_reviews[0][i][j][l])
-                f.write(_data)
-                if l < len(user_reviews[0][i][j]) - 1:
-                    f.write(',')
-            f.write(']')
-            if j < len(user_reviews[0][i]) - 1:
-                f.write(',')
-        f.write(']')
-        if i < len(user_reviews[0]) - 1:
-            f.write(',')
-    f.write(']')
+            _data = str(user_reviews[0][i][j])
+            add_str += str(_data)
 
-    f.write('|[')
+            if j < len(user_reviews[0][i]) - 1:
+                add_str += str(',')
+            else:
+                add_str += str(']')
+        if i < len(user_reviews[0]) - 1:
+            add_str += str(',')
+        else:
+            add_str += str(']')
+
+    add_str += str('|[')
     for i in range(len(user_reviews[1])):
         _data = str(user_reviews[1][i])
-        f.write(_data)
+        add_str += str(_data)
         if i < len(user_reviews[1]) - 1:
-            f.write(',')
-    f.write(']')
+            add_str += str(',')
+    add_str += str(']')
+
+    #print('add_str : ' + str(add_str))
+
+    f.write(add_str)
 
     f.close()
 
 #사용자별 학습 데이터를 저장한 파일로부터 데이터를 읽는 함수
-def load_user_choice():
+def load_user_choice(_df):
     f = open(save_file_path, 'r', encoding='utf-8')
     read_str = ''
-    result = []
 
     while True:
         line = f.readline()
         if not line: break
-        read_str += line.replace(' ', '').replace('array(', '').replace(')', '').replace('\n', '').replace('\r', '')
+        read_str += line.replace(' ', '').replace('\n', '').replace('\r', '')
 
     sp = read_str.split('|')
     result = sp
+
+    if len(result) > 1:
+        #print('result[0] : ' + str(result[0]))
+        user_reviews[0] = str_to_list(result[0], False, _df)
+        user_reviews[1] = str_to_list(result[1], False, _df)
+
+    #print('loading user_reviews : ' + str(user_reviews))
 
     f.close()
     return result
@@ -848,11 +895,13 @@ if is_test:
     save_time2 = datetime.datetime.now()
 
     _df = pd.read_json(data_path)
-    
+
+    loaded_user_reviews = load_user_choice(_df)
+
     #저장된 가중치 변수
     saved_data = read_weights_file()
     if len(saved_data) > 1:
-        saved_data = [str_to_list(read_weights_file()[0], _df), str_to_list(read_weights_file()[1], _df)]
+        saved_data = [str_to_list(saved_data[0], False, _df), str_to_list(saved_data[1], False, _df)]
 
     save_time = save_time + datetime.timedelta(days=1)
     save_time2 = save_time2 + datetime.timedelta(seconds=10)
@@ -864,7 +913,7 @@ if is_test:
         if save_time2 == datetime.datetime.now():
             saved_data = read_weights_file()
             if len(saved_data) > 1:
-                saved_data = [str_to_list(read_weights_file()[0], _df), str_to_list(read_weights_file()[1], _df)]
+                saved_data = [str_to_list(saved_data[0], False, _df), str_to_list(saved_data[1], False, _df)]
             save_time2 = save_time2 + datetime.timedelta(seconds=10)
 
         menu = create_menu_from_ai(_df, saved_data)
@@ -880,31 +929,29 @@ if is_test:
                         if len(menu[i][j]) > 0:
                             _menu[i] += ', '
         print('\n추천 식단 : ' + str(_menu[0]))
-        
+
         reviews = input('식품군이 골고루 들어간 당뇨병 식단으로 추천되었나요? (y/n) : ')
         if 'y' in reviews.lower():
-            user_menu = user_reviews[0]
-            user_review = user_reviews[1]
-            user_menu.append(menu)
-            user_review.append(1)
-            user_reviews[0] = user_menu
-            user_reviews[1] = user_review
+            #print('user_reviews : ' + str(user_reviews))
+            user_reviews[0].append(menu[0])
+            user_reviews[1].append('1')
+
             y_count += 1
+
             save_user_choice()
             if y_count >= max_y_count:
                 print('\n' + str(max_y_count) + '번 연속 성공하여 학습을 종료합니다')
                 stop_event.set()
 
         elif 'n' in reviews.lower():
-            user_menu = user_reviews[0]
-            user_review = user_reviews[1]
-            user_menu.append(menu)
-            user_review.append(0)
-            user_reviews[0] = user_menu
-            user_reviews[1] = user_review
+            user_reviews[0].append(menu[0])
+            user_reviews[1].append('0')
+
             y_count = 0
+
             save_user_choice()
         else:
+            print('\n프로그램 종료 중...')
             save_user_choice()
             stop_event.set()
 else:
@@ -924,7 +971,7 @@ else:
 
             saved_data = read_weights_file()
             if len(saved_data) > 1:
-                saved_data = [str_to_list(read_weights_file()[0], _df), str_to_list(read_weights_file()[1], _df)]
+                saved_data = [str_to_list(saved_data[0], False, _df), str_to_list(saved_data[1], False, _df)]
 
             _df = pd.read_json(data_path)
             save_time = save_time + datetime.timedelta(days=1)
@@ -937,7 +984,7 @@ else:
                 if save_time2 == datetime.datetime.now():
                     saved_data = read_weights_file()
                     if len(saved_data) > 1:
-                        saved_data = [str_to_list(read_weights_file()[0], _df), str_to_list(read_weights_file()[1], _df)]
+                        saved_data = [str_to_list(saved_data[0], False, _df), str_to_list(saved_data[1], False, _df)]
                     save_time2 = save_time2 + datetime.timedelta(seconds=10)
 
                 menu = create_menu_from_ai(_df, saved_data)
@@ -955,20 +1002,20 @@ else:
                 print('아침 식단 : ' + str(_menu[0]) + '\n점심 식단 : ' + str(_menu[1]) + '\n저녁 식단 : ' + str(_menu[2]))
                 reviews = input('식품군이 골고루 들어간 당뇨병 식단으로 추천되었나요? (y/n) : ')
                 if 'y' in reviews.lower():
-                    user_menu = user_reviews[0]
+                    user_menu = user_reviews[0][0]
                     user_review = user_reviews[1]
                     user_menu.append(menu)
                     user_review.append(1)
-                    user_reviews[0] = user_menu
+                    user_reviews[0][0] = user_menu
                     user_reviews[1] = user_review
 
                     save_user_choice()
                 elif 'n' in reviews.lower():
-                    user_menu = user_reviews[0]
+                    user_menu = user_reviews[0][0]
                     user_review = user_reviews[1]
                     user_menu.append(menu)
                     user_review.append(0)
-                    user_reviews[0] = user_menu
+                    user_reviews[0][0] = user_menu
                     user_reviews[1] = user_review
 
                     save_user_choice()
@@ -981,7 +1028,7 @@ else:
             _df = pd.read_json(data_path)
             saved_data = read_weights_file()
             if len(saved_data) > 1:
-                saved_data = [str_to_list(read_weights_file()[0], _df), str_to_list(read_weights_file()[1], _df)]
+                saved_data = [str_to_list(saved_data[0], False, _df), str_to_list(saved_data[1], False, _df)]
             menu = create_menu_from_ai(_df, saved_data)
             breakfast = ''
             lunch = ''
