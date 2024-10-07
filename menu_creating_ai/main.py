@@ -3,7 +3,6 @@ import json
 import random as ran
 import threading as th
 import pandas as pd
-from statsmodels.tools.sequences import primes_from_2_to
 
 import ai_ctrl
 
@@ -108,7 +107,6 @@ def food_naming(n):
     if len(sp) == 0:
         sp = _sp
 
-    #print('_sp : ' + str(_sp) + ' => sp : ' + str(sp))
     contains_keys = ''
     for keys in order_keyword_list:
         if keys in sp:
@@ -233,7 +231,7 @@ def read_weights_file():
     result = sp
 
     f.close()
-    #print(result)
+
     return result
 
 #기준 칼로리 및 영양소를 입력하여, 적합한 식품 리스트를 반환하는 함수
@@ -596,7 +594,6 @@ def find_meal(c, returns_id, _df):
     meal = [[my_age], [my_gender]]
     for x in range(c):
         if returns_id:
-            #print(str(x) + '번째 식단 제작 중...')
 
             ind = 1
             rice = rices_id[ind][ran.randint(0, len(rices_id[ind]) - 1)]
@@ -608,7 +605,7 @@ def find_meal(c, returns_id, _df):
 
             meal.append([rice, meat, vegetable, fruit, milk])
         else:
-            #print(str(x) + '번째 식단 제작 중...')
+
 
             ind = 1
             rice = rices[ind][ran.randint(0, len(rices[ind]) - 1)]
@@ -723,7 +720,7 @@ def train_ai(train_count):
                 answer = q
                 output_learning_data.append(float(answer))
 
-            #print('input_learning_data : ' + str(input_learning_data))
+
 
             ai_ctrl.train(train_count, input_learning_data, 3, output_learning_data, _df2, _saved_data)
 
@@ -785,7 +782,6 @@ def save_user_choice():
 
     add_str = ''
 
-    #print('saving user_reviews : ' + str(user_reviews))
 
     add_str += str('[')
     for i in range(len(user_reviews[0])):
@@ -811,7 +807,6 @@ def save_user_choice():
             add_str += str(',')
     add_str += str(']')
 
-    #print('add_str : ' + str(add_str))
 
     f.write(add_str)
 
@@ -831,11 +826,9 @@ def load_user_choice(_df):
     result = sp
 
     if len(result) > 1:
-        #print('result[0] : ' + str(result[0]))
         user_reviews[0] = str_to_list(result[0], False, _df)
         user_reviews[1] = str_to_list(result[1], False, _df)
 
-    #print('loading user_reviews : ' + str(user_reviews))
 
     f.close()
     return result
@@ -932,7 +925,6 @@ if is_test:
 
         reviews = input('식품군이 골고루 들어간 당뇨병 식단으로 추천되었나요? (y/n) : ')
         if 'y' in reviews.lower():
-            #print('user_reviews : ' + str(user_reviews))
             user_reviews[0].append(menu[0])
             user_reviews[1].append('1')
 

@@ -86,12 +86,8 @@ def calculate_straight(weights, biases, input_data, _hidden_layer_count):
 
     # create variable : [input data, hidden layers[0...length of hidden layers]]
     _datas = [input_data]
-    #print('input_data : ' + str(_datas))
-    #print("len(hidden_layer) : " + str(len(hidden_layer)))
     for k in range(_hidden_layer_count):
         _datas.append(hidden_layer[k])
-
-    #print('_datas : ' + str(_datas))
 
     # First hidden layer = [x0 * w0 + x1 * w1 + x2 * w2 + x3 * w3, x0 * w4 + x1 * w5 + x2 * w6...]
     for k in range(len(_datas)):
@@ -102,20 +98,15 @@ def calculate_straight(weights, biases, input_data, _hidden_layer_count):
         elif weights_index == len(weights) - 1:
             weights_index = 2
 
-        #print('weights : ' + str(weights))
-
         # calculate and put result into node
         for w in range(len(weights[weights_index])):
             val = 0
             for x in _datas[k]:
-                #print('x : ' + str(x) + ', weights[weights_index][w] : ' + str(weights[weights_index][w]))
                 if '[' in str(x):
                     val += x[0] * weights[weights_index][w]
                 else:
-                    #print('weights[weights_index][w] : ' + str(weights[weights_index][w]))
                     val += float(x) * float(str(weights[weights_index][w]).replace("'", ""))
             if k != len(_datas) - 1:
-                #print('len(_datas) : ' + str(len(_datas)) + ', len(hidden_net_layer) : ' + str(len(hidden_net_layer)) + ', k : ' + str(k))
                 hidden_net_layer[k].append(val + float(str(biases[k]).replace("'", "")))
                 hidden_layer[k].append(sigmoid_function(val + float(str(biases[k]).replace("'", ""))))
             else:
@@ -147,7 +138,6 @@ def calculate_back_term2(output):
     return term2
 
 def calculate_back_term3(weights, out_h):
-    #print('out_h : ' + str(out_h))
 
     out_h_index = 0
     for wi in range(len(weights) - 1, 0, -1):
@@ -179,7 +169,6 @@ def calculate_backward(_datas, weights):
     output_result = _datas[len(_datas) - 2]
     out_h = [_datas[0], _datas[len(_datas) - 3]]
 
-    #print("out_h : " + str(out_h))
 
     saved_w = []
     saved_w_plus_t1 = []
@@ -193,7 +182,6 @@ def calculate_backward(_datas, weights):
 
     _weights = two_to_one_list(weights)
 
-    #print('_weights : ' + str(_weights))
 
     for wi in range(len(_weights) - 1, 0, -1):
         which_out_h = 0
@@ -211,7 +199,6 @@ def calculate_backward(_datas, weights):
         weight_plus_t2 = calculate_back_term2(output_answer)
         weight_plus_t3 = calculate_back_term3(_weights, out_h[which_out_h])
 
-        #print('t1 : ' + str(weight_plus_t1) + ', t2 : ' + str(weight_plus_t2) + ', t3 : ' + str(weight_plus_t3))
 
         weight_plus = weight_plus_t1 * weight_plus_t2 * weight_plus_t3
 
@@ -281,8 +268,6 @@ def read_weights_file():
 
 def two_to_one_list(arr):
     result = []
-
-    #print('arr : ' + str(arr))
 
     if len(arr) > 0:
         for x in arr:
@@ -374,16 +359,12 @@ def train(train_count, input_data, _hidden_layer_count, output_data, _df, saved_
             hidden_layer.append([])
             hidden_net_layer.append([])
 
-    #print('len(hidden_layer) : ' + str(len(hidden_layer)))
-
     if len(saved_data) > 1:
         _weight = str_to_list(str(saved_data[0]), False, _df)
         _bios = str_to_list(str(saved_data[1]), False, _df)
     else:
         _weight = sign_weight_value(_input_count, _hidden_layer_count, _output_count)
         _bios = sign_bios_value(_hidden_layer_count)
-
-    #print('_weight : ' + str(_weight))
 
     for t in range(train_count):
 
@@ -400,10 +381,9 @@ def train(train_count, input_data, _hidden_layer_count, output_data, _df, saved_
         _datas.append(output_data[output_index])
         _weight = calculate_backward(_datas, _weight)
 
-        #print('saving weights : ' + str(_weight) + ', saving bios : ' + str(_bios))
-
         save_weights_file(_weight, _bios)
 
+#일정 갯수의 식단을 받아와 학습된 인공지능으로 판단하는 함수
 def detect_favorite_menu(_hidden_layer_count, input_data, like_percent, _df, saved_data):
     menu_result = False
     debug_process = False
