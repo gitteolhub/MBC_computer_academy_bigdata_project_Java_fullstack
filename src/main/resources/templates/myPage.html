@@ -9,8 +9,23 @@
 		<div layout:fragment="content" class = "main_sect_pnl">
 		
 		<div sec:authorize="isAuthenticated()">
-		
-			<span sec:authentication="name"></span>님 환영합니다.&nbsp;
+			<b>
+			<span th:if="${session.socialUser == null}" sec:authentication="name"></span>
+			
+			<!-- OAuth에 따른 별도 조치 -->
+			<!-- Naver -->
+			<span th:if="${session.socialUser != null}">
+
+				<span th:if="${session.socialUser.authVendor == 'naver'}" th:text="${session.socialUser.email}"></span>
+
+				<!-- Google -->
+				<span th:if="${session.socialUser.authVendor == 'google'}" th:text="${session.socialUser.name}"></span>
+
+			</span>
+
+			<span>님 로그인 하셨습니다.</span>
+			</b>
+			
 			<input type = "button" value="로그아웃" th:onclick="|location.href='@{/logoutProc}'|" />
 			
 		</div>

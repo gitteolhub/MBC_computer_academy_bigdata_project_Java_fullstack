@@ -33,6 +33,7 @@ public class MemberUpdateDTO extends MemberVO implements Serializable {
 		this.setEnabled(objmemberVO.getEnabled());
 	}
 	
+	
 	@Override
 	public String toString() {
 		return "MemberUpdateDTO [passwordUpdate=" + passwordUpdate + ", passwordVerify=" + passwordVerify + ", getNum()="     + getNum()

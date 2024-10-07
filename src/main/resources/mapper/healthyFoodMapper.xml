@@ -3,10 +3,10 @@
 <mapper namespace="mapper.healthyFoodMapper">
 
 	<!-- ID로 회원 정보를 조회하는 쿼리 -->
-	<select id = "selectMemberById" 
-			parameterType = "String" 
+	<select id = "selectMemberById"
+			parameterType = "String"
 			resultType = "com.javateam.healthyFoodProject.domain.MemberVO">
-		SELECT * 
+		SELECT *
 		  FROM USER_TBL
  		 WHERE ID = #{id}
 	</select>
@@ -16,9 +16,9 @@
 		SELECT COUNT(*)
 		  FROM USER_TBL
 		 WHERE ${fld} = #{val}
-	
+
 	</select>
-	
+
 	<!-- 회원정보 삽입(생성) -->
 	<insert id = "insertMember" parameterType = "com.javateam.healthyFoodProject.domain.MemberVO">
 		INSERT INTO USER_TBL(
@@ -26,27 +26,27 @@
                            EMAIL, PHONE, BIRTHDAY, JOINDATE, ENABLED
 	                       )
 	                VALUES(
-	   	  	               USER_NUM_SEQ.NEXTVAL, #{id},    #{pw},       #{name},  #{gender}, 
+	   	  	               USER_NUM_SEQ.NEXTVAL, #{id},    #{pw},       #{name},  #{gender},
 	   	  	               #{email},             #{phone}, #{birthday}, SYSDATE,  #{enabled}
 	                       )
 	</insert>
-	
+
 	<!-- 회원정보 수정 -->
 	<update id = "updateMember" parameterType = "com.javateam.healthyFoodProject.domain.MemberVO">
 		UPDATE USER_TBL
 		<set>
 			<if test = "pw != null">
-				PW = #{pw}		
+				PW = #{pw}
 			</if>
 			<if test = "email != null">
-				,EMAIL = #{email}		
+				,EMAIL = #{email}
 			</if>
 			<if test = "phone != null">
-				,PHONE = #{phone}		
+				,PHONE = #{phone}
 			</if>
 		</set>
 		WHERE ID = #{id}
-	
+
 	</update>
 
 	<!-- 회원정보 중복 점검(수정) -->
@@ -57,25 +57,25 @@
 	  			 WHERE ID != #{id})
 		 WHERE ${fld} = #{val}
 	</select>
-	
+
 	<!-- 회원 Role 생성 -->
 	<insert id = "insertRole" parameterType = "map">
 		INSERT INTO USER_ROLES (User_Role_Num, usernum, userid, role)
 						VALUES (USER_ROLES_SEQ.NEXTVAL, #{num,jdbcType=VARCHAR}, #{id,jdbcType=VARCHAR}, #{role,jdbcType=VARCHAR})
 	</insert>
-	
+
 	<!-- 회원 Role 삭제 -->
 	<delete id = "deleteRoles" parameterType ="String">
 		DELETE FROM USER_ROLES
 		 WHERE USERID = #{userid}
 	</delete>
-	
+
 	<!-- 회원정보 삭제 -->
 	<delete id = "deleteMemberById" parameterType = "String">
 		DELETE FROM USER_TBL
 		 WHERE ID = #{id}
 	</delete>
-	
+
 	<!-- 회원 Role 조회 -->
 	<select id = "selectRolesById" parameterType="String" resultType = "String">
 		SELECT ROLE
@@ -96,74 +96,74 @@
 		   SET ENABLED = #{enabled}
 		 WHERE ID = #{id}
 	</update>
-	
+
 	<!-- 회원정보 조회(role 포함) -->
 	<select id = "selectMemberByFld" parameterType = "map" resultType = "map" >
-	SELECT DISTINCT u3.* 
+	SELECT DISTINCT u3.*
          ,(
-           SELECT LISTAGG(r2.ROLE, ',') WITHIN GROUP (ORDER BY u2.ID) 
+           SELECT LISTAGG(r2.ROLE, ',') WITHIN GROUP (ORDER BY u2.ID)
              FROM USER_TBL u2
-                 ,USER_ROLES r2  
+                 ,USER_ROLES r2
             WHERE r2.USERID = u2.ID
               AND r2.USERID = u3.ID
-            ) AS "ROLE"           
+            ) AS "ROLE"
   	  FROM  USER_TBL u3
   	       ,USER_ROLES r3
   	  WHERE u3.ID  = r3.USERID
    	    AND ${fld} = #{val}
 	</select>
-	
+
 	<!-- 페이징에 의해(페이지 별) 회원정보 조회(검색) -->
 	<select id="selectMembersByPaging" parameterType="hashMap" resultType="com.javateam.healthyFoodProject.domain.MemberVO">
-		SELECT *  
-		  FROM (SELECT u.*,  
+		SELECT *
+		  FROM (SELECT u.*,
 	         	       FLOOR((ROWNUM - 1) / #{limit} + 1) PAGE
 	      	      FROM(
 	             	   SELECT *
-				 	     FROM USER_TBL) u  
-	   			   )  
+				 	     FROM USER_TBL) u
+	   			   )
 		 WHERE PAGE = #{page}
 	</select>
-	
+
 	<!-- 전체 회원 조회 -->
 	<select id="selectAllMembers" resultType="com.javateam.healthyFoodProject.domain.MemberVO">
-		 SELECT * 
+		 SELECT *
 		   FROM USER_TBL
 	</select>
-	
+
 	<select id="selectMembersBySearchingAndPaging" parameterType="map" resultType="map">
 		SELECT  *
 	  	  FROM  (
-	  	        SELECT u.*  
-	                    ,FLOOR((ROWNUM - 1) / #{limit} + 1) PAGE  
+	  	        SELECT u.*
+	                    ,FLOOR((ROWNUM - 1) / #{limit} + 1) PAGE
 	              FROM (
-	                    SELECT DISTINCT u3.* 
+	                    SELECT DISTINCT u3.*
 	                       ,(
-	                         SELECT  LISTAGG(r2.ROLE, ',') WITHIN GROUP (ORDER BY u2.ID) 
+	                         SELECT  LISTAGG(r2.ROLE, ',') WITHIN GROUP (ORDER BY u2.ID)
 	                           FROM  USER_TBL u2
-	                                ,USER_ROLES r2  
+	                                ,USER_ROLES r2
 	                          WHERE  r2.USERID = u2.ID
 	                            AND  r2.USERID = u3.ID
-	                          )  AS  "ROLE"           
+	                          )  AS  "ROLE"
 	                     FROM  USER_TBL u3
 	                          ,USER_ROLES r3
 	                    WHERE  u3.ID = r3.USERID
-	                    
+
 	                    <if test="searchKey == 'JOINDATE'">
 			           AND JOINDATE LIKE TO_DATE(#{searchWord}, 'YYYY-MM-DD')
 			           </if>
-			           
+
 			      ORDER BY ID ${ordering} ) u
-	            )  
+	            )
 	 	 WHERE PAGE = #{page}
 	</select>
-	
+
 	<!-- 전체 회원수 조회 -->
 	<select id="selectCountAll"	resultType="int">
 		SELECT COUNT(*)
 	   	  FROM USER_TBL
 	</select>
-	
+
 	<!-- 검색된 전체 회원정보 수 -->
 	<select id="selectCountBySearching" parameterType="map" resultType="int">
 		SELECT COUNT(*)
@@ -174,7 +174,7 @@
 		<if test="searchKey != 'role'">
 		       USER_TBL
 		</if>
-		 WHERE 
+		 WHERE
 		 <if test="searchKey == 'name'">
 			   NAME LIKE '%${searchWord}%'
    		</if>
@@ -185,4 +185,11 @@
 			   ${searchKey} = #{searchWord}
   		</if>
   	</select>
+
+  	<!-- social(naver, google) 회원정보 저장 -->
+  	<insert id="insertSocialUser" parameterType="com.javateam.healthyFoodProject.domain.SocialUser">
+  	 	INSERT INTO SOCIAL_USER
+  	 					 VALUES (SOCIAL_USER_SEQ.NEXTVAL, #{name}, #{email}, #{gender},    #{birthyear},
+  	 							#{role}, 				  SYSDATE, SYSDATE,  #{authVendor})
+  	</insert>
 </mapper>

@@ -31,22 +31,20 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class SecurityConfig {
 	
-	@Autowired
-	private CustomOAuth2UserService customOAuth2UserService;
+//	@Autowired
+	private final CustomOAuth2UserService customOAuth2UserService;
 	
 	@Autowired
 	private CustomProviderService customProviderService;
+//	private final UserDetailsService userDetailsService;
+	private final DataSource dataSource;
 	
-	private UserDetailsService userDetailsService;
-	
-	private DataSource dataSource;
-	
-	// 생성자 주입을 통해 UserDetailsService와 DataSource를 초기화
-	public SecurityConfig(UserDetailsService objUserDetailsService, DataSource objDataSource) {
-		log.info("생성자 주입 wiring");
-		this.dataSource         = objDataSource;
-		this.userDetailsService = objUserDetailsService;
-	}
+//	// 생성자 주입을 통해 UserDetailsService와 DataSource를 초기화
+//	public SecurityConfig(UserDetailsService objUserDetailsService, DataSource objDataSource) {
+//		log.info("생성자 주입 wiring");
+//		this.dataSource         = objDataSource;
+//		this.userDetailsService = objUserDetailsService;
+//	}
 	
 	// 비밀번호를 안전하게 암호화하기 위해 BCryptPasswordEncoder 빈 생성
 	@Bean
@@ -58,10 +56,10 @@ public class SecurityConfig {
 	public SecurityFilterChain filterChain(HttpSecurity objHttpSecurity) throws Exception {
 		
 		// 사용자 세부 정보를 제공하는 서비스 설정
-		objHttpSecurity.userDetailsService(userDetailsService);
+//		objHttpSecurity.userDetailsService(userDetailsService);
 		
 		// custom 인증 제공자 설정
-		objHttpSecurity.authenticationProvider(customProviderService);
+//		objHttpSecurity.authenticationProvider(customProviderService);
 		
 		// HTTP 헤더 설정
 		objHttpSecurity.headers(headers -> headers
@@ -69,6 +67,9 @@ public class SecurityConfig {
 					   				.sameOrigin()
 					   		)
 						);
+		
+//		objHttpSecurity.headers(headersCustomizer -> headersCustomizer
+//					   .frameOptions(Customizer.withDefaults()).disable());
 		
 		// 요청 권한 설정
 		objHttpSecurity.authorizeHttpRequests((authorizeHttpRequests) -> 
@@ -87,8 +88,8 @@ public class SecurityConfig {
 		
 		// 로그인/ 로그아웃(인증) 처리
 		objHttpSecurity.formLogin(formLogin -> formLogin
-					   		.loginProcessingUrl("/login")
-					   		.loginPage("/login")			// 로그인 이후 주소
+					   		.loginProcessingUrl("/loginForm")
+					   		.loginPage("/loginForm")			// 로그인 이후 주소
 					   		.usernameParameter("userid")	// 아이디
 					   		.passwordParameter("password")	// 비밀번호
 					   		.defaultSuccessUrl("/myPage")	// 로그인 성공시 이동 주소
@@ -96,11 +97,11 @@ public class SecurityConfig {
 					   		.permitAll())
 		
 					   .logout((logout) -> logout
-							.logoutSuccessUrl("/myPage")	// 로그아웃 이후 이동 주소
+							.logoutSuccessUrl("/loginFrom")	// 로그아웃 이후 이동 주소
 							.permitAll());
 		
 		objHttpSecurity.oauth2Login(oauth2LoginCustomizer -> oauth2LoginCustomizer
-							.defaultSuccessUrl("/home")
+							.defaultSuccessUrl("/myPage")
 							.userInfoEndpoint(userInfoEndpointCustomizer -> userInfoEndpointCustomizer
 		  							.userService(customOAuth2UserService)));
 		
@@ -108,10 +109,10 @@ public class SecurityConfig {
 		objHttpSecurity.exceptionHandling(handler -> handler.accessDeniedPage("/403"));
 		
 		// Remember-Me 설정
-		objHttpSecurity.rememberMe((remember) -> remember.key("javateam")							// Remember-Me 키
-														 .userDetailsService(userDetailsService)	// 사용자 세부 정보 서비스 설정
-														 .tokenRepository(getJDBCRepository())		// 토큰 저장소 설정
-														 .tokenValiditySeconds(60 * 60 * 24));		// 토큰 유효 기간 설정 (24시간)
+//		objHttpSecurity.rememberMe((remember) -> remember.key("javateam")							// Remember-Me 키
+//														 .userDetailsService(userDetailsService)	// 사용자 세부 정보 서비스 설정
+//														 .tokenRepository(getJDBCRepository())		// 토큰 저장소 설정
+//														 .tokenValiditySeconds(60 * 60 * 24));		// 토큰 유효 기간 설정 (24시간)
 		
 		return objHttpSecurity.build();
 	}
@@ -126,15 +127,15 @@ public class SecurityConfig {
 	}
 	
 	// token 기반 remember-me 서비스
-	@Bean
-	RememberMeServices rememberMeServices(UserDetailsService userDetailsService) {
-		
-		RememberMeTokenAlgorithm encodingAlgorithm = RememberMeTokenAlgorithm.SHA256; // SHA256알고리즘 사용
-		TokenBasedRememberMeServices rememberMe = new TokenBasedRememberMeServices("javateam", userDetailsService, encodingAlgorithm);
-		rememberMe.setMatchingAlgorithm(RememberMeTokenAlgorithm.MD5);	//매칭 알고리즘 사용
-		
-		return rememberMe;
-	}
+//	@Bean
+//	RememberMeServices rememberMeServices(UserDetailsService userDetailsService) {
+//		
+//		RememberMeTokenAlgorithm encodingAlgorithm = RememberMeTokenAlgorithm.SHA256; // SHA256알고리즘 사용
+//		TokenBasedRememberMeServices rememberMe = new TokenBasedRememberMeServices("javateam", userDetailsService, encodingAlgorithm);
+//		rememberMe.setMatchingAlgorithm(RememberMeTokenAlgorithm.MD5);	//매칭 알고리즘 사용
+//		
+//		return rememberMe;
+//	}
 	
 	// security URL 열외(제외)
 	@Bean

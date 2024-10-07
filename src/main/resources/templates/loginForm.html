@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-       layout:decorate="~{layout_login}"
-       lang="ko">
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security6"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout_login}"
+      lang="ko">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,21 +30,87 @@
 	<h2>Login Page</h2>
 	<form id="loginForm" 
 			  name="loginForm" 
-			  th:action="@{'/login'}"
+			  th:action="@{'/loginForm'}"
 			  method="POST">
-		<div>
-			<label>ID:</label>
-			<input type="text" name="userid" required pattern="[a-zA-Z]{1}\w{7,19}" title="아이디는 8~20사이의 영문으로 시작하여 영문 대소문자 및 숫자로 작성하십시오" >
+			  
+			  <table class="table table-borderless">
+					<tr>
+						<td>
+							<label for="username"
+								   class="form-label mt-1">ID : </label>
+						</td>
+						<td class="ps-0">
+							<input type="text"
+								   class="form-control ms-0"
+								   id = "userid"
+								   name="username"
+								   required
+								   pattern="[a-zA-Z]{1}\w{7,19}"
+								   title="아이디는 영문자 및 숫자로 시작하여 8~20자 사이로 작성하여 주십시오" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label for="password"
+								   class="form-label mt-1">PW : </label>
+						</td>
+						<td class="ps-0">
+							<input type="text"
+								   class="form-control"
+								   id="password"
+								   name="password"
+								   required
+								   pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,20}"
+								   title="비밀변호는 영문 대소문자 및 숫자, 특수문자를 최소 1개 이상 포함하여 8~20 사이로 작성하여 주십시오." />
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+
+							<div class="d-flex justify-content-evenly">
+
+								<input type="submit"
+									   class="btn btn-primary"
+									   id="login"
+									   name="login"
+									   value="로그인"
+									   />
+								&nbsp;
+								<input type="reset"
+									   name="reset"
+									   class="btn btn-primary"
+									   value="취소" />
+							    &nbsp;
+							    <a th:href="@{/join}" class="btn btn-primary">회원가입</a>
+
+						    </div>
+						</td>
+					</tr>
+
+					<!-- Naver & Google 로그인 링크 추가 -->
+					<tr>
+						<td colspan="2">
+							<!-- 로그인이 안되었을 때 -->
+							<div sec:authorize="isAnonymous()" class="row">
+
+								<!-- Naver -->
+								<div class="col-auto">
+									<a th:href="@{'/oauth2/authorization/naver'}" class="btn btn-outline-primary mt-2">Naver Login</a>
+								</div>
+
+								<!-- Google -->
+								<div class="col-auto">
+									<a th:href="@{'/oauth2/authorization/google'}" class="btn btn-outline-primary mt-2">Google Login</a>
+								</div>
+
+							</div>
+							<!--// 로그인이 안되었을 때 -->
+
+						</td>
+					</tr>
+				</table>
+			  </form>
 		</div>
-		<div>
-			<label>Password:</label>
-			<input type="text" name="password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,20}" title="비밀번호는 영문 대소문자, 숫자, 특수문자 1자 이상 포함하여 8~20자로 작성하십시오">
-		</div>
-		<div>
-			<button type="submit">Login</button>
-		</div>
-	</form>
-	</div>
 	</div>
 
 </body>

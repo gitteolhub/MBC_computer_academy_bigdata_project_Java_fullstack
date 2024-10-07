@@ -10,12 +10,14 @@ public class SessionUser implements Serializable{
 	
 	private String name;
 	private String email;
-	private Integer birthyear;
+	private String gender;
+	private String birthyear;
 	private String authVendor;
 	
 	public SessionUser(SocialUser socialUser) {
 		this.name = socialUser.getName();
 		this.email = socialUser.getEmail();
+		this.gender = socialUser.getGender();
 		this.birthyear = socialUser.getBirthyear();
 		this.authVendor = socialUser.getAuthVendor();
 	}

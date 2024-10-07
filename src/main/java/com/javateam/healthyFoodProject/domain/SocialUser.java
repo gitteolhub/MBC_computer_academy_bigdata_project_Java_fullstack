@@ -29,53 +29,54 @@ import lombok.ToString;
 		allocationSize = 1)
 @Table(name="SOCIAL_USER")
 public class SocialUser extends BaseTimeEntity {
-	
+
 	@Id
 	@Column(nullable = false, precision = 10, scale = 0)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE,
 					generator = "SOCIAL_USER_SEQ_GENERATOR")
 	private BigDecimal id;
-	
+
 	@Column(nullable = false)
 	private String name;
-	
+
 	@Column(nullable = false)
 	private String email;
-	
+
 	@Column(nullable = false)
 	private String gender;
-	
+
 	@Column(nullable = false)
-	private Integer birthyear;
-	
-	@Column(name="auth-vendor")
+	private String birthyear;		// 자료형 변경(String)
+
+	@Column(name="auth_vendor")
 	private String authVendor;
-	
+
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
-	private SocialRole socialRole;
-	
+	private SocialRole role;
+
 	@Builder
-	public SocialUser(String strName, String strEmail, String strGender, Integer intBirthyear, SocialRole socialRole, String strAuthVendor) {
-		this.name = strName;
-		this.email = strEmail;
-		this.gender = strGender;
-		this.birthyear = intBirthyear;
-		this.socialRole = socialRole;
+	public SocialUser(String strName, String strEmail, String strGender, String strBirthyear, SocialRole role, String strAuthVendor) {
+		this.name       = strName;
+		this.email      = strEmail;
+		this.gender     = strGender;
+		this.birthyear  = strBirthyear;
+		this.role = role;
+
 		this.authVendor = strAuthVendor;
 	}
-	
-	public SocialUser update(String strName, String strGender, Integer intBirthyear, String strAuthVendor) {
-		this.name = strName;
-		this.gender = strGender;
-		this.birthyear = intBirthyear;
+
+	public SocialUser update(String strName, String strGender, String strBirthyear, String strAuthVendor) {
+		this.name       = strName;
+		this.gender     = strGender;
+		this.birthyear  = strBirthyear;
 		this.authVendor = strAuthVendor;
-		
+
 		return this;
 	}
-	
+
 	public String getRoleKey() {
-		return this.socialRole.getKey();
+		return this.role.getKey();
 	}
 
 
