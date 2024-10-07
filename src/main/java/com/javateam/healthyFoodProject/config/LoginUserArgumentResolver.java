@@ -24,14 +24,14 @@ public class LoginUserArgumentResolver implements HandlerMethodArgumentResolver{
 		
 		boolean isLoginUserAnnotation = methodParameter.getParameterAnnotation(SocialLoginUser.class) != null;
 		boolean isUserClass = SessionUser.class.equals(methodParameter.getParameterType());
+		
 		return isLoginUserAnnotation && isUserClass;
 	}
 	
 	@Override
-	public Object resolveArgument(MethodParameter methodParameter,
-								  ModelAndViewContainer modelAndViewContainer,
-								  NativeWebRequest nativeWebRequest,
-								  WebDataBinderFactory webDataBinderFactory) throws Exception {
+	public Object resolveArgument(MethodParameter  methodParameter,  ModelAndViewContainer modelAndViewContainer, 
+								  NativeWebRequest nativeWebRequest, WebDataBinderFactory  webDataBinderFactory) throws Exception {
+		
 		return httpSession.getAttribute("user");
 	}
 }

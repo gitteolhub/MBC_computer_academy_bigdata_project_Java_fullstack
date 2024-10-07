@@ -30,22 +30,17 @@ import lombok.extern.slf4j.Slf4j;
 public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequest, OAuth2User> {
 	
 	private final SocialUserDAO socialUserDAO;
-	private final HttpSession httpSession;
+	private final HttpSession   httpSession;
 	
 	@SuppressWarnings({"rawtypes", "unchecked"})
 	@Override
 	public OAuth2User loadUser(OAuth2UserRequest oAuth2UserRequest) throws OAuth2AuthenticationException{
 		
-		OAuth2UserService delegate = new DefaultOAuth2UserService();
-		OAuth2User oAuth2User = delegate.loadUser(oAuth2UserRequest);
+		OAuth2UserService delegate   = new DefaultOAuth2UserService();
+		OAuth2User        oAuth2User = delegate.loadUser(oAuth2UserRequest);
 		
-		String registrationId = oAuth2UserRequest.getClientRegistration()
-												 .getRegistrationId();
-		
-		String userNameAttributeName = oAuth2UserRequest.getClientRegistration()
-														.getProviderDetails()
-														.getUserInfoEndpoint()
-														.getUserNameAttributeName();
+		String registrationId        = oAuth2UserRequest.getClientRegistration().getRegistrationId();
+		String userNameAttributeName = oAuth2UserRequest.getClientRegistration().getProviderDetails().getUserInfoEndpoint().getUserNameAttributeName();
 		
 		OAuthAttributes oAuthAttributes = OAuthAttributes.of(registrationId, userNameAttributeName, oAuth2User.getAttributes());
 		

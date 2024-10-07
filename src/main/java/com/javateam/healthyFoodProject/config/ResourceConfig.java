@@ -1,12 +1,19 @@
 package com.javateam.healthyFoodProject.config;
 
+import java.util.List;
+
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 @Configuration
 public class ResourceConfig implements WebMvcConfigurer {
 	
+	private LoginUserArgumentResolver loginUserArgumentResolver;
 	
 	// 자원 핸들러를 추가하는 메서드
 	@Override
@@ -21,4 +28,9 @@ public class ResourceConfig implements WebMvcConfigurer {
 				.addResourceLocations("classpath:/META-INF/resource/webjars/axios/");
 	}
 
+	@Override
+	public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
+		argumentResolvers.add(loginUserArgumentResolver);
+	}
+	
 }
