@@ -1,0 +1,260 @@
+INFO : 230. Connection opened. {executed in 36ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 16:54:02.219]
+
+INFO : 230. Connection.new Connection returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 16:54:02.221]
+
+INFO : 230. Connection.isReadOnly() returned false ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 16:54:02.221]
+
+INFO : 230. Connection.getAutoCommit() returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 16:54:02.221]
+
+INFO : 219. Connection closed. {executed in 0ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 16:54:24.047]
+
+INFO : 219. Connection.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 16:54:24.047]
+
+INFO : 231. Connection opened. {executed in 38ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 16:54:24.085]
+
+INFO : 231. Connection.new Connection returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 16:54:24.085]
+
+INFO : 231. Connection.isReadOnly() returned false ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 16:54:24.085]
+
+INFO : 231. Connection.getAutoCommit() returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 16:54:24.085]
+
+INFO : 222. Connection closed. {executed in 1ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 16:54:32.935]
+
+INFO : 222. Connection.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 16:54:32.935]
+
+INFO : 232. Connection opened. {executed in 41ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 16:54:32.975]
+
+INFO : 232. Connection.new Connection returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 16:54:32.975]
+
+INFO : 232. Connection.isReadOnly() returned false ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 16:54:32.975]
+
+INFO : 232. Connection.getAutoCommit() returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 16:54:32.975]
+
+INFO : 223. Connection closed. {executed in 1ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:23:09.506]
+
+INFO : 223. Connection.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:23:09.506]
+
+INFO : 233. Connection opened. {executed in 59ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:23:09.563]
+
+INFO : 233. Connection.new Connection returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:23:09.563]
+
+INFO : 233. Connection.isReadOnly() returned false ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:23:09.563]
+
+INFO : 233. Connection.getAutoCommit() returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:23:09.563]
+
+INFO : 225. Connection closed. {executed in 1ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:23:19.447]
+
+INFO : 225. Connection.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:23:19.447]
+
+INFO : 234. Connection opened. {executed in 38ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:23:19.484]
+
+INFO : 234. Connection.new Connection returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:23:19.484]
+
+INFO : 234. Connection.isReadOnly() returned false ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:23:19.484]
+
+INFO : 234. Connection.getAutoCommit() returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:23:19.484]
+
+INFO : 224. Connection closed. {executed in 1ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:23:26.456]
+
+INFO : 224. Connection.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:23:26.456]
+
+INFO : 235. Connection opened. {executed in 38ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:23:26.493]
+
+INFO : 235. Connection.new Connection returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:23:26.493]
+
+INFO : 235. Connection.isReadOnly() returned false ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:23:26.493]
+
+INFO : 235. Connection.getAutoCommit() returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:23:26.493]
+
+INFO : 230. Connection closed. {executed in 1ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:23:35.397]
+
+INFO : 230. Connection.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:23:35.397]
+
+INFO : 236. Connection opened. {executed in 37ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:23:35.433]
+
+INFO : 236. Connection.new Connection returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:23:35.434]
+
+INFO : 236. Connection.isReadOnly() returned false ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:23:35.434]
+
+INFO : 236. Connection.getAutoCommit() returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:23:35.434]
+
+INFO : 226. Connection closed. {executed in 1ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:23:36.544]
+
+INFO : 226. Connection.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:23:36.544]
+
+INFO : 237. Connection opened. {executed in 36ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:23:36.580]
+
+INFO : 237. Connection.new Connection returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:23:36.580]
+
+INFO : 237. Connection.isReadOnly() returned false ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:23:36.580]
+
+INFO : 237. Connection.getAutoCommit() returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:23:36.580]
+
+INFO : 229. Connection closed. {executed in 1ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:23:37.723]
+
+INFO : 229. Connection.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:23:37.723]
+
+INFO : 238. Connection opened. {executed in 34ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:23:37.756]
+
+INFO : 238. Connection.new Connection returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:23:37.756]
+
+INFO : 238. Connection.isReadOnly() returned false ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:23:37.756]
+
+INFO : 238. Connection.getAutoCommit() returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:23:37.756]
+
+INFO : 227. Connection closed. {executed in 2ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:23:41.467]
+
+INFO : 227. Connection.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:23:41.467]
+
+INFO : 239. Connection opened. {executed in 38ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:23:41.503]
+
+INFO : 239. Connection.new Connection returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:23:41.503]
+
+INFO : 239. Connection.isReadOnly() returned false ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:23:41.503]
+
+INFO : 239. Connection.getAutoCommit() returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:23:41.503]
+
+INFO : 228. Connection closed. {executed in 1ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:23:44.953]
+
+INFO : 228. Connection.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:23:44.953]
+
+INFO : 240. Connection opened. {executed in 38ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:23:44.990]
+
+INFO : 240. Connection.new Connection returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:23:44.990]
+
+INFO : 240. Connection.isReadOnly() returned false ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:23:44.990]
+
+INFO : 240. Connection.getAutoCommit() returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:23:44.990]
+
+INFO : 231. Connection closed. {executed in 1ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:23:53.919]
+
+INFO : 231. Connection.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:23:53.919]
+
+INFO : 241. Connection opened. {executed in 37ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:23:53.956]
+
+INFO : 241. Connection.new Connection returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:23:53.956]
+
+INFO : 241. Connection.isReadOnly() returned false ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:23:53.956]
+
+INFO : 241. Connection.getAutoCommit() returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:23:53.956]
+
+INFO : 232. Connection closed. {executed in 1ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:24:01.783]
+
+INFO : 232. Connection.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:24:01.784]
+
+INFO : 242. Connection opened. {executed in 38ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:24:01.821]
+
+INFO : 242. Connection.new Connection returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:24:01.821]
+
+INFO : 242. Connection.isReadOnly() returned false ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:24:01.821]
+
+INFO : 242. Connection.getAutoCommit() returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:24:01.821]
+
+INFO : 233. Connection closed. {executed in 0ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:52:40.829]
+
+INFO : 233. Connection.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:52:40.829]
+
+INFO : 243. Connection opened. {executed in 61ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:52:40.890]
+
+INFO : 243. Connection.new Connection returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:52:40.890]
+
+INFO : 243. Connection.isReadOnly() returned false ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:52:40.890]
+
+INFO : 243. Connection.getAutoCommit() returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:52:40.890]
+
+INFO : 235. Connection closed. {executed in 2ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:52:53.798]
+
+INFO : 235. Connection.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:52:53.798]
+
+INFO : 244. Connection opened. {executed in 39ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:52:53.835]
+
+INFO : 244. Connection.new Connection returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:52:53.836]
+
+INFO : 244. Connection.isReadOnly() returned false ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:52:53.836]
+
+INFO : 244. Connection.getAutoCommit() returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:52:53.836]
+
+INFO : 237. Connection closed. {executed in 1ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:52:57.540]
+
+INFO : 237. Connection.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:52:57.540]
+
+INFO : 245. Connection opened. {executed in 37ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:52:57.576]
+
+INFO : 245. Connection.new Connection returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:52:57.577]
+
+INFO : 245. Connection.isReadOnly() returned false ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:52:57.577]
+
+INFO : 245. Connection.getAutoCommit() returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:52:57.577]
+
+INFO : 234. Connection closed. {executed in 0ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:53:04.751]
+
+INFO : 234. Connection.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:53:04.752]
+
+INFO : 246. Connection opened. {executed in 39ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:53:04.790]
+
+INFO : 246. Connection.new Connection returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:53:04.791]
+
+INFO : 246. Connection.isReadOnly() returned false ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:53:04.791]
+
+INFO : 246. Connection.getAutoCommit() returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:53:04.791]
+
+INFO : 236. Connection closed. {executed in 1ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:53:08.063]
+
+INFO : 236. Connection.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:53:08.063]
+
+INFO : 247. Connection opened. {executed in 104ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:53:08.166]
+
+INFO : 247. Connection.new Connection returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:53:08.166]
+
+INFO : 247. Connection.isReadOnly() returned false ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:53:08.166]
+
+INFO : 247. Connection.getAutoCommit() returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:53:08.166]
+
+INFO : 238. Connection closed. {executed in 1ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:53:24.568]
+
+INFO : 238. Connection.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:53:24.569]
+
+INFO : 248. Connection opened. {executed in 38ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:53:24.606]
+
+INFO : 248. Connection.new Connection returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:53:24.606]
+
+INFO : 248. Connection.isReadOnly() returned false ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:53:24.606]
+
+INFO : 248. Connection.getAutoCommit() returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:53:24.607]
+
+INFO : 240. Connection closed. {executed in 1ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:53:27.063]
+
+INFO : 240. Connection.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:53:27.063]
+
+INFO : 249. Connection opened. {executed in 48ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:53:27.110]
+
+INFO : 249. Connection.new Connection returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:53:27.110]
+
+INFO : 249. Connection.isReadOnly() returned false ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:53:27.111]
+
+INFO : 249. Connection.getAutoCommit() returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:53:27.111]
+
+INFO : 239. Connection closed. {executed in 1ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:53:32.228]
+
+INFO : 239. Connection.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:53:32.229]
+
+INFO : 250. Connection opened. {executed in 38ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:53:32.265]
+
+INFO : 250. Connection.new Connection returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:53:32.265]
+
+INFO : 250. Connection.isReadOnly() returned false ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:53:32.265]
+
+INFO : 250. Connection.getAutoCommit() returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:53:32.265]
+
+INFO : 241. Connection closed. {executed in 1ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:53:37.532]
+
+INFO : 241. Connection.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:53:37.532]
+
+INFO : 251. Connection opened. {executed in 38ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:53:37.569]
+
+INFO : 251. Connection.new Connection returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:53:37.569]
+
+INFO : 251. Connection.isReadOnly() returned false ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:53:37.569]
+
+INFO : 251. Connection.getAutoCommit() returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 17:53:37.569]
+

@@ -1,0 +1,1245 @@
+INFO : Starting TeamprojectApplication using Java 17.0.7 with PID 9884 (C:\Users\USER\Desktop\WORK\JAVA\teamproject\bin\main started by USER in C:\Users\USER\Desktop\WORK\JAVA\teamproject) ===> org.springframework.boot.StartupInfoLogger         : [2024-10-04 11:36:43.502]
+
+INFO : No active profile set, falling back to 1 default profile: "default" ===> org.springframework.boot.SpringApplication         : [2024-10-04 11:36:43.515]
+
+INFO : The Class-Path manifest attribute in C:\Users\USER\.gradle\caches\modules-2\files-2.1\com.oracle.database.jdbc\ojdbc11\21.9.0.0\1aad2e20684ee075bb9ebdca2d83f028e4fd35fa\ojdbc11-21.9.0.0.jar referenced one or more files that do not exist: file:/C:/Users/USER/.gradle/caches/modules-2/files-2.1/com.oracle.database.jdbc/ojdbc11/21.9.0.0/1aad2e20684ee075bb9ebdca2d83f028e4fd35fa/oraclepki.jar ===> org.springframework.boot.logging.DeferredLog       : [2024-10-04 11:36:43.716]
+
+INFO : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable ===> org.springframework.boot.logging.DeferredLog       : [2024-10-04 11:36:43.717]
+
+INFO : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG' ===> org.springframework.boot.logging.DeferredLog       : [2024-10-04 11:36:43.718]
+
+INFO : Bootstrapping Spring Data JPA repositories in DEFAULT mode. ===> org.springframework.data.repository.config.RepositoryConfigurationDelegate : [2024-10-04 11:36:44.396]
+
+INFO : Finished Spring Data repository scanning in 6 ms. Found 0 JPA repository interfaces. ===> org.springframework.data.repository.config.RepositoryConfigurationDelegate : [2024-10-04 11:36:44.409]
+
+WARN : No MyBatis mapper was found in '[com.example.teamproject]' package. Please check your configuration. ===> org.mybatis.logging.Logger                         : [2024-10-04 11:36:44.532]
+
+INFO : Tomcat initialized with port(s): 8181 (http) ===> org.springframework.boot.web.embedded.tomcat.TomcatWebServer : [2024-10-04 11:36:44.921]
+
+INFO : Initializing ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-10-04 11:36:44.930]
+
+INFO : Starting service [Tomcat] ===> org.apache.juli.logging.DirectJDKLog               : [2024-10-04 11:36:44.932]
+
+INFO : Starting Servlet engine: [Apache Tomcat/10.1.24] ===> org.apache.juli.logging.DirectJDKLog               : [2024-10-04 11:36:44.933]
+
+INFO : Initializing Spring embedded WebApplicationContext ===> org.apache.juli.logging.DirectJDKLog               : [2024-10-04 11:36:45.000]
+
+INFO : Root WebApplicationContext: initialization completed in 1282 ms ===> org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext : [2024-10-04 11:36:45.000]
+
+INFO : HHH000204: Processing PersistenceUnitInfo [name: default] ===> org.hibernate.jpa.internal.util.LogHelper          : [2024-10-04 11:36:45.189]
+
+INFO : HHH000412: Hibernate ORM core version 6.2.25.Final ===> org.hibernate.Version                              : [2024-10-04 11:36:45.235]
+
+INFO : HHH000406: Using bytecode reflection optimizer ===> org.hibernate.cfg.Environment                      : [2024-10-04 11:36:45.238]
+
+INFO : No LoadTimeWeaver setup: ignoring JPA class transformer ===> org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo : [2024-10-04 11:36:45.473]
+
+INFO : hikariCP - Starting... ===> com.zaxxer.hikari.HikariDataSource                 : [2024-10-04 11:36:45.501]
+
+INFO : 1. Connection opened. {executed in 209ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:36:45.720]
+
+INFO : 1. Connection.new Connection returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:36:45.720]
+
+INFO : 1. Connection.getNetworkTimeout() returned 0 ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:36:45.720]
+
+INFO : 1. Connection.isReadOnly() returned false ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:36:45.720]
+
+INFO : 1. Connection.getAutoCommit() returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:36:45.721]
+
+INFO : 1. Connection.isValid(1) returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:36:45.723]
+
+INFO : 1. Connection.getTransactionIsolation() returned 2 ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:36:45.723]
+
+INFO : hikariCP - Added connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@58064d63 ===> com.zaxxer.hikari.pool.HikariPool                  : [2024-10-04 11:36:45.724]
+
+INFO : hikariCP - Start completed. ===> com.zaxxer.hikari.HikariDataSource                 : [2024-10-04 11:36:45.726]
+
+INFO : 1. Connection.getMetaData() returned oracle.jdbc.driver.OracleDatabaseMetaData@21eed23d ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:36:45.729]
+
+INFO : 1. Statement.new Statement returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:36:45.795]
+
+INFO : 1. Connection.createStatement() returned net.sf.log4jdbc.sql.jdbcapi.StatementSpy@5a386560 ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:36:45.796]
+
+INFO : 1. select p.name, t.region, t.base_size, t.service, t.infrastructure from v$pdbs p, JSON_TABLE(p.cloud_identity, 
+'$' COLUMNS (region path '$.REGION', base_size number path '$.BASE_SIZE', service path '$.SERVICE', 
+infrastructure path '$.INFRASTRUCTURE')) t  {executed in 45 ms} ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:36:45.842]
+
+INFO : 1. ResultSet.new ResultSet returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:36:45.846]
+
+INFO : 1. Statement.executeQuery(select p.name, t.region, t.base_size, t.service, t.infrastructure
+from v$pdbs p, JSON_TABLE(p.cloud_identity, '$' COLUMNS (region path '$.REGION', base_size number path '$.BASE_SIZE', service path '$.SERVICE', infrastructure path '$.INFRASTRUCTURE')) t) returned net.sf.log4jdbc.sql.jdbcapi.ResultSetSpy@25f85907 ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:36:45.846]
+
+INFO : 
+|-----|-------|----------|--------|---------------|
+|name |region |base_size |service |infrastructure |
+|-----|-------|----------|--------|---------------|
+|-----|-------|----------|--------|---------------|
+ ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:36:45.850]
+
+INFO : 1. ResultSet.next() returned false ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:36:45.850]
+
+INFO : 1. ResultSet.close() returned void ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:36:45.851]
+
+INFO : 1. Statement.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:36:45.851]
+
+WARN : HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default) ===> org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl : [2024-10-04 11:36:45.853]
+
+INFO : 1. Connection.getCatalog() returned null ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:36:45.862]
+
+INFO : 2. Connection opened. {executed in 40ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:36:45.868]
+
+INFO : 2. Connection.new Connection returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:36:45.868]
+
+INFO : 2. Connection.isReadOnly() returned false ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:36:45.868]
+
+INFO : 2. Connection.getAutoCommit() returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:36:45.868]
+
+INFO : 1. Connection.getSchema() returned C##JAVA ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:36:45.869]
+
+INFO : 1. Connection.getSchema() returned C##JAVA ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:36:45.869]
+
+INFO : 1. Connection.getMetaData() returned oracle.jdbc.driver.OracleDatabaseMetaData@21eed23d ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:36:45.872]
+
+INFO : 1. Connection.createClob() returned oracle.sql.CLOB@3a15e620 ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:36:45.880]
+
+INFO : 1. Connection.createNClob() returned oracle.sql.NCLOB@cc72661 ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:36:45.882]
+
+INFO : 1. Connection.clearWarnings() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:36:45.886]
+
+INFO : 3. Connection opened. {executed in 36ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:36:45.916]
+
+INFO : 3. Connection.new Connection returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:36:45.916]
+
+INFO : 3. Connection.isReadOnly() returned false ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:36:45.916]
+
+INFO : 3. Connection.getAutoCommit() returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:36:45.916]
+
+INFO : 4. Connection opened. {executed in 41ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:36:45.968]
+
+INFO : 4. Connection.new Connection returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:36:45.968]
+
+INFO : 4. Connection.isReadOnly() returned false ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:36:45.968]
+
+INFO : 4. Connection.getAutoCommit() returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:36:45.968]
+
+INFO : 5. Connection opened. {executed in 38ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:36:46.019]
+
+INFO : 5. Connection.new Connection returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:36:46.019]
+
+INFO : 5. Connection.isReadOnly() returned false ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:36:46.019]
+
+INFO : 5. Connection.getAutoCommit() returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:36:46.020]
+
+INFO : 6. Connection opened. {executed in 38ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:36:46.068]
+
+INFO : 6. Connection.new Connection returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:36:46.068]
+
+INFO : 6. Connection.isReadOnly() returned false ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:36:46.068]
+
+INFO : 6. Connection.getAutoCommit() returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:36:46.069]
+
+INFO : 7. Connection opened. {executed in 36ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:36:46.117]
+
+INFO : 7. Connection.new Connection returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:36:46.117]
+
+INFO : 7. Connection.isReadOnly() returned false ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:36:46.117]
+
+INFO : 7. Connection.getAutoCommit() returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:36:46.117]
+
+INFO : 8. Connection opened. {executed in 39ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:36:46.168]
+
+INFO : 8. Connection.new Connection returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:36:46.168]
+
+INFO : 8. Connection.isReadOnly() returned false ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:36:46.168]
+
+INFO : 8. Connection.getAutoCommit() returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:36:46.168]
+
+INFO : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration) ===> org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator : [2024-10-04 11:36:46.172]
+
+INFO : Initialized JPA EntityManagerFactory for persistence unit 'default' ===> org.springframework.orm.jpa.AbstractEntityManagerFactoryBean : [2024-10-04 11:36:46.178]
+
+INFO : 9. Connection opened. {executed in 39ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:36:46.218]
+
+INFO : 9. Connection.new Connection returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:36:46.218]
+
+INFO : 9. Connection.isReadOnly() returned false ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:36:46.219]
+
+INFO : 9. Connection.getAutoCommit() returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:36:46.219]
+
+INFO : 10. Connection opened. {executed in 42ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:36:46.273]
+
+INFO : 10. Connection.new Connection returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:36:46.273]
+
+INFO : 10. Connection.isReadOnly() returned false ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:36:46.273]
+
+INFO : 10. Connection.getAutoCommit() returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:36:46.273]
+
+WARN : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning ===> org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration : [2024-10-04 11:36:46.477]
+
+WARN : 
+
+Using generated security password: 19b508dd-32f3-4355-a553-a0aa47844884
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+ ===> org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration : [2024-10-04 11:36:46.916]
+
+INFO : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@71aa0278, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@25fc2e08, org.springframework.security.web.context.SecurityContextHolderFilter@41536e28, org.springframework.security.web.header.HeaderWriterFilter@393c3135, org.springframework.security.web.csrf.CsrfFilter@5d546729, org.springframework.security.web.authentication.logout.LogoutFilter@7667eada, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@7829c7c, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@6c53cedd, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@66341c36, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@5c410865, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@33e5b9cf, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@74f0872b, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6edd44e0, org.springframework.security.web.access.ExceptionTranslationFilter@5f75e872, org.springframework.security.web.access.intercept.AuthorizationFilter@5ae28c16] ===> org.springframework.security.web.DefaultSecurityFilterChain : [2024-10-04 11:36:47.010]
+
+INFO : LiveReload server is running on port 35729 ===> org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer : [2024-10-04 11:36:47.047]
+
+INFO : Starting ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-10-04 11:36:47.066]
+
+INFO : Tomcat started on port(s): 8181 (http) with context path '/teamproject' ===> org.springframework.boot.web.embedded.tomcat.TomcatWebServer : [2024-10-04 11:36:47.083]
+
+INFO : Started TeamprojectApplication in 3.874 seconds (process running for 4.715) ===> org.springframework.boot.StartupInfoLogger         : [2024-10-04 11:36:47.094]
+
+INFO : Initializing Spring DispatcherServlet 'dispatcherServlet' ===> org.apache.juli.logging.DirectJDKLog               : [2024-10-04 11:36:56.926]
+
+INFO : Initializing Servlet 'dispatcherServlet' ===> org.springframework.web.servlet.FrameworkServlet   : [2024-10-04 11:36:56.927]
+
+INFO : Completed initialization in 1 ms ===> org.springframework.web.servlet.FrameworkServlet   : [2024-10-04 11:36:56.928]
+
+INFO : Application shutdown requested. ===> org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin : [2024-10-04 11:37:09.638]
+
+INFO : Pausing ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-10-04 11:37:09.652]
+
+INFO : Stopping service [Tomcat] ===> org.apache.juli.logging.DirectJDKLog               : [2024-10-04 11:37:09.652]
+
+INFO : Destroying Spring FrameworkServlet 'dispatcherServlet' ===> org.apache.juli.logging.DirectJDKLog               : [2024-10-04 11:37:09.653]
+
+INFO : Stopping ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-10-04 11:37:09.659]
+
+INFO : Closing JPA EntityManagerFactory for persistence unit 'default' ===> org.springframework.orm.jpa.AbstractEntityManagerFactoryBean : [2024-10-04 11:37:09.665]
+
+INFO : hikariCP - Shutdown initiated... ===> com.zaxxer.hikari.HikariDataSource                 : [2024-10-04 11:37:09.668]
+
+INFO : 1. Connection closed. {executed in 2ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:37:09.671]
+
+INFO : 1. Connection.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:37:09.671]
+
+INFO : 2. Connection closed. {executed in 1ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:37:09.672]
+
+INFO : 2. Connection.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:37:09.672]
+
+INFO : 3. Connection closed. {executed in 0ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:37:09.673]
+
+INFO : 3. Connection.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:37:09.673]
+
+INFO : 4. Connection closed. {executed in 1ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:37:09.674]
+
+INFO : 4. Connection.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:37:09.674]
+
+INFO : 5. Connection closed. {executed in 1ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:37:09.676]
+
+INFO : 5. Connection.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:37:09.676]
+
+INFO : 6. Connection closed. {executed in 1ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:37:09.677]
+
+INFO : 6. Connection.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:37:09.677]
+
+INFO : 7. Connection closed. {executed in 1ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:37:09.679]
+
+INFO : 7. Connection.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:37:09.679]
+
+INFO : 8. Connection closed. {executed in 1ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:37:09.680]
+
+INFO : 8. Connection.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:37:09.680]
+
+INFO : 9. Connection closed. {executed in 1ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:37:09.682]
+
+INFO : 9. Connection.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:37:09.682]
+
+INFO : 10. Connection closed. {executed in 1ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:37:09.683]
+
+INFO : 10. Connection.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:37:09.683]
+
+INFO : hikariCP - Shutdown completed. ===> com.zaxxer.hikari.HikariDataSource                 : [2024-10-04 11:37:09.684]
+
+INFO : Starting TeamprojectApplication using Java 17.0.7 with PID 16492 (C:\Users\USER\Desktop\WORK\JAVA\teamproject\bin\main started by USER in C:\Users\USER\Desktop\WORK\JAVA\teamproject) ===> org.springframework.boot.StartupInfoLogger         : [2024-10-04 11:46:56.767]
+
+INFO : No active profile set, falling back to 1 default profile: "default" ===> org.springframework.boot.SpringApplication         : [2024-10-04 11:46:56.777]
+
+INFO : The Class-Path manifest attribute in C:\Users\USER\.gradle\caches\modules-2\files-2.1\com.oracle.database.jdbc\ojdbc11\21.9.0.0\1aad2e20684ee075bb9ebdca2d83f028e4fd35fa\ojdbc11-21.9.0.0.jar referenced one or more files that do not exist: file:/C:/Users/USER/.gradle/caches/modules-2/files-2.1/com.oracle.database.jdbc/ojdbc11/21.9.0.0/1aad2e20684ee075bb9ebdca2d83f028e4fd35fa/oraclepki.jar ===> org.springframework.boot.logging.DeferredLog       : [2024-10-04 11:46:56.981]
+
+INFO : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable ===> org.springframework.boot.logging.DeferredLog       : [2024-10-04 11:46:56.981]
+
+INFO : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG' ===> org.springframework.boot.logging.DeferredLog       : [2024-10-04 11:46:56.982]
+
+INFO : Bootstrapping Spring Data JPA repositories in DEFAULT mode. ===> org.springframework.data.repository.config.RepositoryConfigurationDelegate : [2024-10-04 11:46:57.643]
+
+INFO : Finished Spring Data repository scanning in 6 ms. Found 0 JPA repository interfaces. ===> org.springframework.data.repository.config.RepositoryConfigurationDelegate : [2024-10-04 11:46:57.657]
+
+WARN : No MyBatis mapper was found in '[com.example.teamproject]' package. Please check your configuration. ===> org.mybatis.logging.Logger                         : [2024-10-04 11:46:57.750]
+
+INFO : Tomcat initialized with port(s): 8181 (http) ===> org.springframework.boot.web.embedded.tomcat.TomcatWebServer : [2024-10-04 11:46:58.134]
+
+INFO : Initializing ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-10-04 11:46:58.143]
+
+INFO : Starting service [Tomcat] ===> org.apache.juli.logging.DirectJDKLog               : [2024-10-04 11:46:58.146]
+
+INFO : Starting Servlet engine: [Apache Tomcat/10.1.24] ===> org.apache.juli.logging.DirectJDKLog               : [2024-10-04 11:46:58.146]
+
+INFO : Initializing Spring embedded WebApplicationContext ===> org.apache.juli.logging.DirectJDKLog               : [2024-10-04 11:46:58.214]
+
+INFO : Root WebApplicationContext: initialization completed in 1232 ms ===> org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext : [2024-10-04 11:46:58.215]
+
+INFO : HHH000204: Processing PersistenceUnitInfo [name: default] ===> org.hibernate.jpa.internal.util.LogHelper          : [2024-10-04 11:46:58.370]
+
+INFO : HHH000412: Hibernate ORM core version 6.2.25.Final ===> org.hibernate.Version                              : [2024-10-04 11:46:58.422]
+
+INFO : HHH000406: Using bytecode reflection optimizer ===> org.hibernate.cfg.Environment                      : [2024-10-04 11:46:58.424]
+
+INFO : No LoadTimeWeaver setup: ignoring JPA class transformer ===> org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo : [2024-10-04 11:46:58.652]
+
+INFO : hikariCP - Starting... ===> com.zaxxer.hikari.HikariDataSource                 : [2024-10-04 11:46:58.682]
+
+INFO : 1. Connection opened. {executed in 211ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:46:58.902]
+
+INFO : 1. Connection.new Connection returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:46:58.903]
+
+INFO : 1. Connection.getNetworkTimeout() returned 0 ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:46:58.903]
+
+INFO : 1. Connection.isReadOnly() returned false ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:46:58.903]
+
+INFO : 1. Connection.getAutoCommit() returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:46:58.903]
+
+INFO : 1. Connection.isValid(1) returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:46:58.905]
+
+INFO : 1. Connection.getTransactionIsolation() returned 2 ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:46:58.906]
+
+INFO : hikariCP - Added connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@9ce2179 ===> com.zaxxer.hikari.pool.HikariPool                  : [2024-10-04 11:46:58.907]
+
+INFO : hikariCP - Start completed. ===> com.zaxxer.hikari.HikariDataSource                 : [2024-10-04 11:46:58.909]
+
+INFO : 1. Connection.getMetaData() returned oracle.jdbc.driver.OracleDatabaseMetaData@148140c8 ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:46:58.911]
+
+INFO : 1. Statement.new Statement returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:46:58.976]
+
+INFO : 1. Connection.createStatement() returned net.sf.log4jdbc.sql.jdbcapi.StatementSpy@c9dc0eb ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:46:58.976]
+
+INFO : 1. select p.name, t.region, t.base_size, t.service, t.infrastructure from v$pdbs p, JSON_TABLE(p.cloud_identity, 
+'$' COLUMNS (region path '$.REGION', base_size number path '$.BASE_SIZE', service path '$.SERVICE', 
+infrastructure path '$.INFRASTRUCTURE')) t  {executed in 41 ms} ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:46:59.019]
+
+INFO : 1. ResultSet.new ResultSet returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:46:59.023]
+
+INFO : 1. Statement.executeQuery(select p.name, t.region, t.base_size, t.service, t.infrastructure
+from v$pdbs p, JSON_TABLE(p.cloud_identity, '$' COLUMNS (region path '$.REGION', base_size number path '$.BASE_SIZE', service path '$.SERVICE', infrastructure path '$.INFRASTRUCTURE')) t) returned net.sf.log4jdbc.sql.jdbcapi.ResultSetSpy@40c33d ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:46:59.024]
+
+INFO : 
+|-----|-------|----------|--------|---------------|
+|name |region |base_size |service |infrastructure |
+|-----|-------|----------|--------|---------------|
+|-----|-------|----------|--------|---------------|
+ ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:46:59.028]
+
+INFO : 1. ResultSet.next() returned false ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:46:59.028]
+
+INFO : 1. ResultSet.close() returned void ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:46:59.029]
+
+INFO : 1. Statement.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:46:59.029]
+
+WARN : HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default) ===> org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl : [2024-10-04 11:46:59.032]
+
+INFO : 1. Connection.getCatalog() returned null ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:46:59.039]
+
+INFO : 1. Connection.getSchema() returned C##JAVA ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:46:59.042]
+
+INFO : 1. Connection.getSchema() returned C##JAVA ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:46:59.043]
+
+INFO : 1. Connection.getMetaData() returned oracle.jdbc.driver.OracleDatabaseMetaData@148140c8 ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:46:59.046]
+
+INFO : 1. Connection.createClob() returned oracle.sql.CLOB@7b33771c ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:46:59.054]
+
+INFO : 1. Connection.createNClob() returned oracle.sql.NCLOB@64f3d0e3 ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:46:59.055]
+
+INFO : 2. Connection opened. {executed in 38ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:46:59.057]
+
+INFO : 2. Connection.new Connection returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:46:59.057]
+
+INFO : 2. Connection.isReadOnly() returned false ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:46:59.058]
+
+INFO : 2. Connection.getAutoCommit() returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:46:59.058]
+
+INFO : 1. Connection.clearWarnings() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:46:59.059]
+
+INFO : 3. Connection opened. {executed in 36ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:46:59.119]
+
+INFO : 3. Connection.new Connection returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:46:59.119]
+
+INFO : 3. Connection.isReadOnly() returned false ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:46:59.119]
+
+INFO : 3. Connection.getAutoCommit() returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:46:59.119]
+
+INFO : 4. Connection opened. {executed in 39ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:46:59.171]
+
+INFO : 4. Connection.new Connection returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:46:59.171]
+
+INFO : 4. Connection.isReadOnly() returned false ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:46:59.171]
+
+INFO : 4. Connection.getAutoCommit() returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:46:59.171]
+
+INFO : 5. Connection opened. {executed in 36ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:46:59.230]
+
+INFO : 5. Connection.new Connection returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:46:59.230]
+
+INFO : 5. Connection.isReadOnly() returned false ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:46:59.231]
+
+INFO : 5. Connection.getAutoCommit() returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:46:59.231]
+
+INFO : 6. Connection opened. {executed in 38ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:46:59.280]
+
+INFO : 6. Connection.new Connection returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:46:59.280]
+
+INFO : 6. Connection.isReadOnly() returned false ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:46:59.280]
+
+INFO : 6. Connection.getAutoCommit() returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:46:59.280]
+
+INFO : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration) ===> org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator : [2024-10-04 11:46:59.329]
+
+INFO : Initialized JPA EntityManagerFactory for persistence unit 'default' ===> org.springframework.orm.jpa.AbstractEntityManagerFactoryBean : [2024-10-04 11:46:59.334]
+
+INFO : 7. Connection opened. {executed in 37ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:46:59.343]
+
+INFO : 7. Connection.new Connection returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:46:59.344]
+
+INFO : 7. Connection.isReadOnly() returned false ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:46:59.344]
+
+INFO : 7. Connection.getAutoCommit() returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:46:59.344]
+
+INFO : 8. Connection opened. {executed in 36ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:46:59.404]
+
+INFO : 8. Connection.new Connection returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:46:59.404]
+
+INFO : 8. Connection.isReadOnly() returned false ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:46:59.404]
+
+INFO : 8. Connection.getAutoCommit() returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:46:59.405]
+
+INFO : 9. Connection opened. {executed in 35ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:46:59.451]
+
+INFO : 9. Connection.new Connection returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:46:59.452]
+
+INFO : 9. Connection.isReadOnly() returned false ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:46:59.452]
+
+INFO : 9. Connection.getAutoCommit() returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:46:59.452]
+
+INFO : 10. Connection opened. {executed in 44ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:46:59.508]
+
+INFO : 10. Connection.new Connection returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:46:59.508]
+
+INFO : 10. Connection.isReadOnly() returned false ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:46:59.508]
+
+INFO : 10. Connection.getAutoCommit() returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:46:59.508]
+
+WARN : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning ===> org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration : [2024-10-04 11:46:59.645]
+
+INFO : LiveReload server is running on port 35729 ===> org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer : [2024-10-04 11:47:00.071]
+
+INFO : Starting ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-10-04 11:47:00.089]
+
+INFO : Tomcat started on port(s): 8181 (http) with context path '/teamproject' ===> org.springframework.boot.web.embedded.tomcat.TomcatWebServer : [2024-10-04 11:47:00.105]
+
+INFO : Started TeamprojectApplication in 3.625 seconds (process running for 4.479) ===> org.springframework.boot.StartupInfoLogger         : [2024-10-04 11:47:00.115]
+
+INFO : Initializing Spring DispatcherServlet 'dispatcherServlet' ===> org.apache.juli.logging.DirectJDKLog               : [2024-10-04 11:47:03.232]
+
+INFO : Initializing Servlet 'dispatcherServlet' ===> org.springframework.web.servlet.FrameworkServlet   : [2024-10-04 11:47:03.233]
+
+INFO : Completed initialization in 1 ms ===> org.springframework.web.servlet.FrameworkServlet   : [2024-10-04 11:47:03.234]
+
+INFO : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification) ===> org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener : [2024-10-04 11:48:37.385]
+
+INFO : Pausing ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-10-04 11:48:37.398]
+
+INFO : Stopping service [Tomcat] ===> org.apache.juli.logging.DirectJDKLog               : [2024-10-04 11:48:37.399]
+
+INFO : Destroying Spring FrameworkServlet 'dispatcherServlet' ===> org.apache.juli.logging.DirectJDKLog               : [2024-10-04 11:48:37.400]
+
+INFO : Stopping ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-10-04 11:48:37.403]
+
+INFO : Destroying ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-10-04 11:48:37.405]
+
+INFO : Closing JPA EntityManagerFactory for persistence unit 'default' ===> org.springframework.orm.jpa.AbstractEntityManagerFactoryBean : [2024-10-04 11:48:37.407]
+
+INFO : hikariCP - Shutdown initiated... ===> com.zaxxer.hikari.HikariDataSource                 : [2024-10-04 11:48:37.410]
+
+INFO : 1. Connection closed. {executed in 1ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:37.413]
+
+INFO : 1. Connection.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:37.413]
+
+INFO : 2. Connection closed. {executed in 1ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:37.414]
+
+INFO : 2. Connection.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:37.414]
+
+INFO : 3. Connection closed. {executed in 1ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:37.415]
+
+INFO : 3. Connection.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:37.415]
+
+INFO : 4. Connection closed. {executed in 1ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:37.416]
+
+INFO : 4. Connection.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:37.416]
+
+INFO : 5. Connection closed. {executed in 1ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:37.418]
+
+INFO : 5. Connection.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:37.418]
+
+INFO : 6. Connection closed. {executed in 1ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:37.419]
+
+INFO : 6. Connection.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:37.419]
+
+INFO : 7. Connection closed. {executed in 1ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:37.421]
+
+INFO : 7. Connection.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:37.421]
+
+INFO : 8. Connection closed. {executed in 1ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:37.423]
+
+INFO : 8. Connection.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:37.423]
+
+INFO : 9. Connection closed. {executed in 1ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:37.424]
+
+INFO : 9. Connection.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:37.425]
+
+INFO : 10. Connection closed. {executed in 1ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:37.426]
+
+INFO : 10. Connection.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:37.427]
+
+INFO : hikariCP - Shutdown completed. ===> com.zaxxer.hikari.HikariDataSource                 : [2024-10-04 11:48:37.427]
+
+INFO : Starting TeamprojectApplication using Java 17.0.7 with PID 16492 (C:\Users\USER\Desktop\WORK\JAVA\teamproject\bin\main started by USER in C:\Users\USER\Desktop\WORK\JAVA\teamproject) ===> org.springframework.boot.StartupInfoLogger         : [2024-10-04 11:48:37.511]
+
+INFO : No active profile set, falling back to 1 default profile: "default" ===> org.springframework.boot.SpringApplication         : [2024-10-04 11:48:37.511]
+
+INFO : Bootstrapping Spring Data JPA repositories in DEFAULT mode. ===> org.springframework.data.repository.config.RepositoryConfigurationDelegate : [2024-10-04 11:48:37.716]
+
+INFO : Finished Spring Data repository scanning in 1 ms. Found 0 JPA repository interfaces. ===> org.springframework.data.repository.config.RepositoryConfigurationDelegate : [2024-10-04 11:48:37.719]
+
+WARN : No MyBatis mapper was found in '[com.example.teamproject]' package. Please check your configuration. ===> org.mybatis.logging.Logger                         : [2024-10-04 11:48:37.751]
+
+INFO : Tomcat initialized with port(s): 8181 (http) ===> org.springframework.boot.web.embedded.tomcat.TomcatWebServer : [2024-10-04 11:48:37.804]
+
+INFO : Initializing ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-10-04 11:48:37.805]
+
+INFO : Starting service [Tomcat] ===> org.apache.juli.logging.DirectJDKLog               : [2024-10-04 11:48:37.805]
+
+INFO : Starting Servlet engine: [Apache Tomcat/10.1.24] ===> org.apache.juli.logging.DirectJDKLog               : [2024-10-04 11:48:37.805]
+
+INFO : Initializing Spring embedded WebApplicationContext ===> org.apache.juli.logging.DirectJDKLog               : [2024-10-04 11:48:37.828]
+
+INFO : Root WebApplicationContext: initialization completed in 315 ms ===> org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext : [2024-10-04 11:48:37.828]
+
+INFO : HHH000204: Processing PersistenceUnitInfo [name: default] ===> org.hibernate.jpa.internal.util.LogHelper          : [2024-10-04 11:48:37.859]
+
+INFO : No LoadTimeWeaver setup: ignoring JPA class transformer ===> org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo : [2024-10-04 11:48:37.867]
+
+INFO : hikariCP - Starting... ===> com.zaxxer.hikari.HikariDataSource                 : [2024-10-04 11:48:37.868]
+
+INFO : 11. Connection opened. {executed in 61ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:37.929]
+
+INFO : 11. Connection.new Connection returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:37.930]
+
+INFO : 11. Connection.getNetworkTimeout() returned 0 ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:37.930]
+
+INFO : 11. Connection.isReadOnly() returned false ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:37.930]
+
+INFO : 11. Connection.getAutoCommit() returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:37.930]
+
+INFO : 11. Connection.isValid(1) returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:37.930]
+
+INFO : 11. Connection.getTransactionIsolation() returned 2 ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:37.931]
+
+INFO : hikariCP - Added connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@4a636fba ===> com.zaxxer.hikari.pool.HikariPool                  : [2024-10-04 11:48:37.931]
+
+INFO : hikariCP - Start completed. ===> com.zaxxer.hikari.HikariDataSource                 : [2024-10-04 11:48:37.931]
+
+INFO : 11. Connection.getMetaData() returned oracle.jdbc.driver.OracleDatabaseMetaData@61ae7837 ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:37.931]
+
+INFO : 11. Statement.new Statement returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:37.932]
+
+INFO : 11. Connection.createStatement() returned net.sf.log4jdbc.sql.jdbcapi.StatementSpy@380a9c29 ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:37.932]
+
+INFO : 11. select p.name, t.region, t.base_size, t.service, t.infrastructure from v$pdbs p, JSON_TABLE(p.cloud_identity, 
+'$' COLUMNS (region path '$.REGION', base_size number path '$.BASE_SIZE', service path '$.SERVICE', 
+infrastructure path '$.INFRASTRUCTURE')) t  {executed in 1 ms} ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:37.933]
+
+INFO : 11. ResultSet.new ResultSet returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:37.933]
+
+INFO : 11. Statement.executeQuery(select p.name, t.region, t.base_size, t.service, t.infrastructure
+from v$pdbs p, JSON_TABLE(p.cloud_identity, '$' COLUMNS (region path '$.REGION', base_size number path '$.BASE_SIZE', service path '$.SERVICE', infrastructure path '$.INFRASTRUCTURE')) t) returned net.sf.log4jdbc.sql.jdbcapi.ResultSetSpy@2ada9348 ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:37.933]
+
+INFO : 
+|-----|-------|----------|--------|---------------|
+|name |region |base_size |service |infrastructure |
+|-----|-------|----------|--------|---------------|
+|-----|-------|----------|--------|---------------|
+ ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:37.934]
+
+INFO : 11. ResultSet.next() returned false ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:37.934]
+
+INFO : 11. ResultSet.close() returned void ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:37.934]
+
+INFO : 11. Statement.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:37.934]
+
+WARN : HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default) ===> org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl : [2024-10-04 11:48:37.934]
+
+INFO : 11. Connection.getCatalog() returned null ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:37.934]
+
+INFO : 11. Connection.getSchema() returned C##JAVA ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:37.935]
+
+INFO : 11. Connection.getSchema() returned C##JAVA ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:37.935]
+
+INFO : 11. Connection.getMetaData() returned oracle.jdbc.driver.OracleDatabaseMetaData@61ae7837 ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:37.935]
+
+INFO : 11. Connection.createClob() returned oracle.sql.CLOB@7b952716 ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:37.936]
+
+INFO : 11. Connection.createNClob() returned oracle.sql.NCLOB@69689793 ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:37.937]
+
+INFO : 11. Connection.clearWarnings() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:37.937]
+
+INFO : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration) ===> org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator : [2024-10-04 11:48:37.948]
+
+INFO : Initialized JPA EntityManagerFactory for persistence unit 'default' ===> org.springframework.orm.jpa.AbstractEntityManagerFactoryBean : [2024-10-04 11:48:37.949]
+
+WARN : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'loginController' defined in file [C:\Users\USER\Desktop\WORK\JAVA\teamproject\bin\main\com\example\teamproject\controller\LoginController.class]: Failed to instantiate [com.example.teamproject.controller.LoginController]: Constructor threw exception ===> org.springframework.context.support.AbstractApplicationContext : [2024-10-04 11:48:37.955]
+
+INFO : Closing JPA EntityManagerFactory for persistence unit 'default' ===> org.springframework.orm.jpa.AbstractEntityManagerFactoryBean : [2024-10-04 11:48:37.955]
+
+INFO : hikariCP - Shutdown initiated... ===> com.zaxxer.hikari.HikariDataSource                 : [2024-10-04 11:48:37.955]
+
+INFO : 11. Connection closed. {executed in 1ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:37.957]
+
+INFO : 11. Connection.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:37.957]
+
+INFO : hikariCP - Shutdown completed. ===> com.zaxxer.hikari.HikariDataSource                 : [2024-10-04 11:48:37.957]
+
+INFO : Stopping service [Tomcat] ===> org.apache.juli.logging.DirectJDKLog               : [2024-10-04 11:48:37.958]
+
+INFO : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled. ===> org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLogger : [2024-10-04 11:48:37.965]
+
+ERROR: Application run failed ===> org.springframework.boot.SpringApplication         : [2024-10-04 11:48:37.982]
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'loginController' defined in file [C:\Users\USER\Desktop\WORK\JAVA\teamproject\bin\main\com\example\teamproject\controller\LoginController.class]: Failed to instantiate [com.example.teamproject.controller.LoginController]: Constructor threw exception
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1312) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1197) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:558) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:518) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:973) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:952) ~[spring-context-6.0.21.jar:6.0.21]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:615) ~[spring-context-6.0.21.jar:6.0.21]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.1.12.jar:3.1.12]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:739) [spring-boot-3.1.12.jar:3.1.12]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:441) [spring-boot-3.1.12.jar:3.1.12]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:325) [spring-boot-3.1.12.jar:3.1.12]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1327) [spring-boot-3.1.12.jar:3.1.12]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1316) [spring-boot-3.1.12.jar:3.1.12]
+	at com.example.teamproject.TeamprojectApplication.main(TeamprojectApplication.java:10) [main/:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50) [spring-boot-devtools-3.1.12.jar:3.1.12]
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.example.teamproject.controller.LoginController]: Constructor threw exception
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:225) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:87) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1306) ~[spring-beans-6.0.21.jar:6.0.21]
+	... 22 more
+Caused by: java.lang.Error: Unresolved compilation problems: 
+	The annotation @GetMapping is disallowed for this location
+	Syntax error on token "main", ( expected after this token
+	Void methods cannot return a value
+
+	at com.example.teamproject.controller.LoginController.<init>(LoginController.java:29) ~[main/:?]
+	at jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77) ~[?:?]
+	at jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) ~[?:?]
+	at java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499) ~[?:?]
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:480) ~[?:?]
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:199) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:87) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1306) ~[spring-beans-6.0.21.jar:6.0.21]
+	... 22 more
+INFO : Starting TeamprojectApplication using Java 17.0.7 with PID 16492 (C:\Users\USER\Desktop\WORK\JAVA\teamproject\bin\main started by USER in C:\Users\USER\Desktop\WORK\JAVA\teamproject) ===> org.springframework.boot.StartupInfoLogger         : [2024-10-04 11:48:58.648]
+
+INFO : No active profile set, falling back to 1 default profile: "default" ===> org.springframework.boot.SpringApplication         : [2024-10-04 11:48:58.649]
+
+INFO : Bootstrapping Spring Data JPA repositories in DEFAULT mode. ===> org.springframework.data.repository.config.RepositoryConfigurationDelegate : [2024-10-04 11:48:58.826]
+
+INFO : Finished Spring Data repository scanning in 2 ms. Found 0 JPA repository interfaces. ===> org.springframework.data.repository.config.RepositoryConfigurationDelegate : [2024-10-04 11:48:58.829]
+
+WARN : No MyBatis mapper was found in '[com.example.teamproject]' package. Please check your configuration. ===> org.mybatis.logging.Logger                         : [2024-10-04 11:48:58.855]
+
+INFO : Tomcat initialized with port(s): 8181 (http) ===> org.springframework.boot.web.embedded.tomcat.TomcatWebServer : [2024-10-04 11:48:58.898]
+
+INFO : Initializing ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-10-04 11:48:58.900]
+
+INFO : Starting service [Tomcat] ===> org.apache.juli.logging.DirectJDKLog               : [2024-10-04 11:48:58.901]
+
+INFO : Starting Servlet engine: [Apache Tomcat/10.1.24] ===> org.apache.juli.logging.DirectJDKLog               : [2024-10-04 11:48:58.901]
+
+INFO : Initializing Spring embedded WebApplicationContext ===> org.apache.juli.logging.DirectJDKLog               : [2024-10-04 11:48:58.920]
+
+INFO : Root WebApplicationContext: initialization completed in 270 ms ===> org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext : [2024-10-04 11:48:58.920]
+
+INFO : HHH000204: Processing PersistenceUnitInfo [name: default] ===> org.hibernate.jpa.internal.util.LogHelper          : [2024-10-04 11:48:58.949]
+
+INFO : No LoadTimeWeaver setup: ignoring JPA class transformer ===> org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo : [2024-10-04 11:48:58.955]
+
+INFO : hikariCP - Starting... ===> com.zaxxer.hikari.HikariDataSource                 : [2024-10-04 11:48:58.956]
+
+INFO : 12. Connection opened. {executed in 38ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:58.994]
+
+INFO : 12. Connection.new Connection returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:58.994]
+
+INFO : 12. Connection.getNetworkTimeout() returned 0 ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:58.994]
+
+INFO : 12. Connection.isReadOnly() returned false ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:58.995]
+
+INFO : 12. Connection.getAutoCommit() returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:58.995]
+
+INFO : 12. Connection.isValid(1) returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:58.996]
+
+INFO : 12. Connection.getTransactionIsolation() returned 2 ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:58.996]
+
+INFO : hikariCP - Added connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@5c959951 ===> com.zaxxer.hikari.pool.HikariPool                  : [2024-10-04 11:48:58.996]
+
+INFO : hikariCP - Start completed. ===> com.zaxxer.hikari.HikariDataSource                 : [2024-10-04 11:48:58.997]
+
+INFO : 12. Connection.getMetaData() returned oracle.jdbc.driver.OracleDatabaseMetaData@3f2af7f4 ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:58.997]
+
+INFO : 12. Statement.new Statement returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:58.998]
+
+INFO : 12. Connection.createStatement() returned net.sf.log4jdbc.sql.jdbcapi.StatementSpy@53ceb5c3 ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:58.998]
+
+INFO : 12. select p.name, t.region, t.base_size, t.service, t.infrastructure from v$pdbs p, JSON_TABLE(p.cloud_identity, 
+'$' COLUMNS (region path '$.REGION', base_size number path '$.BASE_SIZE', service path '$.SERVICE', 
+infrastructure path '$.INFRASTRUCTURE')) t  {executed in 1 ms} ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:58.999]
+
+INFO : 12. ResultSet.new ResultSet returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:58.999]
+
+INFO : 12. Statement.executeQuery(select p.name, t.region, t.base_size, t.service, t.infrastructure
+from v$pdbs p, JSON_TABLE(p.cloud_identity, '$' COLUMNS (region path '$.REGION', base_size number path '$.BASE_SIZE', service path '$.SERVICE', infrastructure path '$.INFRASTRUCTURE')) t) returned net.sf.log4jdbc.sql.jdbcapi.ResultSetSpy@13fa06a6 ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:58.999]
+
+INFO : 
+|-----|-------|----------|--------|---------------|
+|name |region |base_size |service |infrastructure |
+|-----|-------|----------|--------|---------------|
+|-----|-------|----------|--------|---------------|
+ ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:58.999]
+
+INFO : 12. ResultSet.next() returned false ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:58.999]
+
+INFO : 12. ResultSet.close() returned void ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:58.999]
+
+INFO : 12. Statement.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:59.000]
+
+WARN : HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default) ===> org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl : [2024-10-04 11:48:59.000]
+
+INFO : 12. Connection.getCatalog() returned null ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:59.000]
+
+INFO : 12. Connection.getSchema() returned C##JAVA ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:59.000]
+
+INFO : 12. Connection.getSchema() returned C##JAVA ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:59.000]
+
+INFO : 12. Connection.getMetaData() returned oracle.jdbc.driver.OracleDatabaseMetaData@3f2af7f4 ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:59.000]
+
+INFO : 12. Connection.createClob() returned oracle.sql.CLOB@63d54a99 ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:59.001]
+
+INFO : 12. Connection.createNClob() returned oracle.sql.NCLOB@ba88440 ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:59.002]
+
+INFO : 12. Connection.clearWarnings() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:59.002]
+
+INFO : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration) ===> org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator : [2024-10-04 11:48:59.012]
+
+INFO : Initialized JPA EntityManagerFactory for persistence unit 'default' ===> org.springframework.orm.jpa.AbstractEntityManagerFactoryBean : [2024-10-04 11:48:59.013]
+
+WARN : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'loginController' defined in file [C:\Users\USER\Desktop\WORK\JAVA\teamproject\bin\main\com\example\teamproject\controller\LoginController.class]: Failed to instantiate [com.example.teamproject.controller.LoginController]: Constructor threw exception ===> org.springframework.context.support.AbstractApplicationContext : [2024-10-04 11:48:59.018]
+
+INFO : Closing JPA EntityManagerFactory for persistence unit 'default' ===> org.springframework.orm.jpa.AbstractEntityManagerFactoryBean : [2024-10-04 11:48:59.018]
+
+INFO : hikariCP - Shutdown initiated... ===> com.zaxxer.hikari.HikariDataSource                 : [2024-10-04 11:48:59.019]
+
+INFO : 12. Connection closed. {executed in 1ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:59.020]
+
+INFO : 12. Connection.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:48:59.021]
+
+INFO : hikariCP - Shutdown completed. ===> com.zaxxer.hikari.HikariDataSource                 : [2024-10-04 11:48:59.021]
+
+INFO : Stopping service [Tomcat] ===> org.apache.juli.logging.DirectJDKLog               : [2024-10-04 11:48:59.021]
+
+INFO : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled. ===> org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLogger : [2024-10-04 11:48:59.026]
+
+ERROR: Application run failed ===> org.springframework.boot.SpringApplication         : [2024-10-04 11:48:59.030]
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'loginController' defined in file [C:\Users\USER\Desktop\WORK\JAVA\teamproject\bin\main\com\example\teamproject\controller\LoginController.class]: Failed to instantiate [com.example.teamproject.controller.LoginController]: Constructor threw exception
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1312) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1197) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:558) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:518) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:973) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:952) ~[spring-context-6.0.21.jar:6.0.21]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:615) ~[spring-context-6.0.21.jar:6.0.21]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.1.12.jar:3.1.12]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:739) [spring-boot-3.1.12.jar:3.1.12]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:441) [spring-boot-3.1.12.jar:3.1.12]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:325) [spring-boot-3.1.12.jar:3.1.12]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1327) [spring-boot-3.1.12.jar:3.1.12]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1316) [spring-boot-3.1.12.jar:3.1.12]
+	at com.example.teamproject.TeamprojectApplication.main(TeamprojectApplication.java:10) [main/:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50) [spring-boot-devtools-3.1.12.jar:3.1.12]
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.example.teamproject.controller.LoginController]: Constructor threw exception
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:225) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:87) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1306) ~[spring-beans-6.0.21.jar:6.0.21]
+	... 22 more
+Caused by: java.lang.Error: Unresolved compilation problems: 
+	The annotation @GetMapping is disallowed for this location
+	Syntax error on token "main", ( expected after this token
+	Void methods cannot return a value
+
+	at com.example.teamproject.controller.LoginController.<init>(LoginController.java:29) ~[main/:?]
+	at jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77) ~[?:?]
+	at jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) ~[?:?]
+	at java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499) ~[?:?]
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:480) ~[?:?]
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:199) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:87) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1306) ~[spring-beans-6.0.21.jar:6.0.21]
+	... 22 more
+INFO : Starting TeamprojectApplication using Java 17.0.7 with PID 16492 (C:\Users\USER\Desktop\WORK\JAVA\teamproject\bin\main started by USER in C:\Users\USER\Desktop\WORK\JAVA\teamproject) ===> org.springframework.boot.StartupInfoLogger         : [2024-10-04 11:49:31.829]
+
+INFO : No active profile set, falling back to 1 default profile: "default" ===> org.springframework.boot.SpringApplication         : [2024-10-04 11:49:31.830]
+
+INFO : Bootstrapping Spring Data JPA repositories in DEFAULT mode. ===> org.springframework.data.repository.config.RepositoryConfigurationDelegate : [2024-10-04 11:49:31.998]
+
+INFO : Finished Spring Data repository scanning in 2 ms. Found 0 JPA repository interfaces. ===> org.springframework.data.repository.config.RepositoryConfigurationDelegate : [2024-10-04 11:49:32.000]
+
+WARN : No MyBatis mapper was found in '[com.example.teamproject]' package. Please check your configuration. ===> org.mybatis.logging.Logger                         : [2024-10-04 11:49:32.025]
+
+INFO : Tomcat initialized with port(s): 8181 (http) ===> org.springframework.boot.web.embedded.tomcat.TomcatWebServer : [2024-10-04 11:49:32.069]
+
+INFO : Initializing ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-10-04 11:49:32.069]
+
+INFO : Starting service [Tomcat] ===> org.apache.juli.logging.DirectJDKLog               : [2024-10-04 11:49:32.069]
+
+INFO : Starting Servlet engine: [Apache Tomcat/10.1.24] ===> org.apache.juli.logging.DirectJDKLog               : [2024-10-04 11:49:32.070]
+
+INFO : Initializing Spring embedded WebApplicationContext ===> org.apache.juli.logging.DirectJDKLog               : [2024-10-04 11:49:32.088]
+
+INFO : Root WebApplicationContext: initialization completed in 258 ms ===> org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext : [2024-10-04 11:49:32.089]
+
+INFO : HHH000204: Processing PersistenceUnitInfo [name: default] ===> org.hibernate.jpa.internal.util.LogHelper          : [2024-10-04 11:49:32.117]
+
+INFO : No LoadTimeWeaver setup: ignoring JPA class transformer ===> org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo : [2024-10-04 11:49:32.123]
+
+INFO : hikariCP - Starting... ===> com.zaxxer.hikari.HikariDataSource                 : [2024-10-04 11:49:32.124]
+
+INFO : 13. Connection opened. {executed in 39ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:49:32.163]
+
+INFO : 13. Connection.new Connection returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:49:32.163]
+
+INFO : 13. Connection.getNetworkTimeout() returned 0 ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:49:32.163]
+
+INFO : 13. Connection.isReadOnly() returned false ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:49:32.163]
+
+INFO : 13. Connection.getAutoCommit() returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:49:32.163]
+
+INFO : 13. Connection.isValid(1) returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:49:32.164]
+
+INFO : 13. Connection.getTransactionIsolation() returned 2 ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:49:32.164]
+
+INFO : hikariCP - Added connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@690d9aab ===> com.zaxxer.hikari.pool.HikariPool                  : [2024-10-04 11:49:32.164]
+
+INFO : hikariCP - Start completed. ===> com.zaxxer.hikari.HikariDataSource                 : [2024-10-04 11:49:32.165]
+
+INFO : 13. Connection.getMetaData() returned oracle.jdbc.driver.OracleDatabaseMetaData@6eaf084d ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:49:32.165]
+
+INFO : 13. Statement.new Statement returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:49:32.165]
+
+INFO : 13. Connection.createStatement() returned net.sf.log4jdbc.sql.jdbcapi.StatementSpy@1e89f817 ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:49:32.165]
+
+INFO : 13. select p.name, t.region, t.base_size, t.service, t.infrastructure from v$pdbs p, JSON_TABLE(p.cloud_identity, 
+'$' COLUMNS (region path '$.REGION', base_size number path '$.BASE_SIZE', service path '$.SERVICE', 
+infrastructure path '$.INFRASTRUCTURE')) t  {executed in 1 ms} ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:49:32.166]
+
+INFO : 13. ResultSet.new ResultSet returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:49:32.167]
+
+INFO : 13. Statement.executeQuery(select p.name, t.region, t.base_size, t.service, t.infrastructure
+from v$pdbs p, JSON_TABLE(p.cloud_identity, '$' COLUMNS (region path '$.REGION', base_size number path '$.BASE_SIZE', service path '$.SERVICE', infrastructure path '$.INFRASTRUCTURE')) t) returned net.sf.log4jdbc.sql.jdbcapi.ResultSetSpy@3032f72a ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:49:32.167]
+
+INFO : 
+|-----|-------|----------|--------|---------------|
+|name |region |base_size |service |infrastructure |
+|-----|-------|----------|--------|---------------|
+|-----|-------|----------|--------|---------------|
+ ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:49:32.167]
+
+INFO : 13. ResultSet.next() returned false ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:49:32.167]
+
+INFO : 13. ResultSet.close() returned void ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:49:32.167]
+
+INFO : 13. Statement.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:49:32.167]
+
+WARN : HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default) ===> org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl : [2024-10-04 11:49:32.167]
+
+INFO : 13. Connection.getCatalog() returned null ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:49:32.168]
+
+INFO : 13. Connection.getSchema() returned C##JAVA ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:49:32.168]
+
+INFO : 13. Connection.getSchema() returned C##JAVA ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:49:32.169]
+
+INFO : 13. Connection.getMetaData() returned oracle.jdbc.driver.OracleDatabaseMetaData@6eaf084d ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:49:32.169]
+
+INFO : 13. Connection.createClob() returned oracle.sql.CLOB@35effb45 ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:49:32.170]
+
+INFO : 13. Connection.createNClob() returned oracle.sql.NCLOB@239460d5 ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:49:32.170]
+
+INFO : 13. Connection.clearWarnings() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:49:32.171]
+
+INFO : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration) ===> org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator : [2024-10-04 11:49:32.181]
+
+INFO : Initialized JPA EntityManagerFactory for persistence unit 'default' ===> org.springframework.orm.jpa.AbstractEntityManagerFactoryBean : [2024-10-04 11:49:32.181]
+
+WARN : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning ===> org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration : [2024-10-04 11:49:32.253]
+
+INFO : 14. Connection opened. {executed in 37ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:49:32.302]
+
+INFO : 14. Connection.new Connection returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:49:32.302]
+
+INFO : 14. Connection.isReadOnly() returned false ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:49:32.302]
+
+INFO : 14. Connection.getAutoCommit() returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:49:32.302]
+
+INFO : 15. Connection opened. {executed in 35ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:49:32.349]
+
+INFO : 15. Connection.new Connection returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:49:32.350]
+
+INFO : 15. Connection.isReadOnly() returned false ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:49:32.350]
+
+INFO : 15. Connection.getAutoCommit() returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:49:32.350]
+
+INFO : LiveReload server is running on port 35729 ===> org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer : [2024-10-04 11:49:32.378]
+
+INFO : Starting ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-10-04 11:49:32.387]
+
+INFO : Tomcat started on port(s): 8181 (http) with context path '/teamproject' ===> org.springframework.boot.web.embedded.tomcat.TomcatWebServer : [2024-10-04 11:49:32.390]
+
+INFO : Started TeamprojectApplication in 0.588 seconds (process running for 156.757) ===> org.springframework.boot.StartupInfoLogger         : [2024-10-04 11:49:32.394]
+
+INFO : Condition evaluation unchanged ===> org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener : [2024-10-04 11:49:32.397]
+
+INFO : 16. Connection opened. {executed in 37ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:49:32.399]
+
+INFO : 16. Connection.new Connection returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:49:32.399]
+
+INFO : 16. Connection.isReadOnly() returned false ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:49:32.399]
+
+INFO : 16. Connection.getAutoCommit() returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:49:32.399]
+
+INFO : 17. Connection opened. {executed in 35ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:49:32.447]
+
+INFO : 17. Connection.new Connection returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:49:32.447]
+
+INFO : 17. Connection.isReadOnly() returned false ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:49:32.447]
+
+INFO : 17. Connection.getAutoCommit() returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:49:32.447]
+
+INFO : 18. Connection opened. {executed in 36ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:49:32.495]
+
+INFO : 18. Connection.new Connection returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:49:32.496]
+
+INFO : 18. Connection.isReadOnly() returned false ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:49:32.496]
+
+INFO : 18. Connection.getAutoCommit() returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:49:32.496]
+
+INFO : 19. Connection opened. {executed in 34ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:49:32.541]
+
+INFO : 19. Connection.new Connection returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:49:32.541]
+
+INFO : 19. Connection.isReadOnly() returned false ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:49:32.541]
+
+INFO : 19. Connection.getAutoCommit() returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:49:32.541]
+
+INFO : 20. Connection opened. {executed in 37ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:49:32.590]
+
+INFO : 20. Connection.new Connection returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:49:32.590]
+
+INFO : 20. Connection.isReadOnly() returned false ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:49:32.590]
+
+INFO : 20. Connection.getAutoCommit() returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:49:32.590]
+
+INFO : 21. Connection opened. {executed in 36ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:49:32.638]
+
+INFO : 21. Connection.new Connection returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:49:32.638]
+
+INFO : 21. Connection.isReadOnly() returned false ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:49:32.638]
+
+INFO : 21. Connection.getAutoCommit() returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:49:32.638]
+
+INFO : 22. Connection opened. {executed in 35ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:49:32.684]
+
+INFO : 22. Connection.new Connection returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:49:32.684]
+
+INFO : 22. Connection.isReadOnly() returned false ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:49:32.684]
+
+INFO : 22. Connection.getAutoCommit() returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:49:32.684]
+
+INFO : Initializing Spring DispatcherServlet 'dispatcherServlet' ===> org.apache.juli.logging.DirectJDKLog               : [2024-10-04 11:49:34.341]
+
+INFO : Initializing Servlet 'dispatcherServlet' ===> org.springframework.web.servlet.FrameworkServlet   : [2024-10-04 11:49:34.341]
+
+INFO : Completed initialization in 1 ms ===> org.springframework.web.servlet.FrameworkServlet   : [2024-10-04 11:49:34.342]
+
+INFO : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification) ===> org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener : [2024-10-04 11:50:05.598]
+
+INFO : Pausing ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-10-04 11:50:05.608]
+
+INFO : Stopping service [Tomcat] ===> org.apache.juli.logging.DirectJDKLog               : [2024-10-04 11:50:05.609]
+
+INFO : Destroying Spring FrameworkServlet 'dispatcherServlet' ===> org.apache.juli.logging.DirectJDKLog               : [2024-10-04 11:50:05.609]
+
+INFO : Stopping ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-10-04 11:50:05.611]
+
+INFO : Destroying ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-10-04 11:50:05.612]
+
+INFO : Closing JPA EntityManagerFactory for persistence unit 'default' ===> org.springframework.orm.jpa.AbstractEntityManagerFactoryBean : [2024-10-04 11:50:05.613]
+
+INFO : hikariCP - Shutdown initiated... ===> com.zaxxer.hikari.HikariDataSource                 : [2024-10-04 11:50:05.614]
+
+INFO : 13. Connection closed. {executed in 1ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:50:05.615]
+
+INFO : 13. Connection.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:50:05.616]
+
+INFO : 14. Connection closed. {executed in 0ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:50:05.616]
+
+INFO : 14. Connection.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:50:05.616]
+
+INFO : 15. Connection closed. {executed in 1ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:50:05.617]
+
+INFO : 15. Connection.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:50:05.617]
+
+INFO : 16. Connection closed. {executed in 0ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:50:05.618]
+
+INFO : 16. Connection.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:50:05.618]
+
+INFO : 17. Connection closed. {executed in 0ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:50:05.619]
+
+INFO : 17. Connection.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:50:05.619]
+
+INFO : 18. Connection closed. {executed in 1ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:50:05.620]
+
+INFO : 18. Connection.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:50:05.620]
+
+INFO : 19. Connection closed. {executed in 1ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:50:05.621]
+
+INFO : 19. Connection.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:50:05.622]
+
+INFO : 20. Connection closed. {executed in 1ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:50:05.623]
+
+INFO : 20. Connection.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:50:05.623]
+
+INFO : 21. Connection closed. {executed in 1ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:50:05.624]
+
+INFO : 21. Connection.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:50:05.625]
+
+INFO : 22. Connection closed. {executed in 1ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:50:05.626]
+
+INFO : 22. Connection.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:50:05.626]
+
+INFO : hikariCP - Shutdown completed. ===> com.zaxxer.hikari.HikariDataSource                 : [2024-10-04 11:50:05.626]
+
+INFO : Starting TeamprojectApplication using Java 17.0.7 with PID 16492 (C:\Users\USER\Desktop\WORK\JAVA\teamproject\bin\main started by USER in C:\Users\USER\Desktop\WORK\JAVA\teamproject) ===> org.springframework.boot.StartupInfoLogger         : [2024-10-04 11:50:05.704]
+
+INFO : No active profile set, falling back to 1 default profile: "default" ===> org.springframework.boot.SpringApplication         : [2024-10-04 11:50:05.705]
+
+INFO : Bootstrapping Spring Data JPA repositories in DEFAULT mode. ===> org.springframework.data.repository.config.RepositoryConfigurationDelegate : [2024-10-04 11:50:05.868]
+
+INFO : Finished Spring Data repository scanning in 2 ms. Found 0 JPA repository interfaces. ===> org.springframework.data.repository.config.RepositoryConfigurationDelegate : [2024-10-04 11:50:05.870]
+
+WARN : No MyBatis mapper was found in '[com.example.teamproject]' package. Please check your configuration. ===> org.mybatis.logging.Logger                         : [2024-10-04 11:50:05.895]
+
+INFO : Tomcat initialized with port(s): 8181 (http) ===> org.springframework.boot.web.embedded.tomcat.TomcatWebServer : [2024-10-04 11:50:05.934]
+
+INFO : Initializing ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-10-04 11:50:05.935]
+
+INFO : Starting service [Tomcat] ===> org.apache.juli.logging.DirectJDKLog               : [2024-10-04 11:50:05.935]
+
+INFO : Starting Servlet engine: [Apache Tomcat/10.1.24] ===> org.apache.juli.logging.DirectJDKLog               : [2024-10-04 11:50:05.935]
+
+INFO : Initializing Spring embedded WebApplicationContext ===> org.apache.juli.logging.DirectJDKLog               : [2024-10-04 11:50:05.953]
+
+INFO : Root WebApplicationContext: initialization completed in 247 ms ===> org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext : [2024-10-04 11:50:05.953]
+
+INFO : HHH000204: Processing PersistenceUnitInfo [name: default] ===> org.hibernate.jpa.internal.util.LogHelper          : [2024-10-04 11:50:05.977]
+
+INFO : No LoadTimeWeaver setup: ignoring JPA class transformer ===> org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo : [2024-10-04 11:50:05.983]
+
+INFO : hikariCP - Starting... ===> com.zaxxer.hikari.HikariDataSource                 : [2024-10-04 11:50:05.984]
+
+INFO : 23. Connection opened. {executed in 36ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:50:06.020]
+
+INFO : 23. Connection.new Connection returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:50:06.020]
+
+INFO : 23. Connection.getNetworkTimeout() returned 0 ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:50:06.020]
+
+INFO : 23. Connection.isReadOnly() returned false ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:50:06.020]
+
+INFO : 23. Connection.getAutoCommit() returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:50:06.020]
+
+INFO : 23. Connection.isValid(1) returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:50:06.021]
+
+INFO : 23. Connection.getTransactionIsolation() returned 2 ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:50:06.021]
+
+INFO : hikariCP - Added connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@2b23ac9e ===> com.zaxxer.hikari.pool.HikariPool                  : [2024-10-04 11:50:06.022]
+
+INFO : hikariCP - Start completed. ===> com.zaxxer.hikari.HikariDataSource                 : [2024-10-04 11:50:06.022]
+
+INFO : 23. Connection.getMetaData() returned oracle.jdbc.driver.OracleDatabaseMetaData@3bcf515a ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:50:06.022]
+
+INFO : 23. Statement.new Statement returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:50:06.023]
+
+INFO : 23. Connection.createStatement() returned net.sf.log4jdbc.sql.jdbcapi.StatementSpy@6986e7c1 ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:50:06.023]
+
+INFO : 23. select p.name, t.region, t.base_size, t.service, t.infrastructure from v$pdbs p, JSON_TABLE(p.cloud_identity, 
+'$' COLUMNS (region path '$.REGION', base_size number path '$.BASE_SIZE', service path '$.SERVICE', 
+infrastructure path '$.INFRASTRUCTURE')) t  {executed in 0 ms} ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:50:06.023]
+
+INFO : 23. ResultSet.new ResultSet returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:50:06.024]
+
+INFO : 23. Statement.executeQuery(select p.name, t.region, t.base_size, t.service, t.infrastructure
+from v$pdbs p, JSON_TABLE(p.cloud_identity, '$' COLUMNS (region path '$.REGION', base_size number path '$.BASE_SIZE', service path '$.SERVICE', infrastructure path '$.INFRASTRUCTURE')) t) returned net.sf.log4jdbc.sql.jdbcapi.ResultSetSpy@463a1957 ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:50:06.024]
+
+INFO : 
+|-----|-------|----------|--------|---------------|
+|name |region |base_size |service |infrastructure |
+|-----|-------|----------|--------|---------------|
+|-----|-------|----------|--------|---------------|
+ ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:50:06.024]
+
+INFO : 23. ResultSet.next() returned false ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:50:06.024]
+
+INFO : 23. ResultSet.close() returned void ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:50:06.024]
+
+INFO : 23. Statement.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:50:06.024]
+
+WARN : HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default) ===> org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl : [2024-10-04 11:50:06.024]
+
+INFO : 23. Connection.getCatalog() returned null ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:50:06.024]
+
+INFO : 23. Connection.getSchema() returned C##JAVA ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:50:06.025]
+
+INFO : 23. Connection.getSchema() returned C##JAVA ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:50:06.025]
+
+INFO : 23. Connection.getMetaData() returned oracle.jdbc.driver.OracleDatabaseMetaData@3bcf515a ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:50:06.025]
+
+INFO : 23. Connection.createClob() returned oracle.sql.CLOB@704b1a52 ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:50:06.026]
+
+INFO : 23. Connection.createNClob() returned oracle.sql.NCLOB@31cfc080 ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:50:06.027]
+
+INFO : 23. Connection.clearWarnings() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:50:06.027]
+
+INFO : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration) ===> org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator : [2024-10-04 11:50:06.037]
+
+INFO : Initialized JPA EntityManagerFactory for persistence unit 'default' ===> org.springframework.orm.jpa.AbstractEntityManagerFactoryBean : [2024-10-04 11:50:06.037]
+
+WARN : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'loginController' defined in file [C:\Users\USER\Desktop\WORK\JAVA\teamproject\bin\main\com\example\teamproject\controller\LoginController.class]: Failed to instantiate [com.example.teamproject.controller.LoginController]: Constructor threw exception ===> org.springframework.context.support.AbstractApplicationContext : [2024-10-04 11:50:06.043]
+
+INFO : Closing JPA EntityManagerFactory for persistence unit 'default' ===> org.springframework.orm.jpa.AbstractEntityManagerFactoryBean : [2024-10-04 11:50:06.043]
+
+INFO : hikariCP - Shutdown initiated... ===> com.zaxxer.hikari.HikariDataSource                 : [2024-10-04 11:50:06.043]
+
+INFO : 23. Connection closed. {executed in 1ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:50:06.045]
+
+INFO : 23. Connection.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 11:50:06.045]
+
+INFO : hikariCP - Shutdown completed. ===> com.zaxxer.hikari.HikariDataSource                 : [2024-10-04 11:50:06.045]
+
+INFO : Stopping service [Tomcat] ===> org.apache.juli.logging.DirectJDKLog               : [2024-10-04 11:50:06.045]
+
+INFO : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled. ===> org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLogger : [2024-10-04 11:50:06.050]
+
+ERROR: Application run failed ===> org.springframework.boot.SpringApplication         : [2024-10-04 11:50:06.053]
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'loginController' defined in file [C:\Users\USER\Desktop\WORK\JAVA\teamproject\bin\main\com\example\teamproject\controller\LoginController.class]: Failed to instantiate [com.example.teamproject.controller.LoginController]: Constructor threw exception
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1312) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1197) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:558) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:518) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:973) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:952) ~[spring-context-6.0.21.jar:6.0.21]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:615) ~[spring-context-6.0.21.jar:6.0.21]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.1.12.jar:3.1.12]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:739) [spring-boot-3.1.12.jar:3.1.12]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:441) [spring-boot-3.1.12.jar:3.1.12]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:325) [spring-boot-3.1.12.jar:3.1.12]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1327) [spring-boot-3.1.12.jar:3.1.12]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1316) [spring-boot-3.1.12.jar:3.1.12]
+	at com.example.teamproject.TeamprojectApplication.main(TeamprojectApplication.java:10) [main/:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50) [spring-boot-devtools-3.1.12.jar:3.1.12]
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.example.teamproject.controller.LoginController]: Constructor threw exception
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:225) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:87) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1306) ~[spring-beans-6.0.21.jar:6.0.21]
+	... 22 more
+Caused by: java.lang.Error: Unresolved compilation problems: 
+	The annotation @GetMapping is disallowed for this location
+	Syntax error on token "main2", ( expected after this token
+	Void methods cannot return a value
+
+	at com.example.teamproject.controller.LoginController.<init>(LoginController.java:29) ~[main/:?]
+	at jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77) ~[?:?]
+	at jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) ~[?:?]
+	at java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499) ~[?:?]
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:480) ~[?:?]
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:199) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:87) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1306) ~[spring-beans-6.0.21.jar:6.0.21]
+	... 22 more
+INFO : Starting TeamprojectApplication using Java 17.0.7 with PID 16492 (C:\Users\USER\Desktop\WORK\JAVA\teamproject\bin\main started by USER in C:\Users\USER\Desktop\WORK\JAVA\teamproject) ===> org.springframework.boot.StartupInfoLogger         : [2024-10-04 11:50:10.534]
+
+INFO : No active profile set, falling back to 1 default profile: "default" ===> org.springframework.boot.SpringApplication         : [2024-10-04 11:50:10.535]
+
+INFO : Bootstrapping Spring Data JPA repositories in DEFAULT mode. ===> org.springframework.data.repository.config.RepositoryConfigurationDelegate : [2024-10-04 11:50:10.696]
+
+INFO : Finished Spring Data repository scanning in 1 ms. Found 0 JPA repository interfaces. ===> org.springframework.data.repository.config.RepositoryConfigurationDelegate : [2024-10-04 11:50:10.698]
+
+WARN : No MyBatis mapper was found in '[com.example.teamproject]' package. Please check your configuration. ===> org.mybatis.logging.Logger                         : [2024-10-04 11:50:10.722]
+
+INFO : Tomcat initialized with port(s): 8181 (http) ===> org.springframework.boot.web.embedded.tomcat.TomcatWebServer : [2024-10-04 11:50:10.763]
+
+INFO : Initializing ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-10-04 11:50:10.763]
+
+INFO : Starting service [Tomcat] ===> org.apache.juli.logging.DirectJDKLog               : [2024-10-04 11:50:10.763]
+
+INFO : Starting Servlet engine: [Apache Tomcat/10.1.24] ===> org.apache.juli.logging.DirectJDKLog               : [2024-10-04 11:50:10.764]
+
+INFO : Initializing Spring embedded WebApplicationContext ===> org.apache.juli.logging.DirectJDKLog               : [2024-10-04 11:50:10.782]
+
+INFO : Root WebApplicationContext: initialization completed in 246 ms ===> org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext : [2024-10-04 11:50:10.782]
+

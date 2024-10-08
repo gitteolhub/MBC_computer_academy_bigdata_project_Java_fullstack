@@ -1,0 +1,106 @@
+plugins {
+	id 'java'
+	id 'war'
+	id 'org.springframework.boot' version '3.1.12'
+	id 'io.spring.dependency-management' version '1.1.6'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+
+	// 자체 로깅 시스템(logback) 제거 --> log4j2 대체
+	all {
+		exclude module: 'spring-boot-starter-logging'
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
+	compileOnly 'org.projectlombok:lombok'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	runtimeOnly 'com.oracle.database.jdbc:ojdbc11'
+	annotationProcessor 'org.projectlombok:lombok'
+	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.3'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+	// log4j2
+	implementation 'org.springframework.boot:spring-boot-starter-log4j2'
+
+	// log4jdbc
+    implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
+
+	// REST Test springdoc(swagger)
+	// https://springdoc.org/
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0'
+
+	// 추가된 부분
+	
+	// bootstrap
+	implementation 'org.webjars:bootstrap:5.3.3'
+
+	// AJAX axios
+	implementation 'org.webjars.npm:axios:1.7.4'
+
+	// thymeleaf dialect
+	// https://mvnrepository.com/artifact/nz.net.ultraq.thymeleaf/thymeleaf-layout-dialect
+	implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:3.3.0'
+
+	// bootstrap icons
+	implementation 'org.webjars.npm:bootstrap-icons:1.11.3'
+
+	/////////////////////////////////////////////////////////////////////////////////////
+
+	
+	// security
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+
+	// thymeleaf security taglib
+	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
+
+	// security test
+	testImplementation 'org.springframework.security:spring-security-test'
+	
+	// 게시판에서 추가된 요소들
+
+	// Spring Data JPA
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+	// jQuery
+    implementation 'org.webjars:jquery:3.7.1'
+
+	// summernote
+	implementation 'org.webjars.npm:summernote:0.8.18'
+
+	// file upload
+	implementation 'commons-fileupload:commons-fileupload:1.5'
+
+	// summernote image → Image Resize(이미지 크기 재조정) library(라이브러리)
+	// site : https://github.com/rkalla/imgscalr
+	// library : https://mvnrepository.com/artifact/org.imgscalr/imgscalr-lib
+	// API referece doc : https://javadoc.io/doc/org.imgscalr/imgscalr-lib/latest/index.html
+	implementation 'org.imgscalr:imgscalr-lib:4.2'
+
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}

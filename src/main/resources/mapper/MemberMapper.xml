@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.MemberMapper">
+
+	<!-- 개별 회원정보 조회(검색) -->
+	<select id="selectMemberById"
+			parameterType="String"
+			resultType="com.example.teamproject.domain.MemberVO">
+		SELECT * FROM MEMBER_TBL
+		 WHERE id = #{id}
+	</select>
+
+	<!-- 페이징에 의한(페이지 별로) 회원정보 조회(검색) -->
+	<select id="selectMembersByPaging"
+			parameterType="hashmap"
+			resultType="com.example.teamproject.domain.MemberVO">
+		SELECT *
+		  FROM ( SELECT m.*,
+		                FLOOR((ROWNUM - 1) / #{limit} + 1) PAGE
+		      	   FROM ( SELECT *
+					 	    FROM MEMBER_TBL ) m
+		       )
+		 WHERE PAGE = #{page}
+	</select>
+
+	<!-- 전체 회원 조회 -->
+	<select id="selectAllMembers"
+			resultType="com.example.teamproject.domain.MemberVO">
+		SELECT * FROM MEMBER_TBL
+	</select>
+
+	<!-- 회원정보 삽입(생성) -->
+	<insert id="insertMember"
+			parameterType="com.example.teamproject.domain.MemberVO">
+		INSERT INTO
+		       MEMBER_TBL
+		       (
+					ID
+				  , PW
+				  , NAME
+				  , GENDER
+				  , EMAIL
+				  , MOBILE
+				  , PHONE
+				  , ZIP
+				  , ROAD_ADDRESS
+				  , JIBUN_ADDRESS
+				  , DETAIL_ADDRESS
+				  , BIRTHDAY
+				  , JOINDATE
+				  , ENABLED
+		       )
+		       VALUES
+		       (
+		       	    #{id}
+				  , #{pw}
+				  , #{name}
+				  , #{gender}
+				  , #{email}
+				  , #{mobile}
+				  , #{phone}
+				  , #{zip}
+				  , #{roadAddress}
+				  , #{jibunAddress}
+				  , #{detailAddress}
+				  , #{birthday}
+		          , SYSDATE
+		          , #{enabled}
+		       )
+	</insert>
+
+	<!-- 회원정보 수정(갱신) -->
+	<update id="updateMember"
+			parameterType="com.example.teamproject.domain.MemberVO">
+		UPDATE
+			   MEMBER_TBL
+		   <set>
+		      <if test="pw != null">
+		      	 PW = #{pw}
+		      </if>
+		      <if test="email != null">
+		        , EMAIL = #{email}
+		      </if>
+ 	 		  <if test="mobile != null">
+ 	 		  	, MOBILE = #{mobile}
+ 	 		  </if>
+ 	 		  <if test="phone != null">
+ 	 		    , PHONE = #{phone}
+ 	 		  </if>
+ 	 		  <if test="zip != null">
+ 	 		    , ZIP = #{zip}
+ 	 		  </if>
+ 	 		  <if test="roadAddress != null">
+ 	 		  	, ROAD_ADDRESS = #{roadAddress}
+ 	 		  </if>
+ 	 		  <if test="jibunAddress != null">
+ 	 		    , JIBUN_ADDRESS = #{jibunAddress}
+ 	 		  </if>
+ 	 		  <if test="detailAddress != null">
+ 	 		    , DETAIL_ADDRESS = #{detailAddress}
+ 	 		  </if>
+		   </set>
+		 WHERE ID = #{id}
+	</update>
+
+	<!-- 회원정보 중복 점검(가입) : 아이디/이메일/휴대폰 -->
+	<select id="hasMemberByFld"
+			parameterType="map"
+			resultType="int">
+		SELECT COUNT(*)
+		  FROM MEMBER_TBL
+		 WHERE ${fld} = #{val}
+	</select>
+
+	<!-- 회원정보 중복 점검(수정) : 이메일/휴대폰 -->
+	<select id="hasMemberForUpdate"
+			parameterType="map"
+			resultType="int">
+		SELECT COUNT(*)
+		  FROM ( SELECT ${fld}
+		           FROM MEMBER_TBL
+		          WHERE ID != #{id} )
+		 WHERE ${fld} = #{val}
+	</select>
+
+	<!-- 회원정보 검색(페이징) : 주소, 이름, 성별, (휴대폰), 일반전화, (이메일)... -->
+	<select id="selectMembersBySearchingAndPaging"
+			parameterType="map"
+			resultType="map">
+		SELECT  *
+		  FROM ( SELECT m.*
+		                , FLOOR((ROWNUM - 1) / #{limit} + 1) PAGE
+		           FROM ( SELECT DISTINCT m3.*
+		                         , ( SELECT LISTAGG(r2.ROLE, ',')
+		                                      WITHIN GROUP (ORDER BY m2.ID)
+		                               FROM MEMBER_TBL m2, USER_ROLES r2
+		                              WHERE r2.USERNAME = m2.ID
+		                                AND r2.USERNAME = m3.ID ) AS "ROLE"
+		                    FROM MEMBER_TBL m3, USER_ROLES r3
+		                   WHERE m3.ID = r3.USERNAME
+		                   <if test="searchKey == 'ADDRESS'">
+					         AND ROAD_ADDRESS LIKE '%${searchWord}%'
+		                      OR JIBUN_ADDRESS LIKE '%${searchWord}%'
+				              OR DETAIL_ADDRESS LIKE '%${searchWord}%'
+		                   </if>
+		                   <if test="searchKey == 'JOINDATE'">
+							 AND JOINDATE LIKE TO_DATE(#{searchWord}, 'YYYY-MM-DD')
+					  	   </if>
+		                   <if test="searchKey != 'ADDRESS' and isLikeOrEquals == 'like' and searchKey != 'JOINDATE'">
+		                     AND ${searchKey} LIKE '%${searchWord}%'
+		                   </if>
+		                   <if test="searchKey != 'ADDRESS' and isLikeOrEquals == 'equals'">
+		                     AND ${searchKey} = #{searchWord}
+		                   </if>
+		                   ORDER BY ID ${ordering} ) m
+		       )
+		 WHERE PAGE = #{page}
+	</select>
+
+	<!-- 개별 회원정보 조회(검색)-2 : 롤(role) 정보 포함, 아이디/이메일/휴대폰 -->
+	<select id="selectMemberByFld"
+			parameterType="map"
+			resultType="map">
+		SELECT DISTINCT m3.*
+		       , ( SELECT LISTAGG(r2.ROLE, ',')
+		                    WITHIN GROUP (ORDER BY m2.ID)
+		             FROM MEMBER_TBL m2, USER_ROLES r2
+		            WHERE r2.USERNAME = m2.ID
+		              AND r2.USERNAME = m3.ID ) AS "ROLE"
+		  FROM MEMBER_TBL m3, USER_ROLES r3
+		 WHERE m3.ID = r3.USERNAME
+		   AND ${fld} = #{val}
+	</select>
+
+	<!-- 회원 롤(Role) 생성 -->
+	<insert id="insertRole" parameterType="map">
+		INSERT INTO
+		   USER_ROLES
+		   VALUES
+		   (
+		       USER_ROLES_SEQ.NEXTVAL
+		       , #{id}
+		       , #{role}
+		   )
+	</insert>
+
+	<!-- 회원 롤(Role) 삭제 -->
+	<delete id="deleteRoles" parameterType="String">
+		DELETE
+		  FROM USER_ROLES
+		 WHERE USERNAME = #{username}
+	</delete>
+
+	<!-- 회원정보 삭제 -->
+	<delete id="deleteMemberById" parameterType="String">
+		DELETE
+		  FROM MEMBER_TBL
+		 WHERE ID = #{id}
+	</delete>
+
+	<!-- 총 회원수 조회 -->
+	<select id="selectCountAll"	resultType="int">
+		SELECT COUNT(*)
+	   	  FROM MEMBER_TBL
+	</select>
+
+	<!-- 회원 롤 조회 -->
+	<select id="selectRolesById" parameterType="String" resultType="String">
+		SELECT ROLE
+		  FROM USER_ROLES
+		 WHERE USERNAME = #{id}
+	</select>
+
+	<!-- 회원 롤 삭제 -->
+	<delete id="deleteRoleById" parameterType="map">
+		DELETE USER_ROLES
+		 WHERE USERNAME = #{id}
+		   AND ROLE = #{role}
+	</delete>
+
+	<!-- 회원 활동/휴면  상태(enabled) 변경 -->
+	<update id="changeEnabled" parameterType="map">
+		UPDATE
+			   MEMBER_TBL
+		   SET ENABLED = #{enabled}
+		 WHERE ID = #{id}
+	</update>
+
+	<!-- 검색된 전체 회원정보 수 -->
+	<select id="selectCountBySearching" parameterType="map" resultType="int">
+		SELECT COUNT(*)
+		  FROM
+		<if test="searchKey == 'role'">
+		       USER_ROLES
+		</if>
+		<if test="searchKey != 'role'">
+		       MEMBER_TBL
+		</if>
+		 WHERE
+		<if test="searchKey == 'address'">
+			   ROAD_ADDRESS LIKE '%${searchWord}%'
+	   		   OR JIBUN_ADDRESS LIKE '%${searchWord}%'
+	   		   OR DETAIL_ADDRESS LIKE '%${searchWord}%'
+  		</if>
+  		<if test="searchKey == 'name' and searchKey != 'address'">
+			   NAME LIKE '%${searchWord}%'
+   		</if>
+   		<if test="searchKey == 'joindate' and searchKey != 'address'">
+			   JOINDATE LIKE TO_DATE(#{searchWord}, 'YYYY-MM-DD')
+  		</if>
+  		<if test="searchKey != 'name' and searchKey != 'address' and searchKey != 'joindate'">
+			   ${searchKey} = #{searchWord}
+  		</if>
+	</select>
+
+</mapper>

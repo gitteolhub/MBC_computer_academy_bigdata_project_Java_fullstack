@@ -1,0 +1,1103 @@
+INFO : Starting TeamprojectApplication using Java 17.0.12 with PID 6888 (D:\std\ys\work\java\teamproject\bin\main started by Admin in D:\std\ys\work\java\teamproject) ===> org.springframework.boot.StartupInfoLogger         : [2024-09-26 16:54:27.168]
+
+INFO : No active profile set, falling back to 1 default profile: "default" ===> org.springframework.boot.SpringApplication         : [2024-09-26 16:54:27.176]
+
+INFO : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable ===> org.springframework.boot.logging.DeferredLog       : [2024-09-26 16:54:27.218]
+
+INFO : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG' ===> org.springframework.boot.logging.DeferredLog       : [2024-09-26 16:54:27.218]
+
+INFO : Tomcat initialized with port(s): 8181 (http) ===> org.springframework.boot.web.embedded.tomcat.TomcatWebServer : [2024-09-26 16:54:27.962]
+
+INFO : Initializing ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 16:54:27.971]
+
+INFO : Starting service [Tomcat] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 16:54:27.973]
+
+INFO : Starting Servlet engine: [Apache Tomcat/10.1.24] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 16:54:27.974]
+
+INFO : Initializing Spring embedded WebApplicationContext ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 16:54:28.034]
+
+INFO : Root WebApplicationContext: initialization completed in 815 ms ===> org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext : [2024-09-26 16:54:28.034]
+
+INFO : LiveReload server is running on port 35729 ===> org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer : [2024-09-26 16:54:28.338]
+
+INFO : Starting ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 16:54:28.350]
+
+INFO : Tomcat started on port(s): 8181 (http) with context path '/teamproject' ===> org.springframework.boot.web.embedded.tomcat.TomcatWebServer : [2024-09-26 16:54:28.368]
+
+INFO : Started TeamprojectApplication in 1.518 seconds (process running for 2.36) ===> org.springframework.boot.StartupInfoLogger         : [2024-09-26 16:54:28.376]
+
+INFO : Restarting due to 1 class path change (1 addition, 0 deletions, 0 modifications) ===> org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener : [2024-09-26 16:55:36.484]
+
+INFO : Pausing ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 16:55:36.494]
+
+INFO : Stopping service [Tomcat] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 16:55:36.494]
+
+INFO : Stopping ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 16:55:36.501]
+
+INFO : Destroying ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 16:55:36.504]
+
+INFO : Starting TeamprojectApplication using Java 17.0.12 with PID 6888 (D:\std\ys\work\java\teamproject\bin\main started by Admin in D:\std\ys\work\java\teamproject) ===> org.springframework.boot.StartupInfoLogger         : [2024-09-26 16:55:36.567]
+
+INFO : No active profile set, falling back to 1 default profile: "default" ===> org.springframework.boot.SpringApplication         : [2024-09-26 16:55:36.568]
+
+INFO : Tomcat initialized with port(s): 8181 (http) ===> org.springframework.boot.web.embedded.tomcat.TomcatWebServer : [2024-09-26 16:55:36.733]
+
+INFO : Initializing ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 16:55:36.733]
+
+INFO : Starting service [Tomcat] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 16:55:36.734]
+
+INFO : Starting Servlet engine: [Apache Tomcat/10.1.24] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 16:55:36.734]
+
+INFO : Initializing Spring embedded WebApplicationContext ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 16:55:36.748]
+
+INFO : Root WebApplicationContext: initialization completed in 177 ms ===> org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext : [2024-09-26 16:55:36.748]
+
+INFO : LiveReload server is running on port 35729 ===> org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer : [2024-09-26 16:55:36.803]
+
+INFO : Starting ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 16:55:36.810]
+
+INFO : Tomcat started on port(s): 8181 (http) with context path '/teamproject' ===> org.springframework.boot.web.embedded.tomcat.TomcatWebServer : [2024-09-26 16:55:36.814]
+
+INFO : Started TeamprojectApplication in 0.29 seconds (process running for 70.806) ===> org.springframework.boot.StartupInfoLogger         : [2024-09-26 16:55:36.822]
+
+INFO : Condition evaluation unchanged ===> org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener : [2024-09-26 16:55:36.824]
+
+INFO : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification) ===> org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener : [2024-09-26 16:56:07.532]
+
+INFO : Pausing ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 16:56:07.540]
+
+INFO : Stopping service [Tomcat] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 16:56:07.540]
+
+INFO : Stopping ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 16:56:07.542]
+
+INFO : Destroying ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 16:56:07.543]
+
+INFO : Starting TeamprojectApplication using Java 17.0.12 with PID 6888 (D:\std\ys\work\java\teamproject\bin\main started by Admin in D:\std\ys\work\java\teamproject) ===> org.springframework.boot.StartupInfoLogger         : [2024-09-26 16:56:07.601]
+
+INFO : No active profile set, falling back to 1 default profile: "default" ===> org.springframework.boot.SpringApplication         : [2024-09-26 16:56:07.601]
+
+INFO : Tomcat initialized with port(s): 8181 (http) ===> org.springframework.boot.web.embedded.tomcat.TomcatWebServer : [2024-09-26 16:56:07.719]
+
+INFO : Initializing ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 16:56:07.719]
+
+INFO : Starting service [Tomcat] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 16:56:07.720]
+
+INFO : Starting Servlet engine: [Apache Tomcat/10.1.24] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 16:56:07.720]
+
+INFO : Initializing Spring embedded WebApplicationContext ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 16:56:07.735]
+
+INFO : Root WebApplicationContext: initialization completed in 131 ms ===> org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext : [2024-09-26 16:56:07.735]
+
+INFO : LiveReload server is running on port 35729 ===> org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer : [2024-09-26 16:56:07.779]
+
+INFO : Starting ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 16:56:07.783]
+
+INFO : Tomcat started on port(s): 8181 (http) with context path '/teamproject' ===> org.springframework.boot.web.embedded.tomcat.TomcatWebServer : [2024-09-26 16:56:07.788]
+
+INFO : Started TeamprojectApplication in 0.212 seconds (process running for 101.775) ===> org.springframework.boot.StartupInfoLogger         : [2024-09-26 16:56:07.791]
+
+INFO : Condition evaluation unchanged ===> org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener : [2024-09-26 16:56:07.793]
+
+INFO : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification) ===> org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener : [2024-09-26 16:57:03.725]
+
+INFO : Pausing ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 16:57:03.732]
+
+INFO : Stopping service [Tomcat] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 16:57:03.732]
+
+INFO : Stopping ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 16:57:03.734]
+
+INFO : Destroying ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 16:57:03.735]
+
+INFO : Starting TeamprojectApplication using Java 17.0.12 with PID 6888 (D:\std\ys\work\java\teamproject\bin\main started by Admin in D:\std\ys\work\java\teamproject) ===> org.springframework.boot.StartupInfoLogger         : [2024-09-26 16:57:03.783]
+
+INFO : No active profile set, falling back to 1 default profile: "default" ===> org.springframework.boot.SpringApplication         : [2024-09-26 16:57:03.783]
+
+INFO : Tomcat initialized with port(s): 8181 (http) ===> org.springframework.boot.web.embedded.tomcat.TomcatWebServer : [2024-09-26 16:57:03.898]
+
+INFO : Initializing ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 16:57:03.899]
+
+INFO : Starting service [Tomcat] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 16:57:03.899]
+
+INFO : Starting Servlet engine: [Apache Tomcat/10.1.24] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 16:57:03.900]
+
+INFO : Initializing Spring embedded WebApplicationContext ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 16:57:03.916]
+
+INFO : Root WebApplicationContext: initialization completed in 132 ms ===> org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext : [2024-09-26 16:57:03.916]
+
+INFO : LiveReload server is running on port 35729 ===> org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer : [2024-09-26 16:57:03.955]
+
+INFO : Starting ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 16:57:03.959]
+
+INFO : Tomcat started on port(s): 8181 (http) with context path '/teamproject' ===> org.springframework.boot.web.embedded.tomcat.TomcatWebServer : [2024-09-26 16:57:03.963]
+
+INFO : Started TeamprojectApplication in 0.203 seconds (process running for 157.95) ===> org.springframework.boot.StartupInfoLogger         : [2024-09-26 16:57:03.966]
+
+INFO : Condition evaluation unchanged ===> org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener : [2024-09-26 16:57:03.968]
+
+INFO : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification) ===> org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener : [2024-09-26 16:57:23.550]
+
+INFO : Pausing ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 16:57:23.557]
+
+INFO : Stopping service [Tomcat] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 16:57:23.557]
+
+INFO : Stopping ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 16:57:23.559]
+
+INFO : Destroying ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 16:57:23.560]
+
+INFO : Starting TeamprojectApplication using Java 17.0.12 with PID 6888 (D:\std\ys\work\java\teamproject\bin\main started by Admin in D:\std\ys\work\java\teamproject) ===> org.springframework.boot.StartupInfoLogger         : [2024-09-26 16:57:23.609]
+
+INFO : No active profile set, falling back to 1 default profile: "default" ===> org.springframework.boot.SpringApplication         : [2024-09-26 16:57:23.610]
+
+INFO : Tomcat initialized with port(s): 8181 (http) ===> org.springframework.boot.web.embedded.tomcat.TomcatWebServer : [2024-09-26 16:57:23.720]
+
+INFO : Initializing ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 16:57:23.721]
+
+INFO : Starting service [Tomcat] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 16:57:23.721]
+
+INFO : Starting Servlet engine: [Apache Tomcat/10.1.24] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 16:57:23.721]
+
+INFO : Initializing Spring embedded WebApplicationContext ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 16:57:23.735]
+
+INFO : Root WebApplicationContext: initialization completed in 123 ms ===> org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext : [2024-09-26 16:57:23.736]
+
+INFO : LiveReload server is running on port 35729 ===> org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer : [2024-09-26 16:57:23.772]
+
+INFO : Starting ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 16:57:23.776]
+
+INFO : Tomcat started on port(s): 8181 (http) with context path '/teamproject' ===> org.springframework.boot.web.embedded.tomcat.TomcatWebServer : [2024-09-26 16:57:23.780]
+
+INFO : Started TeamprojectApplication in 0.194 seconds (process running for 177.767) ===> org.springframework.boot.StartupInfoLogger         : [2024-09-26 16:57:23.783]
+
+INFO : Condition evaluation unchanged ===> org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener : [2024-09-26 16:57:23.785]
+
+INFO : Initializing Spring DispatcherServlet 'dispatcherServlet' ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 16:57:38.384]
+
+INFO : Initializing Servlet 'dispatcherServlet' ===> org.springframework.web.servlet.FrameworkServlet   : [2024-09-26 16:57:38.385]
+
+INFO : Completed initialization in 0 ms ===> org.springframework.web.servlet.FrameworkServlet   : [2024-09-26 16:57:38.386]
+
+INFO : Restarting due to 1 class path change (1 addition, 0 deletions, 0 modifications) ===> org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener : [2024-09-26 17:03:06.662]
+
+INFO : Pausing ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:03:06.671]
+
+INFO : Stopping service [Tomcat] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:03:06.671]
+
+INFO : Destroying Spring FrameworkServlet 'dispatcherServlet' ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:03:06.672]
+
+INFO : Stopping ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:03:06.674]
+
+INFO : Destroying ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:03:06.676]
+
+INFO : Starting TeamprojectApplication using Java 17.0.12 with PID 6888 (D:\std\ys\work\java\teamproject\bin\main started by Admin in D:\std\ys\work\java\teamproject) ===> org.springframework.boot.StartupInfoLogger         : [2024-09-26 17:03:06.737]
+
+INFO : No active profile set, falling back to 1 default profile: "default" ===> org.springframework.boot.SpringApplication         : [2024-09-26 17:03:06.738]
+
+INFO : Tomcat initialized with port(s): 8181 (http) ===> org.springframework.boot.web.embedded.tomcat.TomcatWebServer : [2024-09-26 17:03:06.858]
+
+INFO : Initializing ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:03:06.858]
+
+INFO : Starting service [Tomcat] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:03:06.859]
+
+INFO : Starting Servlet engine: [Apache Tomcat/10.1.24] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:03:06.859]
+
+INFO : Initializing Spring embedded WebApplicationContext ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:03:06.870]
+
+INFO : Root WebApplicationContext: initialization completed in 130 ms ===> org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext : [2024-09-26 17:03:06.870]
+
+INFO : LiveReload server is running on port 35729 ===> org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer : [2024-09-26 17:03:06.906]
+
+INFO : Starting ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:03:06.910]
+
+INFO : Tomcat started on port(s): 8181 (http) with context path '/teamproject' ===> org.springframework.boot.web.embedded.tomcat.TomcatWebServer : [2024-09-26 17:03:06.915]
+
+INFO : Started TeamprojectApplication in 0.205 seconds (process running for 520.903) ===> org.springframework.boot.StartupInfoLogger         : [2024-09-26 17:03:06.918]
+
+INFO : Condition evaluation unchanged ===> org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener : [2024-09-26 17:03:06.920]
+
+INFO : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification) ===> org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener : [2024-09-26 17:07:05.143]
+
+INFO : Pausing ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:07:05.151]
+
+INFO : Stopping service [Tomcat] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:07:05.151]
+
+INFO : Stopping ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:07:05.152]
+
+INFO : Destroying ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:07:05.154]
+
+INFO : Starting TeamprojectApplication using Java 17.0.12 with PID 6888 (D:\std\ys\work\java\teamproject\bin\main started by Admin in D:\std\ys\work\java\teamproject) ===> org.springframework.boot.StartupInfoLogger         : [2024-09-26 17:07:05.215]
+
+INFO : No active profile set, falling back to 1 default profile: "default" ===> org.springframework.boot.SpringApplication         : [2024-09-26 17:07:05.216]
+
+INFO : Tomcat initialized with port(s): 8181 (http) ===> org.springframework.boot.web.embedded.tomcat.TomcatWebServer : [2024-09-26 17:07:05.348]
+
+INFO : Initializing ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:07:05.349]
+
+INFO : Starting service [Tomcat] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:07:05.349]
+
+INFO : Starting Servlet engine: [Apache Tomcat/10.1.24] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:07:05.349]
+
+INFO : Initializing Spring embedded WebApplicationContext ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:07:05.363]
+
+INFO : Root WebApplicationContext: initialization completed in 146 ms ===> org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext : [2024-09-26 17:07:05.363]
+
+INFO : LiveReload server is running on port 35729 ===> org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer : [2024-09-26 17:07:05.399]
+
+INFO : Starting ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:07:05.403]
+
+INFO : Tomcat started on port(s): 8181 (http) with context path '/teamproject' ===> org.springframework.boot.web.embedded.tomcat.TomcatWebServer : [2024-09-26 17:07:05.408]
+
+INFO : Started TeamprojectApplication in 0.22 seconds (process running for 759.397) ===> org.springframework.boot.StartupInfoLogger         : [2024-09-26 17:07:05.412]
+
+INFO : Condition evaluation unchanged ===> org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener : [2024-09-26 17:07:05.413]
+
+INFO : Initializing Spring DispatcherServlet 'dispatcherServlet' ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:07:06.976]
+
+INFO : Initializing Servlet 'dispatcherServlet' ===> org.springframework.web.servlet.FrameworkServlet   : [2024-09-26 17:07:06.977]
+
+INFO : Completed initialization in 1 ms ===> org.springframework.web.servlet.FrameworkServlet   : [2024-09-26 17:07:06.978]
+
+INFO : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification) ===> org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener : [2024-09-26 17:07:26.017]
+
+INFO : Pausing ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:07:26.025]
+
+INFO : Stopping service [Tomcat] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:07:26.025]
+
+INFO : Destroying Spring FrameworkServlet 'dispatcherServlet' ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:07:26.025]
+
+INFO : Stopping ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:07:26.027]
+
+INFO : Destroying ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:07:26.029]
+
+INFO : Starting TeamprojectApplication using Java 17.0.12 with PID 6888 (D:\std\ys\work\java\teamproject\bin\main started by Admin in D:\std\ys\work\java\teamproject) ===> org.springframework.boot.StartupInfoLogger         : [2024-09-26 17:07:26.086]
+
+INFO : No active profile set, falling back to 1 default profile: "default" ===> org.springframework.boot.SpringApplication         : [2024-09-26 17:07:26.087]
+
+INFO : Tomcat initialized with port(s): 8181 (http) ===> org.springframework.boot.web.embedded.tomcat.TomcatWebServer : [2024-09-26 17:07:26.195]
+
+INFO : Initializing ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:07:26.195]
+
+INFO : Starting service [Tomcat] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:07:26.196]
+
+INFO : Starting Servlet engine: [Apache Tomcat/10.1.24] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:07:26.196]
+
+INFO : Initializing Spring embedded WebApplicationContext ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:07:26.208]
+
+INFO : Root WebApplicationContext: initialization completed in 121 ms ===> org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext : [2024-09-26 17:07:26.209]
+
+INFO : LiveReload server is running on port 35729 ===> org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer : [2024-09-26 17:07:26.253]
+
+INFO : Starting ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:07:26.257]
+
+INFO : Tomcat started on port(s): 8181 (http) with context path '/teamproject' ===> org.springframework.boot.web.embedded.tomcat.TomcatWebServer : [2024-09-26 17:07:26.261]
+
+INFO : Started TeamprojectApplication in 0.201 seconds (process running for 780.251) ===> org.springframework.boot.StartupInfoLogger         : [2024-09-26 17:07:26.266]
+
+INFO : Condition evaluation unchanged ===> org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener : [2024-09-26 17:07:26.268]
+
+INFO : Initializing Spring DispatcherServlet 'dispatcherServlet' ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:07:29.961]
+
+INFO : Initializing Servlet 'dispatcherServlet' ===> org.springframework.web.servlet.FrameworkServlet   : [2024-09-26 17:07:29.962]
+
+INFO : Completed initialization in 0 ms ===> org.springframework.web.servlet.FrameworkServlet   : [2024-09-26 17:07:29.963]
+
+INFO : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification) ===> org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener : [2024-09-26 17:17:55.323]
+
+INFO : Pausing ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:17:55.332]
+
+INFO : Stopping service [Tomcat] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:17:55.332]
+
+INFO : Destroying Spring FrameworkServlet 'dispatcherServlet' ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:17:55.333]
+
+INFO : Stopping ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:17:55.334]
+
+INFO : Destroying ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:17:55.336]
+
+INFO : Starting TeamprojectApplication using Java 17.0.12 with PID 6888 (D:\std\ys\work\java\teamproject\bin\main started by Admin in D:\std\ys\work\java\teamproject) ===> org.springframework.boot.StartupInfoLogger         : [2024-09-26 17:17:55.398]
+
+INFO : No active profile set, falling back to 1 default profile: "default" ===> org.springframework.boot.SpringApplication         : [2024-09-26 17:17:55.398]
+
+INFO : Tomcat initialized with port(s): 8181 (http) ===> org.springframework.boot.web.embedded.tomcat.TomcatWebServer : [2024-09-26 17:17:55.526]
+
+INFO : Initializing ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:17:55.527]
+
+INFO : Starting service [Tomcat] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:17:55.527]
+
+INFO : Starting Servlet engine: [Apache Tomcat/10.1.24] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:17:55.527]
+
+INFO : Initializing Spring embedded WebApplicationContext ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:17:55.543]
+
+INFO : Root WebApplicationContext: initialization completed in 143 ms ===> org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext : [2024-09-26 17:17:55.543]
+
+WARN : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'loginController' defined in file [D:\std\ys\work\java\teamproject\bin\main\com\example\teamproject\controller\LoginController.class]: Failed to instantiate [com.example.teamproject.controller.LoginController]: Constructor threw exception ===> org.springframework.context.support.AbstractApplicationContext : [2024-09-26 17:17:55.549]
+
+INFO : Stopping service [Tomcat] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:17:55.549]
+
+INFO : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled. ===> org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLogger : [2024-09-26 17:17:55.555]
+
+ERROR: Application run failed ===> org.springframework.boot.SpringApplication         : [2024-09-26 17:17:55.568]
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'loginController' defined in file [D:\std\ys\work\java\teamproject\bin\main\com\example\teamproject\controller\LoginController.class]: Failed to instantiate [com.example.teamproject.controller.LoginController]: Constructor threw exception
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1312) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1197) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:558) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:518) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:973) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:952) ~[spring-context-6.0.21.jar:6.0.21]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:615) ~[spring-context-6.0.21.jar:6.0.21]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.1.12.jar:3.1.12]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:739) [spring-boot-3.1.12.jar:3.1.12]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:441) [spring-boot-3.1.12.jar:3.1.12]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:325) [spring-boot-3.1.12.jar:3.1.12]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1327) [spring-boot-3.1.12.jar:3.1.12]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1316) [spring-boot-3.1.12.jar:3.1.12]
+	at com.example.teamproject.TeamprojectApplication.main(TeamprojectApplication.java:10) [main/:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:569) ~[?:?]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50) [spring-boot-devtools-3.1.12.jar:3.1.12]
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.example.teamproject.controller.LoginController]: Constructor threw exception
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:225) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:87) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1306) ~[spring-beans-6.0.21.jar:6.0.21]
+	... 22 more
+Caused by: java.lang.Error: Unresolved compilation problems: 
+	GetMapping cannot be resolved to a type
+	Syntax error, insert ";" to complete ClassBodyDeclarations
+
+	at com.example.teamproject.controller.LoginController.<init>(LoginController.java:11) ~[main/:?]
+	at jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77) ~[?:?]
+	at jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) ~[?:?]
+	at java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500) ~[?:?]
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:481) ~[?:?]
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:199) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:87) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1306) ~[spring-beans-6.0.21.jar:6.0.21]
+	... 22 more
+INFO : Starting TeamprojectApplication using Java 17.0.12 with PID 6888 (D:\std\ys\work\java\teamproject\bin\main started by Admin in D:\std\ys\work\java\teamproject) ===> org.springframework.boot.StartupInfoLogger         : [2024-09-26 17:18:37.374]
+
+INFO : No active profile set, falling back to 1 default profile: "default" ===> org.springframework.boot.SpringApplication         : [2024-09-26 17:18:37.374]
+
+INFO : Tomcat initialized with port(s): 8181 (http) ===> org.springframework.boot.web.embedded.tomcat.TomcatWebServer : [2024-09-26 17:18:37.480]
+
+INFO : Initializing ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:18:37.482]
+
+INFO : Starting service [Tomcat] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:18:37.482]
+
+INFO : Starting Servlet engine: [Apache Tomcat/10.1.24] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:18:37.482]
+
+INFO : Initializing Spring embedded WebApplicationContext ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:18:37.496]
+
+INFO : Root WebApplicationContext: initialization completed in 120 ms ===> org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext : [2024-09-26 17:18:37.496]
+
+INFO : LiveReload server is running on port 35729 ===> org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer : [2024-09-26 17:18:37.545]
+
+INFO : Starting ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:18:37.550]
+
+INFO : Tomcat started on port(s): 8181 (http) with context path '/teamproject' ===> org.springframework.boot.web.embedded.tomcat.TomcatWebServer : [2024-09-26 17:18:37.554]
+
+INFO : Started TeamprojectApplication in 0.202 seconds (process running for 1451.543) ===> org.springframework.boot.StartupInfoLogger         : [2024-09-26 17:18:37.557]
+
+INFO : Condition evaluation unchanged ===> org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener : [2024-09-26 17:18:37.559]
+
+INFO : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification) ===> org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener : [2024-09-26 17:18:43.969]
+
+INFO : Pausing ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:18:43.976]
+
+INFO : Stopping service [Tomcat] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:18:43.976]
+
+INFO : Stopping ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:18:43.978]
+
+INFO : Destroying ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:18:43.979]
+
+INFO : Starting TeamprojectApplication using Java 17.0.12 with PID 6888 (D:\std\ys\work\java\teamproject\bin\main started by Admin in D:\std\ys\work\java\teamproject) ===> org.springframework.boot.StartupInfoLogger         : [2024-09-26 17:18:44.036]
+
+INFO : No active profile set, falling back to 1 default profile: "default" ===> org.springframework.boot.SpringApplication         : [2024-09-26 17:18:44.036]
+
+INFO : Tomcat initialized with port(s): 8181 (http) ===> org.springframework.boot.web.embedded.tomcat.TomcatWebServer : [2024-09-26 17:18:44.144]
+
+INFO : Initializing ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:18:44.144]
+
+INFO : Starting service [Tomcat] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:18:44.145]
+
+INFO : Starting Servlet engine: [Apache Tomcat/10.1.24] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:18:44.145]
+
+INFO : Initializing Spring embedded WebApplicationContext ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:18:44.157]
+
+INFO : Root WebApplicationContext: initialization completed in 119 ms ===> org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext : [2024-09-26 17:18:44.157]
+
+INFO : LiveReload server is running on port 35729 ===> org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer : [2024-09-26 17:18:44.195]
+
+INFO : Starting ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:18:44.199]
+
+INFO : Tomcat started on port(s): 8181 (http) with context path '/teamproject' ===> org.springframework.boot.web.embedded.tomcat.TomcatWebServer : [2024-09-26 17:18:44.204]
+
+INFO : Started TeamprojectApplication in 0.194 seconds (process running for 1458.194) ===> org.springframework.boot.StartupInfoLogger         : [2024-09-26 17:18:44.208]
+
+INFO : Condition evaluation unchanged ===> org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener : [2024-09-26 17:18:44.209]
+
+INFO : Initializing Spring DispatcherServlet 'dispatcherServlet' ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:18:46.708]
+
+INFO : Initializing Servlet 'dispatcherServlet' ===> org.springframework.web.servlet.FrameworkServlet   : [2024-09-26 17:18:46.709]
+
+INFO : Completed initialization in 0 ms ===> org.springframework.web.servlet.FrameworkServlet   : [2024-09-26 17:18:46.709]
+
+INFO : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification) ===> org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener : [2024-09-26 17:19:22.705]
+
+INFO : Pausing ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:19:22.713]
+
+INFO : Stopping service [Tomcat] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:19:22.714]
+
+INFO : Destroying Spring FrameworkServlet 'dispatcherServlet' ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:19:22.714]
+
+INFO : Stopping ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:19:22.716]
+
+INFO : Destroying ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:19:22.717]
+
+INFO : Starting TeamprojectApplication using Java 17.0.12 with PID 6888 (D:\std\ys\work\java\teamproject\bin\main started by Admin in D:\std\ys\work\java\teamproject) ===> org.springframework.boot.StartupInfoLogger         : [2024-09-26 17:19:22.772]
+
+INFO : No active profile set, falling back to 1 default profile: "default" ===> org.springframework.boot.SpringApplication         : [2024-09-26 17:19:22.772]
+
+INFO : Tomcat initialized with port(s): 8181 (http) ===> org.springframework.boot.web.embedded.tomcat.TomcatWebServer : [2024-09-26 17:19:22.884]
+
+INFO : Initializing ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:19:22.884]
+
+INFO : Starting service [Tomcat] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:19:22.885]
+
+INFO : Starting Servlet engine: [Apache Tomcat/10.1.24] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:19:22.885]
+
+INFO : Initializing Spring embedded WebApplicationContext ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:19:22.898]
+
+INFO : Root WebApplicationContext: initialization completed in 124 ms ===> org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext : [2024-09-26 17:19:22.898]
+
+INFO : LiveReload server is running on port 35729 ===> org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer : [2024-09-26 17:19:22.932]
+
+INFO : Starting ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:19:22.936]
+
+INFO : Tomcat started on port(s): 8181 (http) with context path '/teamproject' ===> org.springframework.boot.web.embedded.tomcat.TomcatWebServer : [2024-09-26 17:19:22.940]
+
+INFO : Started TeamprojectApplication in 0.19 seconds (process running for 1496.93) ===> org.springframework.boot.StartupInfoLogger         : [2024-09-26 17:19:22.944]
+
+INFO : Condition evaluation unchanged ===> org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener : [2024-09-26 17:19:22.945]
+
+INFO : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification) ===> org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener : [2024-09-26 17:19:41.490]
+
+INFO : Pausing ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:19:41.497]
+
+INFO : Stopping service [Tomcat] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:19:41.497]
+
+INFO : Stopping ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:19:41.499]
+
+INFO : Destroying ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:19:41.501]
+
+INFO : Starting TeamprojectApplication using Java 17.0.12 with PID 6888 (D:\std\ys\work\java\teamproject\bin\main started by Admin in D:\std\ys\work\java\teamproject) ===> org.springframework.boot.StartupInfoLogger         : [2024-09-26 17:19:41.551]
+
+INFO : No active profile set, falling back to 1 default profile: "default" ===> org.springframework.boot.SpringApplication         : [2024-09-26 17:19:41.552]
+
+INFO : Tomcat initialized with port(s): 8181 (http) ===> org.springframework.boot.web.embedded.tomcat.TomcatWebServer : [2024-09-26 17:19:41.660]
+
+INFO : Initializing ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:19:41.660]
+
+INFO : Starting service [Tomcat] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:19:41.661]
+
+INFO : Starting Servlet engine: [Apache Tomcat/10.1.24] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:19:41.661]
+
+INFO : Initializing Spring embedded WebApplicationContext ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:19:41.673]
+
+INFO : Root WebApplicationContext: initialization completed in 120 ms ===> org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext : [2024-09-26 17:19:41.673]
+
+INFO : LiveReload server is running on port 35729 ===> org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer : [2024-09-26 17:19:41.708]
+
+INFO : Starting ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:19:41.712]
+
+INFO : Tomcat started on port(s): 8181 (http) with context path '/teamproject' ===> org.springframework.boot.web.embedded.tomcat.TomcatWebServer : [2024-09-26 17:19:41.717]
+
+INFO : Started TeamprojectApplication in 0.185 seconds (process running for 1515.706) ===> org.springframework.boot.StartupInfoLogger         : [2024-09-26 17:19:41.720]
+
+INFO : Condition evaluation unchanged ===> org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener : [2024-09-26 17:19:41.721]
+
+INFO : Initializing Spring DispatcherServlet 'dispatcherServlet' ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:19:50.276]
+
+INFO : Initializing Servlet 'dispatcherServlet' ===> org.springframework.web.servlet.FrameworkServlet   : [2024-09-26 17:19:50.276]
+
+INFO : Completed initialization in 1 ms ===> org.springframework.web.servlet.FrameworkServlet   : [2024-09-26 17:19:50.277]
+
+INFO : Restarting due to 1 class path change (0 additions, 1 deletion, 0 modifications) ===> org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener : [2024-09-26 17:24:05.482]
+
+INFO : Pausing ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:24:05.489]
+
+INFO : Stopping service [Tomcat] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:24:05.489]
+
+INFO : Destroying Spring FrameworkServlet 'dispatcherServlet' ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:24:05.490]
+
+INFO : Stopping ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:24:05.491]
+
+INFO : Destroying ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:24:05.493]
+
+INFO : Starting TeamprojectApplication using Java 17.0.12 with PID 6888 (D:\std\ys\work\java\teamproject\bin\main started by Admin in D:\std\ys\work\java\teamproject) ===> org.springframework.boot.StartupInfoLogger         : [2024-09-26 17:24:05.545]
+
+INFO : No active profile set, falling back to 1 default profile: "default" ===> org.springframework.boot.SpringApplication         : [2024-09-26 17:24:05.546]
+
+INFO : Tomcat initialized with port(s): 8181 (http) ===> org.springframework.boot.web.embedded.tomcat.TomcatWebServer : [2024-09-26 17:24:05.655]
+
+INFO : Initializing ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:24:05.656]
+
+INFO : Starting service [Tomcat] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:24:05.656]
+
+INFO : Starting Servlet engine: [Apache Tomcat/10.1.24] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:24:05.656]
+
+INFO : Initializing Spring embedded WebApplicationContext ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:24:05.669]
+
+INFO : Root WebApplicationContext: initialization completed in 122 ms ===> org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext : [2024-09-26 17:24:05.669]
+
+INFO : LiveReload server is running on port 35729 ===> org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer : [2024-09-26 17:24:05.720]
+
+INFO : Starting ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:24:05.725]
+
+INFO : Tomcat started on port(s): 8181 (http) with context path '/teamproject' ===> org.springframework.boot.web.embedded.tomcat.TomcatWebServer : [2024-09-26 17:24:05.729]
+
+INFO : Started TeamprojectApplication in 0.207 seconds (process running for 1779.718) ===> org.springframework.boot.StartupInfoLogger         : [2024-09-26 17:24:05.732]
+
+INFO : Condition evaluation unchanged ===> org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener : [2024-09-26 17:24:05.733]
+
+INFO : Initializing Spring DispatcherServlet 'dispatcherServlet' ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:24:07.326]
+
+INFO : Initializing Servlet 'dispatcherServlet' ===> org.springframework.web.servlet.FrameworkServlet   : [2024-09-26 17:24:07.327]
+
+INFO : Completed initialization in 0 ms ===> org.springframework.web.servlet.FrameworkServlet   : [2024-09-26 17:24:07.327]
+
+INFO : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification) ===> org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener : [2024-09-26 17:38:02.090]
+
+INFO : Pausing ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:38:02.098]
+
+INFO : Stopping service [Tomcat] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:38:02.098]
+
+INFO : Destroying Spring FrameworkServlet 'dispatcherServlet' ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:38:02.099]
+
+INFO : Stopping ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:38:02.100]
+
+INFO : Destroying ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:38:02.102]
+
+INFO : Starting TeamprojectApplication using Java 17.0.12 with PID 6888 (D:\std\ys\work\java\teamproject\bin\main started by Admin in D:\std\ys\work\java\teamproject) ===> org.springframework.boot.StartupInfoLogger         : [2024-09-26 17:38:02.156]
+
+INFO : No active profile set, falling back to 1 default profile: "default" ===> org.springframework.boot.SpringApplication         : [2024-09-26 17:38:02.156]
+
+INFO : Tomcat initialized with port(s): 8181 (http) ===> org.springframework.boot.web.embedded.tomcat.TomcatWebServer : [2024-09-26 17:38:02.273]
+
+INFO : Initializing ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:38:02.274]
+
+INFO : Starting service [Tomcat] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:38:02.274]
+
+INFO : Starting Servlet engine: [Apache Tomcat/10.1.24] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:38:02.274]
+
+INFO : Initializing Spring embedded WebApplicationContext ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:38:02.285]
+
+INFO : Root WebApplicationContext: initialization completed in 128 ms ===> org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext : [2024-09-26 17:38:02.285]
+
+WARN : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'homeController' defined in file [D:\std\ys\work\java\teamproject\bin\main\com\example\teamproject\controller\HomeController.class]: Failed to instantiate [com.example.teamproject.controller.HomeController]: Constructor threw exception ===> org.springframework.context.support.AbstractApplicationContext : [2024-09-26 17:38:02.290]
+
+INFO : Stopping service [Tomcat] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:38:02.291]
+
+INFO : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled. ===> org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLogger : [2024-09-26 17:38:02.295]
+
+ERROR: Application run failed ===> org.springframework.boot.SpringApplication         : [2024-09-26 17:38:02.298]
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'homeController' defined in file [D:\std\ys\work\java\teamproject\bin\main\com\example\teamproject\controller\HomeController.class]: Failed to instantiate [com.example.teamproject.controller.HomeController]: Constructor threw exception
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1312) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1197) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:558) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:518) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:973) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:952) ~[spring-context-6.0.21.jar:6.0.21]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:615) ~[spring-context-6.0.21.jar:6.0.21]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.1.12.jar:3.1.12]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:739) [spring-boot-3.1.12.jar:3.1.12]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:441) [spring-boot-3.1.12.jar:3.1.12]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:325) [spring-boot-3.1.12.jar:3.1.12]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1327) [spring-boot-3.1.12.jar:3.1.12]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1316) [spring-boot-3.1.12.jar:3.1.12]
+	at com.example.teamproject.TeamprojectApplication.main(TeamprojectApplication.java:10) [main/:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:569) ~[?:?]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50) [spring-boot-devtools-3.1.12.jar:3.1.12]
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.example.teamproject.controller.HomeController]: Constructor threw exception
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:225) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:87) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1306) ~[spring-beans-6.0.21.jar:6.0.21]
+	... 22 more
+Caused by: java.lang.Error: Unresolved compilation problem: 
+	Syntax error on token "}", delete this token
+
+	at com.example.teamproject.controller.HomeController.<init>(HomeController.java:21) ~[main/:?]
+	at jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77) ~[?:?]
+	at jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) ~[?:?]
+	at java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500) ~[?:?]
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:481) ~[?:?]
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:199) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:87) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1306) ~[spring-beans-6.0.21.jar:6.0.21]
+	... 22 more
+INFO : Starting TeamprojectApplication using Java 17.0.12 with PID 6888 (D:\std\ys\work\java\teamproject\bin\main started by Admin in D:\std\ys\work\java\teamproject) ===> org.springframework.boot.StartupInfoLogger         : [2024-09-26 17:38:09.832]
+
+INFO : No active profile set, falling back to 1 default profile: "default" ===> org.springframework.boot.SpringApplication         : [2024-09-26 17:38:09.833]
+
+INFO : Tomcat initialized with port(s): 8181 (http) ===> org.springframework.boot.web.embedded.tomcat.TomcatWebServer : [2024-09-26 17:38:09.939]
+
+INFO : Initializing ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:38:09.940]
+
+INFO : Starting service [Tomcat] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:38:09.940]
+
+INFO : Starting Servlet engine: [Apache Tomcat/10.1.24] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:38:09.940]
+
+INFO : Initializing Spring embedded WebApplicationContext ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:38:09.952]
+
+INFO : Root WebApplicationContext: initialization completed in 118 ms ===> org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext : [2024-09-26 17:38:09.952]
+
+INFO : LiveReload server is running on port 35729 ===> org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer : [2024-09-26 17:38:09.999]
+
+INFO : Starting ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:38:10.004]
+
+INFO : Tomcat started on port(s): 8181 (http) with context path '/teamproject' ===> org.springframework.boot.web.embedded.tomcat.TomcatWebServer : [2024-09-26 17:38:10.008]
+
+INFO : Started TeamprojectApplication in 0.198 seconds (process running for 2623.999) ===> org.springframework.boot.StartupInfoLogger         : [2024-09-26 17:38:10.012]
+
+INFO : Condition evaluation unchanged ===> org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener : [2024-09-26 17:38:10.013]
+
+INFO : Initializing Spring DispatcherServlet 'dispatcherServlet' ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:39:33.009]
+
+INFO : Initializing Servlet 'dispatcherServlet' ===> org.springframework.web.servlet.FrameworkServlet   : [2024-09-26 17:39:33.010]
+
+INFO : Completed initialization in 1 ms ===> org.springframework.web.servlet.FrameworkServlet   : [2024-09-26 17:39:33.011]
+
+INFO : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification) ===> org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener : [2024-09-26 17:40:22.710]
+
+INFO : Pausing ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:40:22.719]
+
+INFO : Stopping service [Tomcat] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:40:22.719]
+
+INFO : Destroying Spring FrameworkServlet 'dispatcherServlet' ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:40:22.720]
+
+INFO : Stopping ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:40:22.721]
+
+INFO : Destroying ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:40:22.723]
+
+INFO : Starting TeamprojectApplication using Java 17.0.12 with PID 6888 (D:\std\ys\work\java\teamproject\bin\main started by Admin in D:\std\ys\work\java\teamproject) ===> org.springframework.boot.StartupInfoLogger         : [2024-09-26 17:40:22.776]
+
+INFO : No active profile set, falling back to 1 default profile: "default" ===> org.springframework.boot.SpringApplication         : [2024-09-26 17:40:22.777]
+
+INFO : Tomcat initialized with port(s): 8181 (http) ===> org.springframework.boot.web.embedded.tomcat.TomcatWebServer : [2024-09-26 17:40:22.887]
+
+INFO : Initializing ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:40:22.887]
+
+INFO : Starting service [Tomcat] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:40:22.888]
+
+INFO : Starting Servlet engine: [Apache Tomcat/10.1.24] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:40:22.888]
+
+INFO : Initializing Spring embedded WebApplicationContext ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:40:22.899]
+
+INFO : Root WebApplicationContext: initialization completed in 121 ms ===> org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext : [2024-09-26 17:40:22.899]
+
+INFO : LiveReload server is running on port 35729 ===> org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer : [2024-09-26 17:40:22.937]
+
+INFO : Starting ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:40:22.941]
+
+INFO : Tomcat started on port(s): 8181 (http) with context path '/teamproject' ===> org.springframework.boot.web.embedded.tomcat.TomcatWebServer : [2024-09-26 17:40:22.946]
+
+INFO : Started TeamprojectApplication in 0.191 seconds (process running for 2756.936) ===> org.springframework.boot.StartupInfoLogger         : [2024-09-26 17:40:22.950]
+
+INFO : Condition evaluation unchanged ===> org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener : [2024-09-26 17:40:22.951]
+
+INFO : Initializing Spring DispatcherServlet 'dispatcherServlet' ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:40:23.541]
+
+INFO : Initializing Servlet 'dispatcherServlet' ===> org.springframework.web.servlet.FrameworkServlet   : [2024-09-26 17:40:23.541]
+
+INFO : Completed initialization in 0 ms ===> org.springframework.web.servlet.FrameworkServlet   : [2024-09-26 17:40:23.542]
+
+INFO : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification) ===> org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener : [2024-09-26 17:40:28.390]
+
+INFO : Pausing ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:40:28.397]
+
+INFO : Stopping service [Tomcat] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:40:28.397]
+
+INFO : Destroying Spring FrameworkServlet 'dispatcherServlet' ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:40:28.397]
+
+INFO : Stopping ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:40:28.399]
+
+INFO : Destroying ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:40:28.401]
+
+INFO : Starting TeamprojectApplication using Java 17.0.12 with PID 6888 (D:\std\ys\work\java\teamproject\bin\main started by Admin in D:\std\ys\work\java\teamproject) ===> org.springframework.boot.StartupInfoLogger         : [2024-09-26 17:40:28.456]
+
+INFO : No active profile set, falling back to 1 default profile: "default" ===> org.springframework.boot.SpringApplication         : [2024-09-26 17:40:28.457]
+
+INFO : Tomcat initialized with port(s): 8181 (http) ===> org.springframework.boot.web.embedded.tomcat.TomcatWebServer : [2024-09-26 17:40:28.571]
+
+INFO : Initializing ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:40:28.572]
+
+INFO : Starting service [Tomcat] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:40:28.572]
+
+INFO : Starting Servlet engine: [Apache Tomcat/10.1.24] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:40:28.572]
+
+INFO : Initializing Spring embedded WebApplicationContext ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:40:28.584]
+
+INFO : Root WebApplicationContext: initialization completed in 126 ms ===> org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext : [2024-09-26 17:40:28.584]
+
+INFO : LiveReload server is running on port 35729 ===> org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer : [2024-09-26 17:40:28.621]
+
+INFO : Starting ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:40:28.625]
+
+INFO : Tomcat started on port(s): 8181 (http) with context path '/teamproject' ===> org.springframework.boot.web.embedded.tomcat.TomcatWebServer : [2024-09-26 17:40:28.629]
+
+INFO : Started TeamprojectApplication in 0.196 seconds (process running for 2762.619) ===> org.springframework.boot.StartupInfoLogger         : [2024-09-26 17:40:28.632]
+
+INFO : Condition evaluation unchanged ===> org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener : [2024-09-26 17:40:28.633]
+
+INFO : Initializing Spring DispatcherServlet 'dispatcherServlet' ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:40:28.744]
+
+INFO : Initializing Servlet 'dispatcherServlet' ===> org.springframework.web.servlet.FrameworkServlet   : [2024-09-26 17:40:28.744]
+
+INFO : Completed initialization in 1 ms ===> org.springframework.web.servlet.FrameworkServlet   : [2024-09-26 17:40:28.745]
+
+INFO : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification) ===> org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener : [2024-09-26 17:40:43.200]
+
+INFO : Pausing ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:40:43.207]
+
+INFO : Stopping service [Tomcat] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:40:43.207]
+
+INFO : Destroying Spring FrameworkServlet 'dispatcherServlet' ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:40:43.207]
+
+INFO : Stopping ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:40:43.209]
+
+INFO : Destroying ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:40:43.211]
+
+INFO : Starting TeamprojectApplication using Java 17.0.12 with PID 6888 (D:\std\ys\work\java\teamproject\bin\main started by Admin in D:\std\ys\work\java\teamproject) ===> org.springframework.boot.StartupInfoLogger         : [2024-09-26 17:40:43.266]
+
+INFO : No active profile set, falling back to 1 default profile: "default" ===> org.springframework.boot.SpringApplication         : [2024-09-26 17:40:43.266]
+
+INFO : Tomcat initialized with port(s): 8181 (http) ===> org.springframework.boot.web.embedded.tomcat.TomcatWebServer : [2024-09-26 17:40:43.381]
+
+INFO : Initializing ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:40:43.381]
+
+INFO : Starting service [Tomcat] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:40:43.382]
+
+INFO : Starting Servlet engine: [Apache Tomcat/10.1.24] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:40:43.382]
+
+INFO : Initializing Spring embedded WebApplicationContext ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:40:43.393]
+
+INFO : Root WebApplicationContext: initialization completed in 125 ms ===> org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext : [2024-09-26 17:40:43.393]
+
+WARN : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Ambiguous mapping. Cannot map 'homeController' method 
+com.example.teamproject.controller.HomeController#loginForm()
+to {GET [/]}: There is already 'homeController' bean method
+com.example.teamproject.controller.HomeController#home() mapped. ===> org.springframework.context.support.AbstractApplicationContext : [2024-09-26 17:40:43.419]
+
+INFO : Stopping service [Tomcat] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:40:43.419]
+
+INFO : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled. ===> org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLogger : [2024-09-26 17:40:43.424]
+
+ERROR: Application run failed ===> org.springframework.boot.SpringApplication         : [2024-09-26 17:40:43.427]
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Ambiguous mapping. Cannot map 'homeController' method 
+com.example.teamproject.controller.HomeController#loginForm()
+to {GET [/]}: There is already 'homeController' bean method
+com.example.teamproject.controller.HomeController#home() mapped.
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1768) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:596) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:518) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:973) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:952) ~[spring-context-6.0.21.jar:6.0.21]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:615) ~[spring-context-6.0.21.jar:6.0.21]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.1.12.jar:3.1.12]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:739) [spring-boot-3.1.12.jar:3.1.12]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:441) [spring-boot-3.1.12.jar:3.1.12]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:325) [spring-boot-3.1.12.jar:3.1.12]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1327) [spring-boot-3.1.12.jar:3.1.12]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1316) [spring-boot-3.1.12.jar:3.1.12]
+	at com.example.teamproject.TeamprojectApplication.main(TeamprojectApplication.java:10) [main/:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:569) ~[?:?]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50) [spring-boot-devtools-3.1.12.jar:3.1.12]
+Caused by: java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'homeController' method 
+com.example.teamproject.controller.HomeController#loginForm()
+to {GET [/]}: There is already 'homeController' bean method
+com.example.teamproject.controller.HomeController#home() mapped.
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.validateMethodMapping(AbstractHandlerMethodMapping.java:669) ~[spring-webmvc-6.0.21.jar:6.0.21]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:634) ~[spring-webmvc-6.0.21.jar:6.0.21]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.registerHandlerMethod(AbstractHandlerMethodMapping.java:331) ~[spring-webmvc-6.0.21.jar:6.0.21]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.registerHandlerMethod(RequestMappingHandlerMapping.java:441) ~[spring-webmvc-6.0.21.jar:6.0.21]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.registerHandlerMethod(RequestMappingHandlerMapping.java:76) ~[spring-webmvc-6.0.21.jar:6.0.21]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.lambda$detectHandlerMethods$2(AbstractHandlerMethodMapping.java:298) ~[spring-webmvc-6.0.21.jar:6.0.21]
+	at java.util.LinkedHashMap.forEach(LinkedHashMap.java:721) ~[?:?]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.detectHandlerMethods(AbstractHandlerMethodMapping.java:296) ~[spring-webmvc-6.0.21.jar:6.0.21]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.processCandidateBean(AbstractHandlerMethodMapping.java:265) ~[spring-webmvc-6.0.21.jar:6.0.21]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.initHandlerMethods(AbstractHandlerMethodMapping.java:224) ~[spring-webmvc-6.0.21.jar:6.0.21]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.afterPropertiesSet(AbstractHandlerMethodMapping.java:212) ~[spring-webmvc-6.0.21.jar:6.0.21]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.afterPropertiesSet(RequestMappingHandlerMapping.java:225) ~[spring-webmvc-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1815) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1764) ~[spring-beans-6.0.21.jar:6.0.21]
+	... 21 more
+INFO : Starting TeamprojectApplication using Java 17.0.12 with PID 6888 (D:\std\ys\work\java\teamproject\bin\main started by Admin in D:\std\ys\work\java\teamproject) ===> org.springframework.boot.StartupInfoLogger         : [2024-09-26 17:41:01.048]
+
+INFO : No active profile set, falling back to 1 default profile: "default" ===> org.springframework.boot.SpringApplication         : [2024-09-26 17:41:01.049]
+
+INFO : Tomcat initialized with port(s): 8181 (http) ===> org.springframework.boot.web.embedded.tomcat.TomcatWebServer : [2024-09-26 17:41:01.164]
+
+INFO : Initializing ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:41:01.164]
+
+INFO : Starting service [Tomcat] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:41:01.164]
+
+INFO : Starting Servlet engine: [Apache Tomcat/10.1.24] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:41:01.164]
+
+INFO : Initializing Spring embedded WebApplicationContext ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:41:01.176]
+
+INFO : Root WebApplicationContext: initialization completed in 126 ms ===> org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext : [2024-09-26 17:41:01.176]
+
+WARN : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Ambiguous mapping. Cannot map 'homeController' method 
+com.example.teamproject.controller.HomeController#loginForm()
+to {GET [/]}: There is already 'homeController' bean method
+com.example.teamproject.controller.HomeController#home() mapped. ===> org.springframework.context.support.AbstractApplicationContext : [2024-09-26 17:41:01.199]
+
+INFO : Stopping service [Tomcat] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:41:01.200]
+
+INFO : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled. ===> org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLogger : [2024-09-26 17:41:01.204]
+
+ERROR: Application run failed ===> org.springframework.boot.SpringApplication         : [2024-09-26 17:41:01.206]
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Ambiguous mapping. Cannot map 'homeController' method 
+com.example.teamproject.controller.HomeController#loginForm()
+to {GET [/]}: There is already 'homeController' bean method
+com.example.teamproject.controller.HomeController#home() mapped.
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1768) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:596) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:518) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:973) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:952) ~[spring-context-6.0.21.jar:6.0.21]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:615) ~[spring-context-6.0.21.jar:6.0.21]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.1.12.jar:3.1.12]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:739) [spring-boot-3.1.12.jar:3.1.12]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:441) [spring-boot-3.1.12.jar:3.1.12]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:325) [spring-boot-3.1.12.jar:3.1.12]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1327) [spring-boot-3.1.12.jar:3.1.12]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1316) [spring-boot-3.1.12.jar:3.1.12]
+	at com.example.teamproject.TeamprojectApplication.main(TeamprojectApplication.java:10) [main/:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:569) ~[?:?]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50) [spring-boot-devtools-3.1.12.jar:3.1.12]
+Caused by: java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'homeController' method 
+com.example.teamproject.controller.HomeController#loginForm()
+to {GET [/]}: There is already 'homeController' bean method
+com.example.teamproject.controller.HomeController#home() mapped.
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.validateMethodMapping(AbstractHandlerMethodMapping.java:669) ~[spring-webmvc-6.0.21.jar:6.0.21]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:634) ~[spring-webmvc-6.0.21.jar:6.0.21]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.registerHandlerMethod(AbstractHandlerMethodMapping.java:331) ~[spring-webmvc-6.0.21.jar:6.0.21]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.registerHandlerMethod(RequestMappingHandlerMapping.java:441) ~[spring-webmvc-6.0.21.jar:6.0.21]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.registerHandlerMethod(RequestMappingHandlerMapping.java:76) ~[spring-webmvc-6.0.21.jar:6.0.21]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.lambda$detectHandlerMethods$2(AbstractHandlerMethodMapping.java:298) ~[spring-webmvc-6.0.21.jar:6.0.21]
+	at java.util.LinkedHashMap.forEach(LinkedHashMap.java:721) ~[?:?]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.detectHandlerMethods(AbstractHandlerMethodMapping.java:296) ~[spring-webmvc-6.0.21.jar:6.0.21]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.processCandidateBean(AbstractHandlerMethodMapping.java:265) ~[spring-webmvc-6.0.21.jar:6.0.21]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.initHandlerMethods(AbstractHandlerMethodMapping.java:224) ~[spring-webmvc-6.0.21.jar:6.0.21]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.afterPropertiesSet(AbstractHandlerMethodMapping.java:212) ~[spring-webmvc-6.0.21.jar:6.0.21]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.afterPropertiesSet(RequestMappingHandlerMapping.java:225) ~[spring-webmvc-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1815) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1764) ~[spring-beans-6.0.21.jar:6.0.21]
+	... 21 more
+INFO : Starting TeamprojectApplication using Java 17.0.12 with PID 6888 (D:\std\ys\work\java\teamproject\bin\main started by Admin in D:\std\ys\work\java\teamproject) ===> org.springframework.boot.StartupInfoLogger         : [2024-09-26 17:41:33.021]
+
+INFO : No active profile set, falling back to 1 default profile: "default" ===> org.springframework.boot.SpringApplication         : [2024-09-26 17:41:33.022]
+
+INFO : Tomcat initialized with port(s): 8181 (http) ===> org.springframework.boot.web.embedded.tomcat.TomcatWebServer : [2024-09-26 17:41:33.132]
+
+INFO : Initializing ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:41:33.132]
+
+INFO : Starting service [Tomcat] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:41:33.133]
+
+INFO : Starting Servlet engine: [Apache Tomcat/10.1.24] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:41:33.133]
+
+INFO : Initializing Spring embedded WebApplicationContext ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:41:33.144]
+
+INFO : Root WebApplicationContext: initialization completed in 121 ms ===> org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext : [2024-09-26 17:41:33.144]
+
+WARN : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Ambiguous mapping. Cannot map 'homeController' method 
+com.example.teamproject.controller.HomeController#loginForm()
+to {GET [/]}: There is already 'homeController' bean method
+com.example.teamproject.controller.HomeController#home() mapped. ===> org.springframework.context.support.AbstractApplicationContext : [2024-09-26 17:41:33.167]
+
+INFO : Stopping service [Tomcat] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:41:33.168]
+
+INFO : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled. ===> org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLogger : [2024-09-26 17:41:33.172]
+
+ERROR: Application run failed ===> org.springframework.boot.SpringApplication         : [2024-09-26 17:41:33.177]
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Ambiguous mapping. Cannot map 'homeController' method 
+com.example.teamproject.controller.HomeController#loginForm()
+to {GET [/]}: There is already 'homeController' bean method
+com.example.teamproject.controller.HomeController#home() mapped.
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1768) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:596) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:518) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:973) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:952) ~[spring-context-6.0.21.jar:6.0.21]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:615) ~[spring-context-6.0.21.jar:6.0.21]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.1.12.jar:3.1.12]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:739) [spring-boot-3.1.12.jar:3.1.12]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:441) [spring-boot-3.1.12.jar:3.1.12]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:325) [spring-boot-3.1.12.jar:3.1.12]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1327) [spring-boot-3.1.12.jar:3.1.12]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1316) [spring-boot-3.1.12.jar:3.1.12]
+	at com.example.teamproject.TeamprojectApplication.main(TeamprojectApplication.java:10) [main/:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:569) ~[?:?]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50) [spring-boot-devtools-3.1.12.jar:3.1.12]
+Caused by: java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'homeController' method 
+com.example.teamproject.controller.HomeController#loginForm()
+to {GET [/]}: There is already 'homeController' bean method
+com.example.teamproject.controller.HomeController#home() mapped.
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.validateMethodMapping(AbstractHandlerMethodMapping.java:669) ~[spring-webmvc-6.0.21.jar:6.0.21]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:634) ~[spring-webmvc-6.0.21.jar:6.0.21]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.registerHandlerMethod(AbstractHandlerMethodMapping.java:331) ~[spring-webmvc-6.0.21.jar:6.0.21]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.registerHandlerMethod(RequestMappingHandlerMapping.java:441) ~[spring-webmvc-6.0.21.jar:6.0.21]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.registerHandlerMethod(RequestMappingHandlerMapping.java:76) ~[spring-webmvc-6.0.21.jar:6.0.21]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.lambda$detectHandlerMethods$2(AbstractHandlerMethodMapping.java:298) ~[spring-webmvc-6.0.21.jar:6.0.21]
+	at java.util.LinkedHashMap.forEach(LinkedHashMap.java:721) ~[?:?]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.detectHandlerMethods(AbstractHandlerMethodMapping.java:296) ~[spring-webmvc-6.0.21.jar:6.0.21]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.processCandidateBean(AbstractHandlerMethodMapping.java:265) ~[spring-webmvc-6.0.21.jar:6.0.21]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.initHandlerMethods(AbstractHandlerMethodMapping.java:224) ~[spring-webmvc-6.0.21.jar:6.0.21]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.afterPropertiesSet(AbstractHandlerMethodMapping.java:212) ~[spring-webmvc-6.0.21.jar:6.0.21]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.afterPropertiesSet(RequestMappingHandlerMapping.java:225) ~[spring-webmvc-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1815) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1764) ~[spring-beans-6.0.21.jar:6.0.21]
+	... 21 more
+INFO : Starting TeamprojectApplication using Java 17.0.12 with PID 6888 (D:\std\ys\work\java\teamproject\bin\main started by Admin in D:\std\ys\work\java\teamproject) ===> org.springframework.boot.StartupInfoLogger         : [2024-09-26 17:41:34.635]
+
+INFO : No active profile set, falling back to 1 default profile: "default" ===> org.springframework.boot.SpringApplication         : [2024-09-26 17:41:34.636]
+
+INFO : Tomcat initialized with port(s): 8181 (http) ===> org.springframework.boot.web.embedded.tomcat.TomcatWebServer : [2024-09-26 17:41:34.751]
+
+INFO : Initializing ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:41:34.751]
+
+INFO : Starting service [Tomcat] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:41:34.752]
+
+INFO : Starting Servlet engine: [Apache Tomcat/10.1.24] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:41:34.752]
+
+INFO : Initializing Spring embedded WebApplicationContext ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:41:34.764]
+
+INFO : Root WebApplicationContext: initialization completed in 127 ms ===> org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext : [2024-09-26 17:41:34.764]
+
+WARN : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Ambiguous mapping. Cannot map 'homeController' method 
+com.example.teamproject.controller.HomeController#loginForm()
+to {GET [/]}: There is already 'homeController' bean method
+com.example.teamproject.controller.HomeController#home() mapped. ===> org.springframework.context.support.AbstractApplicationContext : [2024-09-26 17:41:34.794]
+
+INFO : Stopping service [Tomcat] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:41:34.795]
+
+INFO : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled. ===> org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLogger : [2024-09-26 17:41:34.799]
+
+ERROR: Application run failed ===> org.springframework.boot.SpringApplication         : [2024-09-26 17:41:34.802]
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Ambiguous mapping. Cannot map 'homeController' method 
+com.example.teamproject.controller.HomeController#loginForm()
+to {GET [/]}: There is already 'homeController' bean method
+com.example.teamproject.controller.HomeController#home() mapped.
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1768) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:596) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:518) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:973) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:952) ~[spring-context-6.0.21.jar:6.0.21]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:615) ~[spring-context-6.0.21.jar:6.0.21]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.1.12.jar:3.1.12]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:739) [spring-boot-3.1.12.jar:3.1.12]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:441) [spring-boot-3.1.12.jar:3.1.12]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:325) [spring-boot-3.1.12.jar:3.1.12]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1327) [spring-boot-3.1.12.jar:3.1.12]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1316) [spring-boot-3.1.12.jar:3.1.12]
+	at com.example.teamproject.TeamprojectApplication.main(TeamprojectApplication.java:10) [main/:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:569) ~[?:?]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50) [spring-boot-devtools-3.1.12.jar:3.1.12]
+Caused by: java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'homeController' method 
+com.example.teamproject.controller.HomeController#loginForm()
+to {GET [/]}: There is already 'homeController' bean method
+com.example.teamproject.controller.HomeController#home() mapped.
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.validateMethodMapping(AbstractHandlerMethodMapping.java:669) ~[spring-webmvc-6.0.21.jar:6.0.21]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:634) ~[spring-webmvc-6.0.21.jar:6.0.21]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.registerHandlerMethod(AbstractHandlerMethodMapping.java:331) ~[spring-webmvc-6.0.21.jar:6.0.21]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.registerHandlerMethod(RequestMappingHandlerMapping.java:441) ~[spring-webmvc-6.0.21.jar:6.0.21]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.registerHandlerMethod(RequestMappingHandlerMapping.java:76) ~[spring-webmvc-6.0.21.jar:6.0.21]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.lambda$detectHandlerMethods$2(AbstractHandlerMethodMapping.java:298) ~[spring-webmvc-6.0.21.jar:6.0.21]
+	at java.util.LinkedHashMap.forEach(LinkedHashMap.java:721) ~[?:?]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.detectHandlerMethods(AbstractHandlerMethodMapping.java:296) ~[spring-webmvc-6.0.21.jar:6.0.21]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.processCandidateBean(AbstractHandlerMethodMapping.java:265) ~[spring-webmvc-6.0.21.jar:6.0.21]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.initHandlerMethods(AbstractHandlerMethodMapping.java:224) ~[spring-webmvc-6.0.21.jar:6.0.21]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.afterPropertiesSet(AbstractHandlerMethodMapping.java:212) ~[spring-webmvc-6.0.21.jar:6.0.21]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.afterPropertiesSet(RequestMappingHandlerMapping.java:225) ~[spring-webmvc-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1815) ~[spring-beans-6.0.21.jar:6.0.21]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1764) ~[spring-beans-6.0.21.jar:6.0.21]
+	... 21 more
+INFO : Starting TeamprojectApplication using Java 17.0.12 with PID 6888 (D:\std\ys\work\java\teamproject\bin\main started by Admin in D:\std\ys\work\java\teamproject) ===> org.springframework.boot.StartupInfoLogger         : [2024-09-26 17:41:54.410]
+
+INFO : No active profile set, falling back to 1 default profile: "default" ===> org.springframework.boot.SpringApplication         : [2024-09-26 17:41:54.410]
+
+INFO : Tomcat initialized with port(s): 8181 (http) ===> org.springframework.boot.web.embedded.tomcat.TomcatWebServer : [2024-09-26 17:41:54.533]
+
+INFO : Initializing ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:41:54.533]
+
+INFO : Starting service [Tomcat] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:41:54.533]
+
+INFO : Starting Servlet engine: [Apache Tomcat/10.1.24] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:41:54.533]
+
+INFO : Initializing Spring embedded WebApplicationContext ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:41:54.544]
+
+INFO : Root WebApplicationContext: initialization completed in 132 ms ===> org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext : [2024-09-26 17:41:54.544]
+
+INFO : LiveReload server is running on port 35729 ===> org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer : [2024-09-26 17:41:54.578]
+
+INFO : Starting ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:41:54.582]
+

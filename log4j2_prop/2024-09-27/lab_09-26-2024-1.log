@@ -1,0 +1,28 @@
+INFO : Tomcat started on port(s): 8181 (http) with context path '/teamproject' ===> org.springframework.boot.web.embedded.tomcat.TomcatWebServer : [2024-09-26 17:41:54.586]
+
+INFO : Started TeamprojectApplication in 0.203 seconds (process running for 2848.581) ===> org.springframework.boot.StartupInfoLogger         : [2024-09-26 17:41:54.594]
+
+INFO : Condition evaluation unchanged ===> org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener : [2024-09-26 17:41:54.596]
+
+INFO : Initializing Spring DispatcherServlet 'dispatcherServlet' ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:41:54.955]
+
+INFO : Initializing Servlet 'dispatcherServlet' ===> org.springframework.web.servlet.FrameworkServlet   : [2024-09-26 17:41:54.955]
+
+INFO : Completed initialization in 1 ms ===> org.springframework.web.servlet.FrameworkServlet   : [2024-09-26 17:41:54.956]
+
+INFO : Application shutdown requested. ===> org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin : [2024-09-26 17:53:25.187]
+
+INFO : Pausing ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:53:25.195]
+
+INFO : Stopping service [Tomcat] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:53:25.196]
+
+INFO : Destroying Spring FrameworkServlet 'dispatcherServlet' ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:53:25.196]
+
+INFO : Stopping ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:53:25.197]
+
+INFO : Destroying ProtocolHandler ["http-nio-8181"] ===> org.apache.juli.logging.DirectJDKLog               : [2024-09-26 17:53:25.199]
+
+INFO : Starting TeamprojectApplication using Java 17.0.12 with PID 5016 (D:\std\ys\work\java\teamproject\bin\main started by Admin in D:\std\ys\work\java\teamproject) ===> org.springframework.boot.StartupInfoLogger         : [2024-09-26 17:53:28.199]
+
+INFO : No active profile set, falling back to 1 default profile: "default" ===> org.springframework.boot.SpringApplication         : [2024-09-26 17:53:28.209]
+

@@ -1,0 +1,194 @@
+INFO : Started MemberDAOTest in 4.865 seconds (process running for 6.531) ===> org.springframework.boot.StartupInfoLogger         : [2024-10-04 15:19:21.816]
+
+INFO : 1. Connection.isValid(5) returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.748]
+
+INFO : 1. Connection.getAutoCommit() returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.749]
+
+INFO : 1. PreparedStatement.new PreparedStatement returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.784]
+
+INFO : 1. Connection.prepareStatement(SELECT * FROM MEMBER_TBL
+		 WHERE id = ?) returned net.sf.log4jdbc.sql.jdbcapi.PreparedStatementSpy@783a35d8 ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.785]
+
+INFO : 1. PreparedStatement.setString(1, "abcd1111") returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.789]
+
+INFO : 1. SELECT * FROM MEMBER_TBL WHERE id = 'abcd1111'  {executed in 5 ms} ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.794]
+
+INFO : 1. PreparedStatement.execute() returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.795]
+
+INFO : 1. ResultSet.new ResultSet returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.795]
+
+INFO : 1. PreparedStatement.getResultSet() returned net.sf.log4jdbc.sql.jdbcapi.ResultSetSpy@5da20b76 ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.795]
+
+INFO : 1. ResultSet.getMetaData() returned oracle.jdbc.driver.OracleResultSetMetaData@2b6d9650 ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.796]
+
+INFO : 1. ResultSet.getType() returned 1003 ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.798]
+
+INFO : 1. ResultSet.isClosed() returned false ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.798]
+
+INFO : 1. ResultSet.next() returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.798]
+
+INFO : 1. ResultSet.getString(ID) returned abcd1111 ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.801]
+
+INFO : 1. ResultSet.getString(PW) returned #Abcd1234 ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.801]
+
+INFO : 1. ResultSet.getString(NAME) returned 홍길동 ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.802]
+
+INFO : 1. ResultSet.getString(GENDER) returned m ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.802]
+
+INFO : 1. ResultSet.getString(EMAIL) returned abcd1111@abcd.com ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.802]
+
+INFO : 1. ResultSet.getString(MOBILE) returned 010-1111-3333 ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.802]
+
+INFO : 1. ResultSet.getString(PHONE) returned 02-1111-2222 ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.802]
+
+INFO : 1. ResultSet.getString(ZIP) returned 08290 ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.803]
+
+INFO : 1. ResultSet.getNString(ROAD_ADDRESS) returned 서울특별시 관악구 신림로 340 ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.803]
+
+INFO : 1. ResultSet.getNString(JIBUN_ADDRESS) returned 서울특별시 관악구 신림동 1422-5 르네상스 복합쇼핑몰 ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.803]
+
+INFO : 1. ResultSet.getNString(DETAIL_ADDRESS) returned 6층 MBC 아카데미 ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.804]
+
+INFO : 1. ResultSet.getDate(BIRTHDAY) returned 2000-01-01 ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.804]
+
+INFO : 1. ResultSet.getDate(JOINDATE) returned 2024-10-01 ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.805]
+
+INFO : 1. ResultSet.isClosed() returned false ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.805]
+
+INFO : 
+|---------|----------|-----|-------|------------------|--------------|-------------|------|-------------|--------------|---------------|-----------|-----------|
+|id       |pw        |name |gender |email             |mobile        |phone        |zip   |road_address |jibun_address |detail_address |birthday   |joindate   |
+|---------|----------|-----|-------|------------------|--------------|-------------|------|-------------|--------------|---------------|-----------|-----------|
+|abcd1111 |#Abcd1234 |홍길동  |m      |abcd1111@abcd.com |010-1111-3333 |02-1111-2222 |08290 |[unread]     |[unread]      |[unread]       |2000-01-01 |2024-10-01 |
+|---------|----------|-----|-------|------------------|--------------|-------------|------|-------------|--------------|---------------|-----------|-----------|
+ ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.807]
+
+INFO : 1. ResultSet.next() returned false ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.807]
+
+INFO : 1. ResultSet.close() returned void ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.807]
+
+INFO : 1. Connection.getMetaData() returned oracle.jdbc.driver.OracleDatabaseMetaData@4a29fe2e ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.808]
+
+INFO : 1. PreparedStatement.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.808]
+
+INFO : 1. Connection.clearWarnings() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.810]
+
+INFO : 1. Connection.getAutoCommit() returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.833]
+
+INFO : 1. PreparedStatement.new PreparedStatement returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.834]
+
+INFO : 1. Connection.prepareStatement(SELECT * FROM MEMBER_TBL
+		 WHERE id = ?) returned net.sf.log4jdbc.sql.jdbcapi.PreparedStatementSpy@3a9a12a1 ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.834]
+
+INFO : 1. PreparedStatement.setString(1, "abcd2222") returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.834]
+
+INFO : 1. SELECT * FROM MEMBER_TBL WHERE id = 'abcd2222'  {executed in 1 ms} ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.835]
+
+INFO : 1. PreparedStatement.execute() returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.836]
+
+INFO : 1. ResultSet.new ResultSet returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.836]
+
+INFO : 1. PreparedStatement.getResultSet() returned net.sf.log4jdbc.sql.jdbcapi.ResultSetSpy@21312b5 ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.836]
+
+INFO : 1. ResultSet.getMetaData() returned oracle.jdbc.driver.OracleResultSetMetaData@22a89db ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.836]
+
+INFO : 1. ResultSet.getType() returned 1003 ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.836]
+
+INFO : 1. ResultSet.isClosed() returned false ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.836]
+
+INFO : 1. ResultSet.next() returned true ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.836]
+
+INFO : 1. ResultSet.getString(ID) returned abcd2222 ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.837]
+
+INFO : 1. ResultSet.getString(PW) returned #Abcd1234 ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.837]
+
+INFO : 1. ResultSet.getString(NAME) returned 류관순 ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.837]
+
+INFO : 1. ResultSet.getString(GENDER) returned f ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.837]
+
+INFO : 1. ResultSet.getString(EMAIL) returned abcd2222@efgh.com ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.837]
+
+INFO : 1. ResultSet.getString(MOBILE) returned 010-2222-7777 ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.837]
+
+INFO : 1. ResultSet.getString(PHONE) returned 02-1111-2222 ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.838]
+
+INFO : 1. ResultSet.getString(ZIP) returned 08290 ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.838]
+
+INFO : 1. ResultSet.getNString(ROAD_ADDRESS) returned 서울특별시 관악구 신림로 340 ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.838]
+
+INFO : 1. ResultSet.getNString(JIBUN_ADDRESS) returned 서울특별시 관악구 신림동 1422-5 르네상스 복합쇼핑몰 ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.838]
+
+INFO : 1. ResultSet.getNString(DETAIL_ADDRESS) returned 6층 MBC 컴퓨터 아카데미 ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.838]
+
+INFO : 1. ResultSet.getDate(BIRTHDAY) returned 2000-01-01 ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.838]
+
+INFO : 1. ResultSet.getDate(JOINDATE) returned 2023-08-04 ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.839]
+
+INFO : 1. ResultSet.isClosed() returned false ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.839]
+
+INFO : 
+|---------|----------|-----|-------|------------------|--------------|-------------|------|-------------|--------------|---------------|-----------|-----------|
+|id       |pw        |name |gender |email             |mobile        |phone        |zip   |road_address |jibun_address |detail_address |birthday   |joindate   |
+|---------|----------|-----|-------|------------------|--------------|-------------|------|-------------|--------------|---------------|-----------|-----------|
+|abcd2222 |#Abcd1234 |류관순  |f      |abcd2222@efgh.com |010-2222-7777 |02-1111-2222 |08290 |[unread]     |[unread]      |[unread]       |2000-01-01 |2023-08-04 |
+|---------|----------|-----|-------|------------------|--------------|-------------|------|-------------|--------------|---------------|-----------|-----------|
+ ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.840]
+
+INFO : 1. ResultSet.next() returned false ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.840]
+
+INFO : 1. ResultSet.close() returned void ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.840]
+
+INFO : 1. Connection.getMetaData() returned oracle.jdbc.driver.OracleDatabaseMetaData@4a29fe2e ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.840]
+
+INFO : 1. PreparedStatement.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.840]
+
+INFO : 1. Connection.clearWarnings() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.840]
+
+INFO : Closing JPA EntityManagerFactory for persistence unit 'default' ===> org.springframework.orm.jpa.AbstractEntityManagerFactoryBean : [2024-10-04 15:19:22.854]
+
+INFO : hikariCP - Shutdown initiated... ===> com.zaxxer.hikari.HikariDataSource                 : [2024-10-04 15:19:22.857]
+
+INFO : 1. Connection closed. {executed in 2ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.860]
+
+INFO : 1. Connection.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.861]
+
+INFO : 2. Connection closed. {executed in 1ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.862]
+
+INFO : 2. Connection.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.862]
+
+INFO : 3. Connection closed. {executed in 1ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.863]
+
+INFO : 3. Connection.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.863]
+
+INFO : 4. Connection closed. {executed in 1ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.865]
+
+INFO : 4. Connection.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.865]
+
+INFO : 5. Connection closed. {executed in 1ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.867]
+
+INFO : 5. Connection.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.868]
+
+INFO : 6. Connection closed. {executed in 2ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.870]
+
+INFO : 6. Connection.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.870]
+
+INFO : 7. Connection closed. {executed in 1ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.871]
+
+INFO : 7. Connection.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.872]
+
+INFO : 8. Connection closed. {executed in 1ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.874]
+
+INFO : 8. Connection.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.874]
+
+INFO : 9. Connection closed. {executed in 1ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.875]
+
+INFO : 9. Connection.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.876]
+
+INFO : 10. Connection closed. {executed in 1ms}  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.877]
+
+INFO : 10. Connection.close() returned  ===> net.sf.log4jdbc.log.log4j2.Log4j2SpyLogDelegator   : [2024-10-04 15:19:22.878]
+
+INFO : hikariCP - Shutdown completed. ===> com.zaxxer.hikari.HikariDataSource                 : [2024-10-04 15:19:22.878]
+
+INFO : Restarting due to 1 class path change (1 addition, 0 deletions, 0 modifications) ===> org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener : [2024-10-04 15:20:24.040]
+
