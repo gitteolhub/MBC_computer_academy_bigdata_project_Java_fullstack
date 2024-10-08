@@ -16,7 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @SpringBootTest
 @Slf4j
-public class ApiCaptchImageServiceTest {
+public class ApiCaptchaImageServiceTest {
 
 	@Autowired
 	public ApiCaptchaNkeyService apiCaptchaNkeyService;
@@ -50,7 +50,7 @@ public class ApiCaptchImageServiceTest {
 			
 		} catch (IOException ex) {
 			
-			log.error("[ApiCaptchImageServiceTest][JSON parsing error]");
+			log.error("[ApiCaptchaImageServiceTest][JSON parsing error]");
 			ex.printStackTrace();
 		}
 		
