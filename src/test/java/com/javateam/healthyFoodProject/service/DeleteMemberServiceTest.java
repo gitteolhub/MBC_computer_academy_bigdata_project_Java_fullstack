@@ -17,7 +17,7 @@ class DeleteMemberServiceTest {
 	@Autowired
 	MemberService memberService;
 	
-	// 회원 정보 삭제
+	// 회원 정보 삭제. Rollback 기본값이 true지만 명시적으로 표기.
 	@Transactional
 	@Rollback(true)
 	@Test
