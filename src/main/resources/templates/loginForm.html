@@ -10,29 +10,31 @@
 <title>Login</title>
 
 <!-- 로그인 에러 메시지 -->
-<script th:inline="javascript" th:if="${error == 'true'}"> alert ([[${msg}]]);</script>
+<script th:inline="javascript" th:if="${session.SPRING_SECURITY_LAST_EXCEPTION != null}">
+	alert ([[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]);
+</script>
 </head>
 
 <body>
 	<div id="wrap" layout:fragment="content" class="main_sect_pnl">
-	
+
 		<!--
 		<div th:if="${session.error == 'true'}" class="msg" th:text="${session.msg}"></div>
-		
-		<span th:if="${session.SPRING_SECURITY_LAST_EXCEPTION != null}" 
+
+		<span th:if="${session.SPRING_SECURITY_LAST_EXCEPTION != null}"
 			  th:text="${'메시지1 : ' + session.SPRING_SECURITY_LAST_EXCEPTION.message}">
 		</span><br>
-			
-		<span th:if="${session.msg != null}" th:text="${'메시지2 : ' + session.msg.message}"></span><br>	
+
+		<span th:if="${session.msg != null}" th:text="${'메시지2 : ' + session.msg.message}"></span><br>
 	﻿	 -->
-	
+
 	<div id="login-box" class="border border-light-subtle border-5 rounded-4">
 	<h2>Login Page</h2>
-	<form id="loginForm" 
-			  name="loginForm" 
+	<form id="loginForm"
+			  name="loginForm"
 			  th:action="@{'/loginForm'}"
 			  method="POST">
-			  
+
 			  <table class="table table-borderless">
 					<tr>
 						<td>
@@ -43,7 +45,7 @@
 							<input type="text"
 								   class="form-control ms-0"
 								   id = "userid"
-								   name="username"
+								   name="userid"
 								   required
 								   pattern="[a-zA-Z]{1}\w{7,19}"
 								   title="아이디는 영문자 및 숫자로 시작하여 8~20자 사이로 작성하여 주십시오" />
