@@ -61,7 +61,7 @@ public class SocialUser extends BaseTimeEntity {
 		this.email      = strEmail;
 		this.gender     = strGender;
 		this.birthyear  = strBirthyear;
-		this.role = role;
+		this.role       = role;
 
 		this.authVendor = strAuthVendor;
 	}

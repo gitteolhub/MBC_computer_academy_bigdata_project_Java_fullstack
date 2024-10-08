@@ -73,6 +73,16 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
 
 		log.info("[saveOrUpdate],[oAuthAttributes]:{}",oAuthAttributes);
 
+//		SocialUser socialUser = socialUserDAO.findByEmail(oAuthAttributes.getEmail())
+//				.map(entity -> entity.update(oAuthAttributes.getName(),
+//						oAuthAttributes.getGender(),
+//						oAuthAttributes.getBirthyear(),
+//						oAuthAttributes.getAuthVendor()))
+//				.orElse(oAuthAttributes.toEntity());
+//
+//
+//		}
+
 		SocialUser socialUser;
 
 		if(oAuthAttributes.getAuthVendor().equals("naver")==true) {	// naver의 경우

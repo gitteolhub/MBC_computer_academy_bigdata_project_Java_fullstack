@@ -18,28 +18,28 @@ class SelectMemberByFldTest {
 
 	@Autowired
 	MemberDAO memberDAO;
-	
+
 	@Test
 	void testSelectMemberByFldId() {
 		Map <String, Object> map = memberDAO.selectMemberByFld("ID", "abcd1111");
-		
+
 		assertThat("홍길동", equalTo(map.get("NAME")));
 	}
-	
+
 	@Test
 	void testSelectMembersByFldEmail() {
-		
+
 		Map <String, Object> map = memberDAO.selectMemberByFld("Email", "abcd1111@abcd.com");
-		
+
 		assertThat("홍길동", equalTo(map.get("NAME")));
 	}
 
 	@Test
 	void testSelectMembersByFldPhone() {
-		
+
 		Map <String, Object> map = memberDAO.selectMemberByFld("PHONE", "010-1111-3333");
-		
+
 		assertThat("홍길동", equalTo(map.get("NAME")));
 	}
-	
+
 }

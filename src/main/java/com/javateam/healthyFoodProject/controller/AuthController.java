@@ -41,6 +41,15 @@ public class AuthController {
 		return "redirect:/loginForm";
 	}
 
+
+	// google people API
+	@GetMapping("/peopleAPI")
+	public String peopleAPI() {
+
+		log.info("[peopleAPI]");
+		return "peopleAPI";
+	}
+
 	@GetMapping({"/login/oauth2/authorization/naver",
 				 "/login/oauth2/authorization/google",
 				 "/welcome"})

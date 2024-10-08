@@ -14,7 +14,7 @@ public class DeleteCaptchaImageTest {
 	public DeleteCaptchaImageService deleteCaptchaImageService;
 	
 	@Test
-	void DeleteImagetest() {
+	void deleteImagetest() {
 		deleteCaptchaImageService.deleteCaptchaImage();
 	}
 
