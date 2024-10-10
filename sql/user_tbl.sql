@@ -1,5 +1,5 @@
 CREATE TABLE user_tbl (
-	num varchar2(50)PRIMARY KEY,        id varchar2(20) NOT NULL,    pw varchar2(20)NOT NULL,  name varchar2(100) NOT NULL,       gender varchar2(10) NOT NULL,
+	num varchar2(50)PRIMARY KEY,        id varchar2(20) NOT NULL UNIQUE,    pw varchar2(20)NOT NULL,  name varchar2(100) NOT NULL,       gender varchar2(10) NOT NULL,
 	email varchar2(50) NOT NULL UNIQUE, phone varchar2(13) NOT NULL, birthday DATE,            joindate DATE DEFAULT current_date
 );
 
