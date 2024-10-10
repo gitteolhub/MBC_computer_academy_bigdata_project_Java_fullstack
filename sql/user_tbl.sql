@@ -53,7 +53,7 @@ INSERT INTO user_tbl VALUES(
  WHERE id='abcd1111';
 
 
-/* 암호화를 위해 비밀번호 필드 자료현(자릿수) 변경 */
+/* 암호화를 위해 비밀번호 필드 자료형(자릿수) 변경 */
 ALTER TABLE USER_TBL MODIFY PW VARCHAR2(60);
 
 /* USER_TBL에 ENABLED열 추가, 기본값: 0 */
