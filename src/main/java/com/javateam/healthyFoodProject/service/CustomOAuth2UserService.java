@@ -36,7 +36,7 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
 	private final SocialUserMybatisDAO socialUserMybatisDAO;
 
 
-	@SuppressWarnings({"rawtypes", "unchecked"})
+	@SuppressWarnings({"rawtypes", "unchecked"})  // 경고 무시
 	@Override
 	public OAuth2User loadUser(OAuth2UserRequest oAuth2UserRequest) throws OAuth2AuthenticationException{
 
@@ -45,16 +45,15 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
 		OAuth2UserService delegate   = new DefaultOAuth2UserService();
 		OAuth2User        oAuth2User = delegate.loadUser(oAuth2UserRequest);
 
+		// OAuth 인증 정보 추출
 		String registrationId        = oAuth2UserRequest.getClientRegistration().getRegistrationId();
 		String userNameAttributeName = oAuth2UserRequest.getClientRegistration().getProviderDetails().getUserInfoEndpoint().getUserNameAttributeName();
 
+		// oAuthAttributes 객체 생성
 		OAuthAttributes oAuthAttributes = OAuthAttributes.of(registrationId, userNameAttributeName, oAuth2User.getAttributes());
 
 		log.info("[oAuthAttributes]:{}", oAuthAttributes);
 
-		// naver 생일 : birthyear + "-" + birthday   ex) 2000-01-01
-
-		// 에러남
 		SocialUser socialUser = saveOrUpdate(oAuthAttributes);
 		socialUser.setAuthVendor(oAuthAttributes.getAuthVendor());
 

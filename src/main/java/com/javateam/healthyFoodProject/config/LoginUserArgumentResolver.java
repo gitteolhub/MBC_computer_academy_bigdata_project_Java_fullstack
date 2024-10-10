@@ -16,22 +16,24 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Component
 public class LoginUserArgumentResolver implements HandlerMethodArgumentResolver{
-	
+
 	private final HttpSession httpSession;
-	
+
+	// MethodParameter가 지원되는지 확인하는 메서드
 	@Override
 	public boolean supportsParameter(MethodParameter methodParameter) {
-		
+
 		boolean isLoginUserAnnotation = methodParameter.getParameterAnnotation(SocialLoginUser.class) != null;
 		boolean isUserClass = SessionUser.class.equals(methodParameter.getParameterType());
-		
+
 		return isLoginUserAnnotation && isUserClass;
 	}
-	
+
+	// Parameter를 해석하여 실제 객체를 반환하는 메서드
 	@Override
-	public Object resolveArgument(MethodParameter  methodParameter,  ModelAndViewContainer modelAndViewContainer, 
+	public Object resolveArgument(MethodParameter  methodParameter,  ModelAndViewContainer modelAndViewContainer,
 								  NativeWebRequest nativeWebRequest, WebDataBinderFactory  webDataBinderFactory) throws Exception {
-		
+
 		return httpSession.getAttribute("user");
 	}
 }

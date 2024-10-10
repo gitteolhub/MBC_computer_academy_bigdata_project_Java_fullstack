@@ -25,7 +25,7 @@ public class OAuthAttributes {
 
 	@Builder
 	public OAuthAttributes(Map<String, Object> attribute,    String strNameAttributeKey, String strName, String strEmail, String strGender,
-			String strBirthyear, String strAuthVendor ) {
+										String strBirthyear, String strAuthVendor ) {
 		this.attributes       = attribute;
 		this.nameAttributeKey = strNameAttributeKey;
 		this.name             = strName;
@@ -33,13 +33,15 @@ public class OAuthAttributes {
 		this.gender           = strGender;
 
 		this.birthyear  = strBirthyear;
-		this.authVendor = strAuthVendor;
+		this.authVendor = strAuthVendor;	// 인증 제공자(ex: Naver, Google)
 	}
 
+	//  회원 정보를 생성하는 정적 메서드
 	public static OAuthAttributes of(String strRegistrationId, String strUserNameAttributeName, Map<String, Object> attributes) {
 
 		OAuthAttributes result = null;
 
+		// 인증 제공자에 따른 처리
 		if("naver".equals(strRegistrationId)) {
 
 			log.info("[naver]");
@@ -58,6 +60,7 @@ public class OAuthAttributes {
 		return result;
 	}
 
+	// Google 회원 정보를 처리하는 메서드
 	private static OAuthAttributes ofGoogle (String strUserNameAttributeName, Map<String, Object> attributes) {
 
 		return OAuthAttributes.builder()
@@ -69,10 +72,11 @@ public class OAuthAttributes {
 				  			  .strNameAttributeKey(strUserNameAttributeName)
 				  			  .build();
 	}
-
-	@SuppressWarnings("unchecked")
+	// Naver 회원 정보를 처리하는 메서드
+	@SuppressWarnings("unchecked")	// 경고 무시
 	private static OAuthAttributes ofNaver(String strUserNameAttributeName, Map<String, Object> attributes) {
 
+		// Naver 응답에서 회원 정보 추출
 		Map<String, Object> response = (Map<String, Object>) attributes.get("response");
 
 		// 생년월일 추가 naver 생일 : birthyear + "-" + birthday   ex) 2000-01-01

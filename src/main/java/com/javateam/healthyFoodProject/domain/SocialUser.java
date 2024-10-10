@@ -23,17 +23,17 @@ import lombok.ToString;
 @NoArgsConstructor
 @Entity
 @SequenceGenerator(
-		name = "SOCIAL_USER_SEQ_GENERATOR",
-		sequenceName = "SOCIAL_USER_SEQ",
-		initialValue = 1,
+		name           = "SOCIAL_USER_SEQ_GENERATOR",
+		sequenceName   = "SOCIAL_USER_SEQ",
+		initialValue   = 1,
 		allocationSize = 1)
 @Table(name="SOCIAL_USER")
-public class SocialUser extends BaseTimeEntity {
+public class SocialUser extends BaseTimeEntity {	 			// BaseTimeEntity를 상속받아 생성일 및 수정일 정보 포함
 
 	@Id
 	@Column(nullable = false, precision = 10, scale = 0)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE,
-					generator = "SOCIAL_USER_SEQ_GENERATOR")
+					generator = "SOCIAL_USER_SEQ_GENERATOR")	// 시퀀스를 사용하여 값 자동 생성
 	private BigDecimal id;
 
 	@Column(nullable = false)
@@ -46,7 +46,7 @@ public class SocialUser extends BaseTimeEntity {
 	private String gender;
 
 	@Column(nullable = false)
-	private String birthyear;		// 자료형 변경(String)
+	private String birthyear;
 
 	@Column(name="auth_vendor")
 	private String authVendor;
@@ -55,8 +55,10 @@ public class SocialUser extends BaseTimeEntity {
 	@Column(nullable = false)
 	private SocialRole role;
 
+	// 객체 생성
 	@Builder
-	public SocialUser(String strName, String strEmail, String strGender, String strBirthyear, SocialRole role, String strAuthVendor) {
+	public SocialUser(String strName,      String strEmail, String strGender, String strBirthyear, SocialRole role,
+					  String strAuthVendor) {
 		this.name       = strName;
 		this.email      = strEmail;
 		this.gender     = strGender;
@@ -66,6 +68,7 @@ public class SocialUser extends BaseTimeEntity {
 		this.authVendor = strAuthVendor;
 	}
 
+	// 회원 정보를 업데이트하는 메서드
 	public SocialUser update(String strName, String strGender, String strBirthyear, String strAuthVendor) {
 		this.name       = strName;
 		this.gender     = strGender;
@@ -75,6 +78,7 @@ public class SocialUser extends BaseTimeEntity {
 		return this;
 	}
 
+	// 역할 키를 반환하는 메서드
 	public String getRoleKey() {
 		return this.role.getKey();
 	}

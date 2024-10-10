@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+// session에서 회원 정보를 저장하기 위한 클래스
 @ToString
 @Getter
 @Setter

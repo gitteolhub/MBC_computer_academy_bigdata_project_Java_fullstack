@@ -307,6 +307,7 @@ public class MemberServiceImpl implements MemberService {
 		return memberDAO.selectCountBySearching(strSearchKey, strSearchWord);
 	}
 
+	// social(naver, google) 회원정보 저장
 	@Transactional
 	@Override
 	public boolean insertSocialUser(SocialUser socialUser) {
@@ -324,6 +325,7 @@ public class MemberServiceImpl implements MemberService {
 		return blRetVal;
 	}
 
+	// social (google) 회원정보 수정
 	@Transactional
 	@Override
 	public boolean updateSocialUser(SocialUser socialUser) {
