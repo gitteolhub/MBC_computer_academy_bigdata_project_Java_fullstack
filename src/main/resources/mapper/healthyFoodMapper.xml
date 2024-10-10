@@ -189,8 +189,8 @@
   	<!-- social(naver, google) 회원정보 저장 -->
   	<insert id="insertSocialUser" parameterType="com.javateam.healthyFoodProject.domain.SocialUser">
   	 	INSERT INTO SOCIAL_USER
-  	 					 VALUES (SOCIAL_USER_SEQ.NEXTVAL, #{name}, #{email}, #{gender},    #{birthyear},
-  	 							#{role}, 				  SYSDATE, SYSDATE,  #{authVendor})
+  	 					 VALUES (SOCIAL_USER_SEQ.NEXTVAL, #{name}, #{email}, #{gender}, #{birthyear},
+  	 							#{role}, SYSDATE, SYSDATE,  #{authVendor})
   	</insert>
 
   	<!-- social(google) 회원정보 수정 -->

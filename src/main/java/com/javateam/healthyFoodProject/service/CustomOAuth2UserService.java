@@ -91,14 +91,20 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
 			// 회원정보 부재시(없을때) >> 회원정보 추가
 			if(socialUserDAO.findByEmail(oAuthAttributes.getEmail()).isEmpty() == true) {
 
+				log.info("회원정보 없을때");
+				oAuthAttributes.setGender("없음");
+				oAuthAttributes.setBirthyear("없음");
+
+
 				socialUser = socialUserDAO.findByEmail(oAuthAttributes.getEmail())
 						.map(entity -> entity.update(oAuthAttributes.getName(),
-								"없음",
-								"없음",
+								oAuthAttributes.getGender(),
+								oAuthAttributes.getBirthyear(),
 								oAuthAttributes.getAuthVendor()))
 						.orElse(oAuthAttributes.toEntity());
 			} else {
 				// 회원정보 있을때
+				log.info("회원정보 있을때");
 				socialUser = socialUserDAO.findByEmail(oAuthAttributes.getEmail()).get();
 			}
 

@@ -120,13 +120,13 @@ public class SecurityConfig {
 	}
 
 	// remember-me 관련 정보 DB 저장
-//	private PersistentTokenRepository getJDBCRepository() {
-//
-//		JdbcTokenRepositoryImpl repo = new JdbcTokenRepositoryImpl();
-//		repo.setDataSource(dataSource);
-//
-//		return repo;
-//	}
+	private PersistentTokenRepository getJDBCRepository() {
+
+		JdbcTokenRepositoryImpl repo = new JdbcTokenRepositoryImpl();
+		repo.setDataSource(dataSource);
+
+		return repo;
+	}
 
 	// token 기반 remember-me 서비스
 //	@Bean
