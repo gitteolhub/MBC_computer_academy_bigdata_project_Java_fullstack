@@ -102,6 +102,8 @@ public class SecurityConfig {
 
 		objHttpSecurity.oauth2Login(oauth2LoginCustomizer -> oauth2LoginCustomizer
 							.defaultSuccessUrl("/myPage")
+//							.loginProcessingUrl("/login")	// 추가
+//					   		.loginPage("/login")			// 추가
 							.userInfoEndpoint(userInfoEndpointCustomizer -> userInfoEndpointCustomizer
 		  							.userService(customOAuth2UserService)));
 

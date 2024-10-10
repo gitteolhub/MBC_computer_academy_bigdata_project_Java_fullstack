@@ -3,8 +3,12 @@ package com.javateam.healthyFoodProject.domain;
 import java.io.Serializable;
 
 import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
+@ToString
 @Getter
+@Setter
 public class SessionUser implements Serializable{
 	private static final long serialVersionUID = 1L;
 

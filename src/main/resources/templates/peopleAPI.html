@@ -167,10 +167,10 @@ limitations under the License.
            // },
 
         		(str, person) => {
-                    if (!person.birthdays || person.birthdays.length === 0) {
-                      return `${str}Missing display birthdays\n`;
+                    if (!person.names || person.names.length === 0) {
+                      return `${str}Missing display names\n`;
                     }
-                    return `${str}${person.birthdays[0].displayName}\n`;
+                    return `${str}${person.names[0].displayName}\n`;
                   },
             'Connections:\n');
         document.getElementById('content').innerText = output;

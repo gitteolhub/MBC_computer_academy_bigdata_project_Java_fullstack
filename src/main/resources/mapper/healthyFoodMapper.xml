@@ -192,4 +192,14 @@
   	 					 VALUES (SOCIAL_USER_SEQ.NEXTVAL, #{name}, #{email}, #{gender},    #{birthyear},
   	 							#{role}, 				  SYSDATE, SYSDATE,  #{authVendor})
   	</insert>
+
+  	<!-- social(google) 회원정보 수정 -->
+  	<update id="updateSocialUser" parameterType="com.javateam.healthyFoodProject.domain.SocialUser">
+  	 	UPDATE SOCIAL_USER
+  	 	   SET GENDER        = #{gender},
+  	 	       BIRTHYEAR     = #{birthyear},
+  	 	       MODIFIED_DATE = SYSDATE
+  	 	 WHERE NAME = #{name} AND EMAIL = #{email}
+  	</update>
+
 </mapper>

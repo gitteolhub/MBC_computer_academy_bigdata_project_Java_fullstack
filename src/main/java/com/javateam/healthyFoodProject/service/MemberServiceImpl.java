@@ -323,4 +323,20 @@ public class MemberServiceImpl implements MemberService {
 
 		return blRetVal;
 	}
+
+	@Transactional
+	@Override
+	public boolean updateSocialUser(SocialUser socialUser) {
+		boolean blRetVal = false;
+
+		try {
+			socialUserMybatisDAO.updateSocialUser(socialUser);
+			blRetVal = true;
+		} catch (Exception ex) {
+			log.error("[MemberService][updateSocialUser]: {}", ex);
+			ex.printStackTrace();
+		}
+
+		return blRetVal;
+	}
 }

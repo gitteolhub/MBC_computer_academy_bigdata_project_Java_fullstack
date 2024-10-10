@@ -53,7 +53,6 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
 		log.info("[oAuthAttributes]:{}", oAuthAttributes);
 
 		// naver 생일 : birthyear + "-" + birthday   ex) 2000-01-01
-		// google :
 
 		// 에러남
 		SocialUser socialUser = saveOrUpdate(oAuthAttributes);
@@ -61,6 +60,7 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
 
 		log.info("[CustomOAuth2UserService][loadUser][socialUser]: {}", socialUser);
 
+		// social(구글 & 네이버) 인증 session
 		httpSession.setAttribute("socialUser", new SessionUser(socialUser));
 
 		return new DefaultOAuth2User(
@@ -73,19 +73,10 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
 
 		log.info("[saveOrUpdate],[oAuthAttributes]:{}",oAuthAttributes);
 
-//		SocialUser socialUser = socialUserDAO.findByEmail(oAuthAttributes.getEmail())
-//				.map(entity -> entity.update(oAuthAttributes.getName(),
-//						oAuthAttributes.getGender(),
-//						oAuthAttributes.getBirthyear(),
-//						oAuthAttributes.getAuthVendor()))
-//				.orElse(oAuthAttributes.toEntity());
-//
-//
-//		}
-
 		SocialUser socialUser;
 
-		if(oAuthAttributes.getAuthVendor().equals("naver")==true) {	// naver의 경우
+		// naver의 경우
+		if(oAuthAttributes.getAuthVendor().equals("naver")==true) {
 
 			socialUser = socialUserDAO.findByEmail(oAuthAttributes.getEmail())
 					.map(entity -> entity.update(oAuthAttributes.getName(),
@@ -94,24 +85,33 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
 							oAuthAttributes.getAuthVendor()))
 					.orElse(oAuthAttributes.toEntity());
 
-		} else { // google의 경우
+		} else {
+			// google의 경우
+			log.info("[google Email]: {}",oAuthAttributes.getEmail());
 
-			socialUser = socialUserDAO.findByEmail(oAuthAttributes.getEmail())
-					.map(entity -> entity.update(oAuthAttributes.getName(),
-							"없음",
-							"없음",
-							oAuthAttributes.getAuthVendor()))
-					.orElse(oAuthAttributes.toEntity());
+			// 회원정보 부재시(없을때) >> 회원정보 추가
+			if(socialUserDAO.findByEmail(oAuthAttributes.getEmail()).isEmpty() == true) {
 
-			socialUser.setGender("없음");
-			socialUser.setBirthyear("없음");
+				socialUser = socialUserDAO.findByEmail(oAuthAttributes.getEmail())
+						.map(entity -> entity.update(oAuthAttributes.getName(),
+								"없음",
+								"없음",
+								oAuthAttributes.getAuthVendor()))
+						.orElse(oAuthAttributes.toEntity());
+			} else {
+				// 회원정보 있을때
+				socialUser = socialUserDAO.findByEmail(oAuthAttributes.getEmail()).get();
+			}
+
+			log.info("[socialUser]: {}",socialUser);
+
 		}
 
 		log.info("[saveOrUpdate2]:{}", socialUser);
-		// return socialUserDAO.save(socialUser);
-		try {
 
-			if (socialUser.getId() == null) { 	// 회원정보 존재하지 않은면 생성
+		try {
+			// 회원정보 존재하지 않은면 생성
+			if (socialUser.getId() == null) {
 				socialUserMybatisDAO.insertSocialUser(socialUser);
 				socialUser = socialUserDAO.findByEmail(socialUser.getEmail()).get();
 			}

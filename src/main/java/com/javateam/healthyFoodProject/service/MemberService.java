@@ -57,4 +57,7 @@ public interface MemberService {
 
 	// social(naver, google) 회원정보 저장
 	boolean insertSocialUser(SocialUser socialUser);
+
+	// social (google) 회원정보 수정
+	boolean updateSocialUser(SocialUser socialUser);
 }

@@ -15,4 +15,8 @@ public class SocialUserMybatisDAO {
 	public void insertSocialUser(SocialUser socialUser) {
 		sqlSession.insert("mapper.healthyFoodMapper.insertSocialUser", socialUser);
 	}
+
+	public void updateSocialUser(SocialUser socialUser) {
+		sqlSession.update("mapper.healthyFoodMapper.updateSocialUser", socialUser);
+	}
 }

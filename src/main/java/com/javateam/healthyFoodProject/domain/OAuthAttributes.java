@@ -81,8 +81,8 @@ public class OAuthAttributes {
 		return OAuthAttributes.builder()
 							  .strName((String) response.get("name"))
 							  .strEmail((String) response.get("email"))
-							  .strGender((String) response.get("gender"))   // 성별 추가
-							  .strBirthyear(birthday) // 생년월일 추가
+							  .strGender((String) response.get("gender"))
+							  .strBirthyear(birthday)
 							  .attribute(response)
 							  .strNameAttributeKey(strUserNameAttributeName)
 							  .build();
