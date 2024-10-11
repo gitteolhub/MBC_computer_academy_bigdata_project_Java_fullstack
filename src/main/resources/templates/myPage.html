@@ -7,11 +7,12 @@
 </head>
 <body>
 		<div layout:fragment="content" class = "main_sect_pnl">
-		socialUser: [[${session.socialUser}]] <br>
+		<!-- user: [[${session.user==null}]] <br>
+		socialUser: [[${session.socialUser==null}]] <br> -->
 
 		<div sec:authorize="isAuthenticated()">
 			<b>
-			<span th:if="${session.socialUser == null}" sec:authentication="name"></span>
+			<span th:if="${session.user == null}" sec:authentication="name"></span>
 
 			<!-- OAuth에 따른 별도 조치 -->
 			<!-- Naver -->
@@ -31,19 +32,21 @@
 
 		</div>
 
-		<!--socail (google) 인증시 성별/생일 입력란 생성: 기존값 없음 -->
-		<div  th:if="${session.socialUser.authVendor == 'google' && session.socialUser.gender == '없음' && session.socialUser.birthyear == '없음'}">
-			<form method="post" th:action="@{/member/updateGoogle}">
-				성별 여<input type="radio" name="gender" value="F" required>
-				   남<input type="radio" name="gender" value="M" required>
-				생일 <input type="date" name="birthyear" pattern="\d{4}-\d{2}-\d{2}"  title="2000-01-01 형식으로 생일을 입력하십시오" required>
-				<input type="hidden" name="email" th:value="${session.socialUser.email}">
-				<input type="hidden" name="name" th:value="${session.socialUser.name}">
-				<input type="submit" value="저장">
-			</form>
+		<!--social (google) 인증시 성별/생일 입력란 생성: 기존값 없음 -->
+		<div th:if="${session.socialUser != null}">
+			<div  th:if="${session.socialUser.authVendor == 'google' && session.socialUser.gender == '없음' && session.socialUser.birthyear == '없음'}">
+				<form method="post" th:action="@{/member/updateGoogle}">
+					성별 여<input type="radio" name="gender" value="F" required>
+					   남<input type="radio" name="gender" value="M" required>
+					생일 <input type="date" name="birthyear" pattern="\d{4}-\d{2}-\d{2}"  title="2000-01-01 형식으로 생일을 입력하십시오" required>
+					<input type="hidden" name="email" th:value="${session.socialUser.email}">
+					<input type="hidden" name="name" th:value="${session.socialUser.name}">
+					<input type="submit" value="저장">
+				</form>
+			</div>
 		</div>
 
-		</div>
+	</div>
 
 </body>
 </html>

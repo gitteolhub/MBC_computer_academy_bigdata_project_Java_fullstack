@@ -35,10 +35,24 @@ public class AuthController {
 
 	// 홈 페이지로 redirection (return문 >> 경로)
 	@RequestMapping("/")
+	public String root() {
+
+		log.info("[root]");
+		return "home";
+	}
+
+	@RequestMapping("/home")
 	public String home() {
 
 		log.info("[home]");
-		return "redirect:/loginForm";
+		return "/home";
+	}
+
+	@RequestMapping("/demo")
+	public String demo() {
+
+		log.info("[demo]");
+		return "/home";
 	}
 
 	@GetMapping({"/login/oauth2/authorization/naver",

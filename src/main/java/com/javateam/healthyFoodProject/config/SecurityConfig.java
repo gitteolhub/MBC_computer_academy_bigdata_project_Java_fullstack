@@ -61,24 +61,26 @@ public class SecurityConfig {
 		// custom 인증 제공자 설정
 //		objHttpSecurity.authenticationProvider(customProviderService);
 
-		// HTTP 헤더 설정
-		objHttpSecurity.headers(headers -> headers
-					   		.frameOptions(frameOptions -> frameOptions
-					   				.sameOrigin()
-					   		)
-						);
+		// HTTP 헤더 설정 (10.11)
+//		objHttpSecurity.headers(headers -> headers
+//					   		.frameOptions(frameOptions -> frameOptions
+//					   				.sameOrigin()
+//					   		)
+//						);
 
-//		objHttpSecurity.headers(headersCustomizer -> headersCustomizer
-//					   .frameOptions(Customizer.withDefaults()).disable());
+
+		objHttpSecurity.headers(headersCustomizer -> headersCustomizer
+					   .frameOptions(Customizer.withDefaults()).disable());
 
 		// 요청 권한 설정
 		objHttpSecurity.authorizeHttpRequests((authorizeHttpRequests) ->
-											   authorizeHttpRequests.requestMatchers("/resources/**", "/loginError",      "/join",             "/joinAjax",            "/joinDemo",
-													   								 "/joinAjaxDemo", "/member/joinProc", "/member/joinProc2", "/member/joinProcDemo", "/member/joinProcAjax",
-													   								 "/login/idCheck", "/login",          "/member/hasFld/**", "/captcha/**")
+											   authorizeHttpRequests.requestMatchers("/",                    "/demo",                "/resources/**",  "/loginError",      "/join",
+													   							 	 "/joinAjax",            "/joinDemo",            "/joinAjaxDemo",  "/member/joinProc", "/member/joinProc2",
+													   							 	 "/member/joinProcDemo", "/member/joinProcAjax", "/login/idCheck", "/loginForm",       "/member/hasFld/**",
+													   							 	 "/captcha/**",          "/home")
 											   						.permitAll()
 											   						.requestMatchers("/admin/**").hasAnyAuthority("ROLE_ADMIN")				// ROLE_ADMIN 권한이 필요한 경로
-											   						.requestMatchers("/secured/**", "/myPage", "/member/view","/member/hasFldForUpdate/**", "/member/update",
+											   						.requestMatchers("/secured/**", "/myPage", "/member/view", "/member/hasFldForUpdate/**", "/member/update",
 											   										 "/member/updateProc")
 											   						.hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")	// ROLE_USER, ROLE_ADMIN 권한이 필요한 경로
 											   						.anyRequest().authenticated());

@@ -57,7 +57,7 @@ public class SocialUser extends BaseTimeEntity {	 			// BaseTimeEntity를 상속
 
 	// 객체 생성
 	@Builder
-	public SocialUser(String strName,      String strEmail, String strGender, String strBirthyear, SocialRole role,
+	public SocialUser(String strName, String strEmail, String strGender, String strBirthyear, SocialRole role,
 					  String strAuthVendor) {
 		this.name       = strName;
 		this.email      = strEmail;

@@ -35,9 +35,8 @@ public class CaptchaController {
 	@Autowired
 	public ServletContext servletContext;
 
-//	@GetMapping
+	@GetMapping
 	public String login(Model model) {
-
 		log.info("[CaptchaController].login");
 
 		apiCaptchaImageService = new ApiCaptchaImageService();
@@ -84,7 +83,8 @@ public class CaptchaController {
 		model.addAttribute("captchaImage", filenameOrMsg);
 		model.addAttribute("key", key); // 발급받은 캡차키(key)
 
-		return "loginForm";		// 주소변경
+//		return "loginForm";		// 주소변경
+		return "home";
 	}
 
 }
