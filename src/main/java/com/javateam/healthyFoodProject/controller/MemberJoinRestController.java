@@ -28,7 +28,7 @@ public class MemberJoinRestController {
 	public String joinProc2(@ModelAttribute("memberDTO") MemberVO objMemberVO, Model model) {
 
 		log.info("회원가입처리: {}", objMemberVO);
-		String msg  = "";				// 저장 성공,실패 메시지
+		String msg  = "";					// 저장 성공,실패 메시지
 		String movePath = "";				// 처리 후 이동 경로
 
 		if(memberService.insertMember(objMemberVO) == true) {
