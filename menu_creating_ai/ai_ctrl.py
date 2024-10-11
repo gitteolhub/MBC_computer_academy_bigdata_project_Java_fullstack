@@ -9,14 +9,8 @@ file_path = 'Resources/Saved_files/weights.txt'
 #입력 노드 갯수
 input_count = 1
 
-#은닉 레이어 갯수
-hidden_layer_count = 3
-
 #출력 노드 갯수
 output_count = 1
-
-#은닉 레이어당 가지는 노드 갯수
-hidden_count = 3
 
 #오차에 대한 가중치 계산 반영률
 learning_rate = 0.5
@@ -49,7 +43,7 @@ def sigmoid_function(x):
     return 1 / (1 + np.exp(-x))
 
 #변수들의 초기화 함수
-def sign_weight_value(in_count, hid_count, out_count):
+def sign_weight_value(in_count, hid_count, out_count, hidden_count):
     _weight = []
 
     #입력 레이어와 은닉 레이어 사이에 가중치 변수들의 초기화
@@ -137,7 +131,7 @@ def calculate_back_term2(output):
 
     return term2
 
-def calculate_back_term3(weights, out_h):
+def calculate_back_term3(weights, out_h, hidden_layer_count, hidden_count):
 
     out_h_index = 0
     for wi in range(len(weights) - 1, 0, -1):
@@ -163,7 +157,7 @@ def calculate_back_term3(weights, out_h):
         return out_h[out_h_index]
 
 #역전파 함수
-def calculate_backward(_datas, weights):
+def calculate_backward(_datas, weights, hidden_layer_count, hidden_count):
     #_datas = [input_node, hidden_nodes_outputs[0...length of hidden layers], output_result, output_answer]
     output_answer = _datas[len(_datas) - 1]
     output_result = _datas[len(_datas) - 2]
@@ -197,7 +191,7 @@ def calculate_backward(_datas, weights):
 
         weight_plus_t1 = calculate_back_term1(output_answer, output_result[wi % len(output_result)])
         weight_plus_t2 = calculate_back_term2(output_answer)
-        weight_plus_t3 = calculate_back_term3(_weights, out_h[which_out_h])
+        weight_plus_t3 = calculate_back_term3(_weights, out_h[which_out_h], hidden_layer_count, hidden_count)
 
 
         weight_plus = weight_plus_t1 * weight_plus_t2 * weight_plus_t3
@@ -254,7 +248,7 @@ def save_weights_file(weights, _bios):
 def read_weights_file():
     f = open(file_path, 'r')
     read_str = ''
-    result = []
+
     while True:
         line = f.readline()
         if not line: break
@@ -351,7 +345,7 @@ def str_to_list(s, to_id, _df):
         return result0
 
 #사용자의 취향 데이터를 학습하는 함수
-def train(train_count, input_data, _hidden_layer_count, output_data, _df, saved_data):
+def train(train_count, input_data, _hidden_layer_count, hidden_count, output_data, _df, saved_data):
     _input_count = len(input_data[0])
     _output_count = len(output_data)
     if len(hidden_layer) <= 0:
@@ -363,7 +357,7 @@ def train(train_count, input_data, _hidden_layer_count, output_data, _df, saved_
         _weight = str_to_list(str(saved_data[0]), False, _df)
         _bios = str_to_list(str(saved_data[1]), False, _df)
     else:
-        _weight = sign_weight_value(_input_count, _hidden_layer_count, _output_count)
+        _weight = sign_weight_value(_input_count, _hidden_layer_count, _output_count, hidden_count)
         _bios = sign_bios_value(_hidden_layer_count)
 
     for t in range(train_count):
@@ -379,12 +373,12 @@ def train(train_count, input_data, _hidden_layer_count, output_data, _df, saved_
             _datas.append(x)
         _datas.append(straight_result)
         _datas.append(output_data[output_index])
-        _weight = calculate_backward(_datas, _weight)
+        _weight = calculate_backward(_datas, _weight, _hidden_layer_count, hidden_count)
 
         save_weights_file(_weight, _bios)
 
 #일정 갯수의 식단을 받아와 학습된 인공지능으로 판단하는 함수
-def detect_favorite_menu(_hidden_layer_count, input_data, like_percent, _df, saved_data):
+def detect_favorite_menu(_hidden_layer_count, hidden_count, input_data, like_percent, _df, saved_data):
     menu_result = False
     debug_process = False
 
@@ -401,12 +395,12 @@ def detect_favorite_menu(_hidden_layer_count, input_data, like_percent, _df, sav
         _weight = str_to_list(str(saved_data[0]), False, _df)
         _bios = str_to_list(str(saved_data[1]), False, _df)
     else:
-        _weight = sign_weight_value(_input_count, hidden_layer_count, 1)
-        _bios = sign_bios_value(hidden_layer_count)
+        _weight = sign_weight_value(_input_count, _hidden_layer_count, 1, hidden_count)
+        _bios = sign_bios_value(_hidden_layer_count)
 
 
 
-    result = calculate_straight(_weight, _bios, input_data, hidden_layer_count)
+    result = calculate_straight(_weight, _bios, input_data, _hidden_layer_count)
     if result[0] > like_percent:
         menu_result = True
 
