@@ -25,14 +25,14 @@ class UpdateMemberServiceTest {
 	@Test
 	void testUpdatePw() {
 		memberVO = MemberVO.builder()
-								.id("abcd1111")
+								.id("abcd2222")
 								.pw("#abcd1234")
 						   .build();
 		
 		assertTrue(memberService.updateMember(memberVO));
 	}
 
-	// 존재하지 않는 회원정보를 수정하려고 할 때
+	// 존재하지 않는 회원정보를 수정하려고 할 때 제대로 롤백되는 지 테스트
 	@Transactional
 	@Rollback(true)
 	@Test

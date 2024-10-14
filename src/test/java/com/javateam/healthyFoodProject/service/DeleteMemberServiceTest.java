@@ -17,12 +17,12 @@ class DeleteMemberServiceTest {
 	@Autowired
 	MemberService memberService;
 	
-	// 회원 정보 삭제. Rollback 기본값이 true지만 명시적으로 표기.
+	// 회원 정보 삭제
 	@Transactional
-	@Rollback(true)
+	@Rollback(false)
 	@Test
 	void testDeleteMember() {
-		assertTrue(memberService.deleteMember("abcd12234"));
+		assertTrue(memberService.deleteMember("abcd2222"));
 	
 	}
 	
