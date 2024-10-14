@@ -77,7 +77,7 @@ public class SecurityConfig {
 											   authorizeHttpRequests.requestMatchers("/",                    "/demo",                "/resources/**",  "/loginError",      "/join",
 													   							 	 "/joinAjax",            "/joinDemo",            "/joinAjaxDemo",  "/member/joinProc", "/member/joinProc2",
 													   							 	 "/member/joinProcDemo", "/member/joinProcAjax", "/login/idCheck", "/loginForm",       "/member/hasFld/**",
-													   							 	 "/captcha/**",          "/home")
+													   							 	 "/home")
 											   						.permitAll()
 											   						.requestMatchers("/admin/**").hasAnyAuthority("ROLE_ADMIN")				// ROLE_ADMIN 권한이 필요한 경로
 											   						.requestMatchers("/secured/**", "/myPage", "/member/view", "/member/hasFldForUpdate/**", "/member/update",
@@ -91,7 +91,7 @@ public class SecurityConfig {
 		// 로그인/ 로그아웃(인증) 처리
 		objHttpSecurity.formLogin(formLogin -> formLogin
 					   		.loginProcessingUrl("/loginForm")
-					   		.loginPage("/loginForm")			// 로그인 이후 주소
+					   		.loginPage("/loginForm")		// 로그인 이후 주소
 					   		.usernameParameter("userid")	// 아이디
 					   		.passwordParameter("password")	// 비밀번호
 					   		.defaultSuccessUrl("/myPage")	// 로그인 성공시 이동 주소

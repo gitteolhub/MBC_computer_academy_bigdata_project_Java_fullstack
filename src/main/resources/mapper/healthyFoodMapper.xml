@@ -3,9 +3,7 @@
 <mapper namespace="mapper.healthyFoodMapper">
 
 	<!-- ID로 회원 정보를 조회하는 쿼리 -->
-	<select id = "selectMemberById"
-			parameterType = "String"
-			resultType = "com.javateam.healthyFoodProject.domain.MemberVO">
+	<select id = "selectMemberById" parameterType = "String" resultType = "com.javateam.healthyFoodProject.domain.MemberVO">
 		SELECT *
 		  FROM USER_TBL
  		 WHERE ID = #{id}
