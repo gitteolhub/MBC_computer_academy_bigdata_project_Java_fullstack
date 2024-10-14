@@ -26,7 +26,7 @@ class UpdateMemberTest {
 	
 	@BeforeEach
 	void setUp() throws Exception {
-		memberVO = memberVO.builder()
+		memberVO = MemberVO.builder()
 								.id("abcd1111")
 								.pw("#Abcd1234")
 								.email("abcd1111@abcd.com")	
