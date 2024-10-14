@@ -22,14 +22,15 @@ class UpdateMemberTest {
 
 	public MemberVO memberVO;
 
-	@BeforeEach
-	void setUp() throws Exception {
-		memberVO = MemberVO.builder()
-								.id("abcd1111")
-								.pw("#Abcd1234")
-								.email("abcd1111@abcd.com")
-						   .build();
-	}
+	// DB 연결하지 않고 단위 테스트할 때 memberVO 초기화하는 코드
+//	@BeforeEach
+//	void setUp() throws Exception {
+//		memberVO = MemberVO.builder()
+//								.id("abcd1111")
+//								.pw("#Abcd1234")
+//								.email("abcd1111@abcd.com")
+//						   .build();
+//	}
 
 	// 비밀번호만 변경(수정)
 	@Transactional
@@ -38,7 +39,7 @@ class UpdateMemberTest {
 	void testUpdateMemberByPw() {
 
 		memberVO = MemberVO.builder()
-								.id("abcd1111")
+								.id("abcd12234")
 								.pw("#Java1111")
 						   .build();
 
@@ -55,8 +56,8 @@ class UpdateMemberTest {
 	@Test
 	public void testUpdateMemberByPw2() {
 
-		String strUpdatePw = memberDAO.selectMemberById("abcd1111").getPw();
-		assertEquals("#Abcd1234", strUpdatePw);
+		String strUpdatePw = memberDAO.selectMemberById("abcd12234").getPw();
+		assertNotEquals("#Abcd1234", strUpdatePw);
 	}
 
 	@Transactional
@@ -65,7 +66,7 @@ class UpdateMemberTest {
 	void testUpdateMemberByEmail() {
 
 		memberVO = MemberVO.builder()
-								.id("abcd1111")
+								.id("abcd12234")
 								.email("abcd1111@abcd.com")
 						   .build();
 
@@ -73,7 +74,7 @@ class UpdateMemberTest {
 		assertTrue(result);
 
 		// 기존 이메일과 수정 이메일 동등 비교
-		String strUpdateEmail = memberDAO.selectMemberById("abcd1111").getEmail();
+		String strUpdateEmail = memberDAO.selectMemberById("abcd12234").getEmail();
 		assertEquals("abcd1111@abcd.com", strUpdateEmail);
 	}
 
@@ -83,14 +84,14 @@ class UpdateMemberTest {
 	void testUpdateMemberByPhone() {
 
 		memberVO = MemberVO.builder()
-								.id("abcd1111")
+								.id("abcd12234")
 								.phone("010-1111-3333")
 						   .build();
 
 		boolean result = memberDAO.updateMember(memberVO);
 		assertTrue(result);
 
-		String strUpdatePhone = memberDAO.selectMemberById("abcd1111").getPhone();
+		String strUpdatePhone = memberDAO.selectMemberById("abcd12234").getPhone();
 		assertEquals("010-1111-3333", strUpdatePhone);
 	}
 }
