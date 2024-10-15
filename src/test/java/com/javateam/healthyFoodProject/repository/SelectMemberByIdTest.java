@@ -21,10 +21,10 @@ class SelectMemberByIdTest {
 	// 아이디와 회원 번호가 같은지 테스트
 	@Test
 	void testSelectMemberByIdNum() {
-		String strTestId="cd1111";
+		String strTestId="abcd2222";
 		
 		MemberVO objMemberVO = memberDAO.selectMemberById(strTestId);
-		assertEquals("1", objMemberVO.getNum());
+		assertEquals("21", objMemberVO.getNum());  // ""안에 조회할 회원번호 입력
 	}
 
 	// 아이디와 회원명이 같은지 테스트
