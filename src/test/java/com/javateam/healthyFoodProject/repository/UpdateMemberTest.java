@@ -53,6 +53,7 @@ class UpdateMemberTest {
 	}
 
 	@Transactional
+	@Rollback(true)
 	@Test
 	public void testUpdateMemberByPw2() {
 

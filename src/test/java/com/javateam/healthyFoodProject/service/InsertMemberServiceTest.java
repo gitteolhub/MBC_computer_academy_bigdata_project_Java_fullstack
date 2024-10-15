@@ -21,22 +21,22 @@ class InsertMemberServiceTest {
 	@Autowired
 	public MemberService memberService;
 	public MemberVO memberVO;
-	
+
 	@BeforeEach
 	public void setUp() {
-	
+
 	memberVO = MemberVO.builder()
-					   .id("abcd2222")
-					   .pw("#Abcd2345")
-					   .name("남우민")
+					   .id("abcd4444")
+					   .pw("#Abcd2349")
+					   .name("우빈")
 					   .gender("남자")
-						  
-					   .email("abcd3333@abcd.com")
-					   .phone("010-2222-1234")
-					   .birthday(Date.valueOf("2000-02-05"))
+
+					   .email("abcd4444@abcd.com")
+					   .phone("010-4444-1234")
+					   .birthday(Date.valueOf("2000-02-25"))
 					   .build();
 	}
-	
+
 	@Test
 	void testInsertMember() {
 		assertTrue(memberService.insertMember(memberVO));

@@ -22,10 +22,11 @@ public class OAuthAttributes {
 
 	private String birthyear;
 	private String authVendor;
+	private String foodmenu;
 
 	@Builder
 	public OAuthAttributes(Map<String, Object> attribute,    String strNameAttributeKey, String strName, String strEmail, String strGender,
-										String strBirthyear, String strAuthVendor ) {
+										String strBirthyear, String strAuthVendor) {
 		this.attributes       = attribute;
 		this.nameAttributeKey = strNameAttributeKey;
 		this.name             = strName;

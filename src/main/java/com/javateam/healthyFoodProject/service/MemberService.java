@@ -3,6 +3,7 @@
 import java.util.List;
 import java.util.Map;
 
+import com.javateam.healthyFoodProject.domain.MemberJsonVO;
 import com.javateam.healthyFoodProject.domain.MemberVO;
 import com.javateam.healthyFoodProject.domain.Role;
 import com.javateam.healthyFoodProject.domain.SocialUser;
@@ -45,6 +46,9 @@ public interface MemberService {
 	// 전체 회원정보 조회
 	List<MemberVO> selectAllMembers();
 
+	// 전체 회원정보 조회(json 작성용)
+	List<MemberJsonVO> selectAllMembersJson();
+
 	// 회원정보 검색(페어링)
 	List<Map<String, Object>> selectMembersBySearchingAndPaging(String strSearchKey,String strSearchWord, int intPage, int intLimit, String strIsLikeOrEquals,
 																String strOrdering );
@@ -55,9 +59,16 @@ public interface MemberService {
 	// 검색된 총 회원정보 수 조회
 	int selectCountBySearching(String strSearchKey, String strSearchWord);
 
+
 	// social(naver, google) 회원정보 저장
 	boolean insertSocialUser(SocialUser socialUser);
 
 	// social (google) 회원정보 수정
 	boolean updateSocialUser(SocialUser socialUser);
+
+	// social (google) 회원정보 삭제(탈퇴)
+	boolean deletSocialUser(SocialUser socialUser);
+
+	// social(naver, google) 전체 회원정보 조회(ex, json 정보 생성용)
+	List<SocialUser> selectAllSocialUsers();
 }

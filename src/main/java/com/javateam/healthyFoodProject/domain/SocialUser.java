@@ -19,7 +19,6 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
 @Entity
 @SequenceGenerator(
@@ -51,6 +50,9 @@ public class SocialUser extends BaseTimeEntity {	 			// BaseTimeEntity를 상속
 	@Column(name="auth_vendor")
 	private String authVendor;
 
+	@Column
+	private String foodmenu;
+
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
 	private SocialRole role;
@@ -69,11 +71,12 @@ public class SocialUser extends BaseTimeEntity {	 			// BaseTimeEntity를 상속
 	}
 
 	// 회원 정보를 업데이트하는 메서드
-	public SocialUser update(String strName, String strGender, String strBirthyear, String strAuthVendor) {
+	public SocialUser update(String strName, String strGender, String strBirthyear, String strAuthVendor, String strFoodmenu) {
 		this.name       = strName;
 		this.gender     = strGender;
 		this.birthyear  = strBirthyear;
 		this.authVendor = strAuthVendor;
+		this.foodmenu = strFoodmenu;
 
 		return this;
 	}
@@ -83,5 +86,15 @@ public class SocialUser extends BaseTimeEntity {	 			// BaseTimeEntity를 상속
 		return this.role.getKey();
 	}
 
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("SocialUser [id=").append(id).append(", name=").append(name).append(", email=").append(email)
+				.append(", gender=").append(gender).append(", birthyear=").append(birthyear).append(", authVendor=")
+				.append(authVendor).append(", foodmenu=").append(foodmenu).append(", role=").append(role)
+				.append(", getCreatedDate()=").append(getCreatedDate()).append(", getModifiedDate()=")
+				.append(getModifiedDate()).append("]");
+		return builder.toString();
+	}
 
 }

@@ -1,6 +1,7 @@
 package com.javateam.healthyFoodProject.service;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -13,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.TransactionCallback;
 import org.springframework.transaction.support.TransactionTemplate;
 
+import com.javateam.healthyFoodProject.domain.MemberJsonVO;
 import com.javateam.healthyFoodProject.domain.MemberVO;
 import com.javateam.healthyFoodProject.domain.Role;
 import com.javateam.healthyFoodProject.domain.SocialUser;
@@ -45,7 +47,7 @@ public class MemberServiceImpl implements MemberService {
 	public BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	// 아이디로 회원 정보를 조회
-	@Transactional (readOnly = false)
+	@Transactional (readOnly = true)
 	@Override
 	public MemberVO selectMemberById(String strId) {
 
@@ -168,13 +170,13 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	// 회원정보 중복 점검(회원 가입)
-		@Transactional(readOnly = true)
-		@Override
-		public boolean hasMemberByFld(String strField, String strValue) {
+	@Transactional(readOnly = true)
+	@Override
+	public boolean hasMemberByFld(String strField, String strValue) {
 
-			return memberDAO.hasMemberByFld(strField, strValue);
+		return memberDAO.hasMemberByFld(strField, strValue);
 
-		}
+	}
 
 	// 회원정보 중복 점검(수정)
 	@Transactional(readOnly = true)
@@ -339,6 +341,51 @@ public class MemberServiceImpl implements MemberService {
 			ex.printStackTrace();
 		}
 
+		return blRetVal;
+	}
+
+	@Transactional(readOnly = true)
+	@Override
+	public List<MemberJsonVO> selectAllMembersJson() {
+		List<MemberJsonVO> members = new ArrayList<>();
+
+		// 자체 회원정보 (비밀번호 제외)
+		members.addAll(this.selectAllMembers().stream().map(x -> MemberJsonVO.toEntity(x)).toList());
+
+		log.info("자체 회원 현황");
+		members.forEach(x -> { log.info(x + ""); });
+
+		// social 회원 정보
+		members.addAll(this.selectAllSocialUsers().stream().map(x -> MemberJsonVO.toEntity(x)).toList());
+
+		// 자체 회원 + social 회원
+		log.info("자체 + social 회원 현황");
+		members.forEach(x -> { log.info(x + ""); });
+
+		return members;
+	}
+
+	@Transactional(readOnly = true)
+	@Override
+	public List<SocialUser> selectAllSocialUsers() {
+
+		return socialUserMybatisDAO.selectAllSocialUsers();
+	}
+
+	@Transactional
+	@Override
+	public boolean deletSocialUser(SocialUser socialUser) {
+
+		boolean blRetVal = false;
+
+		try {
+			socialUserMybatisDAO.deletSocialUser(socialUser);
+			blRetVal = true;
+
+		} catch (Exception ex) {
+			log.error("[MemberService][deletSocialUser] : {}", ex);
+			ex.printStackTrace();
+		}
 		return blRetVal;
 	}
 }

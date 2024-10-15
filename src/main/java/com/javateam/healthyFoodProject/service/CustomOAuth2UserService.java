@@ -81,7 +81,8 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
 					.map(entity -> entity.update(oAuthAttributes.getName(),
 							oAuthAttributes.getGender(),
 							oAuthAttributes.getBirthyear(),
-							oAuthAttributes.getAuthVendor()))
+							oAuthAttributes.getAuthVendor(),
+							oAuthAttributes.getFoodmenu()))
 					.orElse(oAuthAttributes.toEntity());
 
 		} else {
@@ -94,13 +95,15 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
 				log.info("회원정보 없을때");
 				oAuthAttributes.setGender("없음");
 				oAuthAttributes.setBirthyear("없음");
+				oAuthAttributes.setFoodmenu("없음");
 
 
 				socialUser = socialUserDAO.findByEmail(oAuthAttributes.getEmail())
 						.map(entity -> entity.update(oAuthAttributes.getName(),
 								oAuthAttributes.getGender(),
 								oAuthAttributes.getBirthyear(),
-								oAuthAttributes.getAuthVendor()))
+								oAuthAttributes.getAuthVendor(),
+								oAuthAttributes.getFoodmenu()))
 						.orElse(oAuthAttributes.toEntity());
 			} else {
 				// 회원정보 있을때
@@ -117,6 +120,9 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
 		try {
 			// 회원정보 존재하지 않은면 생성
 			if (socialUser.getId() == null) {
+
+				log.info("회원정보 존재하지 않을때");
+				socialUser.setFoodmenu("없음");   // foodmenu 초기값 설정(null 방지)
 				socialUserMybatisDAO.insertSocialUser(socialUser);
 				socialUser = socialUserDAO.findByEmail(socialUser.getEmail()).get();
 			}

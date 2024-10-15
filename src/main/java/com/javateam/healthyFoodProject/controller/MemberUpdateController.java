@@ -1,5 +1,10 @@
 package com.javateam.healthyFoodProject.controller;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -17,6 +22,8 @@ import com.javateam.healthyFoodProject.domain.MemberVO;
 import com.javateam.healthyFoodProject.domain.SessionUser;
 import com.javateam.healthyFoodProject.domain.SocialUser;
 import com.javateam.healthyFoodProject.service.MemberService;
+import com.nimbusds.jose.shaded.gson.Gson;
+import com.nimbusds.jose.shaded.gson.GsonBuilder;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
@@ -95,6 +102,7 @@ public class MemberUpdateController {
 		String msg      = "";
 		String movePath = "";
 
+		socialUser.setAuthVendor("google"); // 추가
 		boolean blRetVal = memberService.updateSocialUser(socialUser);
 
 		if(blRetVal == true) {
@@ -121,4 +129,6 @@ public class MemberUpdateController {
 
 		return movePath;
 	}
+
+
 }

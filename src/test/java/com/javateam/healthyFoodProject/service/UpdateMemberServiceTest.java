@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,17 +19,23 @@ class UpdateMemberServiceTest {
 
 	@Autowired
 	MemberService memberService;
-	
+
 	MemberVO memberVO;
-	
+
 	// 비밀번호만 변경(수정)
 	@Test
 	void testUpdatePw() {
+
+		log.info("[testUpdatePw]");
+
+		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+		String pw = bCryptPasswordEncoder.encode("#Abcd1234");
+
 		memberVO = MemberVO.builder()
 								.id("abcd2222")
-								.pw("#abcd1234")
+								.pw(pw)
 						   .build();
-		
+
 		assertTrue(memberService.updateMember(memberVO));
 	}
 
@@ -37,12 +44,15 @@ class UpdateMemberServiceTest {
 	@Rollback(true)
 	@Test
 	void testUpdateMemberAbsent() {
-		
+
+		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+		String pw = bCryptPasswordEncoder.encode("#Abcd1234");
+
 		memberVO =  MemberVO.builder()
 								.id("abcabcd1111")
-				   		        .pw("#Java3333")
+				   		        .pw(pw)
 				   		    .build();
-		
+
 	assertFalse(memberService.updateMember(memberVO));
 	}
 }

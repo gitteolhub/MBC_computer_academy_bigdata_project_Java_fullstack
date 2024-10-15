@@ -188,7 +188,7 @@
   	<insert id="insertSocialUser" parameterType="com.javateam.healthyFoodProject.domain.SocialUser">
   	 	INSERT INTO SOCIAL_USER
   	 					 VALUES (SOCIAL_USER_SEQ.NEXTVAL, #{name}, #{email}, #{gender}, #{birthyear},
-  	 							#{role}, SYSDATE, SYSDATE,  #{authVendor})
+  	 							#{role}, SYSDATE, SYSDATE,  #{authVendor}, #{foodmenu})
   	</insert>
 
   	<!-- social(google) 회원정보 수정 -->
@@ -197,7 +197,27 @@
   	 	   SET GENDER        = #{gender},
   	 	       BIRTHYEAR     = #{birthyear},
   	 	       MODIFIED_DATE = SYSDATE
-  	 	 WHERE NAME = #{name} AND EMAIL = #{email}
+  	 	 WHERE NAME = #{name} AND EMAIL = #{email} AND AUTH_VENDOR = #{authVendor}
   	</update>
 
+	<!-- social(naver, google)  전체 회원 조회 -->
+	<select id="selectAllSocialUsers" resultType="com.javateam.healthyFoodProject.domain.SocialUser">
+		SELECT ID, NAME, EMAIL, GENDER, BIRTHYEAR,
+			   AUTH_VENDOR AS "authVendor",
+			   CREATED_DATE AS "createdDate",
+			   MODIFIED_DATE AS "modifiedDate",
+			   ROLE
+		  FROM SOCIAL_USER
+	</select>
+
+	<!-- social(naver, google) 회원 삭제 -->
+	<delete id="deletSocialUser" parameterType="com.javateam.healthyFoodProject.domain.SocialUser">
+		DELETE SOCIAL_USER
+		<if test = "id != null">
+			WHERE ID = #{id}
+		</if>
+		<if test = "email != null and authVendor != null">
+			WHERE EMAIL = #{email} AND AUTH_VENDOR = #{authVendor}
+		</if>
+	</delete>
 </mapper>
