@@ -72,7 +72,7 @@ def get_data():
 def food_naming(n):
     under_keyword_list = ['오이', '감자', '미역줄기', '표고버섯', '건표고버섯', '느타리버섯', '새송이버섯', '가지', '씨', '김치', '깻잎', '초밥', '아이스티', '국밥', '숙주', '파래', '부추', '식초', '채소', '취나물', '콩나물']
     space_keyword_list = ['제거', '포함', '식혜', '스무디']
-    order_keyword_list = ['얼린것', '삶은것', '자몽차', '레몬차']
+    order_keyword_list = ['얼린것', '삶은것', '자몽차', '레몬차', '/', '씨 ']
     delete_keyword_list = ['쌀', '양념장', '생것', '숙주_채소', '부추_채소']
 
     name = n
@@ -111,12 +111,22 @@ def food_naming(n):
 
     contains_keys = ''
     for keys in order_keyword_list:
-        if keys in sp:
-            contains_keys = keys
+        if keys in name:
+            for x in sp:
+                if keys.replace(' ', '') in x:
+                    contains_keys = keys.replace(' ', '')
 
     if len(contains_keys) > 0:
         if len(sp) > 2:
+            if contains_keys == '/':
+                for x in sp:
+                    if '/' in x:
+                        sp.remove(x)
+                        break
+
             re_name = str(sp[0]) + '_' + str(sp[1])
+            if contains_keys == '/':
+                re_name = re_name.replace('_', '/')
             for x in range(2, len(sp)):
                 if not str(sp[x]) in re_name:
                     re_name += '_' + str(sp[x])
@@ -190,8 +200,8 @@ def food_naming(n):
                 re_name += '(' + str(name.split(' ')[0].split('(')[1])
             return re_name
 
-# nm = '숙주나물_숙주_채소'
-# print('test : ' + str(food_naming(nm)))
+nm = '참외_씨 포함_생것'
+print('test : ' + str(food_naming(nm)))
 
 #실수를 다시 식품명으로 변환하는 함수
 def id_to_food(num, _df):
