@@ -200,8 +200,8 @@ def food_naming(n):
                 re_name += '(' + str(name.split(' ')[0].split('(')[1])
             return re_name
 
-nm = '참외_씨 포함_생것'
-print('test : ' + str(food_naming(nm)))
+# nm = '참외_씨 포함_생것'
+# print('test : ' + str(food_naming(nm)))
 
 #실수를 다시 식품명으로 변환하는 함수
 def id_to_food(num, _df):
