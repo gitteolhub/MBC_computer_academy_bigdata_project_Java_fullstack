@@ -31,6 +31,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequest, OAuth2User> {
 
+	@Autowired
+	JsonService jsonService;
+
 	private final SocialUserDAO socialUserDAO;
 	private final HttpSession   httpSession;
 	private final SocialUserMybatisDAO socialUserMybatisDAO;
@@ -122,7 +125,12 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
 			if (socialUser.getId() == null) {
 
 				log.info("회원정보 존재하지 않을때");
-				socialUser.setFoodmenu("없음");   // foodmenu 초기값 설정(null 방지)
+
+				// 회원가입시 초기 식단 추가
+				String foodMenuFilePath = "";
+				// json 경로 추가해야함
+				String foodMenu = jsonService.readFoodMenuJson(foodMenuFilePath);
+				socialUser.setFoodmenu(foodMenu);   // foodmenu 초기값 설정(null 방지)
 				socialUserMybatisDAO.insertSocialUser(socialUser);
 				socialUser = socialUserDAO.findByEmail(socialUser.getEmail()).get();
 			}

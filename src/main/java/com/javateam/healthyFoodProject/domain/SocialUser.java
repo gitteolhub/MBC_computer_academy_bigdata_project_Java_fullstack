@@ -76,7 +76,7 @@ public class SocialUser extends BaseTimeEntity {	 			// BaseTimeEntity를 상속
 		this.gender     = strGender;
 		this.birthyear  = strBirthyear;
 		this.authVendor = strAuthVendor;
-		this.foodmenu = strFoodmenu;
+		this.foodmenu   = strFoodmenu;
 
 		return this;
 	}
@@ -89,11 +89,10 @@ public class SocialUser extends BaseTimeEntity {	 			// BaseTimeEntity를 상속
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("SocialUser [id=").append(id).append(", name=").append(name).append(", email=").append(email)
-				.append(", gender=").append(gender).append(", birthyear=").append(birthyear).append(", authVendor=")
-				.append(authVendor).append(", foodmenu=").append(foodmenu).append(", role=").append(role)
-				.append(", getCreatedDate()=").append(getCreatedDate()).append(", getModifiedDate()=")
-				.append(getModifiedDate()).append("]");
+		builder.append("SocialUser [id=").append(id)  .append(", name=").append(name)          .append(", email=").append(email)
+			   .append(", gender=").append(gender)    .append(", birthyear=").append(birthyear).append(", authVendor=").append(authVendor)
+			   .append(", foodmenu=").append(foodmenu).append(", role=").append(role)          .append(", getCreatedDate()=").append(getCreatedDate())
+			   .append(", getModifiedDate()=").append(getModifiedDate()).append("]");
 		return builder.toString();
 	}
 

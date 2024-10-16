@@ -10,10 +10,10 @@ import lombok.extern.slf4j.Slf4j;
 
 @SpringBootTest
 @Slf4j
-class MemberJsonServiceTest {
+class JsonServiceTest {
 
 	@Autowired
-	MemberJsonService memberJsonService;
+	JsonService jsonService;
 
 	@Autowired
 	MemberService memberService;
@@ -25,7 +25,7 @@ class MemberJsonServiceTest {
 
 	@Test
 	void testSaveMemberDataJson() {
-		memberJsonService.saveMemberDataJson();
+		jsonService.saveMemberDataJson();
 	}
 
 }

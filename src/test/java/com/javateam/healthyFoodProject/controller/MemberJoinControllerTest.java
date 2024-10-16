@@ -33,48 +33,48 @@ class MemberJoinControllerTest {
 
 	@Autowired
 	public WebApplicationContext webApplicationContext;
-	
+
 	@Autowired
 	public MockMvc mockMvc;
-	
+
 	@Autowired
 	public MemberService memberService;
 	public MemberVO memberVO;
-	
+
 	@BeforeEach
 	void setUp() throws Exception {
 		this.mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
-		
+
 		memberVO = MemberVO.builder().id("abcd4455")
 								  	 .pw("#Abcd0202")
 								  	 .name("이민국")
 								  	 .gender("남자")
-								
+
 								  	 .email("abcd0333@abcd.com")
 								  	 .phone("010-3355-1234")
 								  	 .birthday(Date.valueOf("1998-03-26"))
 								  	 .build();
 	}
-	
+
 	// 후처리: 테스트시 가입된 회원삭제
 	@AfterEach
 	void tearDown() throws Exception {
 		memberService.deleteMember("abcd4455");
 	}
-	
+
 	@Test
 	void testJoinProc() {
 		ObjectMapper objectMapper = new ObjectMapper();
 		String json = "";
-		
+
 		try {
 			json = objectMapper.writeValueAsString(memberVO);
-			
+
 		} catch (JsonProcessingException ex) {
 			log.error("json Exception: {}", ex);
 			ex.printStackTrace();
 		}
-		
+
 		try {
 			mockMvc.perform(post("/member/joinProc").contentType(MediaType.APPLICATION_JSON)
 													.content(json)
@@ -82,7 +82,7 @@ class MemberJoinControllerTest {
 				   .andExpect(status().isOk())
 				   .andExpect(model().attribute("msg","회원가입에 성공하셨습니다."))
 				   .andExpect(view().name("/member/result"));
-			
+
 		} catch (Exception ex) {
 			log.error("[MemberJoinController] Exception: {}", ex);
 			ex.printStackTrace();

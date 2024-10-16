@@ -15,7 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 public class MemberJsonSaveAopService {
 
 	@Autowired
-	MemberJsonService memberJsonService;
+	JsonService jsonService;
 
     /**
      *  MemberService.insertMember, MemberService.updateMember, MemberService.deleteMember
@@ -52,7 +52,7 @@ public class MemberJsonSaveAopService {
 
 		log.info("[memberJsonSaveAfterAdvice]");
 
-		// 아래의 함수들이 호출될 때 마다 Json 파일("D:/coding/work/JsonData/AllMembersDump.json") 자동 저장
+		// 아래의 함수들이 호출될 때 마다 Json 파일("src/main/resources/JsonDataFiles/AllMembersDump.json") 자동 저장
 		/*
 		 * MemberService.insertMember
 		   MemberService.updateMember
@@ -63,7 +63,7 @@ public class MemberJsonSaveAopService {
 		   SocialUserMybatisDAO.insertSocialUser
 		 */
 
-		memberJsonService.saveMemberDataJson();
+		jsonService.saveMemberDataJson();
 
 	}
 

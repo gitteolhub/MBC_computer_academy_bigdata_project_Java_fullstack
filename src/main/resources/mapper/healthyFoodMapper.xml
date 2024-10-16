@@ -220,4 +220,14 @@
 			WHERE EMAIL = #{email} AND AUTH_VENDOR = #{authVendor}
 		</if>
 	</delete>
+
+	<!-- 선택된 식단 정보 삽입(생성) -->
+	<insert id = "insertChosenFoodMenu" parameterType = "com.javateam.healthyFoodProject.domain.MemberVO">
+		INSERT INTO CHOSENFOODMENU(
+                           ID, FOODMENU, FOODMENU_RESULT,
+	                       )
+	                VALUES(
+	   	  	               #{id}, #{foodmenu}, #{foodmenuResult}
+	                       )
+	</insert>
 </mapper>

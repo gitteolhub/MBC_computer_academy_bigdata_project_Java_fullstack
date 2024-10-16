@@ -14,23 +14,25 @@ public class SocialUserMybatisDAO {
 	@Autowired
 	SqlSession sqlSession;
 
+	private static final String MAPPER_PATH = "mapper.healthyFoodMapper.";
+
 	// social(naver, google) 회원정보 저장
 	public void insertSocialUser(SocialUser socialUser) {
-		sqlSession.insert("mapper.healthyFoodMapper.insertSocialUser", socialUser);
+		sqlSession.insert(MAPPER_PATH + "insertSocialUser", socialUser);
 	}
 
 	// social (google) 회원정보 수정
 	public void updateSocialUser(SocialUser socialUser) {
-		sqlSession.update("mapper.healthyFoodMapper.updateSocialUser", socialUser);
+		sqlSession.update(MAPPER_PATH + "updateSocialUser", socialUser);
 	}
 
 	// social(naver, google) 전체 회원 조회
 	public List<SocialUser> selectAllSocialUsers() {
-		return sqlSession.selectList("mapper.healthyFoodMapper.selectAllSocialUsers");
+		return sqlSession.selectList(MAPPER_PATH + "selectAllSocialUsers");
 	}
 
 	// social (google) 회원정보 삭제
 	public void deletSocialUser(SocialUser socialUser) {
-		sqlSession.delete("mapper.healthyFoodMapper.deleteSocialUser", socialUser);
+		sqlSession.delete(MAPPER_PATH + "deleteSocialUser", socialUser);
 	}
 }
