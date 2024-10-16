@@ -19,7 +19,7 @@ class LocalDateTimeTest {
 		LocalDateTime dateTime = LocalDateTime.now();
 		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy년 M월 d일 HH:mm:ss");
 
-		log.info("[dateTime]: {}",dateTime);
+		log.info("[dateTime]: {}", dateTime);
 
 		String str = dateTime.format(dateTimeFormatter);
 		log.info("[str]: {}", str);
