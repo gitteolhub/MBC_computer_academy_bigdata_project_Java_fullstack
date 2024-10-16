@@ -33,7 +33,7 @@ class SelectMemberByIdTest {
 		String strTestId="abcd2222";
 		
 		MemberVO objMemberVO = memberDAO.selectMemberById(strTestId);
-		log.info("[objMemberVO]: " + objMemberVO);
+		log.info("[objMemberVO]: {}", objMemberVO);
 		
 		assertEquals("남우민", objMemberVO.getName());
 	}
