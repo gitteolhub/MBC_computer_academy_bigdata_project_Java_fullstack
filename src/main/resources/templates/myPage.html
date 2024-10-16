@@ -1,12 +1,39 @@
 <!DOCTYPE html>
 <html lang="ko-kr" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
-				   layout:decorate="~{layout_login}" >
+				   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout_login}" >
 <head>
 <meta charset="UTF-8">
 <title>myPage</title>
+
+<script type="text/javascript">
+	var naverLoginPopup;
+
+	function openPopUp() {
+		let maxX = screen.availWidth;
+		let maxY = screen.availHeight;
+
+		console.log("maxX = ", maxX, ", maxY = ", maxY);
+
+		naverLoginPopup = window.open("https://nid.naver.com/nidlogin.logout", "_blank",
+									  "toolbar=0,scrollbars=0,resizable=0,toolbar=0,location=0," +
+									  "status=0,menubar=0,width=1,height=1," + 'left=${maxX}, top=${maxY}');
+	}
+
+	function naverLogout() {
+		openPopUp();
+
+		setTimeout(function() {
+
+			naverLoginPopup,close();
+			alert("로그아웃 되었습니다");
+			location.href = "/healthyFoodProject/logout";
+
+		}, 1000); <!-- 1초 후에 팝업을 닫고 로그아웃  -->
+	}
+</script>
 </head>
 <body>
-		<div layout:fragment="content" class = "main_sect_pnl">
+	<div layout:fragment="content" class = "main_sect_pnl">
 		<!-- user: [[${session.user==null}]] <br>
 		socialUser: [[${session.socialUser==null}]] <br> -->
 
@@ -28,9 +55,18 @@
 			<span>님 로그인 하셨습니다.</span>
 			</b>
 
-			<input type = "button" value="로그아웃" th:onclick="|location.href='@{/logoutProc}'|" />
+			<!-- Google 및 자체 로그아웃 -->
+			<input type = "button" th:if="${session.user != null && session.user.authVendor != 'naver'}"
+				   class="btn btn-primary" value="로그아웃" th:onclick="|location.href='@{/logoutProc}'|" />
 
+			<!--  Naver 완전 로그아웃 -->
+			<input type = "button" th:if="${session.user != null && session.user.authVendor == 'naver'}"
+				   class="btn btn-primary" value="로그아웃(Naver)" th:onclick="naverLogout()" />
+
+			<!--  참고) 기존 로그아웃 경로 -->
+			<!--  th:onclick="|location.href='@{/logoutProcNaver}'|" /> -->
 		</div>
+
 
 		<!--social (google) 인증시 성별/생일 입력란 생성: 기존값 없음 -->
 		<div th:if="${session.socialUser != null}">
