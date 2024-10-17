@@ -24,9 +24,9 @@
 
 		setTimeout(function() {
 
-			naverLoginPopup,close();
+			naverLoginPopup.close();
 			alert("로그아웃 되었습니다");
-			location.href = "/healthyFoodProject/logout";
+			location.href = "/healthyFoodProject/logoutProc";
 
 		}, 1000); <!-- 1초 후에 팝업을 닫고 로그아웃  -->
 	}
@@ -34,8 +34,8 @@
 </head>
 <body>
 	<div layout:fragment="content" class = "main_sect_pnl">
-		<!-- user: [[${session.user==null}]] <br>
-		socialUser: [[${session.socialUser==null}]] <br> -->
+		user: [[${session.user==null}]] <br>
+		socialUser: [[${session.socialUser}]] <br>
 
 		<div sec:authorize="isAuthenticated()">
 			<b>
@@ -55,16 +55,19 @@
 			<span>님 로그인 하셨습니다.</span>
 			</b>
 
-			<!-- Google 및 자체 로그아웃 -->
-			<input type = "button" th:if="${session.user != null && session.user.authVendor != 'naver'}"
-				   class="btn btn-primary" value="로그아웃" th:onclick="|location.href='@{/logoutProc}'|" />
+			<div th:if="${session.socialUser != null}">
 
-			<!--  Naver 완전 로그아웃 -->
-			<input type = "button" th:if="${session.user != null && session.user.authVendor == 'naver'}"
-				   class="btn btn-primary" value="로그아웃(Naver)" th:onclick="naverLogout()" />
+				<!-- Google 및 자체 로그아웃 -->
+				<input type = "button" th:if="${session.socialUser.authVendor != 'naver'}"
+					   class="btn btn-primary" value="로그아웃" th:onclick="|location.href='@{/logoutProc}'|" />
 
-			<!--  참고) 기존 로그아웃 경로 -->
-			<!--  th:onclick="|location.href='@{/logoutProcNaver}'|" /> -->
+				<!--  Naver 완전 로그아웃 -->
+				<input type = "button" th:if="${session.socialUser.authVendor == 'naver'}"
+					   class="btn btn-primary" value="로그아웃(Naver)" th:onclick="naverLogout()" />
+
+				<!--  참고) 기존 로그아웃 경로 -->
+				<!--  th:onclick="|location.href='@{/logoutProcNaver}'|" /> -->
+			</div>
 		</div>
 
 

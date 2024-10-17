@@ -43,9 +43,6 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	SocialUserMybatisDAO socialUserMybatisDAO;
 
-	@Autowired
-	public BCryptPasswordEncoder bCryptPasswordEncoder;
-
 	// 아이디로 회원 정보를 조회
 	@Transactional (readOnly = true)
 	@Override
@@ -75,7 +72,7 @@ public class MemberServiceImpl implements MemberService {
 					log.info("[MemberService][insertMember]: {}", objMemberVO);
 
 					// 비밀번호 암호화
-					bCryptPasswordEncoder = new BCryptPasswordEncoder();
+					BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 					String encodePw = bCryptPasswordEncoder.encode(objMemberVO.getPw());
 					objMemberVO.setPw(encodePw);
 					objMemberVO.setEnabled(1);
