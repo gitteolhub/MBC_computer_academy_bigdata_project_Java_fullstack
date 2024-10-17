@@ -32,7 +32,7 @@ class HasMemberTest {
 	// 있으면 true
 	@Test
 	void testHasMemberByNumOverlap() {
-		assertTrue(memberDAO.hasMemberByFld("NUM", "2"));
+		assertTrue(memberDAO.hasMemberByFld("NUM", "21"));
 	}
 	
 	// 아이디 중 "javaSpring" 없는지 확인
@@ -47,7 +47,7 @@ class HasMemberTest {
 	// 있으면 true
 	@Test
 	void testHasMemberByIdOverlap() {
-		assertTrue(memberDAO.hasMemberByFld("ID","abcd1111"));
+		assertTrue(memberDAO.hasMemberByFld("ID","abcd2222"));
 	}
 	
 	// 비밀번호 중 "ASD9999"가 없는지 확인
@@ -61,7 +61,7 @@ class HasMemberTest {
 	// 있으면 true
 	@Test 
 	void testHasMemberByPwOverlap() {
-		assertTrue(memberDAO.hasMemberByFld("PW","#Abcd2222"));
+		assertTrue(memberDAO.hasMemberByFld("PW","#Abcd22223"));
 	}
 	
 	// 회원명 중 "이름"이 있는지 확인
@@ -96,7 +96,7 @@ class HasMemberTest {
 	// 있으면 true
 	@Test
 	void testHasMemberByEmailOverlap() {
-		assertTrue(memberDAO.hasMemberByFld("EMAIL", "abcd1111@abcd.com"));
+		assertTrue(memberDAO.hasMemberByFld("EMAIL", "abcd3333@abcd.com"));
 	}
 	
 	// 폰 번호 중 "011-1234-5678"가 없는지 확인
