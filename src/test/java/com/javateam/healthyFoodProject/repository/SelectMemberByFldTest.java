@@ -12,7 +12,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import lombok.extern.slf4j.Slf4j;
 
-// TODO 순환 의존 문제 해결
 @SpringBootTest
 @Slf4j
 class SelectMemberByFldTest {
@@ -30,7 +29,7 @@ class SelectMemberByFldTest {
 	@Test
 	void testSelectMembersByFldEmail() {
 
-		Map <String, Object> map = memberDAO.selectMemberByFld("Email", "abcd1234@Abcd.com");
+		Map <String, Object> map = memberDAO.selectMemberByFld("EMAIL", "abcd1234@Abcd.com");
 
 		assertThat("지원", equalTo(map.get("NAME")));
 	}
