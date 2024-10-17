@@ -21,25 +21,25 @@ class SelectMemberByFldTest {
 
 	@Test
 	void testSelectMemberByFldId() {
-		Map <String, Object> map = memberDAO.selectMemberByFld("ID", "abcd12234");
+		Map <String, Object> map = memberDAO.selectMemberByFld("ID", "abcd2222");
 
-		assertThat("지원", equalTo(map.get("NAME")));
+		assertThat("남우민", equalTo(map.get("NAME")));
 	}
 
 	@Test
 	void testSelectMembersByFldEmail() {
 
-		Map <String, Object> map = memberDAO.selectMemberByFld("EMAIL", "abcd1234@Abcd.com");
+		Map <String, Object> map = memberDAO.selectMemberByFld("EMAIL", "abcd3333@abcd.com");
 
-		assertThat("지원", equalTo(map.get("NAME")));
+		assertThat("남우민", equalTo(map.get("NAME")));
 	}
 
 	@Test
 	void testSelectMembersByFldPhone() {
 
-		Map <String, Object> map = memberDAO.selectMemberByFld("PHONE", "010-5678-1034");
+		Map <String, Object> map = memberDAO.selectMemberByFld("PHONE", "010-2222-1234");
 
-		assertThat("지원", equalTo(map.get("NAME")));
+		assertThat("남우민", equalTo(map.get("NAME")));
 	}
 
 }
