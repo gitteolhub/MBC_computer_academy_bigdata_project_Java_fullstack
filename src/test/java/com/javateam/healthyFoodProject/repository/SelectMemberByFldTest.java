@@ -12,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import lombok.extern.slf4j.Slf4j;
 
+// TODO 순환 의존 문제 해결
 @SpringBootTest
 @Slf4j
 class SelectMemberByFldTest {
@@ -21,25 +22,25 @@ class SelectMemberByFldTest {
 
 	@Test
 	void testSelectMemberByFldId() {
-		Map <String, Object> map = memberDAO.selectMemberByFld("ID", "abcd1111");
+		Map <String, Object> map = memberDAO.selectMemberByFld("ID", "abcd12234");
 
-		assertThat("홍길동", equalTo(map.get("NAME")));
+		assertThat("지원", equalTo(map.get("NAME")));
 	}
 
 	@Test
 	void testSelectMembersByFldEmail() {
 
-		Map <String, Object> map = memberDAO.selectMemberByFld("Email", "abcd1111@abcd.com");
+		Map <String, Object> map = memberDAO.selectMemberByFld("Email", "abcd1234@Abcd.com");
 
-		assertThat("홍길동", equalTo(map.get("NAME")));
+		assertThat("지원", equalTo(map.get("NAME")));
 	}
 
 	@Test
 	void testSelectMembersByFldPhone() {
 
-		Map <String, Object> map = memberDAO.selectMemberByFld("PHONE", "010-1111-3333");
+		Map <String, Object> map = memberDAO.selectMemberByFld("PHONE", "010-5678-1034");
 
-		assertThat("홍길동", equalTo(map.get("NAME")));
+		assertThat("지원", equalTo(map.get("NAME")));
 	}
 
 }
