@@ -102,14 +102,14 @@ class HasMemberTest {
 	// 폰 번호 중 "011-1234-5678"가 없는지 확인
 	// 없으면 false
 	@Test
-	void testHashMemberByPhone() {
+	void testHasMemberByPhone() {
 		assertFalse(memberDAO.hasMemberByFld("PHONE", "011-1234-5678"));
 	}
 	
 	// 폰 번호 중 "010-2222-1234"가 있는지 확인
 	// 있으면 true
 	@Test
-	void testHashMemberByPhoneOverlap() {
+	void testHasMemberByPhoneOverlap() {
 		assertTrue(memberDAO.hasMemberByFld("PHONE", "010-2222-1234"));
 	}
 	
