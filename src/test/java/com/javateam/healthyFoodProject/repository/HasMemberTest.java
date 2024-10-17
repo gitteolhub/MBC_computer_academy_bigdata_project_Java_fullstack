@@ -20,7 +20,7 @@ class HasMemberTest {
 
 	@Transactional(readOnly = true)
 	
-	// 회원 번호 중 "ABD999"가 없는지 확인
+	// 회원 번호 중 "ABC999"가 없는지 확인
 	// 없으면 false
 	@Test
 	void testHasMemberByNum() {
@@ -28,7 +28,7 @@ class HasMemberTest {
 	}
 	
 	
-	// 회원 번호 중 "2"가 있는지 확인
+	// 회원 번호 중 "21"가 있는지 확인
 	// 있으면 true
 	@Test
 	void testHasMemberByNumOverlap() {
@@ -43,7 +43,7 @@ class HasMemberTest {
 		
 	}
 	
-	// 아이디 중 "abcd1111"가 있는지 확인
+	// 아이디 중 "abcd2222"가 있는지 확인
 	// 있으면 true
 	@Test
 	void testHasMemberByIdOverlap() {
@@ -57,7 +57,7 @@ class HasMemberTest {
 		assertFalse(memberDAO.hasMemberByFld("PW","ASD9999"));
 	}
 	
-	// 비밀번호 중 "#Abcd2222"가 있는지 확인
+	// 비밀번호 중 "#Abcd22223"가 있는지 확인
 	// 있으면 true
 	@Test 
 	void testHasMemberByPwOverlap() {
@@ -92,7 +92,7 @@ class HasMemberTest {
 		assertFalse(memberDAO.hasMemberByFld("EMAIL", "ABCD9999@abcd.com"));
 	}
 	
-	// 이메일 중 "abcd1111@abcd.com"가 있는지 확인
+	// 이메일 중 "abcd3333@abcd.com"가 있는지 확인
 	// 있으면 true
 	@Test
 	void testHasMemberByEmailOverlap() {
