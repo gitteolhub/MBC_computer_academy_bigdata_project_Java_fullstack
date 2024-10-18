@@ -28,13 +28,13 @@ class MemberRestControllerTest {
 	public WebApplicationContext webApplicationContext;
 
 	@BeforeEach
-	void setUp() throws Exception{
+	void setUp() throws Exception {
 		this.mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
 		}
 	
 	
-	// 존재하지 않는 아이디
-	// 기댓값 >> 204 : NO Content (중복안됨 : 사용가능)
+	// 존재하지 않는 아이디로 변경
+	// 기댓값 >> 204 : NO Content (중복 안 됨 => 사용가능)
 	@Test
 	void testHasFldAbsent() throws Exception {
 
@@ -43,44 +43,44 @@ class MemberRestControllerTest {
 														  .andDo(print());
 	}
 	
-	// 존재하는 아이디
-	// 기댓값 >> 200 : OK (중복 : 사용불가능) 
+	// 존재하는 아이디로 변경
+	// 기댓값 >> 200 : OK (중복 => 사용불가능) 
 	@Test
 	void testHasFldPresent() throws Exception {
 		
-		mockMvc.perform(get("/member/hasFld/ID/abcd1111")).andExpect(status().isOk())
+		mockMvc.perform(get("/member/hasFld/ID/abcd2222")).andExpect(status().isOk())
 														  .andExpect(content().string("true"))
 														  .andDo(print());
 	}
 	
-	// 가입된 아이디와 기존 자신의 이메일로 변경
-	// 기댓값 >> 204 : NO Content (중복안됨 : 사용가능)
+	// 기존 자신의 이메일로 변경
+	// 기댓값 >> 204 : NO Content (사용가능)
 	@Test
 	void testHasFldForUpdateMyEmail() throws Exception {
 		
-		mockMvc.perform(get("/member/hasFldForUpdate/abcd1111/EMAIL/abcd1111@abcd.com")).andExpect(status().isNoContent())
+		mockMvc.perform(get("/member/hasFldForUpdate/abcd2222/EMAIL/abcd3333@abcd.com")).andExpect(status().isNoContent())
 		  												     							.andExpect(content().string("false"))
 		  												     							.andDo(print());
 		
 	}
 
-	// 가입된 아이디와 다른 회원의 이메일로 변경
-	// 기댓값 >> 200 : OK (중복 : 사용불가능)
+	// 다른 회원이 사용 중인 이메일로 변경
+	// 기댓값 >> 200 : OK (중복 => 사용불가능)
 	@Test
 	void testHasFldForUpdateEmailPresent() throws Exception {
 		
-		mockMvc.perform(get("/member/hasFldForUpdate/abcd1111/EMAIL/abcd2222@abcd.com")).andExpect(status().isOk())
+		mockMvc.perform(get("/member/hasFldForUpdate/abcd2222/EMAIL/abcd1234@Abcd.com")).andExpect(status().isOk())
 		  												     							.andExpect(content().string("true"))
 		  												     							.andDo(print());
 		
 	}
 	
-	// 가입된 아이디와 신규 이메일로 변경
-	// 기댓값 >> 204 : NO Content (중복안됨 : 사용가능)
+	// 사용 중이지 않는 이메일로 변경
+	// 기댓값 >> 204 : NO Content (중복 안 됨 => 사용가능)
 	@Test
 	void testHasFldForUpdateEmailAbsent() throws Exception {
 		
-		mockMvc.perform(get("/member/hasFldForUpdate/abcd1111/EMAIL/ABCD9988@abcd.com")).andExpect(status().isNoContent())
+		mockMvc.perform(get("/member/hasFldForUpdate/abcd2222/EMAIL/ABCD9988@abcd.com")).andExpect(status().isNoContent())
 		  												     							.andExpect(content().string("false"))
 		  												     							.andDo(print());
 		
