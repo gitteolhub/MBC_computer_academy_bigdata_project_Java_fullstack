@@ -275,4 +275,9 @@ public class MemberDAOImpl implements MemberDAO {
 		return (int)sqlSession.selectOne(MAPPER_PATH + "selectCountBySearching", map);
 	}
 
+	@Override
+	public void updateInitializingFoodMenu(MemberVO objMemberVO) {
+		sqlSession.update(MAPPER_PATH + "updateInitializingFoodMenu", objMemberVO);
+	}
+
 }

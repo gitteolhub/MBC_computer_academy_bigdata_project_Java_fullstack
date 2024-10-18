@@ -55,7 +55,7 @@ public class JsonService {
 
 		String str;
 		while((str = bufferedReader.readLine()) != null) {
-			log.info("[str]: {}", str);
+			log.info("[readFoodMenuJson][str]: {}", str);
 
 			strJson += str;
 		}

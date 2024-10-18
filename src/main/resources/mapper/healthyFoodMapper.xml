@@ -199,6 +199,13 @@
   		</if>
   	</select>
 
+	<!-- 회원가입시 초기foodMenu 정보 저장 -->
+  	<update id="updateInitializingFoodMenu" parameterType="com.javateam.healthyFoodProject.domain.MemberVO">
+  		UPDATE USER_TBL
+  		   SET FOODMENU = #{foodmenu}
+  		 WHERE ID = #{id}
+  	</update>
+
   	<!-- social(naver, google) 회원정보 저장 -->
   	<insert id="insertSocialUser" parameterType="com.javateam.healthyFoodProject.domain.SocialUser">
   	 	INSERT INTO SOCIAL_USER

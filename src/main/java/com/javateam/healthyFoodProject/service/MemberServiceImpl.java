@@ -48,6 +48,7 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	SocialUserMybatisDAO socialUserMybatisDAO;
 
+
 	// 아이디로 회원 정보를 조회
 	@Transactional (readOnly = true)
 	@Override
@@ -82,7 +83,20 @@ public class MemberServiceImpl implements MemberService {
 					objMemberVO.setPw(encodePw);
 					objMemberVO.setEnabled(1);
 
+					// 회원 정보 저장
 					blRetVal = memberDAO.insertMember(objMemberVO);
+
+					// foodmenu가 null인 경우 초기값 설정
+					if(blRetVal && objMemberVO.getFoodmenu() == null) {
+
+						/////////////////////////////////////////////////////////////////////////////////////////////
+						// 회원가입시 초기 식단 추가
+						JsonService jsonService = new JsonService();
+						String InitializingFoodMenuFilePath="";
+						String foodMenu = jsonService.readFoodMenuJson(InitializingFoodMenuFilePath);
+						objMemberVO.setFoodmenu(foodMenu);
+						memberDAO.updateInitializingFoodMenu(objMemberVO);
+					}
 
 				} catch (Exception ex) {
 	 				log.error("[MemberService][insertMember] Exception: {}", ex);

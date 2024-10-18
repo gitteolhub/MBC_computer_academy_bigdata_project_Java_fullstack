@@ -60,4 +60,7 @@ public interface MemberDAO {
 	// 검색된 총 회원정보 수 조회
 	int selectCountBySearching(String strSearchKey, String strSearchWord);
 
+	// 회원가입시 초기foodMenu 정보 저장
+	void updateInitializingFoodMenu(MemberVO objMemberVO);
+
 }
