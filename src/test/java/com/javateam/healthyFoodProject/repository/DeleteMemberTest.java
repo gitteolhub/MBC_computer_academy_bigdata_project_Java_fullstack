@@ -17,12 +17,12 @@ class DeleteMemberTest {
 	@Autowired
 	public MemberDAO memberDAO;
 
-	// 회원(abcd1111)의 role 삭제 점검
+	// 회원(abcd2222)의 role 삭제 점검
 	@Transactional
 	@Rollback(true)
 	@Test
 	void testDeleteRoles() {
-		assertTrue(memberDAO.deleteRoles("abcd1111"));
+		assertTrue(memberDAO.deleteRoles("abcd2222"));
 	}
 	
 	//회원정보 삭제
@@ -30,7 +30,7 @@ class DeleteMemberTest {
 	@Rollback(true)
 	@Test
 	void testDeleteMemberById() {
-		assertTrue(memberDAO.deleteRoles("abcd1111"));
-		assertTrue(memberDAO.deleteMemberById("abcd1111"));
+		assertTrue(memberDAO.deleteRoles("abcd2222"));
+		assertTrue(memberDAO.deleteMemberById("abcd2222"));
 	}
 }
