@@ -236,6 +236,20 @@
 		</if>
 	</delete>
 
+	<!-- social(naver, google) 회원 조회(id로 조회) -->
+	<select id="selectSocialUserById" parameterType="int" resultType="com.javateam.healthyFoodProject.domain.SocialUser">
+		SELECT *
+		  FROM SOCIAL_USER
+		 WHERE ID = #{id}
+	</select>
+
+	<!-- social(naver, google) 회원 조회(email, authVendor로 조회) -->
+	<select id="selectSocialUserByEmailAndAuthVendor" parameterType="map" resultType="com.javateam.healthyFoodProject.domain.SocialUser">
+		SELECT *
+		  FROM SOCIAL_USER
+		 WHERE EMAIL = #{email} AND AUTH_VENDOR = #{authVendor}
+	</select>
+
 	<!-- ID로 선택된 식단 조회 -->
 	<select id = "selectChosenFoodMenuById" parameterType = "String" resultType = "com.javateam.healthyFoodProject.domain.ChosenFoodMenuVO">
 		SELECT *

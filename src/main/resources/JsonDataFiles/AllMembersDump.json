@@ -22,6 +22,17 @@
     "enabled": 1
   },
   {
+    "name": "이민국",
+    "email": "abcd0333@abcd.com",
+    "gender": "남자",
+    "num": "106",
+    "id": "abcd4455",
+    "phone": "010-3355-1234",
+    "birthday": "3월 26, 1998",
+    "joindate": "10월 18, 2024",
+    "enabled": 1
+  },
+  {
     "name": "회원",
     "email": "AAAA1234@abcd.com",
     "gender": "남자",
@@ -55,25 +66,14 @@
     "enabled": 1
   },
   {
-    "name": "이민국",
-    "email": "abcd0333@abcd.com",
-    "gender": "남자",
-    "num": "105",
-    "id": "abcd4455",
-    "phone": "010-3355-1234",
-    "birthday": "3월 26, 1998",
-    "joindate": "10월 18, 2024",
-    "enabled": 1
-  },
-  {
     "name": "진소원",
     "email": "tgdcom7@naver.com",
     "gender": "F",
     "birthyear": "2000-06-02",
     "authVendor": "naver",
-    "createdDate": "2024년 10월 15일 19:22:18",
-    "modifiedDate": "2024년 10월 15일 19:22:18",
-    "id": "25",
+    "createdDate": "2024년 10월 18일 11:57:22",
+    "modifiedDate": "2024년 10월 18일 11:57:22",
+    "id": "32",
     "enabled": 0
   },
   {
@@ -82,9 +82,9 @@
     "gender": "F",
     "birthyear": "2000-06-02",
     "authVendor": "google",
-    "createdDate": "2024년 10월 15일 19:01:01",
-    "modifiedDate": "2024년 10월 15일 19:10:04",
-    "id": "24",
+    "createdDate": "2024년 10월 18일 11:59:25",
+    "modifiedDate": "2024년 10월 18일 11:59:40",
+    "id": "33",
     "enabled": 0
   }
 ]

@@ -1,6 +1,8 @@
 package com.javateam.healthyFoodProject.repository;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +33,24 @@ public class SocialUserMybatisDAO {
 		return sqlSession.selectList(MAPPER_PATH + "selectAllSocialUsers");
 	}
 
+	// social(naver, google) 회원 조회(id로 조회)
+	public SocialUser selectSocialUserById(int id) {
+		return sqlSession.selectOne(MAPPER_PATH + "selectSocialUserById", id);
+	}
+
+	// social(naver, google) 회원 조회(email, authVendor로 조회)
+	public SocialUser selectSocialUserByEmailAndAuthVendor(String email, String authVendor) {
+		Map<String, String> map = new HashMap<>();
+		map.put("email", email);
+		map.put("authVendor", authVendor);
+
+		return sqlSession.selectOne(MAPPER_PATH + "selectSocialUserByEmailAndAuthVendor", map);
+	}
+
 	// social (google) 회원정보 삭제
 	public void deletSocialUser(SocialUser socialUser) {
 		sqlSession.delete(MAPPER_PATH + "deleteSocialUser", socialUser);
 	}
+
+
 }

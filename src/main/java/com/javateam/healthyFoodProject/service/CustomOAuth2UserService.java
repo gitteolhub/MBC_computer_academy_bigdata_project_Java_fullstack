@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import com.javateam.healthyFoodProject.domain.OAuthAttributes;
 import com.javateam.healthyFoodProject.domain.SessionUser;
 import com.javateam.healthyFoodProject.domain.SocialUser;
+import com.javateam.healthyFoodProject.repository.ChosenFoodMenuDAO;
 import com.javateam.healthyFoodProject.repository.SocialUserDAO;
 import com.javateam.healthyFoodProject.repository.SocialUserMybatisDAO;
 
@@ -33,6 +34,10 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
 
 	@Autowired
 	JsonService jsonService;
+
+	@Autowired
+	ChosenFoodMenuDAO chosenFoodMenuDAO;
+
 
 	private final SocialUserDAO socialUserDAO;
 	private final HttpSession   httpSession;
@@ -126,12 +131,24 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
 
 				log.info("회원정보 존재하지 않을때");
 
+				/////////////////////////////////////////////////////////////////////////////////////////////
 				// 회원가입시 초기 식단 추가
 				String foodMenuFilePath = "";
 				// json 경로 추가해야함
 				String foodMenu = jsonService.readFoodMenuJson(foodMenuFilePath);
 				socialUser.setFoodmenu(foodMenu);   // foodmenu 초기값 설정(null 방지)
 				socialUserMybatisDAO.insertSocialUser(socialUser);
+				log.info("[socialUser]: {}", socialUser);
+
+				// 가입된 회원정보 불러오기
+				socialUser = socialUserMybatisDAO.selectSocialUserByEmailAndAuthVendor(socialUser.getEmail(), socialUser.getAuthVendor());
+				log.info("[socialUser2]: {}", socialUser);
+
+				// 회원 아이디 chosenFoodMenu에 추가
+				String id = socialUser.getId().toString();
+				log.info("[insertIdChosenFoodMenu][id]: {}", id);
+				chosenFoodMenuDAO.insertIdChosenFoodMenu(id);
+
 				socialUser = socialUserDAO.findByEmail(socialUser.getEmail()).get();
 			}
 
