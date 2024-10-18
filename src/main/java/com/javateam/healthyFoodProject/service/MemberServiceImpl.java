@@ -92,7 +92,7 @@ public class MemberServiceImpl implements MemberService {
 					// foodmenu가 null인 경우 초기값 설정
 					if(blRetVal && objMemberVO.getFoodmenu() == null) {
 
-						/////////////////////////////////////////////////////////////////////////////////////////////
+						//TODO FilePath 지정 필요
 						// 회원가입시 초기 식단 추가
 						JsonService jsonService = new JsonService();
 
@@ -440,14 +440,13 @@ public class MemberServiceImpl implements MemberService {
 		public boolean updateFoodMenuByUser(String strId) {
 			boolean blRetVal = false;
 
-			//////////////////////////////////////////////////////////////
-			// updatingFoodMenuByUsers.json 파일 경로
-			String filePath = "";
+			//TODO FilePath 지정 필요
+			String updatingFoodMenuByUsersFilePath = "";
 
 			try {
 				// updatingFoodMenuByUsers.json 파일에서 음식 메뉴 읽기
 				JsonService jsonService = new JsonService();
-				String updateFoodMenuJson = jsonService.readUpdateFoodMenuJson(filePath);
+				String updateFoodMenuJson = jsonService.readUpdateFoodMenuJson(updatingFoodMenuByUsersFilePath);
 				log.info("[updateFoodMenuByUser][updateFoodMenuJson]");
 
 				MemberVO memberVO = new MemberVO();
