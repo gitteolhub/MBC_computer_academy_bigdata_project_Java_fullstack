@@ -21,43 +21,31 @@ class SelectMemberByFldTest {
 
 	@Test
 	void testSelectMemberByFldId() {
-<<<<<<< Updated upstream
+
 		Map <String, Object> map = memberDAO.selectMemberByFld("ID", "abcd2222");
 
 		assertThat("남우민", equalTo(map.get("NAME")));
-=======
-		Map <String, Object> map = memberDAO.selectMemberByFld("ID", "abcd1111");
 
-		assertThat("홍길동", equalTo(map.get("NAME")));
->>>>>>> Stashed changes
 	}
 
 	@Test
 	void testSelectMembersByFldEmail() {
 
-<<<<<<< Updated upstream
+
 		Map <String, Object> map = memberDAO.selectMemberByFld("EMAIL", "abcd3333@abcd.com");
 
 		assertThat("남우민", equalTo(map.get("NAME")));
-=======
-		Map <String, Object> map = memberDAO.selectMemberByFld("Email", "abcd1234@abcd.com");
 
-		assertThat("김지원", equalTo(map.get("NAME")));
->>>>>>> Stashed changes
 	}
 
 	@Test
 	void testSelectMembersByFldPhone() {
 
-<<<<<<< Updated upstream
+
 		Map <String, Object> map = memberDAO.selectMemberByFld("PHONE", "010-2222-1234");
 
 		assertThat("남우민", equalTo(map.get("NAME")));
-=======
-		Map <String, Object> map = memberDAO.selectMemberByFld("PHONE", "010-5678-1234");
 
-		assertThat("김지원", equalTo(map.get("NAME")));
->>>>>>> Stashed changes
 	}
 
 }
