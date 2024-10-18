@@ -56,11 +56,11 @@ class MemberJoinControllerTest {
 								  	 .build();
 	}
 
-	// 후처리: 테스트시 가입된 회원삭제
-	@AfterEach
-	void tearDown() throws Exception {
-		memberService.deleteMember("abcd4455");
-	}
+//	// 후처리: 테스트시 가입된 회원삭제
+//	@AfterEach
+//	void tearDown() throws Exception {
+//		memberService.deleteMember("abcd4455");
+//	}
 
 	@Test
 	void testJoinProc() {

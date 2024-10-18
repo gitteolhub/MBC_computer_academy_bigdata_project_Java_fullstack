@@ -14,10 +14,12 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.TransactionCallback;
 import org.springframework.transaction.support.TransactionTemplate;
 
+import com.javateam.healthyFoodProject.domain.ChosenFoodMenuVO;
 import com.javateam.healthyFoodProject.domain.MemberJsonVO;
 import com.javateam.healthyFoodProject.domain.MemberVO;
 import com.javateam.healthyFoodProject.domain.Role;
 import com.javateam.healthyFoodProject.domain.SocialUser;
+import com.javateam.healthyFoodProject.repository.ChosenFoodMenuDAO;
 import com.javateam.healthyFoodProject.repository.MemberDAO;
 import com.javateam.healthyFoodProject.repository.SocialUserMybatisDAO;
 
@@ -36,6 +38,9 @@ public class MemberServiceImpl implements MemberService {
 
 		this.transactionTemplate = new TransactionTemplate(transactionManager);
 	}
+
+	@Autowired
+	ChosenFoodMenuDAO chosenFoodMenuDAO;
 
 	@Autowired
 	MemberDAO memberDAO;
@@ -152,6 +157,11 @@ public class MemberServiceImpl implements MemberService {
 					if (memberDAO.hasMemberByFld("ID", strId) == false) {
 						throw new Exception("삭제할 회원정보가 존재하지 않습니다");
 					}
+
+					// 선택된 식단 삭제
+					 ChosenFoodMenuVO chosenFoodMenuVO = new ChosenFoodMenuVO();
+		             chosenFoodMenuVO.setId(strId);
+		             chosenFoodMenuDAO.deleteChosenFoodMenuById(chosenFoodMenuVO);
 
 					if ( memberDAO.deleteRoles(strId) == true && memberDAO.deleteMemberById(strId) == true) {
 						blRetVal = true;
@@ -385,4 +395,21 @@ public class MemberServiceImpl implements MemberService {
 		}
 		return blRetVal;
 	}
+
+	 // 회원 아이디를 선택된 식단 데이터베이스에 추가
+		@Override
+		public boolean insertIdChosenFoodMenu(String strId) {
+			boolean blRetVal = false;
+
+			try {
+				chosenFoodMenuDAO.insertIdChosenFoodMenu(strId);
+
+				blRetVal = true;
+
+			} catch (Exception ex) {
+				log.error("[MemberService][insertIdChosenFoodMenu] Exception: {}", ex);
+			}
+
+			return blRetVal;
+		}
 }

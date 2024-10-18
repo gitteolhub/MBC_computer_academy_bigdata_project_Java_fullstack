@@ -2,6 +2,7 @@ package com.javateam.healthyFoodProject.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
@@ -9,7 +10,8 @@ import lombok.extern.slf4j.Slf4j;
 @Setter
 @Slf4j
 @AllArgsConstructor
-public class FoodMenuVO {
+@NoArgsConstructor
+public class ChosenFoodMenuVO {
 
 	private String id;
 	private String foodmenu;
