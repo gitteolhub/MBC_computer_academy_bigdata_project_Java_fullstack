@@ -55,4 +55,16 @@ class UpdateMemberServiceTest {
 
 	assertFalse(memberService.updateMember(memberVO));
 	}
+
+	// 사용자별로 바뀔 식단 업데이트
+	@Transactional
+	@Rollback(false)
+	@Test
+	public void testUpdateFoodMenuByUser() {
+		String id = "abcd3333";
+
+		boolean blRetVal = memberService.updateFoodMenuByUser(id);
+
+		assertTrue(blRetVal);
+	}
 }

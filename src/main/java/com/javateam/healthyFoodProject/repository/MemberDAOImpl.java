@@ -139,7 +139,7 @@ public class MemberDAOImpl implements MemberDAO {
 			blRetVal = true;
 
 		} catch(Exception ex) {
-			log.error("[MemberDAOImpl][deleteRoles] Exception = " + ex);
+			log.error("[MemberDAOImpl][deleteRoles] Exception: {}", ex);
 			ex.printStackTrace();
 		}
 
@@ -275,9 +275,25 @@ public class MemberDAOImpl implements MemberDAO {
 		return (int)sqlSession.selectOne(MAPPER_PATH + "selectCountBySearching", map);
 	}
 
+	// 회원가입시 초기foodMenu 정보 저장
 	@Override
 	public void updateInitializingFoodMenu(MemberVO objMemberVO) {
 		sqlSession.update(MAPPER_PATH + "updateInitializingFoodMenu", objMemberVO);
+	}
+
+	// 사용자별로 바뀔 식단 업데이트
+	@Override
+	public boolean updateFoodMenuByUser(MemberVO objMemberVO) {
+		boolean blRetVal = false;
+
+		try{
+			sqlSession.update(MAPPER_PATH + "updateFoodMenuByUser", objMemberVO);
+			blRetVal = true;
+		} catch(Exception ex) {
+			log.error("[updateFoodMenuByUser] Exception: {}", ex);
+			ex.printStackTrace();
+		}
+		return blRetVal;
 	}
 
 }

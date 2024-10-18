@@ -133,7 +133,7 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
 
 				/////////////////////////////////////////////////////////////////////////////////////////////
 				// 회원가입시 초기 식단 추가
-				String foodMenuFilePath = "";
+				String foodMenuFilePath = "D:/coding/test.txt";
 				// json 경로 추가해야함
 				String foodMenu = jsonService.readFoodMenuJson(foodMenuFilePath);
 				socialUser.setFoodmenu(foodMenu);   // foodmenu 초기값 설정(null 방지)

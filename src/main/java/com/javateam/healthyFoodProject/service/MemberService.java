@@ -75,4 +75,7 @@ public interface MemberService {
 
 	// 회원 아이디를 선택된 식단 데이터베이스에 추가
 	boolean insertIdChosenFoodMenu(String strId);
+
+	// 사용자별로 바뀔 식단 업데이트
+	boolean updateFoodMenuByUser(String strId);
 }

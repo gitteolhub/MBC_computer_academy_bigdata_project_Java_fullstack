@@ -206,6 +206,13 @@
   		 WHERE ID = #{id}
   	</update>
 
+  	<!-- 사용자별로 바뀔 식단 업데이트 -->
+  	<update id="updateFoodMenuByUser" parameterType="com.javateam.healthyFoodProject.domain.MemberVO">
+  		UPDATE USER_TBL
+  		   SET FOODMENU = #{foodmenu}
+  		 WHERE ID = #{id}
+  	</update>
+
   	<!-- social(naver, google) 회원정보 저장 -->
   	<insert id="insertSocialUser" parameterType="com.javateam.healthyFoodProject.domain.SocialUser">
   	 	INSERT INTO SOCIAL_USER

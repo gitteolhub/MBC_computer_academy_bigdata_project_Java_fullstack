@@ -78,4 +78,23 @@ public class MemberRestController {
 		return responseEntity;
 	}
 
+	// 사용자별로 식단 정보 조회 요청 처리
+	@GetMapping("/{id}/foodmenu")
+	public ResponseEntity<String> getFoodMenu(
+			@PathVariable("id") String id) {
+
+		try {
+			boolean updateFoodMenu = memberService.updateFoodMenuByUser(id);
+			if(updateFoodMenu) {
+				return ResponseEntity.ok("식단이 업데이트되었습니다.");
+			} else {
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).body("식단 정보를 찾을 수 없습니다.");
+			}
+		} catch (Exception ex) {
+			log.error("[][]: {}", ex);
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("오류가 발생했습니다.");
+		}
+	}
+
+
 }

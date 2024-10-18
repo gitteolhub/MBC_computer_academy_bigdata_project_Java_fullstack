@@ -63,4 +63,8 @@ public class JsonService {
 		return strRetVal;
 	}
 
+	public String readUpdateFoodMenuJson(String filePath) throws IOException {
+		return readFoodMenuJson(filePath);
+	}
+
 }

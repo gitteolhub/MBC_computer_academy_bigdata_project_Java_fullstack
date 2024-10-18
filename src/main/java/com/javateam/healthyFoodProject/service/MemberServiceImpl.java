@@ -1,6 +1,9 @@
 package com.javateam.healthyFoodProject.service;
 
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -92,6 +95,7 @@ public class MemberServiceImpl implements MemberService {
 						/////////////////////////////////////////////////////////////////////////////////////////////
 						// 회원가입시 초기 식단 추가
 						JsonService jsonService = new JsonService();
+
 						String InitializingFoodMenuFilePath="";
 						String foodMenu = jsonService.readFoodMenuJson(InitializingFoodMenuFilePath);
 						objMemberVO.setFoodmenu(foodMenu);
@@ -365,6 +369,7 @@ public class MemberServiceImpl implements MemberService {
 		return blRetVal;
 	}
 
+	// 전체 회원정보 조회(json 작성용)
 	@Transactional(readOnly = true)
 	@Override
 	public List<MemberJsonVO> selectAllMembersJson() {
@@ -386,6 +391,7 @@ public class MemberServiceImpl implements MemberService {
 		return members;
 	}
 
+	// social(naver, google) 전체 회원정보 조회(ex, json 정보 생성용)
 	@Transactional(readOnly = true)
 	@Override
 	public List<SocialUser> selectAllSocialUsers() {
@@ -393,6 +399,7 @@ public class MemberServiceImpl implements MemberService {
 		return socialUserMybatisDAO.selectAllSocialUsers();
 	}
 
+	// social (google) 회원정보 삭제(탈퇴)
 	@Transactional
 	@Override
 	public boolean deletSocialUser(SocialUser socialUser) {
@@ -417,6 +424,7 @@ public class MemberServiceImpl implements MemberService {
 
 			try {
 				chosenFoodMenuDAO.insertIdChosenFoodMenu(strId);
+				log.info("회원 아이디를 chosenFoodMenu 테이블에 저장");
 
 				blRetVal = true;
 
@@ -425,5 +433,37 @@ public class MemberServiceImpl implements MemberService {
 			}
 
 			return blRetVal;
+		}
+
+		// 사용자별로 바뀔 식단 업데이트
+		@Override
+		public boolean updateFoodMenuByUser(String strId) {
+			boolean blRetVal = false;
+
+			//////////////////////////////////////////////////////////////
+			// updatingFoodMenuByUsers.json 파일 경로
+			String filePath = "";
+
+			try {
+				// updatingFoodMenuByUsers.json 파일에서 음식 메뉴 읽기
+				JsonService jsonService = new JsonService();
+				String updateFoodMenuJson = jsonService.readUpdateFoodMenuJson(filePath);
+				log.info("[updateFoodMenuByUser][updateFoodMenuJson]");
+
+				MemberVO memberVO = new MemberVO();
+				memberVO.setId(strId);
+				memberVO.setFoodmenu(updateFoodMenuJson);
+
+				blRetVal = memberDAO.updateFoodMenuByUser(memberVO);
+
+			} catch (IOException ex) {
+				log.error("[updateFoodMenuByUser]IOException: {}", ex);
+
+			} catch (Exception ex) {
+				log.error("[updateFoodMenuByUser]Exception: {}", ex);
+			}
+
+			return blRetVal;
+
 		}
 }
