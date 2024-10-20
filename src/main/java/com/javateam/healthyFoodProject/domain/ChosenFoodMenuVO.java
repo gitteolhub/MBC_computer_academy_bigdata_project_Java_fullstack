@@ -1,5 +1,6 @@
 package com.javateam.healthyFoodProject.domain;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,5 +17,6 @@ public class ChosenFoodMenuVO {
 	private String id;
 	private String foodmenu;
 	private String foodmenuResult;
+
 
 }

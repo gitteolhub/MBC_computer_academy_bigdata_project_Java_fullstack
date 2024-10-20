@@ -11,8 +11,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.javateam.healthyFoodProject.domain.ChosenFoodMenuVO;
 import com.javateam.healthyFoodProject.domain.MemberJsonVO;
 import com.javateam.healthyFoodProject.domain.MemberVO;
+import com.javateam.healthyFoodProject.repository.ChosenFoodMenuDAO;
 import com.nimbusds.jose.shaded.gson.Gson;
 import com.nimbusds.jose.shaded.gson.GsonBuilder;
 
@@ -24,6 +26,9 @@ public class JsonService {
 
 	@Autowired
 	public MemberService memberService;
+
+	@Autowired
+	public ChosenFoodMenuDAO chosenFoodMenuDAO;
 
 	public void saveMemberDataJson() {
 		List<MemberJsonVO> allUserData = memberService.selectAllMembersJson();
@@ -39,7 +44,7 @@ public class JsonService {
 			log.info("[saveMemberDataJson]");
 
 		} catch (IOException ex) {
-			log.error("[saveMemberDataJson error]");
+			log.error("[saveMemberDataJson] IOException");
 			ex.printStackTrace();
 		}
 	}
@@ -65,6 +70,24 @@ public class JsonService {
 
 	public String readUpdateFoodMenuJson(String filePath) throws IOException {
 		return readFoodMenuJson(filePath);
+	}
+
+	// 선택된 식단 전체 json 파일로 저장
+	public void saveChosenFoodMenuJson() {
+		List<ChosenFoodMenuVO> chosenFoodMenus = chosenFoodMenuDAO.selectAllFoodMenu();
+
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		String chosenFoodMenuFilePath = "src/main/resources/JsonDataFiles/chosenFoodMenu_Json.json";
+
+		try {
+			String json = gson.toJson(chosenFoodMenus);
+			Files.write(Paths.get(chosenFoodMenuFilePath), json.getBytes());
+			log.info("[saveChosenFoodMenuJson]: {}", chosenFoodMenuFilePath);
+
+		} catch (IOException ex){
+			log.error("[saveChosenFoodMenuJson] IOException: {}", ex);
+		}
+
 	}
 
 }

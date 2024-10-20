@@ -21,4 +21,7 @@ public interface ChosenFoodMenuService {
 
 	// 선택된 식단 전체 조회
 	List<ChosenFoodMenuVO> selectAllFoodMenu();
+
+//	// 선택된 식단 전체 조회(json 작성용)
+//	void selectChosenFoodMenuJson(String filePath);
 }
