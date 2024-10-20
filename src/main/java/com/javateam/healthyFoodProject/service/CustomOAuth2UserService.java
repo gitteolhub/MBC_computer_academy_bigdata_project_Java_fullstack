@@ -1,5 +1,6 @@
 package com.javateam.healthyFoodProject.service;
 
+import java.io.IOException;
 import java.util.Collections;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -158,6 +159,31 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
 		log.info("[saveOrUpdate3]");
 
 		return socialUser;
+	}
+
+	// social 회원 별로 바뀔 식단 업데이트
+	public boolean updateFoodMenuBySocialUser(int id) {
+		boolean blRetVal = false;
+
+		// TODO FilePath 지정 필요
+		String updatingFoodMenuFilePath = "";
+
+		try {
+			String updateFoodMenuJson = jsonService.readUpdateFoodMenuJson(updatingFoodMenuFilePath);
+            log.info("[updateFoodMenuBySocialUser][updateFoodMenuJson]:{}", updateFoodMenuJson);
+
+            SocialUser socialUser = socialUserMybatisDAO.selectSocialUserById(id);
+            if(socialUser != null) {
+            	socialUser.setFoodmenu(updateFoodMenuJson);
+            	blRetVal = socialUserMybatisDAO.updateFoodMenuBySocialUser(socialUser);
+            }
+		} catch (IOException ex) {
+            log.error("[updateFoodMenuBySocialUser] IOException: {}", ex);
+        } catch (Exception ex) {
+            log.error("[updateFoodMenuBySocialUser] Exception: {}", ex);
+        }
+
+		return blRetVal;
 	}
 
 }

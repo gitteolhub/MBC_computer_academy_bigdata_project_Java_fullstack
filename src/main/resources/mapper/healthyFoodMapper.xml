@@ -206,6 +206,7 @@
   		 WHERE ID = #{id}
   	</update>
 
+
   	<!-- 사용자별로 바뀔 식단 업데이트 -->
   	<update id="updateFoodMenuByUser" parameterType="com.javateam.healthyFoodProject.domain.MemberVO">
   		UPDATE USER_TBL
@@ -263,6 +264,13 @@
 		  FROM SOCIAL_USER
 		 WHERE EMAIL = #{email} AND AUTH_VENDOR = #{authVendor}
 	</select>
+
+	<!-- social 회원 별로 바뀔 식단 업데이트 -->
+  	<update id="updateFoodMenuBySocialUser" parameterType="com.javateam.healthyFoodProject.domain.SocialUser">
+  		UPDATE SOCIAL_USER
+  		   SET FOODMENU = #{foodmenu}
+  		 WHERE ID = #{id}
+  	</update>
 
 	<!-- ID로 선택된 식단 조회 -->
 	<select id = "selectChosenFoodMenuById" parameterType = "String" resultType = "com.javateam.healthyFoodProject.domain.ChosenFoodMenuVO">

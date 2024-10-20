@@ -2,10 +2,13 @@ package com.javateam.healthyFoodProject.service;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.javateam.healthyFoodProject.domain.SocialUser;
 
@@ -19,6 +22,9 @@ class UpdateSocialUserServiceTest {
 	MemberService memberService;
 
 	SocialUser socialUser;
+
+	@Autowired
+	CustomOAuth2UserService customOAuth2UserService;
 
 	@Test
 	void testUpdateSocialUser() {
@@ -36,4 +42,18 @@ class UpdateSocialUserServiceTest {
 		assertTrue(memberService.updateSocialUser(socialUser));
 	}
 
+
+	// social 회원 별로 바뀔 식단 업데이트
+	@Transactional
+	@Rollback(false)
+	@Test
+	public void testUpdateFoodMenuBySocialUser() throws IOException {
+		int id = 35;
+
+		boolean blRetVal = customOAuth2UserService.updateFoodMenuBySocialUser(id);
+
+		assertTrue(blRetVal);
+
+
+	}
 }

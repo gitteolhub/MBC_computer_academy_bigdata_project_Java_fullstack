@@ -58,7 +58,7 @@ class UpdateMemberServiceTest {
 
 	// 사용자별로 바뀔 식단 업데이트
 	@Transactional
-	@Rollback(false)
+	@Rollback(true)
 	@Test
 	public void testUpdateFoodMenuByUser() {
 		String id = "abcd3333";
@@ -67,4 +67,5 @@ class UpdateMemberServiceTest {
 
 		assertTrue(blRetVal);
 	}
+
 }

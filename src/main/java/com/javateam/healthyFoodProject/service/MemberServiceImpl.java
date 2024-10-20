@@ -403,7 +403,6 @@ public class MemberServiceImpl implements MemberService {
 	@Transactional
 	@Override
 	public boolean deletSocialUser(SocialUser socialUser) {
-
 		boolean blRetVal = false;
 
 		try {
@@ -418,51 +417,53 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	 // 회원 아이디를 선택된 식단 데이터베이스에 추가
-		@Override
-		public boolean insertIdChosenFoodMenu(String strId) {
-			boolean blRetVal = false;
+	@Override
+	public boolean insertIdChosenFoodMenu(String strId) {
+		boolean blRetVal = false;
 
-			try {
-				chosenFoodMenuDAO.insertIdChosenFoodMenu(strId);
-				log.info("회원 아이디를 chosenFoodMenu 테이블에 저장");
+		try {
+			chosenFoodMenuDAO.insertIdChosenFoodMenu(strId);
+			log.info("회원 아이디를 chosenFoodMenu 테이블에 저장");
 
-				blRetVal = true;
+			blRetVal = true;
 
-			} catch (Exception ex) {
-				log.error("[MemberService][insertIdChosenFoodMenu] Exception: {}", ex);
-			}
-
-			return blRetVal;
+		} catch (Exception ex) {
+			log.error("[MemberService][insertIdChosenFoodMenu] Exception: {}", ex);
 		}
 
-		// 사용자별로 바뀔 식단 업데이트
-		@Override
-		public boolean updateFoodMenuByUser(String strId) {
-			boolean blRetVal = false;
+		return blRetVal;
+	}
 
-			//TODO FilePath 지정 필요
-			String updatingFoodMenuByUsersFilePath = "";
+	// 사용자별로 바뀔 식단 업데이트
+	@Override
+	public boolean updateFoodMenuByUser(String strId) {
+		boolean blRetVal = false;
 
-			try {
-				// updatingFoodMenuByUsers.json 파일에서 음식 메뉴 읽기
-				JsonService jsonService = new JsonService();
-				String updateFoodMenuJson = jsonService.readUpdateFoodMenuJson(updatingFoodMenuByUsersFilePath);
-				log.info("[updateFoodMenuByUser][updateFoodMenuJson]");
+		// TODO FilePath 지정 필요
+		String updatingFoodMenuByUsersFilePath = "";
 
-				MemberVO memberVO = new MemberVO();
-				memberVO.setId(strId);
-				memberVO.setFoodmenu(updateFoodMenuJson);
+		try {
+			// updatingFoodMenuByUsers.json 파일에서 음식 메뉴 읽기
+			JsonService jsonService = new JsonService();
+			String updateFoodMenuJson = jsonService.readUpdateFoodMenuJson(updatingFoodMenuByUsersFilePath);
+			log.info("[updateFoodMenuByUser][updateFoodMenuJson]");
 
-				blRetVal = memberDAO.updateFoodMenuByUser(memberVO);
+			MemberVO memberVO = new MemberVO();
+			memberVO.setId(strId);
+			memberVO.setFoodmenu(updateFoodMenuJson);
 
-			} catch (IOException ex) {
-				log.error("[updateFoodMenuByUser]IOException: {}", ex);
+			blRetVal = memberDAO.updateFoodMenuByUser(memberVO);
 
-			} catch (Exception ex) {
-				log.error("[updateFoodMenuByUser]Exception: {}", ex);
-			}
+		} catch (IOException ex) {
+			log.error("[updateFoodMenuByUser]IOException: {}", ex);
 
-			return blRetVal;
-
+		} catch (Exception ex) {
+			log.error("[updateFoodMenuByUser]Exception: {}", ex);
 		}
+
+		return blRetVal;
+
+	}
+
+
 }

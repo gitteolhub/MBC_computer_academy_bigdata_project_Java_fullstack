@@ -10,7 +10,10 @@ import org.springframework.stereotype.Repository;
 
 import com.javateam.healthyFoodProject.domain.SocialUser;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Repository
+@Slf4j
 public class SocialUserMybatisDAO {
 
 	@Autowired
@@ -52,5 +55,18 @@ public class SocialUserMybatisDAO {
 		sqlSession.delete(MAPPER_PATH + "deleteSocialUser", socialUser);
 	}
 
+	// social 회원 별로 바뀔 식단 업데이트
+	public boolean updateFoodMenuBySocialUser(SocialUser socialUser) {
+		boolean blRetVal = false;
 
+		try {
+			sqlSession.update(MAPPER_PATH + "updateFoodMenuBySocialUser", socialUser);
+			blRetVal = true;
+
+		} catch(Exception ex) {
+			log.error("[updateFoodMenuBySocialUser] Exception: {}", ex);
+			ex.printStackTrace();
+		}
+		return blRetVal;
+	}
 }
