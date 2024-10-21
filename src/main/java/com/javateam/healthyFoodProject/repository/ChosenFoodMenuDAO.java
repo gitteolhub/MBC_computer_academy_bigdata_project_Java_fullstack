@@ -19,7 +19,7 @@ public interface ChosenFoodMenuDAO {
 	boolean updateChosenFoodMenu(ChosenFoodMenuVO objChosenFoodMenuVO);
 
 	// 선택된 식단 삭제
-	boolean deleteChosenFoodMenuById(ChosenFoodMenuVO objChosenFoodMenuVO);
+	boolean deleteChosenFoodMenuById(String strId);
 
 	// 선택된 식단 전체 조회
 	List<ChosenFoodMenuVO> selectAllFoodMenu();

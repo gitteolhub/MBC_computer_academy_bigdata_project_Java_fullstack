@@ -6,9 +6,8 @@ import com.javateam.healthyFoodProject.domain.ChosenFoodMenuVO;
 
 public interface ChosenFoodMenuService {
 
-// 	// memberService에서 함
-//	// 회원 아이디를 선택된 식단 데이터베이스에 추가
-//	boolean insertIdChosenFoodMenu(String strId);
+	// 회원 아이디를 선택된 식단 데이터베이스에 추가
+	boolean insertIdChosenFoodMenu(String strId);
 
 	// 선택된 식단을 데이터베이스에 추가
 	boolean insertChosenFoodMenu(ChosenFoodMenuVO objChosenFoodMenuVO);
@@ -19,9 +18,5 @@ public interface ChosenFoodMenuService {
 //	// 선택된 식단 삭제
 //	boolean deleteChosenFoodMenu(ChosenFoodMenuVO objChosenFoodMenuVO);
 
-	// 선택된 식단 전체 조회
-	List<ChosenFoodMenuVO> selectAllFoodMenu();
 
-//	// 선택된 식단 전체 조회(json 작성용)
-//	void selectChosenFoodMenuJson(String filePath);
 }

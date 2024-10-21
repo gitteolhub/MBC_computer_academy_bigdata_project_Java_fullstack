@@ -75,14 +75,14 @@ public class ChosenFoodMenuDAOImpl implements ChosenFoodMenuDAO{
 
 	// 선택된 식단 삭제
 	@Override
-	public boolean deleteChosenFoodMenuById(ChosenFoodMenuVO objChosenFoodMenuVO) {
+	public boolean deleteChosenFoodMenuById(String strId) {
 
 		boolean blRetVal = false;
 
 		try {
 
-			sqlSession.delete(MAPPER_PATH + "deleteChosenFoodMenuById", objChosenFoodMenuVO);
-			log.info("[ChosenFoodMenuDAOImpl][deleteChosenFoodMenuById]: {}", objChosenFoodMenuVO);
+			log.info("[ChosenFoodMenuDAOImpl][deleteChosenFoodMenuById]: {}", strId);
+			sqlSession.delete(MAPPER_PATH + "deleteChosenFoodMenuById", strId);
 
 			blRetVal = true;
 

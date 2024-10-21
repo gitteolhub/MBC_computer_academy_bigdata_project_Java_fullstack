@@ -20,23 +20,22 @@ public class ChosenFoodMenuServiceImpl implements ChosenFoodMenuService{
 	ChosenFoodMenuDAO chosenFoodMenuDAO;
 
 
-//	 //memberService에서 함
-//	 //회원 아이디를 선택된 식단 데이터베이스에 추가
-//	@Override
-//	public boolean insertIdChosenFoodMenu(String strId) {
-//		boolean blRetVal = false;
-//
-//		try {
-//			chosenFoodMenuDAO.insertIdChosenFoodMenu(strId);
-//
-//			blRetVal = true;
-//
-//		} catch (Exception ex) {
-//			log.error("[ChosenFoodMenuServiceImpl][insertIdChosenFoodMenu] Exception: {}", ex);
-//		}
-//
-//		return blRetVal;
-//	}
+	 //회원 아이디를 선택된 식단 데이터베이스에 추가
+	@Override
+	public boolean insertIdChosenFoodMenu(String strId) {
+		boolean blRetVal = false;
+
+		try {
+			chosenFoodMenuDAO.insertIdChosenFoodMenu(strId);
+
+			blRetVal = true;
+
+		} catch (Exception ex) {
+			log.error("[ChosenFoodMenuServiceImpl][insertIdChosenFoodMenu] Exception: {}", ex);
+		}
+
+		return blRetVal;
+	}
 
 	// 선택된 식단을 데이터베이스에 추가
 	@Override
@@ -44,9 +43,10 @@ public class ChosenFoodMenuServiceImpl implements ChosenFoodMenuService{
 		boolean blRetVal = false;
 
 		try {
+			log.info("[ChosenFoodMenuServiceImpl][insertChosenFoodMenu]: {}", objChosenFoodMenuVO);
+
 			chosenFoodMenuDAO.insertChosenFoodMenu(objChosenFoodMenuVO);
 			blRetVal = true;
-			log.info("[ChosenFoodMenuServiceImpl][insertChosenFoodMenu]: {}", objChosenFoodMenuVO);
 
 		} catch (Exception ex) {
 			log.error("[ChosenFoodMenuServiceImpl][insertChosenFoodMenu] Exception: {}", ex);
@@ -61,11 +61,14 @@ public class ChosenFoodMenuServiceImpl implements ChosenFoodMenuService{
 		boolean blRetVal = false;
 
 		try {
+			log.info("[ChosenFoodMenuServiceImpl][updateChosenFoodMenu]: {}", objChosenFoodMenuVO);
 
+			chosenFoodMenuDAO.updateChosenFoodMenu(objChosenFoodMenuVO);
+			blRetVal = true;
 
 
 		} catch (Exception ex) {
-
+			log.error("[ChosenFoodMenuServiceImpl][updateChosenFoodMenu] Exception: {}", ex);
 		}
 
 		return blRetVal;
@@ -86,12 +89,5 @@ public class ChosenFoodMenuServiceImpl implements ChosenFoodMenuService{
 //		}
 //		return blRetVal;
 //	}
-
-	// 선택된 식단 전체 조회
-	@Override
-	public List<ChosenFoodMenuVO> selectAllFoodMenu() {
-
-		return chosenFoodMenuDAO.selectAllFoodMenu();
-	}
 
 }

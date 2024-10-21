@@ -175,11 +175,8 @@ public class MemberServiceImpl implements MemberService {
 					if (memberDAO.hasMemberByFld("ID", strId) == false) {
 						throw new Exception("삭제할 회원정보가 존재하지 않습니다");
 					}
-
 					// 선택된 식단 삭제
-					 ChosenFoodMenuVO chosenFoodMenuVO = new ChosenFoodMenuVO();
-		             chosenFoodMenuVO.setId(strId);
-		             chosenFoodMenuDAO.deleteChosenFoodMenuById(chosenFoodMenuVO);
+		            chosenFoodMenuDAO.deleteChosenFoodMenuById(strId);
 
 					if ( memberDAO.deleteRoles(strId) == true && memberDAO.deleteMemberById(strId) == true) {
 						blRetVal = true;
@@ -416,23 +413,23 @@ public class MemberServiceImpl implements MemberService {
 		return blRetVal;
 	}
 
-	 // 회원 아이디를 선택된 식단 데이터베이스에 추가
-	@Override
-	public boolean insertIdChosenFoodMenu(String strId) {
-		boolean blRetVal = false;
-
-		try {
-			chosenFoodMenuDAO.insertIdChosenFoodMenu(strId);
-			log.info("회원 아이디를 chosenFoodMenu 테이블에 저장");
-
-			blRetVal = true;
-
-		} catch (Exception ex) {
-			log.error("[MemberService][insertIdChosenFoodMenu] Exception: {}", ex);
-		}
-
-		return blRetVal;
-	}
+//	 // 회원 아이디를 선택된 식단 데이터베이스에 추가
+//	@Override
+//	public boolean insertIdChosenFoodMenu(String strId) {
+//		boolean blRetVal = false;
+//
+//		try {
+//			chosenFoodMenuDAO.insertIdChosenFoodMenu(strId);
+//			log.info("회원 아이디를 chosenFoodMenu 테이블에 저장");
+//
+//			blRetVal = true;
+//
+//		} catch (Exception ex) {
+//			log.error("[MemberService][insertIdChosenFoodMenu] Exception: {}", ex);
+//		}
+//
+//		return blRetVal;
+//	}
 
 	// 사용자별로 바뀔 식단 업데이트
 	@Override

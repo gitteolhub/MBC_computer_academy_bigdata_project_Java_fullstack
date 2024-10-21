@@ -45,14 +45,14 @@ class MemberJoinControllerTest {
 	void setUp() throws Exception {
 		this.mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
 
-		memberVO = MemberVO.builder().id("abcd4455")
-								  	 .pw("#Abcd0202")
-								  	 .name("이민국")
-								  	 .gender("남자")
+		memberVO = MemberVO.builder().id("abcd5555")
+								  	 .pw("#Abcd5555")
+								  	 .name("이민주")
+								  	 .gender("여자")
 
-								  	 .email("abcd0333@abcd.com")
-								  	 .phone("010-3355-1234")
-								  	 .birthday(Date.valueOf("1998-03-26"))
+								  	 .email("abcd5555@abcd.com")
+								  	 .phone("010-5555-5555")
+								  	 .birthday(Date.valueOf("1997-04-13"))
 								  	 .build();
 	}
 

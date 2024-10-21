@@ -304,7 +304,7 @@
 	</update>
 
 	<!-- 선택된 식단 정보 삭제 -->
-	<delete id = "deleteAllFoodMenuById" parameterType = "String">
+	<delete id = "deleteChosenFoodMenuById" parameterType = "String">
 		DELETE FROM CHOSENFOODMENU
 		 WHERE ID = #{id}
 	</delete>

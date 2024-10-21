@@ -17,15 +17,17 @@ public class ChosenFoodMenuAopService {
 	JsonService jsonService;
 
 	/**
-     * ChosenFoodMenuService 호출 이후 자동 실행
+     * ChosenFoodMenuDAO 호출(insertIdChosenFoodMenu, insertChosenFoodMenu, updateChosenFoodMenu, deleteChosenFoodMenuById)
+     * 이후 자동 실행
+     * ex) 주의 selectAllFoodMenu 제외 (StackOverflowError 에러 발생)
      */
-	@Pointcut("execution(public * com.javateam.healthyFoodProject.service.ChosenFoodMenuService.*(..))")
+	@Pointcut("execution(public * com.javateam.healthyFoodProject.repository.ChosenFoodMenuDAO.*ChosenFoodMenu*(..))")
 	public void pointcutChosenFoodMenuSave() {
 		log.info("[pointcutChosenFoodMenuSave]");
 	}
 
 	/**
-     * ChosenFoodMenuService 호출 이후 JSON 파일 저장
+     * ChosenFoodMenuDAO 호출 이후 JSON 파일 저장
      */
 	@After("pointcutChosenFoodMenuSave()")
 	public void chosenFoodMenuJsonSaveAfterAdvice() {
