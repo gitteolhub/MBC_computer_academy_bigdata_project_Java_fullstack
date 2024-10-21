@@ -8,6 +8,12 @@ import pandas as pd
 
 import ai_ctrl
 
+#업데이트가 필요한 사용자의 선택 정보 파일 경로
+chosenFoodMenu_path = 'swgic/src/main/resources/JsonDataFiles/chosenFoodMenu_Json.json'
+
+#모든 사용자에 대한 정보 파일 경로
+allMembers_path = 'swgic/src/main/resources/JsonDataFiles/AllMembersDump.json'
+
 #과일류 식품 데이터와 그 외에 식품 데이터를 병합한 json 데이터 파일의 경로
 data_path = 'Resources/food_data.json'
 
@@ -17,6 +23,9 @@ fruit_data_path = 'Resources/preprocessed_food_data.json'
 #데이터들을 문자열 형태로 저장하는 변수
 data_str = ''
 
+#모든 사용자들의 아이디 리스트
+users_id = []
+
 #사용자에 의한 식단 학습 데이터들을 저장하는 텍스트 파일 경로
 save_file_path = 'Resources/Saved_files/user_data.txt'
 #가중치 저장 파일 경로
@@ -24,10 +33,11 @@ file_path = 'Resources/Saved_files/weights.txt'
 #사용자에 의한 식단 학습 데이터들을 저장하는 변수
 user_reviews = [[],[]]
 
+#
+users_chosen_data = [{'tonicjh':0}, {'swgic':0}]
+
 #쓰레드를 멈추는 이벤트 변수
 stop_event = th.Event()
-
-menu_df = pd.DataFrame(columns=['breakfast', 'lunch', 'dinner'])
 
 #배열 변수의 내용이 없는지 체크하는 함수(없으면 False, 있다면 True 반환)
 def check_list_null(arr):
@@ -66,7 +76,22 @@ def get_data():
     result = json.loads(_data)
     return result
 
+def get_users_data():
+    all_users_data_json_path = allMembers_path
+    user_datas = load_data_from_json_file(all_users_data_json_path)
+    _data = str(user_datas).replace('\'', '\"')
+    result = json.loads(_data)
+    return result
 
+def get_users_food_choice():
+    all_users_data_json_path = chosenFoodMenu_path
+    chosen_food_datas = load_data_from_json_file(all_users_data_json_path)
+    _data = str(chosen_food_datas).replace('\'', '\"')
+    result = json.loads(_data)
+
+    #result.
+
+    return result
 
 #정리가 안된 식품명을 정리하는 함수
 def food_naming(n):
@@ -403,7 +428,14 @@ def get_rice_per_day(debug, to_name, _df):
         _lunch = get_food_by_kcal(x, amount_per_day[0][1] * 100, amount_per_day[0][1] * 23, amount_per_day[0][1] * 2, amount_per_day[0][1] * 1000)
         _dinner = get_food_by_kcal(x, amount_per_day[0][2] * 100, amount_per_day[0][2] * 23, amount_per_day[0][2] * 2, amount_per_day[0][2] * 1000)
         if to_name:
-            food = [food[0] + [name_to_id(_breakfast, _df)], food[1] + [name_to_id(_lunch, _df)], food[2] + [name_to_id(_dinner, _df)]]
+            for p in range(len(_breakfast)):
+                _breakfast[p] = name_to_id(_breakfast[p], _df)
+            for p in range(len(_lunch)):
+                _lunch[p] = name_to_id(_lunch[p], _df)
+            for p in range(len(_dinner)):
+                _dinner[p] = name_to_id(_dinner[p], _df)
+            
+            food = [food[0] + _breakfast, food[1] + _lunch, food[2] + _dinner]
         else:
             food = [food[0] + _breakfast, food[1] + _lunch, food[2] + _dinner]
     if debug:
@@ -420,7 +452,14 @@ def get_meat_per_day(debug, to_name, _df):
         _lunch = get_food_by_kcal(x, amount_per_day[2][1] * 50, amount_per_day[2][1] * 1000, amount_per_day[2][1] * 8, amount_per_day[2][1] * 5)
         _dinner = get_food_by_kcal(x, amount_per_day[2][2] * 50, amount_per_day[2][2] * 1000, amount_per_day[2][2] * 8, amount_per_day[2][2] * 5)
         if to_name:
-            food = [food[0] + [name_to_id(_breakfast, _df)], food[1] + [name_to_id(_lunch, _df)], food[2] + [name_to_id(_dinner, _df)]]
+            for p in range(len(_breakfast)):
+                _breakfast[p] = name_to_id(_breakfast[p], _df)
+            for p in range(len(_lunch)):
+                _lunch[p] = name_to_id(_lunch[p], _df)
+            for p in range(len(_dinner)):
+                _dinner[p] = name_to_id(_dinner[p], _df)
+            
+            food = [food[0] + _breakfast, food[1] + _lunch, food[2] + _dinner]
         else:
             food = [food[0] + _breakfast, food[1] + _lunch, food[2] + _dinner]
     if debug:
@@ -436,7 +475,14 @@ def get_vegetable_per_day(debug, to_name, _df):
         _lunch = get_food_by_kcal(x, amount_per_day[3][1] * 20, amount_per_day[3][1] * 3, amount_per_day[3][1] * 2, amount_per_day[3][1] * 1000)
         _dinner = get_food_by_kcal(x, amount_per_day[3][2] * 20, amount_per_day[3][2] * 3, amount_per_day[3][2] * 2, amount_per_day[3][2] * 1000)
         if to_name:
-            food = [food[0] + [name_to_id(_breakfast, _df)], food[1] + [name_to_id(_lunch, _df)], food[2] + [name_to_id(_dinner, _df)]]
+            for p in range(len(_breakfast)):
+                _breakfast[p] = name_to_id(_breakfast[p], _df)
+            for p in range(len(_lunch)):
+                _lunch[p] = name_to_id(_lunch[p], _df)
+            for p in range(len(_dinner)):
+                _dinner[p] = name_to_id(_dinner[p], _df)
+            
+            food = [food[0] + _breakfast, food[1] + _lunch, food[2] + _dinner]
         else:
             food = [food[0] + _breakfast, food[1] + _lunch, food[2] + _dinner]
     if debug:
@@ -452,7 +498,14 @@ def get_province_per_day(debug, to_name, _df):
         _lunch = get_food_by_kcal(x, amount_per_day[4][1] * 45, amount_per_day[4][1] * 1000, amount_per_day[4][1] * 1000, amount_per_day[4][1] * 5)
         _dinner = get_food_by_kcal(x, amount_per_day[4][2] * 45, amount_per_day[4][2] * 1000, amount_per_day[4][2] * 1000, amount_per_day[4][2] * 5)
         if to_name:
-            food = [food[0] + [name_to_id(_breakfast, _df)], food[1] + [name_to_id(_lunch, _df)], food[2] + [name_to_id(_dinner, _df)]]
+            for p in range(len(_breakfast)):
+                _breakfast[p] = name_to_id(_breakfast[p], _df)
+            for p in range(len(_lunch)):
+                _lunch[p] = name_to_id(_lunch[p], _df)
+            for p in range(len(_dinner)):
+                _dinner[p] = name_to_id(_dinner[p], _df)
+            
+            food = [food[0] + _breakfast, food[1] + _lunch, food[2] + _dinner]
         else:
             food = [food[0] + _breakfast, food[1] + _lunch, food[2] + _dinner]
     if debug:
@@ -468,7 +521,14 @@ def get_milk_per_day(debug, to_name, _df):
         _lunch = get_food_by_kcal(x, amount_per_day[5][1] * 90, amount_per_day[5][1] * 11, amount_per_day[5][1] * 1100, amount_per_day[5][1] * 1100)
         _dinner = get_food_by_kcal(x, amount_per_day[5][2] * 90, amount_per_day[5][2] * 11, amount_per_day[5][2] * 1100, amount_per_day[5][2] * 1100)
         if to_name:
-            food = [food[0] + [name_to_id(_breakfast, _df)], food[1] + [name_to_id(_lunch, _df)], food[2] + [name_to_id(_dinner, _df)]]
+            for p in range(len(_breakfast)):
+                _breakfast[p] = name_to_id(_breakfast[p], _df)
+            for p in range(len(_lunch)):
+                _lunch[p] = name_to_id(_lunch[p], _df)
+            for p in range(len(_dinner)):
+                _dinner[p] = name_to_id(_dinner[p], _df)
+            
+            food = [food[0] + _breakfast, food[1] + _lunch, food[2] + _dinner]
         else:
             food = [food[0] + _breakfast, food[1] + _lunch, food[2] + _dinner]
     if debug:
@@ -484,7 +544,14 @@ def get_fruit_per_day(debug, to_name, _df):
         _lunch = get_food_by_kcal(x, amount_per_day[6][1] * 50, amount_per_day[6][1] * 12, amount_per_day[6][1] * 1000, amount_per_day[6][1] * 1000)
         _dinner = get_food_by_kcal(x, amount_per_day[6][2] * 50, amount_per_day[6][2] * 12, amount_per_day[6][2] * 1000, amount_per_day[6][2] * 1000)
         if to_name:
-            food = [food[0] + [name_to_id(_breakfast, _df)], food[1] + [name_to_id(_lunch, _df)], food[2] + [name_to_id(_dinner, _df)]]
+            for p in range(len(_breakfast)):
+                _breakfast[p] = name_to_id(_breakfast[p], _df)
+            for p in range(len(_lunch)):
+                _lunch[p] = name_to_id(_lunch[p], _df)
+            for p in range(len(_dinner)):
+                _dinner[p] = name_to_id(_dinner[p], _df)
+            
+            food = [food[0] + _breakfast, food[1] + _lunch, food[2] + _dinner]
         else:
             food = [food[0] + _breakfast, food[1] + _lunch, food[2] + _dinner]
             
@@ -541,19 +608,15 @@ def find_meal(c, returns_id, _df):
             rice = rices_id[ind][ran.randint(0, len(rices_id[ind]) - 1)]
             meat = meats_id[ind][ran.randint(0, len(meats_id[ind]) - 1)]
             vegetable = vegetables_id[ind][ran.randint(0, len(vegetables_id[ind]) - 1)]
-            # province = provinces_id[ind][ran.randint(0, len(provinces_id[ind]) - 1)]
             milk = milks_id[ind][ran.randint(0, len(milks_id[ind]) - 1)]
             fruit = fruits_id[ind][ran.randint(0, len(fruits_id[ind]) - 1)]
 
             meal.append([rice, meat, vegetable, fruit, milk])
         else:
-
-
             ind = 1
             rice = rices[ind][ran.randint(0, len(rices[ind]) - 1)]
             meat = meats[ind][ran.randint(0, len(meats[ind]) - 1)]
             vegetable = vegetables[ind][ran.randint(0, len(vegetables[ind]) - 1)]
-            # province = provinces[ind][ran.randint(0, len(provinces[ind]) - 1)]
             milk = milks[ind][ran.randint(0, len(milks[ind]) - 1)]
             fruit = fruits[ind][ran.randint(0, len(fruits[ind]) - 1)]
 
@@ -669,7 +732,9 @@ def train_ai(train_count, _hidden_layer_count, _hidden_count):
 #인공지능에 입력할 식단 데이터를 생성 및 입력하여, 적합한지 판별하는 함수
 def create_menu_from_ai(_df, _saved_data, _hidden_layer_count, _hidden_count):
     #인공지능에 입력할 식단 데이터 갯수
-    menu_count = 100
+    menu_count = 10
+    #뽑아낼 식단 갯수
+    result_count = 2
 
     #과정을 출력할지 지정하는 변수
     debug_process = True
@@ -678,6 +743,7 @@ def create_menu_from_ai(_df, _saved_data, _hidden_layer_count, _hidden_count):
 
     #인공지능에 입력할 아이디 형태의 식단 데이터
     _test_data = find_meal(menu_count, True, _df)
+
     #인공지능이 판단한 후 표시할 식품명 형태의 식단 데이터
     _test_data2 = find_meal(menu_count, False, _df)
 
@@ -685,35 +751,66 @@ def create_menu_from_ai(_df, _saved_data, _hidden_layer_count, _hidden_count):
         print('식품군이 골고루 들어간 당뇨병 식단만으로 필터링 중...')
 
     #인공지능의 판단에 의하여 반환된 식단 데이터들
-    ai_result = [[],[],[]]
+    ai_result = []
 
     #사용자가 선택한 학습 데이터가 존재하는지 확인
     if len(user_reviews[1]) > 0:
-        ai_result_index = 0
-        for x in range(2, len(_test_data)):
-            is_ok = ai_ctrl.detect_favorite_menu(_hidden_layer_count, _hidden_count, _test_data[x], 0.7, _df, _saved_data)
-            if is_ok:
-                ai_result[ai_result_index] = _test_data2[x]
-                ai_result_index += 1
 
-                if ai_result_index >= 1:
+        #식단들의 적합률 퍼센트를 저장하는 변수
+        ai_foods_percent = []
+
+        #뽑아낼 식단 갯수 만큼 식단마다 나온 적합률 퍼센트를 순위별로 저장하는 변수
+        max_like_percent = []
+        for x in range(result_count):
+            max_like_percent.append(0.0)
+
+        #식단들중에 사용자의 마음에 들만한 식단을 뽑아내기 위해 적합률을 인공지능에게 판별시키는 반복문
+        for x in range(2, len(_test_data)):
+            is_ok_percent = ai_ctrl.detect_favorite_menu(_hidden_layer_count, _hidden_count, _test_data[x], _df, _saved_data)
+            ai_foods_percent.append(is_ok_percent)
+
+            #print('ai_foods_percent : ' + str(ai_foods_percent) + ', max_like_percent : ' + str(max_like_percent))
+
+            #식단들의 적합률 퍼센트들의 최고기록을 갱신시키는 반복문
+            for q in range(len(max_like_percent)):
+                if is_ok_percent > max_like_percent[q]:
+                    for p in range(len(max_like_percent) - 1, q, -1):
+                        max_like_percent[p] = max_like_percent[p - 1]
+                    max_like_percent[q] = is_ok_percent
                     break
 
-        breakfast_menu = []
 
-        for x in range(len(ai_result[0])):
-            breakfast_menu.append(ai_result[0][x])
+        for p in range(len(max_like_percent)):
+            ai_result.append(_test_data2[2 + ai_foods_percent.index(max_like_percent[p])])
 
-        return [breakfast_menu]
+        food_menu = []
+
+        for z in range(len(ai_result)):
+            foods = []
+            for x in range(len(ai_result[z])):
+                foods.append(ai_result[z][x])
+
+            food_menu.append(foods)
+
+        #print('food_menu : ' + str(food_menu))
+
+        return food_menu
     else:
-        _test_index0 = ran.randint(2, len(_test_data2) - 1)
+        _test_index = []
+        for x in range(result_count):
+            _test_index.append(ran.randint(2, len(_test_data2) - 1))
 
-        breakfast_menu = []
+        food_menu = []
+        for z in range(len(_test_index)):
+            foods = []
+            for x in range(len(_test_data2[_test_index[z]])):
+                foods.append(_test_data2[_test_index[z]][x])
 
-        for x in range(len(_test_data2[_test_index0])):
-            breakfast_menu.append(_test_data2[_test_index0][x])
+            food_menu.append(foods)
 
-        ai_result = [breakfast_menu]
+        print(food_menu)
+
+        ai_result = food_menu
 
         return ai_result
 
@@ -950,18 +1047,22 @@ if is_test:
                     saved_data = [str_to_list(saved_data[0], False, _df), str_to_list(saved_data[1], False, _df)]
                 save_time2 = save_time2 + datetime.timedelta(seconds=10)
 
+            debug_delay = datetime.datetime.now()
             menu = create_menu_from_ai(_df, saved_data, hidden_layer_count, hidden_count)
+            print('AI full delay : ' + str(datetime.datetime.now() - debug_delay))
             breakfast = ''
             lunch = ''
             dinner = ''
-            _menu = [breakfast]
+            _menu = []
             for i in range(len(menu)):
+                _foods = ''
                 for j in range(len(menu[i])):
                     if len(menu[i][j]) > 0:
-                        _menu[i] += food_naming(str(menu[i][j]))
+                        _foods += food_naming(str(menu[i][j]))
                         if j < len(menu[i]) - 1:
                             if len(menu[i][j]) > 0:
-                                _menu[i] += ', '
+                                _foods += ', '
+                _menu.append(_foods)
             print('\n추천 식단 : ' + str(_menu[0]))
 
             reviews = input('식품군이 골고루 들어간 당뇨병 식단으로 추천되었나요? (y/n) : ')
@@ -1038,18 +1139,23 @@ if is_test:
                     saved_data = [str_to_list(saved_data[0], False, _df), str_to_list(saved_data[1], False, _df)]
                 save_time2 = save_time2 + datetime.timedelta(seconds=10)
 
+            debug_delay = datetime.datetime.now()
             menu = create_menu_from_ai(_df, saved_data, hidden_layer_count, hidden_count)
+            print('AI full delay : ' + str(datetime.datetime.now() - debug_delay))
+
             breakfast = ''
             lunch = ''
             dinner = ''
-            _menu = [breakfast]
+            _menu = []
             for i in range(len(menu)):
+                _foods = ''
                 for j in range(len(menu[i])):
                     if len(menu[i][j]) > 0:
-                        _menu[i] += food_naming(str(menu[i][j]))
+                        _foods += food_naming(str(menu[i][j]))
                         if j < len(menu[i]) - 1:
                             if len(menu[i][j]) > 0:
-                                _menu[i] += ', '
+                                _foods += ', '
+                _menu.append(_foods)
             print('\n추천 식단 : ' + str(_menu[0]))
 
             reviews = input('추천된 식단이 마음에 들었나요? (y/n) : ')
@@ -1083,7 +1189,8 @@ if is_test:
                 stop_event.set()
 else:
     # 백그라운드에서 인공지능 학습 시작
-    thread1.start()
+    user_ai = th.Thread(target=train_ai, args=[training_count, hidden_layer_count, hidden_count])
+    user_ai.start()
 
     print("\nPlease enter 'stop' command to turn off AI Training\n")
     comm = input('\nAI Training >> ')
