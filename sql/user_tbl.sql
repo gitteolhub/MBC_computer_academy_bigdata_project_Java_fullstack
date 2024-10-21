@@ -7,11 +7,7 @@ CREATE TABLE USER_TBL (
 	EMAIL VARCHAR2(50) NOT NULL UNIQUE,
     PHONE VARCHAR2(13) NOT NULL, BIRTHDAY DATE,
     JOINDATE DATE DEFAULT current_date,
-<<<<<<< Updated upstream
     FOODMENU VARCHAR2(500)
-=======
-    FOODMENU varchar2(500)
->>>>>>> Stashed changes
 );
 
 CREATE SEQUENCE USER_NUM_SEQ
@@ -43,12 +39,6 @@ ALTER TABLE USER_TBL ADD ENABLED NUMBER(1) DEFAULT 0;
 COMMENT ON COLUMN USER_TBL.ENABLED IS '회원정보 사용 여부';
 
 /* 기존 데이터에 대한 ENABLES 필드의 사용가 변경(1)*/
-<<<<<<< Updated upstream
-UPDATE USER_TBL SET ENABLED = 1;
-=======
-<<<<<<< Updated upstream
-UPDATE USER_TBL SET ENABLED = 1;
-=======
 UPDATE USER_TBL SET ENABLED = 1;
 
 DROP TABLE user_tbl;
@@ -57,6 +47,3 @@ DROP TABLE user_tbl;
 ALTER TABLE USER_TBL ADD FOODMENU VARCHAR2(500);
 
 COMMENT ON COLUMN USER_TBL.FOODMENU IS '식단 메뉴'
-
->>>>>>> Stashed changes
->>>>>>> Stashed changes
