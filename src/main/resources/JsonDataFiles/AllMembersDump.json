@@ -1,90 +1,24 @@
 [
   {
-    "name": "하리보",
-    "email": "abcd2222@abcd.com",
+    "name": "지원",
+    "email": "abcd1234@Abcd.com",
     "gender": "여자",
-    "num": "2",
-    "id": "abcd3333",
-    "phone": "010-1124-7777",
-    "birthday": "9월 15, 1999",
-    "joindate": "9월 19, 2024",
-    "enabled": 1
-  },
-  {
-    "name": "김지원",
-    "email": "abcd1234@abcd.com",
-    "gender": "여자",
-    "num": "3",
-    "id": "abcd1234",
-    "phone": "010-5678-1234",
-    "birthday": "12월 23, 2000",
-    "joindate": "9월 19, 2024",
-    "enabled": 1
-  },
-  {
-    "name": "회원",
-    "email": "AAAA1234@abcd.com",
-    "gender": "남자",
-    "num": "101",
-    "id": "aaaa1234",
-    "phone": "010-1111-1111",
-    "birthday": "10월 9, 2024",
-    "joindate": "10월 15, 2024",
-    "enabled": 1
-  },
-  {
-    "name": "우빈",
-    "email": "abcd4444@abcd.com",
-    "gender": "남자",
-    "num": "102",
-    "id": "abcd4444",
-    "phone": "010-4444-1234",
-    "birthday": "2월 25, 2000",
-    "joindate": "10월 15, 2024",
-    "enabled": 1
-  },
-  {
-    "name": "홍길동",
-    "email": "abcd1111@abcd.com",
-    "gender": "남자",
-    "num": "1",
-    "id": "abcd1111",
-    "phone": "010-1111-3333",
-    "birthday": "1월 1, 2000",
-    "joindate": "9월 19, 2024",
-    "enabled": 1
-  },
-  {
-    "name": "이민국",
-    "email": "abcd0333@abcd.com",
-    "gender": "남자",
-    "num": "110",
-    "id": "abcd4455",
-    "phone": "010-3355-1234",
-    "birthday": "3월 26, 1998",
-    "joindate": "10월 18, 2024",
-    "enabled": 1
-  },
-  {
-    "name": "진소원",
-    "email": "tgdcom7@naver.com",
-    "gender": "F",
-    "birthyear": "2000-06-02",
-    "authVendor": "naver",
-    "createdDate": "2024년 10월 18일 14:12:11",
-    "modifiedDate": "2024년 10월 18일 14:12:11",
-    "id": "34",
+    "num": "22",
+    "id": "abcd12234",
+    "phone": "010-5678-1034",
+    "birthday": "11월 23, 2000",
+    "joindate": "10월 14, 2024",
     "enabled": 0
   },
   {
-    "name": "소원",
-    "email": "jinsowon82@gmail.com",
-    "gender": "F",
-    "birthyear": "2000-06-02",
-    "authVendor": "google",
-    "createdDate": "2024년 10월 18일 14:14:03",
-    "modifiedDate": "2024년 10월 18일 14:14:16",
-    "id": "35",
-    "enabled": 0
+    "name": "남우민",
+    "email": "abcd3333@abcd.com",
+    "gender": "남자",
+    "num": "21",
+    "id": "abcd2222",
+    "phone": "010-2222-1234",
+    "birthday": "2월 5, 2000",
+    "joindate": "10월 14, 2024",
+    "enabled": 1
   }
 ]

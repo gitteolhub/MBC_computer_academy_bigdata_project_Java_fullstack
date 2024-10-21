@@ -80,7 +80,7 @@ public class LoginTest {
 									 .andDo(print())
 									 .andReturn();								// 결과 반환
 		
-		// 세션에서 예외 메서지를 가져옴
+		// 세션에서 예외 메시지를 가져옴
 		String sessionMsg = mvcResult.getRequest()
 									 .getSession()
 									 .getAttribute("SPRING_SECURITY_LAST_EXCEPTION")
