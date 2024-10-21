@@ -30,7 +30,7 @@ comment ON COLUMN USER_TBL.joindate       IS '가입일';
 /* 참고) 성별 제약조건은 아래와 같이 작성할 수도 있습니다. */
 ALTER TABLE USER_TBL ADD constraint USER_TBL_GENDER_CK check (gender = '남자' OR gender = '여자');
 
-/* 암호화를 위해 비밀번호 필드 자료현(자릿수) 변경 */
+/* 암호화를 위해 비밀번호 필드 자료형(자릿수) 변경 */
 ALTER TABLE USER_TBL MODIFY PW VARCHAR2(60);
 
 /* USER_TBL에 ENABLED열 추가, 기본값: 0 */
@@ -38,7 +38,7 @@ ALTER TABLE USER_TBL ADD ENABLED NUMBER(1) DEFAULT 0;
 
 COMMENT ON COLUMN USER_TBL.ENABLED IS '회원정보 사용 여부';
 
-/* 기존 데이터에 대한 ENABLES 필드의 사용가 변경(1)*/
+/* 기존 데이터에 대한 ENABLES 필드의 사용가능 여부 변경(1)*/
 UPDATE USER_TBL SET ENABLED = 1;
 
 DROP TABLE user_tbl;
