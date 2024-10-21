@@ -18,5 +18,4 @@ public class ChosenFoodMenuVO {
 	private String foodmenu;
 	private String foodmenuResult;
 
-
 }

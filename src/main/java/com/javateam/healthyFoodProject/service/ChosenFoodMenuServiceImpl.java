@@ -63,8 +63,7 @@ public class ChosenFoodMenuServiceImpl implements ChosenFoodMenuService{
 		try {
 			log.info("[ChosenFoodMenuServiceImpl][updateChosenFoodMenu]: {}", objChosenFoodMenuVO);
 
-			chosenFoodMenuDAO.updateChosenFoodMenu(objChosenFoodMenuVO);
-			blRetVal = true;
+			blRetVal = chosenFoodMenuDAO.updateChosenFoodMenu(objChosenFoodMenuVO);
 
 
 		} catch (Exception ex) {

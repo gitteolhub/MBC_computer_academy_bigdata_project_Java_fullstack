@@ -48,13 +48,6 @@ public class AuthController {
 		return "/home";
 	}
 
-	@RequestMapping("/demo")
-	public String demo() {
-
-		log.info("[demo]");
-		return "/home";
-	}
-
 	@GetMapping({"/login/oauth2/authorization/naver",
 				 "/login/oauth2/authorization/google",
 				 "/welcome"})
