@@ -47,11 +47,11 @@ public class LoginFormTest {
 								 .build();
 	}
 
-	@DisplayName("로그인 테스트: 아이디, 비밀번호(평문) 일치할 경우(정상 가입된 회원정보)")
+	@DisplayName("로그인 테스트: 아이디, 비밀번호(평문) 일치할 경우(정상 가입되어 role이 있는 회원정보)")
 	@Test
 	public void testAuthIdPw() throws Exception {
 
-		strId = "abcd1111";
+		strId = "abcd2222";
 		strPw = "#Abcd1234";
 
 		mockMvc.perform(formLogin("/loginForm")					 // 로그인 URL로 post 요청
