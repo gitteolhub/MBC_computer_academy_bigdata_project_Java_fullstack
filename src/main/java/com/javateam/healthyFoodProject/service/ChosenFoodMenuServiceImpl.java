@@ -39,13 +39,13 @@ public class ChosenFoodMenuServiceImpl implements ChosenFoodMenuService{
 
 	// 선택된 식단을 데이터베이스에 추가
 	@Override
-	public boolean insertChosenFoodMenu(ChosenFoodMenuVO objChosenFoodMenuVO) {
+	public boolean insertChosenFoodMenu(String strId, String strFoodMenu, String  strFoodMenuResult) {
 		boolean blRetVal = false;
 
 		try {
-			log.info("[ChosenFoodMenuServiceImpl][insertChosenFoodMenu]: {}", objChosenFoodMenuVO);
 
-			chosenFoodMenuDAO.insertChosenFoodMenu(objChosenFoodMenuVO);
+			chosenFoodMenuDAO.insertChosenFoodMenu(strId, strFoodMenu, strFoodMenuResult);
+			log.info("[ChosenFoodMenuServiceImpl][insertChosenFoodMenu]");
 			blRetVal = true;
 
 		} catch (Exception ex) {
@@ -55,23 +55,23 @@ public class ChosenFoodMenuServiceImpl implements ChosenFoodMenuService{
 		return blRetVal;
 	}
 
-	// 선택된 식단을 수정(업데이트)
-	@Override
-	public boolean updateChosenFoodMenu(ChosenFoodMenuVO objChosenFoodMenuVO) {
-		boolean blRetVal = false;
-
-		try {
-			log.info("[ChosenFoodMenuServiceImpl][updateChosenFoodMenu]: {}", objChosenFoodMenuVO);
-
-			blRetVal = chosenFoodMenuDAO.updateChosenFoodMenu(objChosenFoodMenuVO);
-
-
-		} catch (Exception ex) {
-			log.error("[ChosenFoodMenuServiceImpl][updateChosenFoodMenu] Exception: {}", ex);
-		}
-
-		return blRetVal;
-	}
+//	// 선택된 식단을 수정(업데이트)
+//	@Override
+//	public boolean updateChosenFoodMenu(ChosenFoodMenuVO objChosenFoodMenuVO) {
+//		boolean blRetVal = false;
+//
+//		try {
+//			log.info("[ChosenFoodMenuServiceImpl][updateChosenFoodMenu]: {}", objChosenFoodMenuVO);
+//
+//			blRetVal = chosenFoodMenuDAO.updateChosenFoodMenu(objChosenFoodMenuVO);
+//
+//
+//		} catch (Exception ex) {
+//			log.error("[ChosenFoodMenuServiceImpl][updateChosenFoodMenu] Exception: {}", ex);
+//		}
+//
+//		return blRetVal;
+//	}
 
 //	@Override
 //	public boolean deleteChosenFoodMenu(ChosenFoodMenuVO objChosenFoodMenuVO) {

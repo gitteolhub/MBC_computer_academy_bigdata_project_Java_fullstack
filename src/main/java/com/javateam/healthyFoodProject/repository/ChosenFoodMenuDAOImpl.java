@@ -1,6 +1,8 @@
 package com.javateam.healthyFoodProject.repository;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,44 +36,39 @@ public class ChosenFoodMenuDAOImpl implements ChosenFoodMenuDAO{
 
 	// 선택된 식단을 데이터베이스에 추가
 	@Override
-	public boolean insertChosenFoodMenu(ChosenFoodMenuVO objChosenFoodMenuVO) {
+	public void insertChosenFoodMenu(String strId, String strFoodMenu, String strFoodMenuResult) {
+		Map<String, Object> params = new HashMap<>();
+		params.put("strId", strId);
+		params.put("strFoodMenu", strFoodMenu);
+		params.put("strFoodMenuResult", strFoodMenuResult);
 
-		boolean blRetVal = false;
+		sqlSession.insert(MAPPER_PATH + "insertChosenFoodMenu", params);
 
-		try {
-
-			int intResult = sqlSession.insert(MAPPER_PATH + "insertChosenFoodMenu", objChosenFoodMenuVO);
-			blRetVal = intResult == 1 ? true : false;
-
-		} catch (Exception ex) {
-			log.error("[ChosenFoodMenuDAOImpl][insertChosenFoodMenu] Exception: " + ex);
-		}
-		return blRetVal;
 	}
 
-	// 선택된 식단 수정
-	@Override
-	public boolean updateChosenFoodMenu(ChosenFoodMenuVO objChosenFoodMenuVO) {
-
-		boolean blRetVal = false;
-
-		try {
-			int intResult = this.selectChosenFoodMenuById(objChosenFoodMenuVO.getId()) != null ? 1 : 0;
-
-		if(intResult == 0) {
-			throw new Exception("회원 Id가 없습니다.");
-		}
-		sqlSession.update(MAPPER_PATH + "updateChosenFoodMenu", objChosenFoodMenuVO);
-		log.info("[ChosenFoodMenuDAOImpl][updateChosenFoodMenu]: {}", objChosenFoodMenuVO);
-
-		blRetVal = true;
-
-		} catch (Exception ex) {
-			log.error("[ChosenFoodMenuDAOImpl][updateChosenFoodMenu] Exception: {}", ex);
-			ex.printStackTrace();
-		}
-		return blRetVal;
-	}
+//	// 선택된 식단 수정
+//	@Override
+//	public boolean updateChosenFoodMenu(ChosenFoodMenuVO objChosenFoodMenuVO) {
+//
+//		boolean blRetVal = false;
+//
+//		try {
+//			int intResult = this.selectChosenFoodMenuById(objChosenFoodMenuVO.getId()) != null ? 1 : 0;
+//
+//		if(intResult == 0) {
+//			throw new Exception("회원 Id가 없습니다.");
+//		}
+//		sqlSession.update(MAPPER_PATH + "updateChosenFoodMenu", objChosenFoodMenuVO);
+//		log.info("[ChosenFoodMenuDAOImpl][updateChosenFoodMenu]: {}", objChosenFoodMenuVO);
+//
+//		blRetVal = true;
+//
+//		} catch (Exception ex) {
+//			log.error("[ChosenFoodMenuDAOImpl][updateChosenFoodMenu] Exception: {}", ex);
+//			ex.printStackTrace();
+//		}
+//		return blRetVal;
+//	}
 
 	// 선택된 식단 삭제
 	@Override
