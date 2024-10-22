@@ -52,7 +52,6 @@ public class MemberJoinRestController {
 		ResponseEntity<Boolean> responseEntity = null;
 
 		try {
-
 			boolean blRetVal = memberService.insertMember(objMemberVO);
 			log.info("회원 가입 성공 여부: {}", blRetVal);
 
@@ -61,7 +60,7 @@ public class MemberJoinRestController {
 			} else {
 				responseEntity = new ResponseEntity<>(blRetVal, HttpStatus.NO_CONTENT);	// 회원가입 실패
 			}
-		} catch (Exception ex) {
+		} catch(Exception ex) {
 			log.error("[MemberJoinRestController][joinProcAjax] Exception: {}", ex);
 
 			responseEntity = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

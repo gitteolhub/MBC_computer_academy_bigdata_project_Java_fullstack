@@ -18,7 +18,7 @@ public class ChosenFoodMenuController {
 	private ChosenFoodMenuService chosenFoodMenuService;
 
 	// 식단을 좋아할 경우
-	@PostMapping("/foodMenu") // TODO 임의로 정함(나중에 수정)
+	@PostMapping("/foodMenu/like") // TODO 임의로 정함(나중에 수정)
 	public String likeFoodMenu(@RequestParam String strId, @RequestParam String foodMenu, Model model) {
 
 		boolean success = chosenFoodMenuService.insertChosenFoodMenu(strId, foodMenu, "1");
@@ -31,7 +31,7 @@ public class ChosenFoodMenuController {
 	}
 
 	// 식단을 싫어할 경우
-	@PostMapping("/foodMenu") // TODO 임의로 정함(나중에 수정)
+	@PostMapping("/foodMenu/dislike") // TODO 임의로 정함(나중에 수정)
 	public String dislikeFoodMenu(@RequestParam String strId, @RequestParam String foodMenu, Model model) {
 
 		boolean success = chosenFoodMenuService.insertChosenFoodMenu(strId, foodMenu, "0");
@@ -44,7 +44,7 @@ public class ChosenFoodMenuController {
 	}
 
 	// 당뇨식단이 아닌 경우
-	@PostMapping("/foodMenu") // TODO 임의로 정함(나중에 수정)
+	@PostMapping("/foodMenu/refresh") // TODO 임의로 정함(나중에 수정)
 	public String refreshFoodMenu(@RequestParam String strId, @RequestParam String foodMenu, Model model) {
 
 		boolean success = chosenFoodMenuService.insertChosenFoodMenu(strId, foodMenu, "-1");
