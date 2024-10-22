@@ -1,3 +1,4 @@
+/* ----------필수 테이블 생성 코드 시작------------ */
 CREATE TABLE USER_TBL (
 	NUM VARCHAR2(50) PRIMARY KEY,
     ID VARCHAR2(20) NOT NULL UNIQUE,
@@ -32,6 +33,8 @@ COMMENT ON COLUMN USER_TBL.FOODMENU 	  IS '식단 메뉴'
 
 /* 기존 데이터에 대한 ENABLES 필드의 사용가능 여부 변경(1)*/
 UPDATE USER_TBL SET ENABLED = 1;
+
+/* ----------필수 테이블 생성 코드 끝------------ */
 
 /* 참고) 성별 제약조건은 아래와 같이 작성할 수도 있습니다. */
 ALTER TABLE USER_TBL ADD constraint USER_TBL_GENDER_CK check (gender = '남자' OR gender = '여자');
