@@ -10,7 +10,7 @@ public interface ChosenFoodMenuDAO {
 	ChosenFoodMenuVO selectChosenFoodMenuById(String strId);
 
 	// 회원 아이디를 선택된 식단 데이터베이스에 추가
-	void insertIdChosenFoodMenu(String strId);
+	boolean insertIdChosenFoodMenu(String strId);
 
 	// 선택된 식단을 데이터베이스에 추가
 	void insertChosenFoodMenu(String strId, String strFoodMenu, String strFoodMenuResult);

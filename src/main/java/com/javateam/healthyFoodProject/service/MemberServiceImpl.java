@@ -53,7 +53,6 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	SocialUserMybatisDAO socialUserMybatisDAO;
 
-
 	// 아이디로 회원 정보를 조회
 	@Transactional (readOnly = true)
 	@Override
@@ -90,6 +89,9 @@ public class MemberServiceImpl implements MemberService {
 
 					// 회원 정보 저장
 					blRetVal = memberDAO.insertMember(objMemberVO);
+
+					// ChosenFoodMenu에 id 추가
+					chosenFoodMenuDAO.insertIdChosenFoodMenu(objMemberVO.getId());
 
 					// foodmenu가 null인 경우 초기값 설정
 					if(blRetVal && objMemberVO.getFoodmenu() == null) {

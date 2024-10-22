@@ -29,8 +29,19 @@ public class ChosenFoodMenuDAOImpl implements ChosenFoodMenuDAO{
 
 	// 회원 아이디를 선택된 식단 데이터베이스에 추가
 	@Override
-	public void insertIdChosenFoodMenu(String strId) {
-		sqlSession.insert(MAPPER_PATH + "insertIdChosenFoodMenu", strId);
+	public boolean insertIdChosenFoodMenu(String strId) {
+
+		boolean blRetVal = false;
+
+		try {
+			log.info("[ChosenFoodMenuDAOImpl][insertIdChosenFoodMenu]: {}", strId);
+			sqlSession.insert(MAPPER_PATH + "insertIdChosenFoodMenu", strId);
+
+			blRetVal = true;
+		} catch(Exception ex) {
+			log.error("[ChosenFoodMenuDAOImpl][insertIdChosenFoodMenu] Exception: {}", ex);
+		}
+		return blRetVal;
 	}
 
 	// 선택된 식단을 데이터베이스에 추가

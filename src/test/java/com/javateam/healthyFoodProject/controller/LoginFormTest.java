@@ -55,8 +55,8 @@ public class LoginFormTest {
 	@Test
 	public void testAuthIdPw() throws Exception {
 
-		strId = "abcd2222";
-		strPw = "$2a$10$r1KdA1ZOiRCmHBtf3qk3DuaoxKCnch7kzdlw6cRqV8u8XNBts.uDq";
+		strId = "abcd1111";
+		strPw = "#Abcd1234";
 
 		mockMvc.perform(formLogin("/loginForm")						 // 로그인 URL로 post 요청
 					.user("userid", strId)						 // 회원 아이디 설정

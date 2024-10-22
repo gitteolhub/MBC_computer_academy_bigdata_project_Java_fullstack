@@ -58,7 +58,6 @@ public class MemberJoinController {
 		String msg = ""; 	// 저장 성공,실패 메시지
 
 		if (memberService.insertMember(objMemberVO) == true) {
-			chosenFoodMenuService.insertIdChosenFoodMenu(objMemberVO.getId());		// ChosenFoodMenu에 id 추가
 			msg = "회원가입에 성공하셨습니다.";
 
 		} else {

@@ -66,14 +66,25 @@
     "enabled": 1
   },
   {
+    "name": "우진",
+    "email": "abcd9999@abcd.com",
+    "gender": "남자",
+    "num": "123",
+    "id": "abcd9999",
+    "phone": "010-9999-1234",
+    "birthday": "9월 23, 1999",
+    "joindate": "10월 22, 2024",
+    "enabled": 1
+  },
+  {
     "name": "진소원",
     "email": "tgdcom7@naver.com",
     "gender": "F",
     "birthyear": "2000-06-02",
     "authVendor": "naver",
-    "createdDate": "2024년 10월 18일 14:12:11",
-    "modifiedDate": "2024년 10월 18일 14:12:11",
-    "id": "34",
+    "createdDate": "2024년 10월 21일 18:13:48",
+    "modifiedDate": "2024년 10월 21일 18:13:48",
+    "id": "39",
     "enabled": 0
   },
   {
@@ -82,9 +93,9 @@
     "gender": "F",
     "birthyear": "2000-06-02",
     "authVendor": "google",
-    "createdDate": "2024년 10월 18일 14:14:03",
-    "modifiedDate": "2024년 10월 18일 14:14:16",
-    "id": "35",
+    "createdDate": "2024년 10월 21일 18:14:59",
+    "modifiedDate": "2024년 10월 21일 18:15:12",
+    "id": "40",
     "enabled": 0
   }
 ]

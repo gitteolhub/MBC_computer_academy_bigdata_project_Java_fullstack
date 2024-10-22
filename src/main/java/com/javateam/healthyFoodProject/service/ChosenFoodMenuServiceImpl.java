@@ -19,24 +19,6 @@ public class ChosenFoodMenuServiceImpl implements ChosenFoodMenuService{
 	@Autowired
 	ChosenFoodMenuDAO chosenFoodMenuDAO;
 
-
-	 //회원 아이디를 선택된 식단 데이터베이스에 추가
-	@Override
-	public boolean insertIdChosenFoodMenu(String strId) {
-		boolean blRetVal = false;
-
-		try {
-			chosenFoodMenuDAO.insertIdChosenFoodMenu(strId);
-
-			blRetVal = true;
-
-		} catch (Exception ex) {
-			log.error("[ChosenFoodMenuServiceImpl][insertIdChosenFoodMenu] Exception: {}", ex);
-		}
-
-		return blRetVal;
-	}
-
 	// 선택된 식단을 데이터베이스에 추가
 	@Override
 	public boolean insertChosenFoodMenu(String strId, String strFoodMenu, String  strFoodMenuResult) {
