@@ -90,7 +90,7 @@ public class MemberServiceImpl implements MemberService {
 					// 회원 정보 저장
 					blRetVal = memberDAO.insertMember(objMemberVO);
 
-					// ChosenFoodMenu에 id 추가
+					// 회원 아이디를 선택된 식단 데이터베이스에 추가
 					chosenFoodMenuDAO.insertIdChosenFoodMenu(objMemberVO.getId());
 
 					// foodmenu가 null인 경우 초기값 설정
