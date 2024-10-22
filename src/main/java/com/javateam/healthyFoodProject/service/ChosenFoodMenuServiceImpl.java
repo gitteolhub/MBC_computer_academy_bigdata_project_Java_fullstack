@@ -55,38 +55,4 @@ public class ChosenFoodMenuServiceImpl implements ChosenFoodMenuService{
 		return blRetVal;
 	}
 
-//	// 선택된 식단을 수정(업데이트)
-//	@Override
-//	public boolean updateChosenFoodMenu(ChosenFoodMenuVO objChosenFoodMenuVO) {
-//		boolean blRetVal = false;
-//
-//		try {
-//			log.info("[ChosenFoodMenuServiceImpl][updateChosenFoodMenu]: {}", objChosenFoodMenuVO);
-//
-//			blRetVal = chosenFoodMenuDAO.updateChosenFoodMenu(objChosenFoodMenuVO);
-//
-//
-//		} catch (Exception ex) {
-//			log.error("[ChosenFoodMenuServiceImpl][updateChosenFoodMenu] Exception: {}", ex);
-//		}
-//
-//		return blRetVal;
-//	}
-
-//	@Override
-//	public boolean deleteChosenFoodMenu(ChosenFoodMenuVO objChosenFoodMenuVO) {
-//		boolean blRetVal = false;
-//
-//		try {
-//			chosenFoodMenuDAO.deleteChosenFoodMenuById(objChosenFoodMenuVO);
-//			blRetVal = true;
-//
-//		} catch(Exception ex){
-//			log.error("[ChosenFoodMenuServiceImpl][deleteChosenFoodMenu] Exception: {}", ex);
-//			ex.printStackTrace();
-//
-//		}
-//		return blRetVal;
-//	}
-
 }

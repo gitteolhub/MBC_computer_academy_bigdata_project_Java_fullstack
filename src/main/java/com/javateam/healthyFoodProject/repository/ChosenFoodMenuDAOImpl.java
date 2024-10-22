@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.javateam.healthyFoodProject.domain.ChosenFoodMenuVO;
-import com.javateam.healthyFoodProject.domain.SocialUser;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -45,30 +44,6 @@ public class ChosenFoodMenuDAOImpl implements ChosenFoodMenuDAO{
 		sqlSession.insert(MAPPER_PATH + "insertChosenFoodMenu", params);
 
 	}
-
-//	// 선택된 식단 수정
-//	@Override
-//	public boolean updateChosenFoodMenu(ChosenFoodMenuVO objChosenFoodMenuVO) {
-//
-//		boolean blRetVal = false;
-//
-//		try {
-//			int intResult = this.selectChosenFoodMenuById(objChosenFoodMenuVO.getId()) != null ? 1 : 0;
-//
-//		if(intResult == 0) {
-//			throw new Exception("회원 Id가 없습니다.");
-//		}
-//		sqlSession.update(MAPPER_PATH + "updateChosenFoodMenu", objChosenFoodMenuVO);
-//		log.info("[ChosenFoodMenuDAOImpl][updateChosenFoodMenu]: {}", objChosenFoodMenuVO);
-//
-//		blRetVal = true;
-//
-//		} catch (Exception ex) {
-//			log.error("[ChosenFoodMenuDAOImpl][updateChosenFoodMenu] Exception: {}", ex);
-//			ex.printStackTrace();
-//		}
-//		return blRetVal;
-//	}
 
 	// 선택된 식단 삭제
 	@Override

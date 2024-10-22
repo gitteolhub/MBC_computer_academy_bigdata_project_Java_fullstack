@@ -72,9 +72,6 @@ public interface MemberService {
 	// social(naver, google) 전체 회원정보 조회(ex, json 정보 생성용)
 	List<SocialUser> selectAllSocialUsers();
 
-//	// 회원 아이디를 선택된 식단 데이터베이스에 추가
-//	boolean insertIdChosenFoodMenu(String strId);
-
 	// 회원별로 바뀔 식단 업데이트
 	boolean updateFoodMenuByUser(String strId);
 

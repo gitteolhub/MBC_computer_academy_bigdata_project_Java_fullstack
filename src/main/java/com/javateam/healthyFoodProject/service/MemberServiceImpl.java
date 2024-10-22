@@ -1,10 +1,8 @@
 package com.javateam.healthyFoodProject.service;
 
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -22,7 +20,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.TransactionCallback;
 import org.springframework.transaction.support.TransactionTemplate;
 
-import com.javateam.healthyFoodProject.domain.ChosenFoodMenuVO;
 import com.javateam.healthyFoodProject.domain.MemberJsonVO;
 import com.javateam.healthyFoodProject.domain.MemberVO;
 import com.javateam.healthyFoodProject.domain.Role;
@@ -429,6 +426,9 @@ public class MemberServiceImpl implements MemberService {
 			// 탈퇴한 회원 아이디를 파일에 저장
 			saveDeletedUSerIdToFile(socialUser.getId().toString());
 
+			// 선택된 식단 삭제
+			chosenFoodMenuDAO.deleteChosenFoodMenuById(socialUser.getId().toString());
+
 			// 탈회한 회원 정보 삭제
 			socialUserMybatisDAO.deletSocialUser(socialUser);
 			blRetVal = true;
@@ -439,24 +439,6 @@ public class MemberServiceImpl implements MemberService {
 		}
 		return blRetVal;
 	}
-
-//	 // 회원 아이디를 선택된 식단 데이터베이스에 추가
-//	@Override
-//	public boolean insertIdChosenFoodMenu(String strId) {
-//		boolean blRetVal = false;
-//
-//		try {
-//			chosenFoodMenuDAO.insertIdChosenFoodMenu(strId);
-//			log.info("회원 아이디를 chosenFoodMenu 테이블에 저장");
-//
-//			blRetVal = true;
-//
-//		} catch (Exception ex) {
-//			log.error("[MemberService][insertIdChosenFoodMenu] Exception: {}", ex);
-//		}
-//
-//		return blRetVal;
-//	}
 
 	// 사용자별로 바뀔 식단 업데이트
 	@Override

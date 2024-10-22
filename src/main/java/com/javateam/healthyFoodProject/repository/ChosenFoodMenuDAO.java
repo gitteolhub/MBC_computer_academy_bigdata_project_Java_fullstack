@@ -15,15 +15,10 @@ public interface ChosenFoodMenuDAO {
 	// 선택된 식단을 데이터베이스에 추가
 	void insertChosenFoodMenu(String strId, String strFoodMenu, String strFoodMenuResult);
 
-//	// 선택된 식단 수정
-//	boolean updateChosenFoodMenu(ChosenFoodMenuVO objChosenFoodMenuVO);
-
 	// 선택된 식단 삭제
 	boolean deleteChosenFoodMenuById(String strId);
 
 	// 선택된 식단 전체 조회
 	List<ChosenFoodMenuVO> selectAllFoodMenu();
-
-
 
 }
