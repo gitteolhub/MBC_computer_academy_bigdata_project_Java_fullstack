@@ -58,7 +58,7 @@ public class LoginFormTest {
 		strId = "abcd1111";
 		strPw = "#Abcd1234";
 
-		mockMvc.perform(formLogin("/loginForm")						 // 로그인 URL로 post 요청
+		mockMvc.perform(formLogin("/loginForm")					 // 로그인 URL로 post 요청
 					.user("userid", strId)						 // 회원 아이디 설정
 					.password("password", strPw))				 // 회원 비밀번호 설정
 			   .andExpect(authenticated().withUsername(strId))	 // 인증 성공 시 아이디 확인
