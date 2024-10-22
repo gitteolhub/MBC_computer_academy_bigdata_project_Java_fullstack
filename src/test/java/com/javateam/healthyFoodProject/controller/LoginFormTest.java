@@ -55,8 +55,8 @@ public class LoginFormTest {
 	@Test
 	public void testAuthIdPw() throws Exception {
 
-		strId = "abcd1111";
-		strPw = "#Abcd1234";
+		strId = "abcd2222";
+		strPw = "$2a$10$r1KdA1ZOiRCmHBtf3qk3DuaoxKCnch7kzdlw6cRqV8u8XNBts.uDq";
 
 		mockMvc.perform(formLogin("/loginForm")						 // 로그인 URL로 post 요청
 					.user("userid", strId)						 // 회원 아이디 설정
@@ -69,7 +69,7 @@ public class LoginFormTest {
 	@Test
 	public void testAuthId() throws Exception {
 
-		strId = "abcd1234";
+		strId = "abcd2222";
 		strPw = "#Abcd12345";
 
 		MvcResult mvcResult = mockMvc.perform(formLogin("/loginForm")
