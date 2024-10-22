@@ -2,12 +2,15 @@ package com.javateam.healthyFoodProject.service;
 
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -460,6 +463,52 @@ public class MemberServiceImpl implements MemberService {
 
 		return blRetVal;
 
+	}
+
+	// 회원 아이디별로 바뀔 식단 업데이트
+	@Override
+	public boolean updateFoodMenuByUserID() {
+		boolean blRetVal = false;
+
+		// TODO FilePath 지정 필요
+		String updatingFoodMenuByUsersFilePath = "";
+
+		try {
+			JsonService jsonService = new JsonService();
+
+			// json 파일 읽기
+			String jsonContent = jsonService.readUpdateFoodMenuJson(updatingFoodMenuByUsersFilePath);
+
+			JSONArray jsonArray = new JSONArray(jsonContent);
+
+			for(int i = 0; i < jsonArray.length(); i++) {
+				JSONObject jsonObject = jsonArray.getJSONObject(i);
+				String strId = jsonObject.getString("id");
+
+				// 각 아이디에 대해 updateFoodMenuByUser 호출
+				boolean result = updateFoodMenuByUser(strId);
+				if (!result) {
+					log.info("[updateFoodMenuByUserID][result] strId: {}", strId);
+				}
+			}
+			// 모든 업데이트가 완료되면 true
+			blRetVal = true;
+
+			// 파일 삭제
+			File fileToDelete = new File(updatingFoodMenuByUsersFilePath);
+			if (fileToDelete.delete()) {
+				log.info("[updateFoodMenuByUserID][updatingFoodMenuByUsersFile 삭제 성공]");
+			} else {
+				log.info("[updateFoodMenuByUserID][updatingFoodMenuByUsersFile 삭제 실패]");
+			}
+
+		} catch(IOException ex) {
+			log.error("[updateFoodMenuByUserID] IOException: {}", ex);
+		} catch(Exception ex) {
+			log.error("[updateFoodMenuByUserID] Exception: {}", ex);
+		}
+
+		return blRetVal;
 	}
 
 

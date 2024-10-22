@@ -92,6 +92,9 @@ dependencies {
 	// Gson
 	implementation 'com.google.code.gson:gson:2.11.0'
 
+	// JSON
+	implementation 'org.json:json:20210307'
+
 }
 
 tasks.named('test') {
