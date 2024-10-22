@@ -1,13 +1,8 @@
 package com.javateam.healthyFoodProject.service;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.javateam.healthyFoodProject.domain.ChosenFoodMenuVO;
-import com.javateam.healthyFoodProject.domain.MemberVO;
 import com.javateam.healthyFoodProject.repository.ChosenFoodMenuDAO;
 
 import lombok.extern.slf4j.Slf4j;

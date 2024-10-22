@@ -19,7 +19,6 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.context.WebApplicationContext;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -29,9 +28,6 @@ import lombok.extern.slf4j.Slf4j;
 @WebAppConfiguration
 @Slf4j
 public class LoginFormTest {
-
-	@Autowired
-	private WebApplicationContext webApplicationcontext;
 
 	@Autowired
 	private FilterChainProxy springSecurityFilterChain;

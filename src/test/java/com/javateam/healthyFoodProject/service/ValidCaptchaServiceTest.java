@@ -1,7 +1,5 @@
 package com.javateam.healthyFoodProject.service;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,7 +31,7 @@ class ValidCaptchaServiceTest {
 
 		log.info("[clientId]: {}", clientId);
 		log.info("[clientSecret]: {}", clientSecret);
-		
+
 		String key = "발급된 키를 입력합니다.";
 		String captcha = "captcha 문자"; // 발행된 그림의 captcha 문자를 입력합니다.
 
@@ -48,7 +46,7 @@ class ValidCaptchaServiceTest {
         String responseBody = apiCaptchaNKeyService.get(apiURL, requestHeaders);
 
         log.info("responseBody : {}", responseBody);
-		
+
 	}
 
 }

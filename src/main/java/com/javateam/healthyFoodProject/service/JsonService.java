@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 
 import com.javateam.healthyFoodProject.domain.ChosenFoodMenuVO;
 import com.javateam.healthyFoodProject.domain.MemberJsonVO;
-import com.javateam.healthyFoodProject.domain.MemberVO;
 import com.javateam.healthyFoodProject.repository.ChosenFoodMenuDAO;
 import com.nimbusds.jose.shaded.gson.Gson;
 import com.nimbusds.jose.shaded.gson.GsonBuilder;
@@ -35,7 +34,6 @@ public class JsonService {
 
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-		// String filePath="D:/coding/work/JsonData";
 		 String filePath="src/main/resources/JsonDataFiles/AllMembersDump.json";
 
 		try{

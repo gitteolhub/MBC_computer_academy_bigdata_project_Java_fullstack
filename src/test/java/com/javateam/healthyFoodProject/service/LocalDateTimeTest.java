@@ -1,7 +1,5 @@
 package com.javateam.healthyFoodProject.service;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 

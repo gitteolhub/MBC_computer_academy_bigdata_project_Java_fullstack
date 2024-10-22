@@ -2,8 +2,6 @@ package com.javateam.healthyFoodProject.repository;
 
 import java.util.List;
 import java.util.Map;
-
-import com.javateam.healthyFoodProject.domain.ChosenFoodMenuVO;
 import com.javateam.healthyFoodProject.domain.MemberVO;
 
 public interface MemberDAO {
