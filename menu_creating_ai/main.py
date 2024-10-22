@@ -1142,7 +1142,7 @@ if is_test:
 
             debug_delay = datetime.datetime.now()
             menu = create_menu_from_ai(_df, saved_data, hidden_layer_count, hidden_count)
-            print('======================================================================================================================\nAI가 식단을 산출하는데에 걸린 시간 : ' + bcolors.CYAN + str(datetime.datetime.now() - debug_delay) + 's' + bcolors.ENDC)
+            print('\n======================================================================================================================\nAI가 식단을 산출하는데에 걸린 시간 : ' + bcolors.CYAN + str(datetime.datetime.now() - debug_delay) + 's' + bcolors.ENDC)
 
             breakfast = ''
             lunch = ''
@@ -1242,7 +1242,7 @@ if is_test:
 
             debug_delay = datetime.datetime.now()
             menu = create_menu_from_ai(_df, saved_data, hidden_layer_count, hidden_count)
-            print('======================================================================================================================\nAI가 식단을 산출하는데에 걸린 시간 : ' + bcolors.CYAN + str(datetime.datetime.now() - debug_delay) + 's' + bcolors.ENDC)
+            print('\n======================================================================================================================\nAI가 식단을 산출하는데에 걸린 시간 : ' + bcolors.CYAN + str(datetime.datetime.now() - debug_delay) + 's' + bcolors.ENDC)
 
             breakfast = ''
             lunch = ''
