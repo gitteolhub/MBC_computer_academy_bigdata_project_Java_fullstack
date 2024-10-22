@@ -51,7 +51,7 @@ public class LoginFormTest {
 								 .build();
 	}
 
-	@DisplayName("로그인 테스트: 아이디,비밀번호 일치할 경우(정상 가입된 회원정보)")
+	@DisplayName("로그인 테스트: 아이디, 비밀번호(평문) 일치할 경우(정상 가입된 회원정보)")
 	@Test
 	public void testAuthIdPw() throws Exception {
 
