@@ -594,7 +594,7 @@ def get_province_per_day(debug, to_name, _df):
 
 #교환단위에 의한 식사 가능한 우유군 식품 리스트를 반환하는 함수
 def get_milk_per_day(debug, to_name, _df):
-    sp = ['유제품류 및 빙과류', '음료 및 차류']
+    sp = ['유제품류 및 빙과류']
     food = [[], [], []]
     for x in sp:
         _breakfast = get_food_by_kcal(x, amount_per_day[5][0] * 90, amount_per_day[5][0] * 11, amount_per_day[5][0] * 1100, amount_per_day[5][0] * 1100)
@@ -816,7 +816,7 @@ def train_ai(train_count, w_path, _hidden_layer_count, _hidden_count):
 #인공지능에 입력할 식단 데이터를 생성 및 입력하여, 적합한지 판별하는 함수
 def create_menu_from_ai(_df, _saved_data, _hidden_layer_count, _hidden_count):
     #인공지능에 입력할 식단 데이터 갯수
-    menu_count = 40
+    menu_count = 500
     #뽑아낼 식단 갯수
     result_count = 2
 
