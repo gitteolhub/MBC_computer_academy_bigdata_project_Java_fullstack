@@ -13,7 +13,7 @@ input_count = 1
 output_count = 1
 
 #오차에 대한 가중치 계산 반영률
-learning_rate = 0.5
+learning_rate = 0.3
 
 #weight = []
 bios = []
@@ -72,12 +72,16 @@ def sign_weight_value(in_count, hid_count, out_count, hidden_count):
     return _weight
 
 def sign_bios_value(hid_count):
+    _bios = []
     for i in range(hid_count + 1):
-        bios.append(ran.random())
-    return bios
+        _bios.append(ran.random())
+
+    return _bios
 
 #순전파 함수
 def calculate_straight(weights, biases, input_data, _hidden_layer_count, _hidden_count, is_debug=False):
+
+    debug_log('weights : ' + str(weights), is_debug)
 
     #variable to return
     result = [0.0]
@@ -397,7 +401,7 @@ def train(train_count, input_data, _hidden_layer_count, hidden_count, output_dat
 #일정 갯수의 식단을 받아와 학습된 인공지능으로 판단하는 함수
 def detect_favorite_menu(_hidden_layer_count, hidden_count, input_data, _df, saved_data):
     menu_result = 0.0
-    debug_process = False
+    debug_process = True
 
     _input_count = len(input_data)
 
@@ -407,8 +411,6 @@ def detect_favorite_menu(_hidden_layer_count, hidden_count, input_data, _df, sav
             hidden_net_layer.append([])
 
     if len(saved_data) > 1:
-        if debug_process:
-            print('가중치 데이터 불러오는 중...')
         _weight = str_to_list(str(saved_data[0]), False, _df)
         _bios = str_to_list(str(saved_data[1]), False, _df)
     else:
