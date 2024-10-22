@@ -1,8 +1,11 @@
 package com.javateam.healthyFoodProject.service;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Collections;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
@@ -182,6 +185,50 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         } catch (Exception ex) {
             log.error("[updateFoodMenuBySocialUser] Exception: {}", ex);
         }
+
+		return blRetVal;
+	}
+
+	// social 회원 아이디 별로 바뀔 식단 업데이트
+	public boolean updateFoodMenuBySocialUserID() {
+		boolean blRetVal = false;
+
+		// TODO FilePath 지정 필요
+		String updatingFoodMenuByUsersFilePath = "";
+
+		try {
+
+			// json 파일 읽기
+			String jsonContent = jsonService.readUpdateFoodMenuJson(updatingFoodMenuByUsersFilePath);
+
+			JSONArray JsonArray = new JSONArray(jsonContent);
+
+			for(int i = 0; i < JsonArray.length(); i++) {
+				JSONObject jsonObject = JsonArray.getJSONObject(i);
+				int id = jsonObject.getInt("id");
+
+				// 각 아이디에 대해 updateFoodMenuBySocialUser 호출
+				boolean result = updateFoodMenuBySocialUser(id);
+				if(!result) {
+					log.info("[updateFoodMenuBySocialUserID][result] id: {}", id);
+				}
+			}
+			// 모든 업데이트가 완료되면 true
+			blRetVal = true;
+
+			// 파일 삭제
+			File fileToDelete = new File(updatingFoodMenuByUsersFilePath);
+			if (fileToDelete.delete()) {
+				log.info("[updateFoodMenuBySocialUserID][updatingFoodMenuByUsersFile 삭제 성공]");
+			} else {
+				log.info("[updateFoodMenuBySocialUserID][updatingFoodMenuByUsersFile 삭제 실패]");
+			}
+
+		} catch(IOException ex) {
+			log.error("[updateFoodMenuBySocialUserID] IOException: {}", ex);
+		} catch(Exception ex) {
+			log.error("[updateFoodMenuBySocialUserID] Exception: {}", ex);
+		}
 
 		return blRetVal;
 	}

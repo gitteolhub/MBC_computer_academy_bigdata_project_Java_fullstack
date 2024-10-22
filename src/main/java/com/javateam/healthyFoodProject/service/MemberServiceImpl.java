@@ -2,8 +2,10 @@ package com.javateam.healthyFoodProject.service;
 
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -178,6 +180,9 @@ public class MemberServiceImpl implements MemberService {
 					if (memberDAO.hasMemberByFld("ID", strId) == false) {
 						throw new Exception("삭제할 회원정보가 존재하지 않습니다");
 					}
+					// 탈퇴한 회원 아이디를 파일에 저장
+					saveDeletedUSerIdToFile(strId);
+
 					// 선택된 식단 삭제
 		            chosenFoodMenuDAO.deleteChosenFoodMenuById(strId);
 
@@ -192,6 +197,21 @@ public class MemberServiceImpl implements MemberService {
 				return blRetVal;
 			}
 		});
+	}
+
+	// 탈퇴한 회원 아이디를 파일에 저장
+	private void saveDeletedUSerIdToFile(String strId) {
+		String deleteUserIdFilePath = "src/main/resources/dataFiles/deleteUserIdFile.txt";
+
+		try(BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(deleteUserIdFilePath, true))){
+			bufferedWriter.write(strId);
+			bufferedWriter.newLine();
+			log.info("[MemberService][saveDeletedMemberIdToFile]");
+
+		} catch(IOException ex) {
+			log.error("[MemberService][saveDeletedMemberIdToFile] IOException: {}", ex);
+		}
+
 	}
 
 	// 회원정보 중복 점검(회원 가입)
@@ -406,6 +426,10 @@ public class MemberServiceImpl implements MemberService {
 		boolean blRetVal = false;
 
 		try {
+			// 탈퇴한 회원 아이디를 파일에 저장
+			saveDeletedUSerIdToFile(socialUser.getId().toString());
+
+			// 탈회한 회원 정보 삭제
 			socialUserMybatisDAO.deletSocialUser(socialUser);
 			blRetVal = true;
 
