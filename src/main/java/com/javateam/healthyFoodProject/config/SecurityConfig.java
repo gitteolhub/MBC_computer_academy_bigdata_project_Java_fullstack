@@ -75,7 +75,7 @@ public class SecurityConfig {
 											   						.permitAll()
 											   						.requestMatchers("/admin/**").hasAnyAuthority("ROLE_ADMIN")				// ROLE_ADMIN 권한이 필요한 경로
 											   						.requestMatchers("/secured/**", "/myPage", "/member/view", "/member/hasFldForUpdate/**", "/member/update",
-											   										 "/member/updateProc", "/foodMenu", "/foodmenu/view")
+											   										 "/member/updateProc", "/foodMenu", "/foodMenu/view")
 											   						.hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")	// ROLE_USER, ROLE_ADMIN 권한이 필요한 경로
 											   						.anyRequest().authenticated());
 

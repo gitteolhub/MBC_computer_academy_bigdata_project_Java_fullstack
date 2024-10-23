@@ -23,8 +23,9 @@ public class FoodMenuController {
 	private MemberService memberService;
 
 	// 선택할 foodMenu 조회
-	@GetMapping("/foodmenu/view")
+	@GetMapping("/foodMenu/view")
 	public String showFoodMenu(@RequestParam String strud, Model model) {
+		log.info("[showFoodMenu]");
 
 		String foodMenu = memberService.selectFoodMenuById(strud);
 
