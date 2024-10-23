@@ -1003,26 +1003,6 @@ def login_user(_id, _age, _weight, _height, _gender, _exercise):
 
     my_gender = _gender
 
-def save_sharing_datas():
-    saving_path = 'Resources/Sharing_files/'
-    initialize_food_file_name = 'initializingFoodMenu.json'
-    updating_food_file_by_users = 'updatingFoodMenuByUsers.json'
-
-    if exists(allMembers_path):
-        update_users = load_data_from_json_file(allMembers_path)
-
-
-    if exists(chosenFoodMenu_path):
-        users_chosen_menu = load_data_from_json_file(chosenFoodMenu_path)
-        split_by_id = users_chosen_menu.split(':')
-        for user in split_by_id:
-            user.replace('[', '').replace(']', '')
-
-        remove(chosenFoodMenu_path)
-
-
-
-
 # 사용자의 하루 권장 섭취 열량 변수
 kcal = int(calc_kcal_per_day(my_age, my_weight, my_height, my_exercise))
 # 나이별 사용자의 하루 권장 식품 교환 단위 변수
@@ -1098,6 +1078,86 @@ hidden_count = 3
 #쓰레드로 백그라운드에서 인공지능 학습 진행
 all_ai = th.Thread(target=train_ai, args=[training_count, weights_path, hidden_layer_count, hidden_count])
 user_ai = th.Thread(target=train_ai, args=[training_count, like_weights_path, hidden_layer_count, hidden_count])
+
+#주기적으로 swgic프로젝트가 사용할 식단 데이터들을 저장 및 갱신하는 함수
+def save_sharing_datas(update_cool_time, _hidden_layer_count, _hidden_count):
+    update_timer = datetime.datetime.now()
+
+    cool_time_second = int(update_cool_time % 60)
+    cool_time_minute = int(update_cool_time / 60)
+    cool_time_hour = int(update_cool_time / 3600)
+    cool_time_day = int(update_cool_time / 86400)
+    
+    if cool_time_day > 0:
+        update_timer = update_timer + datetime.timedelta(days=cool_time_day)
+    if cool_time_hour > 0:
+        update_timer = update_timer + datetime.timedelta(hours=cool_time_hour)
+    if cool_time_minute > 0:
+        update_timer = update_timer + datetime.timedelta(minutes=cool_time_minute)
+    if cool_time_second > 0:
+        update_timer = update_timer + datetime.timedelta(seconds=cool_time_second)
+
+    while not stop_event.is_set():
+        #save_sharing_updating_food_menu()를 일정 주기로 호출하는 코드
+        timer_for_updating = datetime.datetime.now() + datetime.timedelta(seconds=1)
+        if datetime.datetime.now() >= timer_for_updating:
+            _df1 = pd.read_json(data_path)
+            save_sharing_updating_food_menu(_df1, _hidden_layer_count, _hidden_count)
+            timer_for_updating = datetime.datetime.now() + datetime.timedelta(seconds=1)
+
+        #save_sharing_initializing_food_menu()를 일정 주기로 호출하는 코드
+        if datetime.datetime.now() >= update_timer:
+            _df2 = pd.read_json(data_path)
+            save_sharing_initializing_food_menu(_df2, _hidden_layer_count, _hidden_count)
+
+            update_timer = datetime.datetime.now()
+
+            cool_time_second = int(update_cool_time % 60)
+            cool_time_minute = int(update_cool_time / 60)
+            cool_time_hour = int(update_cool_time / 3600)
+            cool_time_day = int(update_cool_time / 86400)
+
+            if cool_time_day > 0:
+                update_timer = update_timer + datetime.timedelta(days=cool_time_day)
+            if cool_time_hour > 0:
+                update_timer = update_timer + datetime.timedelta(hours=cool_time_hour)
+            if cool_time_minute > 0:
+                update_timer = update_timer + datetime.timedelta(minutes=cool_time_minute)
+            if cool_time_second > 0:
+                update_timer = update_timer + datetime.timedelta(seconds=cool_time_second)
+
+#새로 회원가입한 사용자들에게 표시할 초기 식단 데이터를 파일로 저장하는 함수
+def save_sharing_initializing_food_menu(_df, _hidden_layer_count, _hidden_count):
+    saving_path = 'Resources/Sharing_files/initializingFoodMenu.json'
+
+    if all_ai.is_alive():
+        _saved_data = read_weights_file(weights_path)
+        if len(_saved_data) > 1:
+            _saved_data = [str_to_list(_saved_data[0], False, _df), str_to_list(_saved_data[1], False, _df)]
+
+        _food_menu = create_menu_from_ai(_df, _saved_data, _hidden_layer_count, _hidden_count)
+        _food_menu_str = str(_food_menu)
+
+        open(saving_path, 'w', encoding='utf-8').close()
+        f = open(saving_path, 'w', encoding='utf-8')
+
+        f.write(_food_menu_str)
+
+        f.close()
+
+#사용자들이 식단을 평가하고 얻은 학습 데이터를 반영시킨 새로운 식단을 사용자별로 나누어 파일로 저장하는 함수
+def save_sharing_updating_food_menu(_df, _hidden_layer_count, _hidden_count):
+    saving_path = 'Resources/Sharing_files/updatingFoodMenuByUsers.json'
+
+    if exists(chosenFoodMenu_path):
+        users_chosen_menu = load_data_from_json_file(chosenFoodMenu_path)
+        split_by_id = users_chosen_menu.split(':')
+        for user in split_by_id:
+            user.replace('[', '').replace(']', '')
+
+
+
+        remove(chosenFoodMenu_path)
 
 #테스트 모드인지 지정하는 변수
 is_test = True
@@ -1299,7 +1359,11 @@ else:
     all_ai.start()
     user_ai.start()
 
-    back_file_saving = th.Thread(target=save_sharing_datas, args=[])
+    #swgic프로젝트가 사용할 식단 데이터들을 파일로 저장하는 주기(초 단위로 설정)변수
+    updating_cool_time = 600
+    back_file_saving = th.Thread(target=save_sharing_datas, args=[updating_cool_time, hidden_layer_count, hidden_count])
+
+    back_file_saving.start()
 
     print("\nPlease enter 'stop' command to turn off AI Training\n")
 
@@ -1312,3 +1376,4 @@ else:
 
     all_ai.join()
     user_ai.join()
+    back_file_saving.join()
