@@ -9,16 +9,11 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.RememberMeServices;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
-import org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices;
-import org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices.RememberMeTokenAlgorithm;
 
-import com.javateam.healthyFoodProject.domain.SocialRole;
 import com.javateam.healthyFoodProject.service.CustomOAuth2UserService;
 import com.javateam.healthyFoodProject.service.CustomProviderService;
 
@@ -74,14 +69,13 @@ public class SecurityConfig {
 
 		// 요청 권한 설정
 		objHttpSecurity.authorizeHttpRequests((authorizeHttpRequests) ->
-											   authorizeHttpRequests.requestMatchers("/",                    "/demo",                "/resources/**",  "/loginError",      "/join",
-													   							 	 "/joinAjax",            "/joinDemo",            "/joinAjaxDemo",  "/member/joinProc", "/member/joinProc2",
-													   							 	 "/member/joinProcDemo", "/member/joinProcAjax", "/login/idCheck", "/loginForm",       "/member/hasFld/**",
-													   							 	 "/home", "/foodMenu")
+											   authorizeHttpRequests.requestMatchers("/",              "/resources/**",    "/loginError",       "/join",                "/joinDemo",
+													   								 "/joinAjaxDemo",  "/member/joinProc", "/member/joinProc2", "/member/joinProcDemo", "/member/joinProcAjax",
+													   								 "/login/idCheck", "/loginForm",       "/member/hasFld/**", "/home")
 											   						.permitAll()
 											   						.requestMatchers("/admin/**").hasAnyAuthority("ROLE_ADMIN")				// ROLE_ADMIN 권한이 필요한 경로
 											   						.requestMatchers("/secured/**", "/myPage", "/member/view", "/member/hasFldForUpdate/**", "/member/update",
-											   										 "/member/updateProc")
+											   										 "/member/updateProc", "/foodMenu", "/foodmenu/view")
 											   						.hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")	// ROLE_USER, ROLE_ADMIN 권한이 필요한 경로
 											   						.anyRequest().authenticated());
 

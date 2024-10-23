@@ -207,7 +207,7 @@
   	</update>
 
   	<!-- 선택할 foodMenu 조회 -->
-	<select id="selectFoodMenuById" resultType="com.javateam.healthyFoodProject.domain.ChosenFoodMenuVO">
+	<select id="selectFoodMenuById" resultType="com.javateam.healthyFoodProject.domain.MemberVO">
 		SELECT FOODMENU
 		  FROM USER_TBL
 		 WHERE ID = #{id}

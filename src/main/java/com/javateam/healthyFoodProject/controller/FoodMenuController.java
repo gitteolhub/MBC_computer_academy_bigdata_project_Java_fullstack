@@ -23,7 +23,7 @@ public class FoodMenuController {
 	private MemberService memberService;
 
 	// 선택할 foodMenu 조회
-	@GetMapping("/foodMenu")
+	@GetMapping("/foodmenu/view")
 	public String showFoodMenu(@RequestParam String strud, Model model) {
 
 		String foodMenu = memberService.selectFoodMenuById(strud);
@@ -34,7 +34,7 @@ public class FoodMenuController {
 			model.addAttribute("foodMenu", foodMenu);
 		}
 
-		return "foodMeun";
+		return "foodMenu";
 	}
 
 

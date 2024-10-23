@@ -126,15 +126,6 @@ public class AuthController {
 //		return "/secured/home";
 //	}
 
-//	// 회원가입 폼
-//	@GetMapping("/joinAjaxDemo")
-//	public String demo(Model model) {
-//
-//		log.info("회원가입 폼");
-//		model.addAttribute("memberDTO", new MemberVO());
-//
-//		return "joinAjaxDemo";
-//	}
 
 	// 회원가입 폼
 	@GetMapping("/join")
@@ -146,15 +137,15 @@ public class AuthController {
 		return "join";
 	}
 
-	// 회원가입 폼(Demo)
-	@GetMapping("/joinDemo")
-	public String joinDemo(Model model) {
-
-		log.info("회원가입 폼(Demo)");
-		model.addAttribute("memberDTO", new MemberDTO());
-
-		return "joinDemo";
-	}
+//	// 회원가입 폼(Demo)
+//	@GetMapping("/joinDemo")
+//	public String joinDemo(Model model) {
+//
+//		log.info("회원가입 폼(Demo)");
+//		model.addAttribute("memberDTO", new MemberDTO());
+//
+//		return "joinDemo";
+//	}
 
 //	// 회원가입 폼(Ajax)
 //		@GetMapping("/joinAjax")
