@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security6">
+<head>
+<meta charset="UTF-8">
+<title>Home</title>
+
+</head>
+<body>
+
+	<div sec:authorize="hasRole('ROLE_USER')" class="m-2">
+	  - 권한(Role) : ROLE_USER
+	</div>
+
+	<hr>
+
+	<!-- Pricipal -->
+	<div th:text="${#authentication}"></div>
+
+	<hr>
+
+	<!-- Principal Name-->
+	<div th:text="${#authentication.name}"></div>
+
+	<hr>
+
+	<!-- Spring Security 6 이상에서는 에러 유발 : thymeleaf 기본객체(#request....) 못쓰게 함 -->
+	<!-- 암호화된 name(사용자고유 ID)이 복잡하면 편의상 이메일(대체키)로 사용자 아이디를 대신할 수 있습니다. -->
+	[[${#authentication.name}]] 님 로그인 하셨습니다.<br>
+	[[${#authentication.principal.attributes.email}]] 님 로그인 하셨습니다.<br>
+	[[${#authentication.principal.attributes.name}]] 님 로그인 하셨습니다.<br>
+
+	<hr>
+
+	<!-- 로그아웃 URL을 지정하지 않을 경우 묵시적으로 Spring Security는 /logout 주소를 기본 로그아웃 주소로 설정합니다.
+	별도의 주소 설정시 설정 부분(SecurityConfig.java)에서 변경하면 됩니다. -->
+	<a th:href="@{'/logout'}" class="btn btn-info active" role="button">Logout</a>
+
+</body>
+</html>

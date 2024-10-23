@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko-kr"
+				xmlns:th="http://www.thymeleaf.org" 
+				xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+			  	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+				layout:decorate="~{layout}" >
+<head>
+<meta charset="UTF-8">
+<title>myPage</title>
+
+<script type="text/javascript">
+	var naverLoginPopup;
+
+	function openPopUp() {
+		let maxX = screen.availWidth;
+		let maxY = screen.availHeight;
+
+		console.log("maxX = ", maxX, ", maxY = ", maxY);
+
+		naverLoginPopup = window.open("https://nid.naver.com/nidlogin.logout", "_blank",
+									  "toolbar=0,scrollbars=0,resizable=0,toolbar=0,location=0," +
+									  "status=0,menubar=0,width=1,height=1," + 'left=${maxX}, top=${maxY}');
+	}
+
+	function naverLogout() {
+		openPopUp();
+
+		setTimeout(function() {
+
+			naverLoginPopup.close();
+			alert("로그아웃 되었습니다");
+			location.href = "/healthyFoodProject/logoutProc";
+
+		}, 1000); <!-- 1초 후에 팝업을 닫고 로그아웃  -->
+	}
+</script>
+</head>
+<body>
+	<div layout:fragment="content" class = "main_sect_pnl">
+		user: [[${session.user==null}]] <br>
+		socialUser: [[${session.socialUser}]] <br>
+
+		<div sec:authorize="isAuthenticated()">
+			<b>
+			<span th:if="${session.user == null}" sec:authentication="name"></span>
+
+			<!-- OAuth에 따른 별도 조치 -->
+			<!-- Naver -->
+			<span th:if="${session.socialUser != null}">
+
+				<span th:if="${session.socialUser.authVendor == 'naver'}" th:text="${session.socialUser.email}"></span>
+
+				<!-- Google -->
+				<span th:if="${session.socialUser.authVendor == 'google'}" th:text="${session.socialUser.name}"></span>
+
+			</span>
+
+			<span>님 로그인 하셨습니다.</span>
+			</b>
+
+			<div th:if="${session.socialUser != null}">
+
+				<!-- Google 및 자체 로그아웃 -->
+				<input type = "button" th:if="${session.socialUser.authVendor != 'naver'}"
+					   class="btn btn-primary" value="로그아웃" th:onclick="|location.href='@{/logoutProc}'|" />
+
+				<!--  Naver 완전 로그아웃 -->
+				<input type = "button" th:if="${session.socialUser.authVendor == 'naver'}"
+					   class="btn btn-primary" value="로그아웃(Naver)" th:onclick="naverLogout()" />
+
+				<!--  참고) 기존 로그아웃 경로 -->
+				<!--  th:onclick="|location.href='@{/logoutProcNaver}'|" /> -->
+			</div>
+		</div>
+
+
+		<!--social (google) 인증시 성별/생일 입력란 생성: 기존값 없음 -->
+		<div th:if="${session.socialUser != null}">
+			<div  th:if="${session.socialUser.authVendor == 'google' && session.socialUser.gender == '없음' && session.socialUser.birthyear == '없음'}">
+				<form method="post" th:action="@{/member/updateGoogle}">
+					성별 여<input type="radio" name="gender" value="F" required>
+					   남<input type="radio" name="gender" value="M" required>
+					생일 <input type="date" name="birthyear" pattern="\d{4}-\d{2}-\d{2}"  title="2000-01-01 형식으로 생일을 입력하십시오" required>
+					<input type="hidden" name="email" th:value="${session.socialUser.email}">
+					<input type="hidden" name="name" th:value="${session.socialUser.name}">
+					<input type="submit" value="저장">
+				</form>
+			</div>
+		</div>
+
+	</div>
+
+</body>
+</html>
