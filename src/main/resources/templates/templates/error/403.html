@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>403 patch</title>
+<Script>
+	window.onload=function() {
+		alert("접근 권한이 없습니다.\n마이 페이지로 이동합니다.");
+		
+		// 메인 페이지 이동
+		location.href="[[@{'/myPage'}]]"
+	}
+</Script>
+</head>
+<body>
+
+</body>
+</html>
