@@ -350,7 +350,16 @@ public class MemberServiceImpl implements MemberService {
 	// 검색된 총 회원정보 수 조회
 	public int selectCountBySearching(String strSearchKey, String strSearchWord) {
 
+		log.info("[MemberService][selectCountBySearching]");
 		return memberDAO.selectCountBySearching(strSearchKey, strSearchWord);
+	}
+
+	// 선택할 foodMenu 조회
+	public String selectFoodMenuById(String strId) {
+
+		log.info("[MemberService][selectFoodMenuById]");
+		return memberDAO.selectFoodMenuById(strId);
+
 	}
 
 	// social(naver, google) 회원정보 저장
@@ -367,7 +376,6 @@ public class MemberServiceImpl implements MemberService {
 			log.error("[MemberService][insertSocialUser]: {}", ex);
 			ex.printStackTrace();
 		}
-
 		return blRetVal;
 	}
 

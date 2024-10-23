@@ -48,6 +48,14 @@ public class AuthController {
 		return "/home";
 	}
 
+	// 당뇨 식단 페이지
+	@GetMapping("/foodMenu")
+	public String foodMenu() {
+
+		log.info("[foodMenu]");
+		return "foodMenu";
+	}
+
 	@GetMapping({"/login/oauth2/authorization/naver",
 				 "/login/oauth2/authorization/google",
 				 "/welcome"})

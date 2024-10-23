@@ -59,6 +59,9 @@ public interface MemberService {
 	// 검색된 총 회원정보 수 조회
 	int selectCountBySearching(String strSearchKey, String strSearchWord);
 
+	// 선택할 foodMenu 조회
+	String selectFoodMenuById(String strId);
+
 	// social(naver, google) 회원정보 저장
 	boolean insertSocialUser(SocialUser socialUser);
 

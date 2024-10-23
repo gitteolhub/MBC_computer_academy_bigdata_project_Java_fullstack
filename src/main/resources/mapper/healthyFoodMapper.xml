@@ -206,6 +206,12 @@
   		 WHERE ID = #{id}
   	</update>
 
+  	<!-- 선택할 foodMenu 조회 -->
+	<select id="selectFoodMenuById" resultType="com.javateam.healthyFoodProject.domain.ChosenFoodMenuVO">
+		SELECT FOODMENU
+		  FROM USER_TBL
+		 WHERE ID = #{id}
+	</select>
 
   	<!-- 사용자별로 바뀔 식단 업데이트 -->
   	<update id="updateFoodMenuByUser" parameterType="com.javateam.healthyFoodProject.domain.MemberVO">

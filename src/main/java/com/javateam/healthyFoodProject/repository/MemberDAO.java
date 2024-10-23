@@ -61,6 +61,9 @@ public interface MemberDAO {
 	// 회원가입시 초기foodMenu 정보 저장
 	void updateInitializingFoodMenu(MemberVO objMemberVO);
 
+	// 선택할 foodMenu 조회
+	String selectFoodMenuById(String strId);
+
 	// 사용자별로 바뀔 식단 업데이트
 	boolean updateFoodMenuByUser(MemberVO objMemberVO);
 

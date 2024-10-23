@@ -280,6 +280,14 @@ public class MemberDAOImpl implements MemberDAO {
 		sqlSession.update(MAPPER_PATH + "updateInitializingFoodMenu", objMemberVO);
 	}
 
+	// 선택할 foodMenu 조회
+	@Override
+	public String selectFoodMenuById(String strId) {
+
+		log.info("[MemberDAO][selectFoodMenuById]");
+		return sqlSession.selectOne(MAPPER_PATH + "selectFoodMenuById", strId);
+	}
+
 	// 사용자별로 바뀔 식단 업데이트
 	@Override
 	public boolean updateFoodMenuByUser(MemberVO objMemberVO) {
