@@ -21,13 +21,15 @@ public class FoodMenuController {
 
 	@Autowired
 	private MemberService memberService;
+	
+	private String foodMenu;
 
 	// 선택할 foodMenu 조회
 	@GetMapping("/foodMenu/view")
 	public String showFoodMenu(@RequestParam String strud, Model model) {
 		log.info("[showFoodMenu]");
 
-		String foodMenu = memberService.selectFoodMenuById(strud);
+		foodMenu = memberService.selectFoodMenuById(strud);
 
 		if(foodMenu == null) {
 			model.addAttribute("msg", "당뇨 식단 메뉴를 찾을 수 없습니다");
