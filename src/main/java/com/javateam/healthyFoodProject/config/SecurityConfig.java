@@ -93,13 +93,14 @@ public class SecurityConfig {
 					   		.permitAll())
 
 					   .logout((logout) -> logout
-							.logoutSuccessUrl("/loginFrom")	// 로그아웃 이후 이동 주소
+							.logoutSuccessUrl("/loginForm")	// 로그아웃 이후 이동 주소
 							.permitAll());
 
 		objHttpSecurity.oauth2Login(oauth2LoginCustomizer -> oauth2LoginCustomizer
 							.defaultSuccessUrl("/myPage")
 //							.loginProcessingUrl("/login")	// 추가
-//					   		.loginPage("/login")			// 추가
+					   		.loginPage("/loginForm")			// 추가
+					   		.failureUrl("/loginForm")
 							.userInfoEndpoint(userInfoEndpointCustomizer -> userInfoEndpointCustomizer
 		  							.userService(customOAuth2UserService)));
 
