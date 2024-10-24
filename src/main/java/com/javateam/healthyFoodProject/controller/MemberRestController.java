@@ -79,7 +79,7 @@ public class MemberRestController {
 	}
 
 	// 사용자별로 식단 정보 조회 요청 처리
-	@GetMapping("/{id}/foodmenu")
+	@GetMapping("/{id}/foodMenu")
 	public ResponseEntity<String> getFoodMenu(
 			@PathVariable("id") String id) {
 
