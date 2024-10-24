@@ -51,9 +51,6 @@
             <div th:if="${msg}" class="alert alert-warning">
         	<p th:text="${msg}"></p>
     		</div>
-    		<%= new FoodMenuController.showFoodMenu() %>
-            <div th:if="${/foodMenu/view != null}">
-            <span th:text="${/foodMenu}"></span></div>
             
             <input 	type="submit"
 					class="btn btn-primary"
