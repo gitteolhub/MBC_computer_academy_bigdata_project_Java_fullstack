@@ -1,0 +1,64 @@
+<html lang="ko"
+      xmlns:th  ="http://www.thymeleaf.org"
+      xmlns:sec ="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+ <!--
+        참고)
+
+        - Spring Security/Thymeleaf
+        : https://github.com/thymeleaf/thymeleaf-extras-springsecurity
+
+        - Spring Security : Auth Method(인증/인가 관련 메서드)
+        : www.classum.com/main/space/126296/community/396-->
+
+<div th:fragment="header">
+
+        <div class="header_sect_pnl" style="background-color:cyan">
+        user: [[${session.user==null}]] <br>
+		socialUser: [[${session.socialUser==null}]] <br>
+
+                <ul id="main_menu">
+
+                     <li><a th:href="@{/}">Home</a></li>
+
+                     <!-- 로그인 인증이 안되었을 때  -->
+                     <li sec:authorize="isAnonymous()"><a th:href="@{/loginForm}">로그인</a></li>
+
+                     <li sec:authorize="isAnonymous()"><a th:href="@{/join}">회원 가입</a></li>
+
+                     <!-- 로그인 인증되었을 때   -->
+                     <li sec:authorize="isAuthenticated()"><a th:href="@{/myPage}">MyPage</a></li>
+
+					 <!-- 로그아웃 -->
+                     <div sec:authorize="isAuthenticated()">
+
+						<!-- 자체 로그아웃 -->
+						<li th:if="${session.socialUser == null}">
+							<a th:href="@{/logoutProc}">로그아웃(자체)</a>
+						</li>
+
+						<span th:if="${session.socialUser != null}">
+
+						<!-- Google 로그아웃 -->
+						<li th:if="${session.socialUser.authVendor != 'naver'}">
+							<a th:href="@{/logoutProc}">로그아웃(google)</a>
+						</li>
+
+						<!--  Naver 로그아웃 -->
+						<li th:if="${session.socialUser.authVendor == 'naver'}">
+							<a href="#" onclick="naverLogout()">로그아웃(Naver)</a>
+						</li>
+
+						</span>
+
+					</div>
+
+                     <li sec:authorize="isAuthenticated()"><a th:href="@{/member/view}">회원정보 조회</a></li>
+
+                     <li sec:authorize="isAuthenticated()"><a th:href="@{/member/update}">회원정보 수정</a></li>
+
+                     <!-- 등급(롤:role)이 관리자일 경우 -->
+                     <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/admin/viewAllWithRoles}">회원 관리</a></li>
+
+                </ul>
+        </div>
+ </div>
