@@ -25,9 +25,6 @@
 
                      <li sec:authorize="isAnonymous()"><a th:href="@{/join}">회원 가입</a></li>
 
-                     <!-- 로그인 인증되었을 때   -->
-                     <li sec:authorize="isAuthenticated()"><a th:href="@{/myPage}">MyPage</a></li>
-
 					 <!-- 로그아웃 -->
                      <div sec:authorize="isAuthenticated()">
 
@@ -51,7 +48,8 @@
 						</span>
 
 					</div>
-
+					 <li sec:authorize="isAuthenticated()"><a th:href="@{/foodMenu/view}">식 단</a></li>
+					 
                      <li sec:authorize="isAuthenticated()"><a th:href="@{/member/view}">회원정보 조회</a></li>
 
                      <li sec:authorize="isAuthenticated()"><a th:href="@{/member/update}">회원정보 수정</a></li>
