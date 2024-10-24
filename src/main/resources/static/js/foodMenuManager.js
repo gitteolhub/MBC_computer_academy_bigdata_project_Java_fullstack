@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 window.onload = function() {
 	
 	axios.get(`/healthyFoodProject/foodMenu/view`)
