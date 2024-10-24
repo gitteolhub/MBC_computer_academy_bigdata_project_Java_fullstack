@@ -53,7 +53,7 @@ public class AuthController {
 	public String foodMenu() {
 
 		log.info("[foodMenu]");
-		return "foodMenu";
+		return "/food/view";
 	}
 
 	@GetMapping({"/login/oauth2/authorization/naver",
