@@ -4,10 +4,10 @@ import java.util.List;
 
 import org.springframework.security.core.userdetails.UserDetails;
 
-import groovy.transform.ToString;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
