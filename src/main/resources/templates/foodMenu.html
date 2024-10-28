@@ -122,6 +122,19 @@
             	foodMenuOutput.classList.add('hidden'); // 1번 숨기기
                 second.classList.remove('hidden'); // 2번 보이기
             }
+            
+            function sendLike() {
+                fetch('/foodMenu/like', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `userId=${userId}&foodMenu=${foodMenu}`
+                })
+                .then(response => response.text())
+                .then(data => alert(data))
+                .catch(error => console.error('Error:', error));
+            }
         }
     </script>
     <h1>AI 맞춤 식단</h1>
