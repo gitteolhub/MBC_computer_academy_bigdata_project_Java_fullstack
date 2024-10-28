@@ -52,7 +52,7 @@ public class ChosenFoodMenuDAOImpl implements ChosenFoodMenuDAO{
 		chosenFoodMenuVO.setFoodmenu(strFoodMenu);
 		chosenFoodMenuVO.setFoodmenuResult(strFoodMenuResult);
 
-		sqlSession.update(MAPPER_PATH + "updateChosenFoodMenu", chosenFoodMenuVO);
+		sqlSession.insert(MAPPER_PATH + "updateChosenFoodMenu", chosenFoodMenuVO);
 
 	}
 

@@ -94,16 +94,13 @@ public class FoodMenuController {
 	@PostMapping("/foodMenu/like") // TODO 임의로 정함(나중에 수정)
 	@ResponseBody
 	public ResponseEntity<String> likeFoodMenu(@RequestParam String strId, @RequestParam String foodMenu) {
-		
 		log.info("[FoodMenuController][likeFoodMenu]");
 		String msg = "";
 		boolean success = chosenFoodMenuService.insertChosenFoodMenu(strId, foodMenu, "1");
-		
-
 		msg = success ? "회원이 좋아하는 식단입니다." : "에러(좋아하는 식단)";
 
 		// 결과를 보여줄 뷰 이름
-		// return "/foodMenu/result"; // TODO 임의로 정함(나중에 수정)
+		//		return "/foodMenu/result"; // TODO 임의로 정함(나중에 수정)
 		return new ResponseEntity<>(msg,HttpStatus.OK);
 	}
 
