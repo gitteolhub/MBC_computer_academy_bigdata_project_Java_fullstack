@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-window.onload = function() {
+window.onload = function(e) {
+	
+	console.log("id: ", e.target.id)
 	
 	axios.get(`/healthyFoodProject/foodMenu/view`)
 		 .then(function(response) {
