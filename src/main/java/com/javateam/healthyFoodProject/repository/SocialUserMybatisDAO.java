@@ -69,4 +69,11 @@ public class SocialUserMybatisDAO {
 		}
 		return blRetVal;
 	}
+
+	// social 회원이 선택할 foodMenu 조회
+	public String selectFoodMenuBySocialId(int intId) {
+
+		log.info("[SocialUserMybatisDAO][selectFoodMenuBySocialId]");
+		return sqlSession.selectOne(MAPPER_PATH + "selectFoodMenuBySocialId", intId);
+	}
 }

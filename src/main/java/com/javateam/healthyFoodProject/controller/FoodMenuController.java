@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.javateam.healthyFoodProject.service.ChosenFoodMenuService;
+import com.javateam.healthyFoodProject.service.CustomOAuth2UserService;
 import com.javateam.healthyFoodProject.service.MemberService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -24,6 +25,9 @@ public class FoodMenuController {
 
 	@Autowired
 	private MemberService memberService;
+
+	@Autowired
+	private CustomOAuth2UserService customOAuth2UserService;
 
 	private String foodMenu;
 
@@ -51,10 +55,19 @@ public class FoodMenuController {
 
 		foodMenu = memberService.selectFoodMenuById(strId);
 
-		if(foodMenu == null) {
-			model.addAttribute("msg", "당뇨 식단 메뉴를 찾을 수 없습니다");
-		} else {
+		if(foodMenu != null) {
+
+			// 자체 회원일 경우
 			model.addAttribute("foodMenu", foodMenu);
+
+		} else {
+			// 소셜 회원일 경우
+			foodMenu = customOAuth2UserService.selectFoodMenuBySocialId(Integer.parseInt(strId));
+			if(foodMenu == null) {
+				model.addAttribute("msg", "당뇨 식단 메뉴를 찾을 수 없습니다");
+			} else {
+				model.addAttribute("foodMenu", foodMenu);
+			}
 		}
 		return "foodMenu";
 	}
