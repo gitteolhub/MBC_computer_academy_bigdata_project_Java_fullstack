@@ -93,7 +93,7 @@
 					id="like"
 					name="like"
 					onclick="switchValues()"
-					th:action="@{'/food/like'}"
+					onclick="likeFoodMenu()"
 					value="좋아요"/>
 
 			<input 	type="submit"
@@ -101,7 +101,6 @@
 					id="refresh"
 					name="refresh"
 					onclick="switchValues()"
-					th:action="@{'/food/refresh'}"
 					value="새로고침"/>
 
 			<input 	type="submit"
@@ -109,7 +108,6 @@
 					id="dislike"
 					name="dislike"
 					onclick="switchValues()"
-					th:action="@{'/food/dislike'}"
 					value="싫어요"/>
         </div>
         <script>
