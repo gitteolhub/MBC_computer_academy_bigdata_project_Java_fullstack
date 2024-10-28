@@ -92,15 +92,19 @@ public class FoodMenuController {
 
 	// 식단을 좋아할 경우
 	@PostMapping("/foodMenu/like") // TODO 임의로 정함(나중에 수정)
-	public String likeFoodMenu(@RequestParam String strId, @RequestParam String foodMenu, Model model) {
-
-		boolean success = chosenFoodMenuService.insertChosenFoodMenu(strId, foodMenu, "1");
+	@ResponseBody
+	public ResponseEntity<String> likeFoodMenu(@RequestParam String strId, @RequestParam String foodMenu) {
+		
 		log.info("[FoodMenuController][likeFoodMenu]");
+		String msg = "";
+		boolean success = chosenFoodMenuService.insertChosenFoodMenu(strId, foodMenu, "1");
+		
 
-		model.addAttribute("msg", success ? "회원이 좋아하는 식단입니다." : "에러(좋아하는 식단)");
+		msg = success ? "회원이 좋아하는 식단입니다." : "에러(좋아하는 식단)";
 
 		// 결과를 보여줄 뷰 이름
-		return "/foodMenu/result"; // TODO 임의로 정함(나중에 수정)
+		// return "/foodMenu/result"; // TODO 임의로 정함(나중에 수정)
+		return new ResponseEntity<>(msg,HttpStatus.OK);
 	}
 
 	// 식단을 싫어할 경우
