@@ -55,24 +55,26 @@
     		</div>
 
             <div>
-            	<p th:text="${foodMenu}">식단 메뉴 표시</p>
+            	<p id="AFoodMenu"></p>
             </div>
 
-			<form action="/foodMenu/like" method="post">
-				<input type="hidden" name="foodMenu" value="${foodMenu}" />
-            	<input type="submit" class="btn btn-primary" id="like" name="like" value="좋아요"/>
-			</form>
+            <input 	type="submit"
+					class="btn btn-primary"
+					id="like"
+					name="like"
+					value="좋아요"/>
 
-			<form action="/foodMenu/refresh" method="post">
-				<input type="hidden" name="foodMenu" value="${foodMenu}" />
-				<input type="submit" class="btn btn-primary" id="refresh" name="refresh" value="새로고침"/>
-			</form>
+			<input 	type="submit"
+					class="btn btn-primary"
+					id="refresh"
+					name="refresh"
+					value="새로고침"/>
 
-			<form action="/foodMenu/dislike" method="post">
-				<input type="hidden" name="foodMenu" value="${foodMenu}" />
-				<input type="submit" class="btn btn-primary" id="dislike" name="dislike" value="싫어요"/>
-			</form>
-
+			<input 	type="submit"
+					class="btn btn-primary"
+					id="dislike"
+					name="dislike"
+					value="싫어요"/>
         </div>
     <h1>AI 맞춤 식단</h1>
     <div class="meal-container">
