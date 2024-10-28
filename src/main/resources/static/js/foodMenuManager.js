@@ -1,9 +1,15 @@
 import axios from 'axios';
 
 window.onload = function(e) {
+<<<<<<< HEAD
 
 	console.log("id: ", e.target.id);
 
+=======
+	
+	console.log("id: ", e.target.id)
+	
+>>>>>>> refs/heads/YSJANG26
 	axios.get(`/healthyFoodProject/foodMenu/view`)
 		 .then(function(response) {
 
