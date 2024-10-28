@@ -13,8 +13,10 @@
 <div th:fragment="header">
 
         <div class="header_sect_pnl" style="background-color:cyan">
+         <!-- id:[[${#authentication.name}]] <br>
+        authentication: [[${#authentication}]] <br>
         user: [[${session.user==null}]] <br>
-		socialUser: [[${session.socialUser==null}]] <br>
+		socialUser: [[${session.socialUser==null}]] <br> -->
 
                 <ul id="main_menu">
 
@@ -48,8 +50,8 @@
 						</span>
 
 					</div>
-					 <li sec:authorize="isAuthenticated()"><a th:href="@{/foodMenu}">식 단</a></li>
-					 
+					 <li sec:authorize="isAuthenticated()"><a th:href="@{'/foodMenu/view?strId='+${#authentication.name}}">식 단</a></li>
+
                      <li sec:authorize="isAuthenticated()"><a th:href="@{/member/view}">회원정보 조회</a></li>
 
                      <li sec:authorize="isAuthenticated()"><a th:href="@{/member/update}">회원정보 수정</a></li>
