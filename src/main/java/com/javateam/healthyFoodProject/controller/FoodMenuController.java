@@ -58,7 +58,7 @@ public class FoodMenuController {
 		if(foodMenu != null) {
 
 			// 자체 회원일 경우
-			model.addAttribute("foodMenu", foodMenu);
+			model.addAttribute("foodMenu", processFoodMenu(foodMenu));
 
 		} else {
 			// 소셜 회원일 경우
@@ -66,13 +66,23 @@ public class FoodMenuController {
 			if(foodMenu == null) {
 				model.addAttribute("msg", "당뇨 식단 메뉴를 찾을 수 없습니다");
 			} else {
-				model.addAttribute("foodMenu", foodMenu);
+				model.addAttribute("foodMenu", processFoodMenu(foodMenu));
 			}
 		}
 
 		return "foodMenu";
 	}
 
+	private String[] processFoodMenu(String strFoodMenu) {
+		String cleanMenu = strFoodMenu.replace("[[", "").replace("]]", "");
+		String[] menuItems = cleanMenu.split("\\],\\[");
+
+		for (int i = 0; i < menuItems.length; i++) {
+			menuItems[i] = menuItems[i].replace("[", "").replace("]", "").trim();
+		}
+
+		return menuItems;
+	}
 
 	// 식단을 좋아할 경우
 	@PostMapping("/foodMenu/like") // TODO 임의로 정함(나중에 수정)
