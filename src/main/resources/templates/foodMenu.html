@@ -66,6 +66,9 @@
             margin: 10px 0;
             color: #007bff;
         }
+        .hidden {
+            display: none; /* 숨김 클래스 */
+        }
     </style>
 </head>
 
@@ -83,25 +86,44 @@
             <div>
             	<p id="foodMenuOutput" th:text="${foodMenu}"></p>
             </div>
-
+   			<div id="second" class="hidden" >2번 값</div>
+    
             <input 	type="submit"
 					class="btn btn-primary"
 					id="like"
 					name="like"
+					onclick="switchValues()"
 					value="좋아요"/>
 
 			<input 	type="submit"
 					class="btn btn-primary"
 					id="refresh"
 					name="refresh"
+					onclick="switchValues()"
 					value="새로고침"/>
 
 			<input 	type="submit"
 					class="btn btn-primary"
 					id="dislike"
 					name="dislike"
+					onclick="switchValues()"
 					value="싫어요"/>
         </div>
+        <script>
+        function switchValues() {
+            const foodMenuOutput = document.getElementById('foodMenuOutput');
+            const second = document.getElementById('second');
+
+            // 스위칭
+            if (foodMenuOutput.classList.contains('hidden')) {
+            	foodMenuOutput.classList.remove('hidden'); // 1번 보이기
+                second.classList.add('hidden'); // 2번 숨기기
+            } else {
+            	foodMenuOutput.classList.add('hidden'); // 1번 숨기기
+                second.classList.remove('hidden'); // 2번 보이기
+            }
+        }
+    </script>
     <h1>AI 맞춤 식단</h1>
     <div class="meal-container">
         <div class="meal-card">
