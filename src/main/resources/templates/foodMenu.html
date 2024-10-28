@@ -46,36 +46,33 @@
 <body>
 <div layout:fragment="content">
     <h1>오늘의 식단</h1>
-   
+
         <div class="meal-card">
             <div class="meal-name">A 식단</div>
             <!--  메뉴 에러 메세지 -->
             <div th:if="${msg}" class="alert alert-warning">
         	<p th:text="${msg}"></p>
     		</div>
-            
+
             <div>
-            	<p id="AFoodMenu"></p>
+            	<p th:text="${foodMenu}">식단 메뉴 표시</p>
             </div>
-            	
-            	
-            <input 	type="submit"
-					class="btn btn-primary"
-					id="like"
-					name="like"
-					value="좋아요"/>
-			
-			<input 	type="submit"
-					class="btn btn-primary"
-					id="refresh"
-					name="refresh"
-					value="새로고침"/>
-			
-			<input 	type="submit"
-					class="btn btn-primary"
-					id="dislike"
-					name="dislike"
-					value="싫어요"/>				
+
+			<form action="/foodMenu/like" method="post">
+				<input type="hidden" name="foodMenu" value="${foodMenu}" />
+            	<input type="submit" class="btn btn-primary" id="like" name="like" value="좋아요"/>
+			</form>
+
+			<form action="/foodMenu/refresh" method="post">
+				<input type="hidden" name="foodMenu" value="${foodMenu}" />
+				<input type="submit" class="btn btn-primary" id="refresh" name="refresh" value="새로고침"/>
+			</form>
+
+			<form action="/foodMenu/dislike" method="post">
+				<input type="hidden" name="foodMenu" value="${foodMenu}" />
+				<input type="submit" class="btn btn-primary" id="dislike" name="dislike" value="싫어요"/>
+			</form>
+
         </div>
     <h1>AI 맞춤 식단</h1>
     <div class="meal-container">
