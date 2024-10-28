@@ -75,6 +75,7 @@ public class FoodMenuController {
 	private String[] processFoodMenu(String strFoodMenu) {
 		String cleanMenu = strFoodMenu.replace("[[", "").replace("]]", "");
 		String[] menuItems = cleanMenu.split("\\],\\[");
+		log.info("[FoodMenuController][processFoodMenu]");
 
 		for (int i = 0; i < menuItems.length; i++) {
 			menuItems[i] = menuItems[i].replace("[", "").replace("]", "").trim();
