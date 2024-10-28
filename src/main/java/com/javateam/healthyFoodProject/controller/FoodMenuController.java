@@ -53,12 +53,15 @@ public class FoodMenuController {
 	public String showFoodMenu(@RequestParam String strId, Model model) {
 		log.info("[showFoodMenu]");
 
+		// 자체 회원의 foodMenu 조회
 		foodMenu = memberService.selectFoodMenuById(strId);
 
 		if(foodMenu != null) {
 
 			// 자체 회원일 경우
-			model.addAttribute("foodMenu", processFoodMenu(foodMenu));
+			String[] menuItems = processFoodMenu(foodMenu);
+			model.addAttribute("menuItems", menuItems);
+			model.addAttribute("foodMenu", menuItems[0]); // 첫번재 음식
 
 		} else {
 			// 소셜 회원일 경우
@@ -66,7 +69,10 @@ public class FoodMenuController {
 			if(foodMenu == null) {
 				model.addAttribute("msg", "당뇨 식단 메뉴를 찾을 수 없습니다");
 			} else {
-				model.addAttribute("foodMenu", processFoodMenu(foodMenu));
+//				model.addAttribute("foodMenu", processFoodMenu(foodMenu));
+				String[] menuItems = processFoodMenu(foodMenu);
+				model.addAttribute("menuItems", menuItems);
+				model.addAttribute("foodMenu", menuItems[0]); // 첫번재 음식
 			}
 		}
 		return "foodMenu";
