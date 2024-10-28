@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.javateam.healthyFoodProject.service.ChosenFoodMenuService;
+import com.javateam.healthyFoodProject.service.CustomOAuth2UserService;
 import com.javateam.healthyFoodProject.service.MemberService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -24,6 +25,9 @@ public class FoodMenuController {
 
 	@Autowired
 	private MemberService memberService;
+
+	@Autowired
+	private CustomOAuth2UserService customOAuth2UserService;
 
 	private String foodMenu;
 
@@ -51,14 +55,33 @@ public class FoodMenuController {
 
 		foodMenu = memberService.selectFoodMenuById(strId);
 
-		if(foodMenu == null) {
-			model.addAttribute("msg", "당뇨 식단 메뉴를 찾을 수 없습니다");
+		if(foodMenu != null) {
+
+			// 자체 회원일 경우
+			model.addAttribute("foodMenu", processFoodMenu(foodMenu));
+
 		} else {
-			model.addAttribute("foodMenu", foodMenu);
+			// 소셜 회원일 경우
+			foodMenu = customOAuth2UserService.selectFoodMenuBySocialId(Integer.parseInt(strId));
+			if(foodMenu == null) {
+				model.addAttribute("msg", "당뇨 식단 메뉴를 찾을 수 없습니다");
+			} else {
+				model.addAttribute("foodMenu", processFoodMenu(foodMenu));
+			}
 		}
 		return "foodMenu";
 	}
 
+	private String[] processFoodMenu(String strFoodMenu) {
+		String cleanMenu = strFoodMenu.replace("[[", "").replace("]]", "");
+		String[] menuItems = cleanMenu.split("\\],\\[");
+
+		for (int i = 0; i < menuItems.length; i++) {
+			menuItems[i] = menuItems[i].replace("[", "").replace("]", "").trim();
+		}
+
+		return menuItems;
+	}
 
 	// 식단을 좋아할 경우
 	@PostMapping("/foodMenu/like") // TODO 임의로 정함(나중에 수정)

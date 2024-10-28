@@ -233,4 +233,10 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
 		return blRetVal;
 	}
 
+	// social 회원이 선택할 foodMenu 조회
+	public String selectFoodMenuBySocialId(int intId) {
+
+		log.info("[CustomOAuth2UserService][selectFoodMenuBySocialId]");
+		return socialUserMybatisDAO.selectFoodMenuBySocialId(intId);
+	}
 }

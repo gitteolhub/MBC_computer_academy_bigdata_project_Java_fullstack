@@ -278,6 +278,13 @@
   		 WHERE ID = #{id}
   	</update>
 
+  	<!-- social 회원이 선택할 foodMenu 조회 -->
+	<select id="selectFoodMenuBySocialId" resultType="String">
+		SELECT FOODMENU
+		  FROM SOCIAL_USER
+		 WHERE ID = #{id}
+	</select>
+
 	<!-- ID로 선택된 식단 조회 -->
 	<select id = "selectChosenFoodMenuById" parameterType = "String" resultType = "com.javateam.healthyFoodProject.domain.ChosenFoodMenuVO">
 		SELECT *
