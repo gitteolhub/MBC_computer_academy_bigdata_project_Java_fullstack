@@ -29,7 +29,8 @@ public class FoodMenuController {
 
 	// 선택할 foodMenu 조회
 	@GetMapping("/foodMenu/viewJson")
-	public String showFoodMenu(@RequestParam String strId) {
+	@ResponseBody
+	public ResponseEntity<String> showFoodMenu(@RequestParam String strId) {
 		log.info("[showFoodMenu]");
 
 		String result = memberService.selectFoodMenuById(strId);
