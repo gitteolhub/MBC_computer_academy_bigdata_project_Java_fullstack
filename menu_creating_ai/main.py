@@ -1155,7 +1155,7 @@ def save_sharing_updating_food_menu(_df, _hidden_layer_count, _hidden_count):
         for user in split_by_id:
             user.replace('[', '').replace(']', '')
 
-
+        
 
         remove(chosenFoodMenu_path)
 
