@@ -56,7 +56,6 @@ public class FoodMenuController {
 		} else {
 			model.addAttribute("foodMenu", foodMenu);
 		}
-
 		return "foodMenu";
 	}
 
