@@ -98,8 +98,11 @@ public class FoodMenuController {
 	//
 	public String mergeFoodResultData (String strId, String newChosenFoodMenuResult) {
 		String data = savedFoodMenuResult.get(strId);
+		log.info("[data null 여부]: {}", data == null);
+
 		if(data == null) {
 			data = showFoodMenuResult(strId);
+			log.info("[mergeFoodResultData][data]: {}", data);
 		}
 		String foodDataResult;
 
@@ -108,7 +111,7 @@ public class FoodMenuController {
 		} else {
 			foodDataResult = data;
 			log.info("[FoodMenuController][mergeFoodResultData]foodDataResult: {}", foodDataResult);
-			foodDataResult += foodDataResult.replace("[", "").replace("]", "") + "," + newChosenFoodMenuResult;
+			foodDataResult = foodDataResult.replace("[", "").replace("]", "") + "," + newChosenFoodMenuResult;
 			foodDataResult = "[" + foodDataResult + "]";
 			log.info("[FoodMenuController][foodDataResult]: {}", foodDataResult);
 
@@ -146,7 +149,6 @@ public class FoodMenuController {
 				model.addAttribute("foodMenu", menuItems[0]); // 첫번재 음식
 			}
 		}
-
 		return "foodMenu";
 	}
 
@@ -176,7 +178,7 @@ public class FoodMenuController {
 		msg = success ? "회원이 좋아하는 식단입니다." : "에러(좋아하는 식단)";
 
 		// 결과를 보여줄 뷰 이름
-//		return "/foodMenu/result"; // TODO 임의로 정함(나중에 수정)
+		//		return "/foodMenu/result"; // TODO 임의로 정함(나중에 수정)
 		return new ResponseEntity<>(msg,HttpStatus.OK);
 	}
 
