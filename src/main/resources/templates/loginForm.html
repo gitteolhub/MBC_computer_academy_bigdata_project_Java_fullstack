@@ -34,6 +34,7 @@
     </style>
 <!-- 로그인 에러 메시지 -->
 <script th:inline="javascript" th:if="${session.SPRING_SECURITY_LAST_EXCEPTION != null}">
+
 </script>
 </head>
 
@@ -129,13 +130,12 @@
 
 							</div>
 							<!--// 로그인이 안되었을 때 -->
-
+						
 						</td>
 					</tr>
 				</table>
 			  </form>
 		</div>
 	</div>
-
 </body>
 </html>
