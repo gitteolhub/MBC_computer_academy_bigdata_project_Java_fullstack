@@ -52,23 +52,7 @@ public class FoodMenuController {
 		return new ResponseEntity<>(result,HttpStatus.OK);
 	}
 
-	// chosenFoodMenu 데이터를 map 형식으로
-	public String mergeFoodData (String strId, String newChosenFoodData){
-		ResponseEntity<String> data = showFoodMenu(strId);
-		String foodData;
 
-		if(data == null) {
-			foodData = "[" + newChosenFoodData + "]";
-		} else {
-			foodData = data.getBody().toString();
-			log.info("[FoodMenuController][dataToMap]foodData: ", foodData);
-			foodData = foodData + ",";
-			foodData = foodData + "[" + newChosenFoodData + "]";
-
-		}
-
-		return foodData;
-	}
 
 	public ResponseEntity<String> showFoodMenuResult(@RequestParam String strId) {
 		log.info("[showFoodMenuResult]");
@@ -83,6 +67,24 @@ public class FoodMenuController {
 
 		return new ResponseEntity<>(result,HttpStatus.OK);
 	}
+
+	// chosenFoodMenu 데이터를 map 형식으로
+		public String mergeFoodData (String strId, String newChosenFoodData){
+			ResponseEntity<String> data = showFoodMenuResult(strId);
+			String foodData;
+
+			if(data == null) {
+				foodData = "[" + newChosenFoodData + "]";
+			} else {
+				foodData = data.getBody().toString();
+				log.info("[FoodMenuController][dataToMap]foodData: ", foodData);
+				foodData = foodData + ",";
+				foodData = foodData + "[" + newChosenFoodData + "]";
+
+			}
+
+			return foodData;
+		}
 
 	//
 	public String mergeFoodResultData (String strId, String newChosenFoodMenuResult) {
