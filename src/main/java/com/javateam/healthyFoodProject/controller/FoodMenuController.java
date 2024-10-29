@@ -110,25 +110,14 @@ public class FoodMenuController {
 	@PostMapping("/foodMenu/like") // TODO 임의로 정함(나중에 수정)
 	@ResponseBody
 	public ResponseEntity<String> likeFoodMenu(@RequestParam String strId, @RequestParam String foodMenu) {
-<<<<<<< HEAD
 
-=======
->>>>>>> branch 'develop' of https://github.com/gitteolhub/MBC_computer_academy_bigdata_project_Java_fullstack.git
 		log.info("[FoodMenuController][likeFoodMenu]");
 		String msg = "";
 		boolean success = chosenFoodMenuService.insertChosenFoodMenu(strId, foodMenu, "1");
-<<<<<<< HEAD
-
-=======
->>>>>>> branch 'develop' of https://github.com/gitteolhub/MBC_computer_academy_bigdata_project_Java_fullstack.git
 		msg = success ? "회원이 좋아하는 식단입니다." : "에러(좋아하는 식단)";
 
 		// 결과를 보여줄 뷰 이름
-<<<<<<< HEAD
-//		return "/foodMenu/result"; // TODO 임의로 정함(나중에 수정)
-=======
 		//		return "/foodMenu/result"; // TODO 임의로 정함(나중에 수정)
->>>>>>> branch 'develop' of https://github.com/gitteolhub/MBC_computer_academy_bigdata_project_Java_fullstack.git
 		return new ResponseEntity<>(msg,HttpStatus.OK);
 	}
 

@@ -52,11 +52,7 @@ public class ChosenFoodMenuDAOImpl implements ChosenFoodMenuDAO{
 		chosenFoodMenuVO.setFoodmenu(strFoodMenu);
 		chosenFoodMenuVO.setFoodmenuResult(strFoodMenuResult);
 
-<<<<<<< HEAD
-		sqlSession.update(MAPPER_PATH + "updateChosenFoodMenu", chosenFoodMenuVO);
-=======
 		sqlSession.insert(MAPPER_PATH + "updateChosenFoodMenu", chosenFoodMenuVO);
->>>>>>> branch 'develop' of https://github.com/gitteolhub/MBC_computer_academy_bigdata_project_Java_fullstack.git
 
 	}
 
