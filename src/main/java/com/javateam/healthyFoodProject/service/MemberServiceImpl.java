@@ -26,6 +26,7 @@ import com.javateam.healthyFoodProject.domain.Role;
 import com.javateam.healthyFoodProject.domain.SocialUser;
 import com.javateam.healthyFoodProject.repository.ChosenFoodMenuDAO;
 import com.javateam.healthyFoodProject.repository.MemberDAO;
+import com.javateam.healthyFoodProject.repository.MemberDAOImpl;
 import com.javateam.healthyFoodProject.repository.SocialUserMybatisDAO;
 
 import lombok.extern.slf4j.Slf4j;

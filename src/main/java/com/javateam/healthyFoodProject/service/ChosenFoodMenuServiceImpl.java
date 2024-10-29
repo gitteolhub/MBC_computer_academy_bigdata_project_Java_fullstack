@@ -32,4 +32,12 @@ public class ChosenFoodMenuServiceImpl implements ChosenFoodMenuService{
 		return blRetVal;
 	}
 
+	// ID로 선택된 식단 조회
+	@Override
+	public String selectChosenFoodMenuById(String strId) {
+		log.info("[ChosenFoodMenuService][selectChosenFoodMenuById]");
+
+		return chosenFoodMenuDAO.selectChosenFoodMenuById(strId);
+	}
+
 }

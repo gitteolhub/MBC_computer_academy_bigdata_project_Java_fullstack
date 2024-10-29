@@ -1,5 +1,8 @@
 package com.javateam.healthyFoodProject.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.javateam.healthyFoodProject.service.ChosenFoodMenuService;
 import com.javateam.healthyFoodProject.service.CustomOAuth2UserService;
 import com.javateam.healthyFoodProject.service.MemberService;
+import com.javateam.healthyFoodProject.service.MemberServiceImpl;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -46,6 +50,56 @@ public class FoodMenuController {
 		}
 
 		return new ResponseEntity<>(result,HttpStatus.OK);
+	}
+
+	// chosenFoodMenu 데이터를 map 형식으로
+	public String mergeFoodData (String strId, String newChosenFoodData){
+		ResponseEntity<String> data = showFoodMenu(strId);
+		String foodData;
+
+		if(data == null) {
+			foodData = "[" + newChosenFoodData + "]";
+		} else {
+			foodData = data.getBody().toString();
+			log.info("[FoodMenuController][dataToMap]foodData: ", foodData);
+			foodData = foodData + ",";
+			foodData = foodData + "[" + newChosenFoodData + "]";
+
+		}
+
+		return foodData;
+	}
+
+	public ResponseEntity<String> showFoodMenuResult(@RequestParam String strId) {
+		log.info("[showFoodMenuResult]");
+
+		String result = chosenFoodMenuService.selectChosenFoodMenuById(strId);
+
+		if(result == null) {
+			result = "당뇨 식단 선호도 데이터를 찾을 수 없습니다";
+		} else {
+			result = foodMenu;
+		}
+
+		return new ResponseEntity<>(result,HttpStatus.OK);
+	}
+
+	//
+	public String mergeFoodResultData (String strId, String newChosenFoodMenuResult) {
+		ResponseEntity<String> data = showFoodMenuResult(strId);
+		String foodDataResult;
+
+		if(data == null) {
+			foodDataResult = "[" + newChosenFoodMenuResult + "]";
+		} else {
+			foodDataResult = data.getBody().toString();
+			log.info("[FoodMenuController][mergeFoodResultData]foodDataResult: ", foodDataResult);
+			foodDataResult = foodDataResult.replace("[", "").replace("]", "") + "," + newChosenFoodMenuResult;
+			foodDataResult = "[" + foodDataResult + "]";
+
+		}
+
+		return foodDataResult;
 	}
 
 	// 선택할 foodMenu 조회
@@ -96,7 +150,10 @@ public class FoodMenuController {
 	public ResponseEntity<String> likeFoodMenu(@RequestParam String strId, @RequestParam String foodMenu) {
 		log.info("[FoodMenuController][likeFoodMenu]");
 		String msg = "";
-		boolean success = chosenFoodMenuService.insertChosenFoodMenu(strId, foodMenu, "1");
+		String updatingFoodData = mergeFoodData(strId, foodMenu);
+		String updatingFoodDataResult = mergeFoodResultData(strId, "1");
+
+		boolean success = chosenFoodMenuService.insertChosenFoodMenu(strId, updatingFoodData, updatingFoodDataResult);
 		msg = success ? "회원이 좋아하는 식단입니다." : "에러(좋아하는 식단)";
 
 		// 결과를 보여줄 뷰 이름
@@ -106,28 +163,31 @@ public class FoodMenuController {
 
 	// 식단을 싫어할 경우
 	@PostMapping("/foodMenu/dislike") // TODO 임의로 정함(나중에 수정)
-	public String dislikeFoodMenu(@RequestParam String strId, @RequestParam String foodMenu, Model model) {
+	public ResponseEntity<String> dislikeFoodMenu(@RequestParam String strId, @RequestParam String foodMenu) {
 
-		boolean success = chosenFoodMenuService.insertChosenFoodMenu(strId, foodMenu, "0");
 		log.info("[FoodMenuController][dislikeFoodMenu]");
+		String msg = "";
+		String updatingFoodData = mergeFoodData(strId, foodMenu);
 
-		model.addAttribute("msg", success ? "회원이 안 좋아하는 식단입니다." : "에러(안 좋아하는 식단)");
+		boolean success = chosenFoodMenuService.insertChosenFoodMenu(strId, updatingFoodData, "0");
+		msg = success ? "회원이 안 좋아하는 식단입니다." : "에러(안 좋아하는 식단)";
 
 		// 결과를 보여줄 뷰 이름
-		return "/foodMenu/result"; // TODO 임의로 정함(나중에 수정)
+		return new ResponseEntity<>(msg,HttpStatus.OK); // TODO 임의로 정함(나중에 수정)
 	}
 
 	// 당뇨식단이 아닌 경우
 	@PostMapping("/foodMenu/refresh") // TODO 임의로 정함(나중에 수정)
-	public String refreshFoodMenu(@RequestParam String strId, @RequestParam String foodMenu, Model model) {
+	public ResponseEntity<String> refreshFoodMenu(@RequestParam String strId, @RequestParam String foodMenu) {
 
-		boolean success = chosenFoodMenuService.insertChosenFoodMenu(strId, foodMenu, "-1");
 		log.info("[FoodMenuController][refreshFoodMenu]");
+		String msg = "";
+		String updatingFoodData = mergeFoodData(strId, foodMenu);
 
-		model.addAttribute("msg", success ? "당뇨식단이 아닙니다." : "에러(당뇨식단이 아닙니다.)");
+		boolean success = chosenFoodMenuService.insertChosenFoodMenu(strId, updatingFoodData, "-1");
+		msg = success ? "당뇨식단이 아닙니다." : "에러(당뇨식단이 아닙니다.)";
 
 		// 결과를 보여줄 뷰 이름
-		return "/foodMenu/result"; // TODO 임의로 정함(나중에 수정)
+		return new ResponseEntity<>(msg,HttpStatus.OK); // TODO 임의로 정함(나중에 수정)
 	}
-
 }
