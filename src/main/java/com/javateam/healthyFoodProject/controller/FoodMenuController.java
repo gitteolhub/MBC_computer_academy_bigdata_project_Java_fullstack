@@ -57,10 +57,6 @@ public class FoodMenuController {
 
 		String result = chosenFoodMenuService.selectChosenFoodMenuById(strId).getFoodmenu();
 
-		if(result == null) {
-			result = "당뇨 식단 선호도 데이터를 찾을 수 없습니다";
-		}
-
 		return new ResponseEntity<>(result,HttpStatus.OK);
 	}
 
@@ -68,10 +64,6 @@ public class FoodMenuController {
 		log.info("[showFoodMenuResult]");
 
 		String result = chosenFoodMenuService.selectChosenFoodMenuById(strId).getFoodmenuResult();
-
-		if(result == null) {
-			result = "당뇨 식단 선호도 데이터를 찾을 수 없습니다";
-		}
 
 		return new ResponseEntity<>(result,HttpStatus.OK);
 	}
