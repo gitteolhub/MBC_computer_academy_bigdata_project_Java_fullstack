@@ -35,6 +35,10 @@ public class FoodMenuController {
 
 	private String foodMenu;
 
+	public HashMap<String, String> savedFoodMenu = new HashMap<String, String>();
+
+	public HashMap<String, String> savedFoodMenuResult = new HashMap<String, String>();
+
 	// 선택할 foodMenu 조회
 	@GetMapping("/foodMenu/viewJson")
 	@ResponseBody
@@ -70,7 +74,10 @@ public class FoodMenuController {
 
 	// chosenFoodMenu 데이터를 map 형식으로
 		public String mergeFoodData (String strId, String newChosenFoodData){
-			String data = showFoodData(strId);
+			String data = savedFoodMenu.get(strId);
+			if(data == null) {
+				data = showFoodData(strId);
+			}
 			String foodData;
 
 			if(data == null) {
@@ -83,12 +90,17 @@ public class FoodMenuController {
 
 			}
 
+			savedFoodMenu.put(strId, foodData);
+
 			return foodData;
 		}
 
 	//
 	public String mergeFoodResultData (String strId, String newChosenFoodMenuResult) {
-		String data = showFoodMenuResult(strId);
+		String data = savedFoodMenuResult.get(strId);
+		if(data == null) {
+			data = showFoodMenuResult(strId);
+		}
 		String foodDataResult;
 
 		if(data == null) {
@@ -100,6 +112,8 @@ public class FoodMenuController {
 			foodDataResult = "[" + foodDataResult + "]";
 
 		}
+
+		savedFoodMenuResult.put(strId, foodDataResult);
 
 		return foodDataResult;
 	}
