@@ -171,8 +171,9 @@ public class FoodMenuController {
 		log.info("[FoodMenuController][dislikeFoodMenu]");
 		String msg = "";
 		String updatingFoodData = mergeFoodData(strId, foodMenu);
+		String updatingFoodDataResult = mergeFoodResultData(strId, "0");
 
-		boolean success = chosenFoodMenuService.insertChosenFoodMenu(strId, updatingFoodData, "0");
+		boolean success = chosenFoodMenuService.insertChosenFoodMenu(strId, updatingFoodData, updatingFoodDataResult);
 		msg = success ? "회원이 안 좋아하는 식단입니다." : "에러(안 좋아하는 식단)";
 
 		// 결과를 보여줄 뷰 이름
@@ -186,8 +187,9 @@ public class FoodMenuController {
 		log.info("[FoodMenuController][refreshFoodMenu]");
 		String msg = "";
 		String updatingFoodData = mergeFoodData(strId, foodMenu);
+		String updatingFoodDataResult = mergeFoodResultData(strId, "-1");
 
-		boolean success = chosenFoodMenuService.insertChosenFoodMenu(strId, updatingFoodData, "-1");
+		boolean success = chosenFoodMenuService.insertChosenFoodMenu(strId, updatingFoodData, updatingFoodDataResult);
 		msg = success ? "당뇨식단이 아닙니다." : "에러(당뇨식단이 아닙니다.)";
 
 		// 결과를 보여줄 뷰 이름
