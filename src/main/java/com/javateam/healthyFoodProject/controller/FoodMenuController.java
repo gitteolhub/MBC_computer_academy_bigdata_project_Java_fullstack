@@ -148,6 +148,7 @@ public class FoodMenuController {
 	@PostMapping("/foodMenu/like") // TODO 임의로 정함(나중에 수정)
 	@ResponseBody
 	public ResponseEntity<String> likeFoodMenu(@RequestParam String strId, @RequestParam String foodMenu) {
+
 		log.info("[FoodMenuController][likeFoodMenu]");
 		String msg = "";
 		String updatingFoodData = mergeFoodData(strId, foodMenu);
