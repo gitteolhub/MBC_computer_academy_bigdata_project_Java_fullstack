@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.javateam.healthyFoodProject.service.ChosenFoodMenuService;
 import com.javateam.healthyFoodProject.service.CustomOAuth2UserService;
 import com.javateam.healthyFoodProject.service.MemberService;
+import com.javateam.healthyFoodProject.service.MemberServiceImpl;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -50,18 +51,19 @@ public class FoodMenuController {
 
 		return new ResponseEntity<>(result,HttpStatus.OK);
 	}
-	
+
+	// chosenFoodMenu 데이터를 map 형식으로
 	public HashMap<String, String> dataToMap(ResponseEntity<String> data){
 		HashMap<String, String> result = new HashMap<String, String>();
 		String foodData;
 		foodData = data.getBody().toString();
-		
-		System.out.println(foodData);
-		
+
+		log.info("[FoodMenuController][dataToMap]foodData: ", foodData);
+
 		result.put("swgic", foodData);
 		return result;
 	}
-	
+
 	// 선택할 foodMenu 조회
 	@GetMapping("/foodMenu/view")
 	public String showFoodMenu(@RequestParam String strId, Model model) {
