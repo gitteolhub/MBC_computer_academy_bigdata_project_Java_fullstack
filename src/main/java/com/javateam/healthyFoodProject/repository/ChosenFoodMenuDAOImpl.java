@@ -23,7 +23,7 @@ public class ChosenFoodMenuDAOImpl implements ChosenFoodMenuDAO{
 
 	// ID로 선택된 식단 조회
 	@Override
-	public ChosenFoodMenuVO selectChosenFoodMenuById(String strId) {
+	public String selectChosenFoodMenuById(String strId) {
 		return sqlSession.selectOne(MAPPER_PATH + "selectChosenFoodMenuById", strId);
 	}
 
@@ -52,7 +52,7 @@ public class ChosenFoodMenuDAOImpl implements ChosenFoodMenuDAO{
 		chosenFoodMenuVO.setFoodmenu(strFoodMenu);
 		chosenFoodMenuVO.setFoodmenuResult(strFoodMenuResult);
 
-		sqlSession.update(MAPPER_PATH + "updateChosenFoodMenu", chosenFoodMenuVO);
+		sqlSession.insert(MAPPER_PATH + "updateChosenFoodMenu", chosenFoodMenuVO);
 
 	}
 
