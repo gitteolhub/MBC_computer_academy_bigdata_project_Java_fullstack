@@ -123,7 +123,7 @@
     
     <!-- TODO 소셜 회원 탈퇴는 컨트롤러가 따로 있는데 어떻게 할 지 결정 -->
 	<form th:action="@{/member/delete}" method="post">
-    <input type="hidden" name="id" value="회원ID"/>
+    <input type="hidden" name="id" th:value="${memberDTO.id}"/>
     <button class="btn btn-primary" type="submit">회원 탈퇴</button>
 	</form>
     </div>
