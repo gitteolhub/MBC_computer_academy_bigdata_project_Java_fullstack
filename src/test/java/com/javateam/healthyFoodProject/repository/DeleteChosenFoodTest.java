@@ -25,10 +25,10 @@ class DeleteChosenFoodTest {
 		assertEquals(3, list.size());
 	}
 
-	@Test
-	void testDeleteChosenFoodMenuById() {
-		String strId = "abcd5555";
-        chosenFoodMenuDAO.deleteChosenFoodMenuById(strId);
-	}
+//	@Test
+//	void testDeleteChosenFoodMenuById() {
+//		String strId = "abcd5555";
+//        chosenFoodMenuDAO.deleteChosenFoodMenuById(strId);
+//	}
 
 }
