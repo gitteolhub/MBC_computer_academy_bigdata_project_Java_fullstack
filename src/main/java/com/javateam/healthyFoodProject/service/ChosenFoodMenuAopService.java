@@ -17,7 +17,7 @@ public class ChosenFoodMenuAopService {
 	JsonService jsonService;
 
 	/**
-     * ChosenFoodMenuDAO 호출(insertIdChosenFoodMenu, insertChosenFoodMenu, updateChosenFoodMenu, deleteChosenFoodMenuById)
+     * ChosenFoodMenuDAO 호출(insertIdChosenFoodMenu, insertChosenFoodMenu, updateChosenFoodMenu, deleteChosenFoodMenuById(delete는 우선 적용 안함)
      * 이후 자동 실행
      * ex) 주의 selectAllFoodMenu 제외 (StackOverflowError 에러 발생)
      */
