@@ -52,26 +52,33 @@ public class FoodMenuController {
 		return new ResponseEntity<>(result,HttpStatus.OK);
 	}
 
-
-
-	public ResponseEntity<String> showFoodMenuResult(@RequestParam String strId) {
+	public ResponseEntity<String> showFoodData(String strId) {
 		log.info("[showFoodMenuResult]");
 
-		String result = chosenFoodMenuService.selectChosenFoodMenuById(strId);
+		String result = chosenFoodMenuService.selectChosenFoodMenuById(strId).getFoodmenu();
 
 		if(result == null) {
 			result = "당뇨 식단 선호도 데이터를 찾을 수 없습니다";
 		}
-//		else {
-//			result = foodMenu;
-//		}
+
+		return new ResponseEntity<>(result,HttpStatus.OK);
+	}
+
+	public ResponseEntity<String> showFoodMenuResult(String strId) {
+		log.info("[showFoodMenuResult]");
+
+		String result = chosenFoodMenuService.selectChosenFoodMenuById(strId).getFoodmenuResult();
+
+		if(result == null) {
+			result = "당뇨 식단 선호도 데이터를 찾을 수 없습니다";
+		}
 
 		return new ResponseEntity<>(result,HttpStatus.OK);
 	}
 
 	// chosenFoodMenu 데이터를 map 형식으로
 		public String mergeFoodData (String strId, String newChosenFoodData){
-			ResponseEntity<String> data = showFoodMenuResult(strId);
+			ResponseEntity<String> data = showFoodData(strId);
 			String foodData;
 
 			if(data == null) {

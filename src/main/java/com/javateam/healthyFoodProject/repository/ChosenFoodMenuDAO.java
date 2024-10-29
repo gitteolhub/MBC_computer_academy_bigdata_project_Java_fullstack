@@ -7,7 +7,7 @@ import com.javateam.healthyFoodProject.domain.ChosenFoodMenuVO;
 public interface ChosenFoodMenuDAO {
 
 	// ID로 선택된 식단 조회
-	String selectChosenFoodMenuById(String strId);
+	ChosenFoodMenuVO selectChosenFoodMenuById(String strId);
 
 	// 회원 아이디를 선택된 식단 데이터베이스에 추가
 	boolean insertIdChosenFoodMenu(String strId);
