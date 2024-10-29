@@ -304,7 +304,7 @@
                            ID, FOODMENU, FOODMENU_RESULT
 	                       )
 	                VALUES(
-	   	  	               #{strId}, #{strFoodMenu}, #{strFoodMenuResult}
+	   	  	               #{strId}, #{strFoodmenu}, #{strFoodmenuResult}
 	                       )
 	</insert>
 
