@@ -287,7 +287,7 @@
 
 	<!-- ID로 선택된 식단 조회 -->
 	<select id = "selectChosenFoodMenuById" parameterType = "String" resultType = "com.javateam.healthyFoodProject.domain.ChosenFoodMenuVO">
-		SELECT *
+		SELECT ID, FOODMENU, FOODMENU_RESULT AS "foodmenuResult"
 		  FROM CHOSENFOODMENU
  		 WHERE ID = #{id}
 	</select>
