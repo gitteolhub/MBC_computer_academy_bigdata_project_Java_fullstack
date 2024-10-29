@@ -1,5 +1,8 @@
 package com.javateam.healthyFoodProject.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -47,7 +50,18 @@ public class FoodMenuController {
 
 		return new ResponseEntity<>(result,HttpStatus.OK);
 	}
-
+	
+	public HashMap<String, String> dataToMap(ResponseEntity<String> data){
+		HashMap<String, String> result = new HashMap<String, String>();
+		String foodData;
+		foodData = data.getBody().toString();
+		
+		System.out.println(foodData);
+		
+		result.put("swgic", foodData);
+		return result;
+	}
+	
 	// 선택할 foodMenu 조회
 	@GetMapping("/foodMenu/view")
 	public String showFoodMenu(@RequestParam String strId, Model model) {
@@ -131,5 +145,4 @@ public class FoodMenuController {
 		// 결과를 보여줄 뷰 이름
 		return "/foodMenu/result"; // TODO 임의로 정함(나중에 수정)
 	}
-
 }
