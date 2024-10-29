@@ -56,24 +56,24 @@ public class ChosenFoodMenuDAOImpl implements ChosenFoodMenuDAO{
 
 	}
 
-	// 선택된 식단 삭제
-	@Override
-	public boolean deleteChosenFoodMenuById(String strId) {
-
-		boolean blRetVal = false;
-
-		try {
-
-			log.info("[ChosenFoodMenuDAOImpl][deleteChosenFoodMenuById]: {}", strId);
-			sqlSession.delete(MAPPER_PATH + "deleteChosenFoodMenuById", strId);
-
-			blRetVal = true;
-
-		} catch(Exception ex) {
-			log.error("[ChosenFoodMenuDAOImpl][deleteChosenFoodMenuById] Exception: {}", ex);
-		}
-		return blRetVal;
-	}
+//	// 선택된 식단 삭제
+//	@Override
+//	public boolean deleteChosenFoodMenuById(String strId) {
+//
+//		boolean blRetVal = false;
+//
+//		try {
+//
+//			log.info("[ChosenFoodMenuDAOImpl][deleteChosenFoodMenuById]: {}", strId);
+//			sqlSession.delete(MAPPER_PATH + "deleteChosenFoodMenuById", strId);
+//
+//			blRetVal = true;
+//
+//		} catch(Exception ex) {
+//			log.error("[ChosenFoodMenuDAOImpl][deleteChosenFoodMenuById] Exception: {}", ex);
+//		}
+//		return blRetVal;
+//	}
 
 	// 선택된 식단 전체 조회
 	@Override

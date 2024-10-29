@@ -183,8 +183,8 @@ public class MemberServiceImpl implements MemberService {
 					// 탈퇴한 회원 아이디를 파일에 저장
 					saveDeletedUSerIdToFile(strId);
 
-					// 선택된 식단 삭제
-		            chosenFoodMenuDAO.deleteChosenFoodMenuById(strId);
+//					// 선택된 식단 삭제
+//		            chosenFoodMenuDAO.deleteChosenFoodMenuById(strId);
 
 					if ( memberDAO.deleteRoles(strId) == true && memberDAO.deleteMemberById(strId) == true) {
 						blRetVal = true;
@@ -437,8 +437,8 @@ public class MemberServiceImpl implements MemberService {
 			// 탈퇴한 회원 아이디를 파일에 저장
 			saveDeletedUSerIdToFile(socialUser.getId().toString());
 
-			// 선택된 식단 삭제
-			chosenFoodMenuDAO.deleteChosenFoodMenuById(socialUser.getId().toString());
+//			// 선택된 식단 삭제
+//			chosenFoodMenuDAO.deleteChosenFoodMenuById(socialUser.getId().toString());
 
 			// 탈회한 회원 정보 삭제
 			socialUserMybatisDAO.deletSocialUser(socialUser);
