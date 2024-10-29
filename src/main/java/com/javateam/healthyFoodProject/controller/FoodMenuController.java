@@ -107,9 +107,10 @@ public class FoodMenuController {
 			foodDataResult = "[" + newChosenFoodMenuResult + "]";
 		} else {
 			foodDataResult = data;
-			log.info("[FoodMenuController][mergeFoodResultData]foodDataResult: ", foodDataResult);
-			foodDataResult = foodDataResult.replace("[", "").replace("]", "") + "," + newChosenFoodMenuResult;
+			log.info("[FoodMenuController][mergeFoodResultData]foodDataResult: {}", foodDataResult);
+			foodDataResult += foodDataResult.replace("[", "").replace("]", "") + "," + newChosenFoodMenuResult;
 			foodDataResult = "[" + foodDataResult + "]";
+			log.info("[FoodMenuController][foodDataResult]: {}", foodDataResult);
 
 		}
 
