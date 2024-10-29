@@ -61,9 +61,10 @@ public class FoodMenuController {
 
 		if(result == null) {
 			result = "당뇨 식단 선호도 데이터를 찾을 수 없습니다";
-		} else {
-			result = foodMenu;
 		}
+//		else {
+//			result = foodMenu;
+//		}
 
 		return new ResponseEntity<>(result,HttpStatus.OK);
 	}
