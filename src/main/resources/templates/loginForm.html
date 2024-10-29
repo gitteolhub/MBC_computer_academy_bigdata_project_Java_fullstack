@@ -183,6 +183,18 @@ window.onload = function() {
 				<img id="captcha_img" th:src="@{'/captcha/image/' + ${captchaImage}}">
 			</div>
 
+			<!-- 추후 hidden으로 변환할 것 -->
+	<input type="text" class="form-control w-25 m-2" id="key" name="key" th:value="${key}" readonly />
+
+	<hr>
+
+	<div class="m-3" style="width:30vw">
+
+		<div class="d-flex">
+			<div>
+				<img id="captcha_img" th:src="@{'/captcha/image/' + ${captchaImage}}">
+			</div>
+
 			<!-- 리프레쉬(refresh) 버튼 : captcha 서비스 재요청 -->
 			<div class="pt-2 px-2" id="refresh_btn">
 				<i class="bi bi-arrow-clockwise pt-2" style="font-size:3em"></i>
@@ -197,8 +209,8 @@ window.onload = function() {
 				<button class="btn btn-primary" type="button" id="submit_btn">전송</button>
 			</div>
 		</div>
-
-	</div>
+		</div>
+		</div>
 						</td>
 					</tr>
 
