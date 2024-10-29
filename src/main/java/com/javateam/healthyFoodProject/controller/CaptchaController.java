@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.javateam.healthyFoodProject.service.ApiCaptchaImageService;
@@ -34,7 +35,7 @@ public class CaptchaController {
 	@Autowired
 	public ServletContext servletContext;
 
-//	@GetMapping
+	@GetMapping
 	public String login(Model model) {
 
 		log.info("[CaptchaController].login");
