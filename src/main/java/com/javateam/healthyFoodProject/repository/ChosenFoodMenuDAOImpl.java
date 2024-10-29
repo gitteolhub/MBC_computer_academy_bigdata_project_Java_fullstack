@@ -47,12 +47,12 @@ public class ChosenFoodMenuDAOImpl implements ChosenFoodMenuDAO{
 	// 선택된 식단을 데이터베이스에 추가
 	@Override
 	public void insertChosenFoodMenu(String strId, String strFoodMenu, String strFoodMenuResult) {
-		Map<String, Object> params = new HashMap<>();
-		params.put("strId", strId);
-		params.put("strFoodMenu", strFoodMenu);
-		params.put("strFoodMenuResult", strFoodMenuResult);
+		ChosenFoodMenuVO chosenFoodMenuVO = new ChosenFoodMenuVO();
+		chosenFoodMenuVO.setId(strId);
+		chosenFoodMenuVO.setFoodmenu(strFoodMenu);
+		chosenFoodMenuVO.setFoodmenuResult(strFoodMenuResult);
 
-		sqlSession.insert(MAPPER_PATH + "insertChosenFoodMenu", params);
+		sqlSession.update(MAPPER_PATH + "updateChosenFoodMenu", chosenFoodMenuVO);
 
 	}
 
