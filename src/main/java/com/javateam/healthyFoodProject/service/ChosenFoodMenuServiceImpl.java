@@ -3,6 +3,7 @@ package com.javateam.healthyFoodProject.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.javateam.healthyFoodProject.domain.ChosenFoodMenuVO;
 import com.javateam.healthyFoodProject.repository.ChosenFoodMenuDAO;
 
 import lombok.extern.slf4j.Slf4j;
@@ -34,7 +35,7 @@ public class ChosenFoodMenuServiceImpl implements ChosenFoodMenuService{
 
 	// ID로 선택된 식단 조회
 	@Override
-	public String selectChosenFoodMenuById(String strId) {
+	public ChosenFoodMenuVO selectChosenFoodMenuById(String strId) {
 		log.info("[ChosenFoodMenuService][selectChosenFoodMenuById]");
 
 		return chosenFoodMenuDAO.selectChosenFoodMenuById(strId);
