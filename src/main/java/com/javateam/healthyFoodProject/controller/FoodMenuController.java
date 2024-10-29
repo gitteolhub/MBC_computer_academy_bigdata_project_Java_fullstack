@@ -1,5 +1,8 @@
 package com.javateam.healthyFoodProject.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.javateam.healthyFoodProject.service.ChosenFoodMenuService;
 import com.javateam.healthyFoodProject.service.CustomOAuth2UserService;
 import com.javateam.healthyFoodProject.service.MemberService;
+import com.javateam.healthyFoodProject.service.MemberServiceImpl;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -46,6 +50,18 @@ public class FoodMenuController {
 		}
 
 		return new ResponseEntity<>(result,HttpStatus.OK);
+	}
+
+	// chosenFoodMenu 데이터를 map 형식으로
+	public HashMap<String, String> dataToMap(ResponseEntity<String> data){
+		HashMap<String, String> result = new HashMap<String, String>();
+		String foodData;
+		foodData = data.getBody().toString();
+
+		log.info("[FoodMenuController][dataToMap]foodData: ", foodData);
+
+		result.put("swgic", foodData);
+		return result;
 	}
 
 	// 선택할 foodMenu 조회
@@ -94,13 +110,25 @@ public class FoodMenuController {
 	@PostMapping("/foodMenu/like") // TODO 임의로 정함(나중에 수정)
 	@ResponseBody
 	public ResponseEntity<String> likeFoodMenu(@RequestParam String strId, @RequestParam String foodMenu) {
+<<<<<<< HEAD
+
+=======
+>>>>>>> branch 'develop' of https://github.com/gitteolhub/MBC_computer_academy_bigdata_project_Java_fullstack.git
 		log.info("[FoodMenuController][likeFoodMenu]");
 		String msg = "";
 		boolean success = chosenFoodMenuService.insertChosenFoodMenu(strId, foodMenu, "1");
+<<<<<<< HEAD
+
+=======
+>>>>>>> branch 'develop' of https://github.com/gitteolhub/MBC_computer_academy_bigdata_project_Java_fullstack.git
 		msg = success ? "회원이 좋아하는 식단입니다." : "에러(좋아하는 식단)";
 
 		// 결과를 보여줄 뷰 이름
+<<<<<<< HEAD
+//		return "/foodMenu/result"; // TODO 임의로 정함(나중에 수정)
+=======
 		//		return "/foodMenu/result"; // TODO 임의로 정함(나중에 수정)
+>>>>>>> branch 'develop' of https://github.com/gitteolhub/MBC_computer_academy_bigdata_project_Java_fullstack.git
 		return new ResponseEntity<>(msg,HttpStatus.OK);
 	}
 
@@ -129,5 +157,4 @@ public class FoodMenuController {
 		// 결과를 보여줄 뷰 이름
 		return "/foodMenu/result"; // TODO 임의로 정함(나중에 수정)
 	}
-
 }
