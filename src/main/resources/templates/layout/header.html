@@ -11,6 +11,8 @@
         : www.classum.com/main/space/126296/community/396-->
 
 <div th:fragment="header">
+authentication:[[${#authentication}]] <br>
+socialUser:[[${session.socialUser}]]
 
         <div class="header_sect_pnl" style="background-color:cyan">
          <!-- id:[[${#authentication.name}]] <br>
