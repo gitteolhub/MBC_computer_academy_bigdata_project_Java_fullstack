@@ -36,7 +36,6 @@
     </style>
 <!-- 로그인 에러 메시지 -->
 <script th:inline="javascript" th:if="${session.SPRING_SECURITY_LAST_EXCEPTION != null}">
-
 //captcha 이미지 리프레쉬(갱신) 함수
 function refreshImage() {
 
@@ -48,7 +47,7 @@ function refreshImage() {
 		  let json = response.data;
 
 	      // 이미지 갱신
-	      captcha_img.src = '/healthyFoodProject/captcha/image/' + json.captchaImage;
+	      captcha_img.src = '/NaverCaptchaServiceDemo/captcha/image/' + json.captchaImage;
 
 	      console.log("captchaImage : ", json.captchaImage);
 
@@ -106,21 +105,12 @@ window.onload = function() {
 	refresh_btn.onclick = refreshImage; // 그림 리프레쉬(갱신) 함수 호출
 
 }//
+
 </script>
 </head>
 
 <body>
 	<div id="wrap" layout:fragment="content" class="main_sect_pnl">
-
-		<!--
-		<div th:if="${session.error == 'true'}" class="msg" th:text="${session.msg}"></div>
-
-		<span th:if="${session.SPRING_SECURITY_LAST_EXCEPTION != null}"
-			  th:text="${'메시지1 : ' + session.SPRING_SECURITY_LAST_EXCEPTION.message}">
-		</span><br>
-
-		<span th:if="${session.msg != null}" th:text="${'메시지2 : ' + session.msg.message}"></span><br>
-	﻿	 -->
 
 	<div id="login-box" class="border border-light-subtle border-5 rounded-4">
 	<h2>Login Page</h2>
@@ -181,34 +171,31 @@ window.onload = function() {
 
 
 						    </div>
+						 
+						    <!-- 추후 hidden으로 변환할 것 -->
+	<input type="text" class="form-control w-25 m-2" id="key" name="key" th:value="${key}" readonly />
+
+	<div class="m-3" style="width:30vw">
+
+		<div class="d-flex">
+			<div>
+				<img id="captcha_img" th:src="@{'/captcha/image/' + ${captchaImage}}">
+			</div>
+
+			<!-- 리프레쉬(refresh) 버튼 : captcha 서비스 재요청 -->
+			<div class="pt-2 px-2" id="refresh_btn">
+				<i class="bi bi-arrow-clockwise pt-2" style="font-size:3em"></i>
+			</div>
+		</div>
+
+		<div class="d-flex row mt-2">
+			<div class="col-8 pe-0">
+				<input class="form-control" type="text" id="captchaVal" name="captchaVal" />
+			</div>
+		</div>
+	</div>
+		<!-- 캡챠 끝 -->
 						    
-								<!-- 추후 hidden으로 변환할 것 -->
-					<input type="text" class="form-control w-25 m-2" id="key" name="key" th:value="${key}" readonly />
-				
-					<hr>
-				
-					<div class="m-3" style="width:30vw">
-				
-						<div class="d-flex">
-							<div>
-								<img id="captcha_img" th:src="@{'/captcha/image/' + ${captchaImage}}">
-							</div>
-				
-							<!-- 리프레쉬(refresh) 버튼 : captcha 서비스 재요청 -->
-							<div class="pt-2 px-2" id="refresh_btn">
-								<i class="bi bi-arrow-clockwise pt-2" style="font-size:3em"></i>
-							</div>
-						</div>
-				
-						<div class="d-flex row mt-2">
-							<div class="col-8 pe-0">
-								<input class="form-control" type="text" id="captchaVal" name="captchaVal" />
-							</div>
-							<div class="col-4 pe-0">
-								<button class="btn btn-primary" type="button" id="submit_btn">전송</button>
-							</div>
-						</div>
-					</div>
 						</td>
 					</tr>
 
