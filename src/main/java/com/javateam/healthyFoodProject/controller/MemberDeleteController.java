@@ -1,6 +1,9 @@
 package com.javateam.healthyFoodProject.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,6 +14,8 @@ import com.javateam.healthyFoodProject.domain.SocialUser;
 import com.javateam.healthyFoodProject.repository.SocialUserMybatisDAO;
 import com.javateam.healthyFoodProject.service.MemberService;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
@@ -30,7 +35,7 @@ public class MemberDeleteController {
 
 	// 회원 탈퇴 처리
 	@PostMapping("/member/delete")	// TODO 임의로 정함(나중에 수정)
-	public String deleteMember(@RequestParam("id") String id, RedirectAttributes redirectAttributes) {
+	public String deleteMember(@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
 
 		log.info("회원 탈퇴 처리");
 
@@ -39,22 +44,44 @@ public class MemberDeleteController {
 			return "redirect:/member/delete";	// TODO 임의로 정함(나중에 수정)
 		}
 
+//		try {
+//			boolean blRetVal = memberService.deleteMember(id);
+//			log.info("회원 탈퇴 성공 여부: {}", blRetVal);
+//
+//
+//
+//			if(blRetVal == true) {
+//				redirectAttributes.addFlashAttribute("msg", "회원 탈퇴가 완료 되었습니다.");
+//			} else {
+//				redirectAttributes.addFlashAttribute("msg", "회원 탈퇴가 실패했습니다.");
+//			}
+//
+//		} catch(Exception ex) {
+//			log.error("[MemberDeleteController][deleteMember] Exception: {}", ex);
+//		}
+
 		try {
 			boolean blRetVal = memberService.deleteMember(id);
 			log.info("회원 탈퇴 성공 여부: {}", blRetVal);
 
-			if(blRetVal == true) {
+			if(blRetVal) {
+				// 로그아웃 처리
+				Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+				if(authentication != null) {
+					new SecurityContextLogoutHandler().logout(request, response, authentication);
+				}
+
 				redirectAttributes.addFlashAttribute("msg", "회원 탈퇴가 완료 되었습니다.");
 			} else {
 				redirectAttributes.addFlashAttribute("msg", "회원 탈퇴가 실패했습니다.");
-			}
 
+			}
 		} catch(Exception ex) {
 			log.error("[MemberDeleteController][deleteMember] Exception: {}", ex);
-		}
 
+		}
 		// 탈퇴 결과 페이지
-		return "redirect:/loginForm";	// TODO 임의로 정함(나중에 수정)
+		return "redirect:/home";	// TODO 임의로 정함(나중에 수정)
 	}
 
 	// social 회원 탈퇴 처리
