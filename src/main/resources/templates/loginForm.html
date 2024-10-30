@@ -153,7 +153,33 @@ window.onload = function() {
 					<tr>
 						<td colspan="2">
 
-							<div class="d-flex justify-content-evenly">
+							
+						 
+									    <!-- 추후 hidden으로 변환할 것 -->
+				<input type="text" class="form-control w-25 m-2" id="key" name="key" th:value="${key}" readonly />
+			
+				<div class="m-3" style="width:30vw">
+			
+					<div class="d-flex">
+						<div>
+							<img id="captcha_img" th:src="@{'/captcha/image/' + ${captchaImage}}">
+						</div>
+			
+						<!-- 리프레쉬(refresh) 버튼 : captcha 서비스 재요청 -->
+						<div class="pt-2 px-2" id="refresh_btn">
+							<i class="bi bi-arrow-clockwise pt-2" style="font-size:3em"></i>
+						</div>
+					</div>
+			
+					<div class="d-flex row mt-2">
+						<div class="col-8 pe-0">
+							<input class="form-control" type="text" id="captchaVal" name="captchaVal" />
+						</div>
+					</div>
+				</div>
+					<!-- 캡챠 끝 -->
+		
+				<div class="d-flex justify-content-evenly">
 
 								<input type="submit"
 									   class="btn btn-primary"
@@ -162,39 +188,9 @@ window.onload = function() {
 									   value="로그인"
 									   />
 								&nbsp;
-								<input type="reset"
-									   name="reset"
-									   class="btn btn-primary"
-									   value="취소" />
-							    &nbsp;
 							    <a th:href="@{/join}" class="btn btn-primary">회원가입</a>
 
-
 						    </div>
-						 
-						    <!-- 추후 hidden으로 변환할 것 -->
-	<input type="text" class="form-control w-25 m-2" id="key" name="key" th:value="${key}" readonly />
-
-	<div class="m-3" style="width:30vw">
-
-		<div class="d-flex">
-			<div>
-				<img id="captcha_img" th:src="@{'/captcha/image/' + ${captchaImage}}">
-			</div>
-
-			<!-- 리프레쉬(refresh) 버튼 : captcha 서비스 재요청 -->
-			<div class="pt-2 px-2" id="refresh_btn">
-				<i class="bi bi-arrow-clockwise pt-2" style="font-size:3em"></i>
-			</div>
-		</div>
-
-		<div class="d-flex row mt-2">
-			<div class="col-8 pe-0">
-				<input class="form-control" type="text" id="captchaVal" name="captchaVal" />
-			</div>
-		</div>
-	</div>
-		<!-- 캡챠 끝 -->
 						    
 						</td>
 					</tr>
