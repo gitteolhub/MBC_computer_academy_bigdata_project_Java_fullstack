@@ -30,8 +30,9 @@ public class AuthController {
 
 	@Autowired
 	private MemberService memberService;
-	private int loginErrorCount = -1;
-	private int maxCount = 3;
+//	private int loginErrorCount = -1;
+	private int loginErrorCount = 0;	// -1에서 0으로 수정
+	private final int maxCount = 3;
 
 	// 홈 페이지로 redirection (return문 >> 경로)
 	@RequestMapping("/")
@@ -159,7 +160,7 @@ public class AuthController {
 
 	// 로그인 폼
 	@GetMapping("/loginForm")
-	public String login( HttpServletRequest request, Model model) {	//RedirectAttributes redirectAttributes
+	public String login( HttpServletRequest request, Model model, HttpSession httpSession) {	//RedirectAttributes redirectAttributes
 
 		log.info("[loginForm]");
 		String error = request.getParameter("error")== null ? "없음" : request.getParameter("error");
@@ -170,16 +171,30 @@ public class AuthController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		log.info("login 인증정보: {}", auth);
 
+		// loginErrorCount 세션화
+		if(httpSession.getAttribute("loginErrorCount")==null) {
+			httpSession.setAttribute("loginErrorCount",0);
+		} else {
+			loginErrorCount = (Integer)httpSession.getAttribute("loginErrorCount");
+			log.info("[loginErrorCount_1]: {}", loginErrorCount);
+		}
+
 		String movePath="";
 
 		if(auth.getPrincipal() == null || auth.getPrincipal().toString().equals("anonymousUser")) {
-			loginErrorCount += 1;
+
+//			loginErrorCount += 1;
+//			log.info("[loginErrorCount_2]: {}", loginErrorCount);
+//
+//			// 세션 변수에 반영
+//			httpSession.setAttribute("loginErrorCount", loginErrorCount);
 
 			log.info("로그인 인증 안됨");
 			model.addAttribute("error", error);
 			model.addAttribute("msg", msg);
 
-			log.info("[loginErrorCount: {}]", loginErrorCount);
+			log.info("[loginErrorCount_2: {}]", loginErrorCount);
+
 			if(loginErrorCount >= maxCount) {
 				log.info("[if(loginErrorCount >= maxCount)]");
 				captchaController.login(model);
@@ -197,7 +212,7 @@ public class AuthController {
 
 	// 로그아웃 처리 메서드
 	@GetMapping("/logoutProc")
-	public String logout(ModelMap model, HttpServletRequest request, HttpServletResponse response) {
+	public String logout(ModelMap model, HttpServletRequest request, HttpServletResponse response, HttpSession httpSession) {
 
 		log.info("[logout]");
 
@@ -210,16 +225,18 @@ public class AuthController {
 			new SecurityContextLogoutHandler().logout(request, response, auth);
 		}
 
-		loginErrorCount = -1;
+//		loginErrorCount = -1;
+		httpSession.removeAttribute("loginErrorCount");	 // 캡차 로그인 에러 카운터 제거
+
 		return "logout";
 	}
 
 	// 로그인(인증) 오류 처리 메서드
 	@GetMapping("/loginError")
-	public String loginError(HttpSession session, RedirectAttributes redirectAttributes) {		// RedirectAttributes redirectAttributes
+	public String loginError(Model model, HttpSession httpSession, RedirectAttributes redirectAttributes) {		// RedirectAttributes redirectAttributes
 
 		// 마지막 보안 예외 가져오기
-		Exception secuSess =(Exception)session.getAttribute("SPRING_SECURITY_LAST_EXCEPTION");
+		Exception secuSess =(Exception)httpSession.getAttribute("SPRING_SECURITY_LAST_EXCEPTION");
 		log.info("[인증 오류: {}]", secuSess.getMessage());
 
 		// 오류 flag 추가
@@ -227,6 +244,27 @@ public class AuthController {
 
 		// 오류 메서드 추가
 		redirectAttributes.addAttribute("msg", secuSess.getMessage());
+
+		// loginErrorCount 세션화
+		if(httpSession.getAttribute("loginErrorCount")==null) {
+			httpSession.setAttribute("loginErrorCount",0);
+		} else {
+			loginErrorCount = (Integer)httpSession.getAttribute("loginErrorCount");
+			log.info("[loginErrorCount_3]: {}", loginErrorCount);
+		}
+
+		loginErrorCount += 1;
+		log.info("[loginErrorCount_4]: {}", loginErrorCount);
+
+		// 세션 변수에 반영
+		httpSession.setAttribute("loginErrorCount", loginErrorCount);
+
+		log.info("[loginErrorCount_5: {}]", loginErrorCount);
+
+		if(loginErrorCount >= maxCount) {
+			log.info("[if(loginErrorCount >= maxCount)]");
+			captchaController.login(model);
+		}
 
 		return "redirect:/loginForm";
 	}
