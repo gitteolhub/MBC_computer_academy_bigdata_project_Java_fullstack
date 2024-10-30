@@ -39,7 +39,7 @@
 //captcha 이미지 리프레쉬(갱신) 함수
 function refreshImage() {
 
-	axios.get('refreshImage')
+	axios.get('/healthyFoodProject/refreshImage')
 	  .then(function (response) {
 
 		  console.log(response.data);
@@ -47,7 +47,7 @@ function refreshImage() {
 		  let json = response.data;
 
 	      // 이미지 갱신
-	      captcha_img.src = '/NaverCaptchaServiceDemo/captcha/image/' + json.captchaImage;
+	      captcha_img.src = '/healthyFoodProject/captcha/image/' + json.captchaImage;
 
 	      console.log("captchaImage : ", json.captchaImage);
 
@@ -76,7 +76,7 @@ window.onload = function() {
 		// 입력값 검증 :
 		// https://developers.naver.com/docs/utils/captcha/reference/#%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%9E%85%EB%A0%A5%EA%B0%92-%EA%B2%80%EC%A6%9D-%EC%9A%94%EC%B2%AD
 		// https://developers.naver.com/docs/utils/captcha/examples/
-		axios.get('checkCaptcha', {
+		axios.get('/healthyFoodProject/checkCaptcha', {
 				 	params: {
 				 		captchaVal : captchaVal.value,
 						key : key.value
@@ -84,7 +84,7 @@ window.onload = function() {
 				  })
 		  .then(function (response) {
 
-			  console.log(response.data);
+			  console.log('response.data :',response.data);
 			  let json = response.data;
 			  alert(json.result);
 
@@ -175,9 +175,13 @@ window.onload = function() {
 						<div class="col-8 pe-0">
 							<input class="form-control" type="text" id="captchaVal" name="captchaVal" />
 						</div>
+						<!-- 캡차 전송 버튼 -->
+						<div class="col-4 pe-0">
+							<button class="btn btn-primary" type="button" id="submit_btn">캡차 전송</button>
+						</div>
 					</div>
 				</div>
-					<!-- 캡챠 끝 -->
+				<!-- 캡챠 끝 -->
 		
 				<div class="d-flex justify-content-evenly">
 
