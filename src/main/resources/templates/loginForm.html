@@ -112,16 +112,6 @@ window.onload = function() {
 <body>
 	<div id="wrap" layout:fragment="content" class="main_sect_pnl">
 
-		
-		<div th:if="${session.error == 'true'}" class="msg" th:text="${session.msg}"></div>
-
-		<span th:if="${session.SPRING_SECURITY_LAST_EXCEPTION != null}"
-			  th:text="${'메시지1 : ' + session.SPRING_SECURITY_LAST_EXCEPTION.message}">
-		</span><br>
-
-		<span th:if="${session.msg != null}" th:text="${'메시지2 : ' + session.msg.message}"></span><br>
-	﻿	 
-
 	<div id="login-box" class="border border-light-subtle border-5 rounded-4">
 	<h2>Login Page</h2>
 	<form id="loginForm"
