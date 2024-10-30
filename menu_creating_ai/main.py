@@ -777,6 +777,15 @@ def str_to_list(s, to_id, _df):
 # _df0 = pd.read_json(data_path)
 # print('str_to_list results : ' + str(str_to_list("[[콩밥_완두콩, 감자조림, 얼갈이배추김치, 살구_생것, 스무디_얼음수박], [리소토/리조또_간편조리세트_베이컨버섯크림리조또, 버섯구이_새송이버섯, 겉절이_치커리, 귤_임온주_생것, 커피_헥사메리카노 핫(HOT)]]", False, _df0)))
 
+def training_ai_test(train_count, w_path, input_learning_data, output_learning_data, _hidden_layer_count, _hidden_count):
+    _df2 = pd.read_json(data_path)
+
+    while not stop_event.is_set():
+        _saved_data = read_weights_file(w_path)
+
+        ai_ctrl.train(train_count, input_learning_data, _hidden_layer_count, _hidden_count, output_learning_data, _df2, _saved_data)
+
+
 #식단을 추천하는 인공지능을 학습시키는 함수
 def train_ai(train_count, w_path, _hidden_layer_count, _hidden_count):
 
@@ -864,8 +873,8 @@ def create_menu_from_ai(_df, _saved_data, _hidden_layer_count, _hidden_count):
                     break
 
 
-        for p in range(len(max_like_percent)):
-            ai_result.append(_test_data2[2 + ai_foods_percent.index(max_like_percent[p])])
+        for p0 in range(len(max_like_percent)):
+            ai_result.append(_test_data2[2 + ai_foods_percent.index(max_like_percent[p0])])
 
         food_menu = []
 
@@ -1151,9 +1160,9 @@ def save_sharing_updating_food_menu(_df, _hidden_layer_count, _hidden_count):
 
     if exists(chosenFoodMenu_path):
         users_chosen_menu = load_data_from_json_file(chosenFoodMenu_path)
-        split_by_id = users_chosen_menu.split(':')
+        split_by_id = users_chosen_menu.split(',')
         for user in split_by_id:
-            user.replace('[', '').replace(']', '')
+            user.replace('[', '').replace(']', '').replace('\"', '').replace("\'", "")
 
         
 
@@ -1169,8 +1178,59 @@ c_dt = [count_time, delta_time]
 
 if is_test:
     is_mode = input('1.식품군이 골고루 들어간 당뇨병 식단으로 추천 되었는지 테스트\n2.임시 사용자로써 자신의 취향이 반영된 식단이 추천 되는지 테스트\n\n위 1,2번 중 테스트 모드를 골라주세요 : ')
+    if '0' in str(is_mode):
+        _df1 = pd.read_json(data_path)
 
-    if '1' in str(is_mode):
+        w_path = "Resources/Saved_files/test_weights.txt"
+        _data_path = "Resources/Saved_files/test_data.txt"
+
+        _data = read_weights_file(_data_path)
+
+        _input_data = str_to_list(_data[0], False, _df1)
+
+        _output_data = str_to_list(_data[1], False, _df1)
+
+        test_ai = th.Thread(target=training_ai_test, args=[training_count, w_path, _input_data, _output_data, hidden_layer_count, hidden_count])
+        test_ai.start()
+
+        while not stop_event.is_set():
+            comm = input('Testing AI Training >> ')
+
+            if 'test ' in comm:
+                result_count = 1
+
+                saved_data = read_weights_file(w_path)
+                _in_data = str_to_list(comm[5:], False, _df1)
+
+                #테스트 결과
+                ai_result = []
+
+                # 식단들의 적합률 퍼센트를 저장하는 변수
+                ai_foods_percent = []
+
+                # 뽑아낼 식단 갯수 만큼 식단마다 나온 적합률 퍼센트를 순위별로 저장하는 변수
+                max_like_percent = []
+                for x in range(result_count):
+                    max_like_percent.append(0.0)
+
+
+                is_ok_percent = ai_ctrl.detect_favorite_menu(hidden_layer_count, hidden_count, _in_data, _df1, saved_data)
+                ai_foods_percent.append(is_ok_percent)
+
+                # 식단들의 적합률 퍼센트들의 최고기록을 갱신시키는 반복문
+                for q in range(len(max_like_percent)):
+                    if is_ok_percent > max_like_percent[q]:
+                        for p in range(len(max_like_percent) - 1, q, -1):
+                            max_like_percent[p] = max_like_percent[p - 1]
+                        max_like_percent[q] = is_ok_percent
+                        break
+
+                for p0 in range(len(max_like_percent)):
+                    ai_result.append(_in_data[ai_foods_percent.index(max_like_percent[p0])])
+
+                print('AI : Given data ' + str(_in_data) + "'s result is " + str(ai_result) + ' with ' + str(max_like_percent) + '%')
+
+    elif '1' in str(is_mode):
         # 백그라운드에서 인공지능 학습 시작
         all_ai.start()
 
