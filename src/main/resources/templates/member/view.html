@@ -124,11 +124,9 @@
     <!-- TODO 소셜 회원 탈퇴는 컨트롤러가 따로 있는데 어떻게 할 지 결정 -->
 	<form th:action="@{/member/delete}" method="post" onsubmit="return confirm('정말 탈퇴하시겠습니까?');">
     <input type="hidden" name="id" th:value="${memberDTO.id}"/>
-    <button class="btn btn-primary" th:if="${session.socialUser == null}">
-							<a th:href="@{/logoutProc}" type="submit">회원 탈퇴</a></button>
-							<span th:if="${session.socialUser != null}"></span>
+    <button class="btn btn-primary" type="submit">회원 탈퇴</button>
 	</form>
-
+	
     </div>
 </div>
 
