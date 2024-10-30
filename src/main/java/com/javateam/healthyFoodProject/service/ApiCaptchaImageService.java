@@ -78,7 +78,7 @@ public class ApiCaptchaImageService {
 	// InputStream에서 이미지를 읽어 파일로 저장하는 메서드
 	public String getImage(InputStream inputStream) {
 		
-		ClassPathResource classPathResource = new ClassPathResource("src/main/resources/static/captcha/image");
+		ClassPathResource classPathResource = new ClassPathResource("static/captcha/image");
 		Path path = null;
 		
 		try {
