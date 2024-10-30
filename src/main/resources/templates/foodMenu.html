@@ -86,8 +86,6 @@
             <div>
             	<p id="foodMenuOutput" th:text="${foodMenu}"></p>
             </div>
-   			<div id="second" class="hidden" >2번 값</div>
-    
             <input 	type="submit"
 					class="btn btn-primary"
 					id="like"
@@ -110,20 +108,19 @@
 					value="싫어요"/>
         </div>
         <script>
-        function switchValues() {
-            const foodMenuOutput = document.getElementById('foodMenuOutput');
-            const second = document.getElementById('second');
+        const switchValues = /*[[${menuItems}]]*/ []; // 서버에서 전달된 음식 배열
+        let currentIndex = 0;
 
-            // 스위칭
-            if (foodMenuOutput.classList.contains('hidden')) {
-            	foodMenuOutput.classList.remove('hidden'); // 1번 보이기
-                second.classList.add('hidden'); // 2번 숨기기
+        document.getElementById('nextButton').onclick = function() {
+            currentIndex++;
+            if (currentIndex < menuItems.length) {
+                document.getElementById('currentFood').innerText = menuItems[currentIndex];
             } else {
-            	foodMenuOutput.classList.add('hidden'); // 1번 숨기기
-                second.classList.remove('hidden'); // 2번 보이기
+                document.getElementById('msg').innerText = "더 이상 음식이 없습니다.";
             }
-        }
-    </script>
+        };
+        
+        </script>
     <h1>AI 맞춤 식단</h1>
     <div class="meal-container">
         <div class="meal-card">
