@@ -38,7 +38,7 @@ public class AuthController {
 	public String root() {
 
 		log.info("[root]");
-		return "home";
+		return "redirect:/home";
 	}
 
 	@RequestMapping("/home")
@@ -250,6 +250,13 @@ public class AuthController {
 	public String error403() {
 
 		return "/error/403";
+	}
+
+	// 비정상 로그인 상황 처리
+	@GetMapping("/error")
+	public String error() {
+		log.info("[error 비정상 로그인 상황 처리]");
+		return "redirect:/myPage";
 	}
 }
 
