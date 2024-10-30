@@ -12,7 +12,9 @@
 
 <div th:fragment="header">
 authentication:[[${#authentication}]] <br>
-socialUser:[[${session.socialUser}]]
+socialUser:[[${session.socialUser}]] <br>
+loginErrorCount: [[${session.loginErrorCount}]] <br>
+
 
         <div class="header_sect_pnl" style="background-color:cyan">
          <!-- id:[[${#authentication.name}]] <br>
