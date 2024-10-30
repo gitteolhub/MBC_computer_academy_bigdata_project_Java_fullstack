@@ -22,17 +22,6 @@
     "enabled": 1
   },
   {
-    "name": "이민주",
-    "email": "abcd5555@abcd.com",
-    "gender": "여자",
-    "num": "129",
-    "id": "abcd5555",
-    "phone": "010-5555-5555",
-    "birthday": "4월 13, 1997",
-    "joindate": "10월 30, 2024",
-    "enabled": 1
-  },
-  {
     "name": "회원",
     "email": "AAAA1234@abcd.com",
     "gender": "남자",
