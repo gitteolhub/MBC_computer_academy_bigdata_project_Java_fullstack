@@ -6,6 +6,9 @@ data_path = 'Resources/food_data.json'
 #가중치 저장 파일 경로
 file_path = 'Resources/Saved_files/weights.txt'
 
+#사용자가 좋아하는 식단 가중치 저장 파일 경로
+like_file_path = 'Resources/Saved_files/like_weights.txt'
+
 #입력 노드 갯수
 input_count = 1
 
@@ -105,9 +108,10 @@ def calculate_straight(weights, biases, input_data, _hidden_layer_count, _hidden
         # calculate and put result into node
         for w in range(len(weights[weights_index])):
             val = 0
+
             for x in _datas[k]:
                 if '[' in str(x):
-                    val += x[0] * weights[weights_index][w]
+                    val += float(x[0]) * float(str(weights[weights_index][w]).replace("'", ""))
                 else:
                     val += float(x) * float(str(weights[weights_index][w]).replace("'", ""))
 
@@ -164,13 +168,6 @@ def calculate_back_term3(weights, out_h, hidden_layer_count, hidden_count):
         for i in range(len(weight_area) - 1, 1, -1):
             if weight_area[i - 1] <= wi < weight_area[i]:
                 out_h_index = len(out_h) - (len(weight_area) - i)
-
-    is_debug = False
-    if is_debug:
-        if type(out_h) == float:
-            print("out_h : " + str(out_h) + ", out_h_index : " + str(out_h_index))
-        else:
-            print("len(out_h) : " + str(len(out_h)) + ", out_h[out_h_index] : " + str(out_h[out_h_index]))
 
     if type(out_h) == float:
         return out_h
@@ -233,8 +230,8 @@ def calculate_backward(_datas, weights, hidden_layer_count, hidden_count):
     return weights
 
 #학습된 가중치 데이터들을 파일 형태로 저장하는 함수
-def save_weights_file(weights, _bios):
-    f = open(file_path, 'w')
+def save_weights_file(path, weights, _bios):
+    f = open(path, 'w', encoding='utf-8')
     
     add_str = ''
 
@@ -267,7 +264,7 @@ def save_weights_file(weights, _bios):
 
 #저장된 가중치와 바이오스 데이터들을 파일로부터 읽는 함수
 def read_weights_file():
-    f = open(file_path, 'r')
+    f = open(file_path, 'r', encoding='utf-8')
     read_str = ''
 
     while True:
@@ -366,7 +363,7 @@ def str_to_list(s, to_id, _df):
         return result0
 
 #사용자의 취향 데이터를 학습하는 함수
-def train(train_count, input_data, _hidden_layer_count, hidden_count, output_data, _df, saved_data):
+def train(train_count, input_data, _hidden_layer_count, hidden_count, output_data, _df, saved_data, save_file_path):
     _input_count = len(input_data[0])
     _output_count = len(output_data)
     if len(hidden_layer) <= 0:
@@ -396,7 +393,7 @@ def train(train_count, input_data, _hidden_layer_count, hidden_count, output_dat
         _datas.append(output_data[output_index])
         _weight = calculate_backward(_datas, _weight, _hidden_layer_count, hidden_count)
 
-        save_weights_file(_weight, _bios)
+        save_weights_file(save_file_path, _weight, _bios)
 
 #일정 갯수의 식단을 받아와 학습된 인공지능으로 판단하는 함수
 def detect_favorite_menu(_hidden_layer_count, hidden_count, input_data, _df, saved_data):
