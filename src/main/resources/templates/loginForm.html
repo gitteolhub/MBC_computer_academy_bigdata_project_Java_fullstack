@@ -36,76 +36,6 @@
     </style>
 <!-- 로그인 에러 메시지 -->
 <script th:inline="javascript" th:if="${session.SPRING_SECURITY_LAST_EXCEPTION != null}">
-
-//captcha 이미지 리프레쉬(갱신) 함수
-function refreshImage() {
-
-	axios.get('refreshImage')
-	  .then(function (response) {
-
-		  console.log(response.data);
-
-		  let json = response.data;
-
-	      // 이미지 갱신
-	      captcha_img.src = '/healthyFoodProject/captcha/image/' + json.captchaImage;
-
-	      console.log("captchaImage : ", json.captchaImage);
-
-	      // 키(key) 재입력
-	      key.value = json.key;
-
-	  })
-	  .catch(function (error) {
-	      console.log(error);
-	  });
-}
-
-window.onload = function() {
-
-	let submit_btn = document.getElementById("submit_btn");
-	let key = document.getElementById("key");
-
-	submit_btn.onclick = function() {
-
-		let captchaVal = document.getElementById("captchaVal");
-
-		alert(captchaVal.value);
-
-		// const crossOriginIsolated = { withCredentials: true }
-
-		// 입력값 검증 :
-		// https://developers.naver.com/docs/utils/captcha/reference/#%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%9E%85%EB%A0%A5%EA%B0%92-%EA%B2%80%EC%A6%9D-%EC%9A%94%EC%B2%AD
-		// https://developers.naver.com/docs/utils/captcha/examples/
-		axios.get('checkCaptcha', {
-				 	params: {
-				 		captchaVal : captchaVal.value,
-						key : key.value
-				    }
-				  })
-		  .then(function (response) {
-
-			  console.log(response.data);
-			  let json = response.data;
-			  alert(json.result);
-
-		  })
-		  .catch(function (error) {
-		      console.log(error);
-		  });
-
-		refreshImage();
-		captchaVal.value = ""; // 입력 필드 초기화
-
-	} //
-
-
-	let refresh_btn = document.getElementById("refresh_btn");
-	let captcha_img = document.getElementById("captcha_img");
-
-	refresh_btn.onclick = refreshImage; // 그림 리프레쉬(갱신) 함수 호출
-
-}//
 </script>
 </head>
 
@@ -181,34 +111,6 @@ window.onload = function() {
 
 
 						    </div>
-						    
-								<!-- 추후 hidden으로 변환할 것 -->
-					<input type="text" class="form-control w-25 m-2" id="key" name="key" th:value="${key}" readonly />
-				
-					<hr>
-				
-					<div class="m-3" style="width:30vw">
-				
-						<div class="d-flex">
-							<div>
-								<img id="captcha_img" th:src="@{'/captcha/image/' + ${captchaImage}}">
-							</div>
-				
-							<!-- 리프레쉬(refresh) 버튼 : captcha 서비스 재요청 -->
-							<div class="pt-2 px-2" id="refresh_btn">
-								<i class="bi bi-arrow-clockwise pt-2" style="font-size:3em"></i>
-							</div>
-						</div>
-				
-						<div class="d-flex row mt-2">
-							<div class="col-8 pe-0">
-								<input class="form-control" type="text" id="captchaVal" name="captchaVal" />
-							</div>
-							<div class="col-4 pe-0">
-								<button class="btn btn-primary" type="button" id="submit_btn">전송</button>
-							</div>
-						</div>
-					</div>
 						</td>
 					</tr>
 
