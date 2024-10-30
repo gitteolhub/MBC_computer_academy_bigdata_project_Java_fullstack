@@ -76,6 +76,8 @@ users_id = []
 
 #사용자에 의한 식단 학습 데이터들을 저장하는 텍스트 파일 경로
 save_user_data_path = 'Resources/Saved_files/user_data.txt'
+#정상적인 식단 데이터들을 저장하는 파일 경로
+save_default_data_path = 'Resources/Saved_files/default.txt'
 #정상적인 식단을 학습하는 인공지능 가중치 저장 파일 경로
 weights_path = 'Resources/Saved_files/weights.txt'
 #사용자별 선호도 가중치 저장 파일 경로
@@ -344,17 +346,54 @@ def name_to_id(n, _df):
 
     return n
 
-#저장된 가중치와 바이오스 데이터들을 파일로부터 읽는 함수
-def read_weights_file(path):
-    f = open(path, 'r', encoding="utf-8")
+#기록된 모든 사용자 아이디를 반환하는 함수
+def get_all_user_id():
+    f = open(save_user_data_path, 'r', encoding="utf-8")
     read_str = ''
+    result = []
+
     while True:
         line = f.readline()
         if not line: break
         read_str += line.replace(' ', '').replace('array(', '').replace(')', '').replace('\n', '').replace('\r', '')
 
-    sp = read_str.split('|')
-    result = sp
+    sp = read_str.split('{')
+    if len(sp) > 0:
+        for s in sp:
+            sp2 = s.split(':')
+            result.append(str(sp2[0]).replace(' ', ''))
+
+    return result
+
+#저장된 가중치와 바이오스 데이터들을 파일로부터 읽는 함수
+def read_weights_file(path, if_id):
+    f = open(path, 'r', encoding="utf-8")
+    read_str = ''
+    result = []
+
+    while True:
+        line = f.readline()
+        if not line: break
+        read_str += line.replace(' ', '').replace('array(', '').replace(')', '').replace('\n', '').replace('\r', '')
+
+    if '{' in read_str and if_id != '':
+        if '},{' in read_str:
+            sp = read_str.split('},{')
+            for s in sp:
+                s.replace('{', '').replace('}', '')
+                s2 = s.split(':')
+                if s2[0] == if_id:
+                    result = s2[1].split('|')
+
+            if not result:
+                result = sp[0].replace('{', '').replace('}', '').split(':')[1].split('|')
+        else:
+            read_str = read_str.replace('{', '').replace('}', '')
+            sp = read_str.split(':')
+            if sp[0] == if_id:
+                result = sp[1].split('|')
+    else:
+        result = read_str.split('|')
 
     f.close()
 
@@ -790,15 +829,15 @@ def training_ai_test(train_count, _w_path, input_learning_data, output_learning_
     _df2 = pd.read_json(data_path)
 
     while not stop_event.is_set():
-        _saved_data = read_weights_file(_w_path)
+        _saved_data = read_weights_file(_w_path, '')
         if len(_saved_data) > 1:
             _saved_data = [str_to_list(_saved_data[0], False, _df2), str_to_list(_saved_data[1], False, _df2)]
 
-        ai_ctrl.train(train_count, input_learning_data, _hidden_layer_count, _hidden_count, output_learning_data, _df2, _saved_data, weights_path)
+        ai_ctrl.train(train_count, input_learning_data, _hidden_layer_count, _hidden_count, output_learning_data, _df2, _saved_data, weights_path, '')
 
 
 #식단을 추천하는 인공지능을 학습시키는 함수
-def train_ai(train_count, _w_path, _hidden_layer_count, _hidden_count, _path):
+def train_ai(train_count, _w_path, _hidden_layer_count, _hidden_count, _user_path, _if_id):
 
     _save_time = datetime.datetime.now()
     _save_time2 = datetime.datetime.now()
@@ -806,32 +845,63 @@ def train_ai(train_count, _w_path, _hidden_layer_count, _hidden_count, _path):
     _df2 = pd.read_json(data_path)
     _save_time = _save_time + datetime.timedelta(days=1)
 
-    _saved_data = read_weights_file(_w_path)
+    if type(_if_id) == list:
+        while not stop_event.is_set():
+            all_user_id = get_all_user_id()
+            for _id in all_user_id:
+                _saved_data = read_weights_file(_w_path, _id)
 
-    while not stop_event.is_set():
-        if _save_time <= datetime.datetime.now():
-            _df2 = pd.read_json(data_path)
-            _save_time = _save_time + datetime.timedelta(days=1)
+                if _save_time <= datetime.datetime.now():
+                    _df2 = pd.read_json(data_path)
+                    _save_time = _save_time + datetime.timedelta(days=1)
 
-        _saved_data = read_weights_file(_w_path)
+                _saved_data = read_weights_file(_w_path, _id)
 
-        _data_sp = load_user_choice(_df2, 'Resources/Saved_files/' + str(my_id) + '.txt')
+                _data_sp = load_user_choice(_df2, _user_path, _id)
 
-        if len(_data_sp) > 0:
-            _data = []
-            if len(str_to_list(_data_sp[0], True, _df2)) > 0:
-                _data = [[str_to_list(_data_sp[0], True, _df2)], str_to_list(_data_sp[1], True, _df2)]
+                if len(_data_sp) > 0:
+                    _data = []
+                    if len(str_to_list(_data_sp[0], True, _df2)) > 0:
+                        _data = [[str_to_list(_data_sp[0], True, _df2)], str_to_list(_data_sp[1], True, _df2)]
 
-                input_learning_data = []
-                for p in _data[0]:
-                    input_learning_data.append(p)
+                        input_learning_data = []
+                        for p in _data[0]:
+                            input_learning_data.append(p)
 
-                output_learning_data = []
-                for q in _data[1]:
-                    answer = q
-                    output_learning_data.append(float(answer))
+                        output_learning_data = []
+                        for q in _data[1]:
+                            answer = q
+                            output_learning_data.append(float(answer))
 
-                ai_ctrl.train(train_count, input_learning_data, _hidden_layer_count, _hidden_count, output_learning_data, _df2, _saved_data, _path)
+                        ai_ctrl.train(train_count, input_learning_data, _hidden_layer_count, _hidden_count, output_learning_data, _df2, _saved_data, _w_path, _id)
+
+    else:
+        _saved_data = read_weights_file(_w_path, _if_id)
+
+        while not stop_event.is_set():
+            if _save_time <= datetime.datetime.now():
+                _df2 = pd.read_json(data_path)
+                _save_time = _save_time + datetime.timedelta(days=1)
+
+            _saved_data = read_weights_file(_w_path, _if_id)
+
+            _data_sp = load_user_choice(_df2, _user_path, _if_id)
+
+            if len(_data_sp) > 0:
+                _data = []
+                if len(str_to_list(_data_sp[0], True, _df2)) > 0:
+                    _data = [[str_to_list(_data_sp[0], True, _df2)], str_to_list(_data_sp[1], True, _df2)]
+
+                    input_learning_data = []
+                    for p in _data[0]:
+                        input_learning_data.append(p)
+
+                    output_learning_data = []
+                    for q in _data[1]:
+                        answer = q
+                        output_learning_data.append(float(answer))
+
+                    ai_ctrl.train(train_count, input_learning_data, _hidden_layer_count, _hidden_count, output_learning_data, _df2, _saved_data, _w_path, _if_id)
 
 #인공지능에 입력할 식단 데이터를 생성 및 입력하여, 적합한지 판별하는 함수
 def create_menu_from_ai(_df, _saved_data, is_favorite, _hidden_layer_count, _hidden_count):
@@ -1033,11 +1103,46 @@ def create_menu_from_ai(_df, _saved_data, is_favorite, _hidden_layer_count, _hid
             return ai_result0
 
 #사용자가 선택 또는 새로고침한 식단 데이터를 학습 데이터로써 파일 형태로 저장하는 함수
-def save_user_choice(path):
-    f = open(path, 'w', encoding='utf-8')
+def save_user_choice(path, if_id):
+    origin_str = open(path, 'r', encoding='utf-8')
+
+    read_str = ''
 
     add_str = ''
 
+    while True:
+        line = origin_str.readline()
+        if not line: break
+        read_str += line.replace(' ', '').replace('array(', '').replace(')', '').replace('\n', '').replace('\r', '')
+
+    if '{' in read_str and if_id != '':
+        if '},{' in read_str:
+            sp = read_str.split('},{')
+            for s in sp:
+                if if_id == s.replace('{', '').replace('}', '').replace("\'", '').replace('\"', '').split(':')[0]:
+                    if add_str == '':
+                        add_str = '{' + str(if_id) + ':'
+                    else:
+                        add_str += str(if_id) + ':'
+
+                    break
+                else:
+                    add_str += str(s) + '},{'
+            if not str(if_id) in add_str:
+                add_str += str(if_id) + ':'
+        else:
+            if if_id in read_str:
+                add_str = '{' + str(if_id) + ':'
+            else:
+                add_str = str(read_str) + ',{' + str(if_id) + ':'
+    else:
+        if if_id == '':
+            add_str = ''
+        else:
+            add_str = '{' + str(if_id) + ':'
+
+    open(path, 'w', encoding='utf-8').close()
+    f = open(path, 'w', encoding='utf-8')
 
     add_str += str('[')
     for _i in range(len(user_reviews[0])):
@@ -1065,30 +1170,60 @@ def save_user_choice(path):
 
     add_str = erase_color_from_str(add_str)
 
+    if '{' in add_str:
+        add_str += '}'
+
+        if '},{' in read_str:
+            regex = ''
+            sp = read_str.split('},{')
+            for s in sp:
+                if str(if_id) == str(s.replace(' ', '').replace('{', '').replace('}', '').replace("\'", '').replace('\"', '').split(':')[0]):
+                    regex = str(s) + '}'
+                    break
+            if regex != '':
+                sp2 = read_str.split(regex)
+                if len(sp2) > 1:
+                    add_str += sp2[1].replace(' ', '')
+
+    add_str = ai_ctrl.check_str_ok_and_fix(add_str)
+
     f.write(add_str)
 
     f.close()
 
 #사용자별 학습 데이터를 저장한 파일로부터 데이터를 읽는 함수
-def load_user_choice(_df, path):
+def load_user_choice(_df, path, if_id):
     if exists(path):
         f = open(path, 'r', encoding='utf-8')
         read_str = ''
+        result = []
 
         while True:
             line = f.readline()
             if not line: break
-            read_str += line.replace(' ', '').replace('\n', '').replace('\r', '')
+            read_str += line.replace(' ', '').replace('array(', '').replace(')', '').replace('\n', '').replace('\r', '')
 
-        sp = read_str.split('|')
-        result = sp
+        if '{' in read_str and if_id != '':
+            if '},{' in read_str:
+                sp = read_str.split('},{')
+                for s in sp:
+                    s.replace('{', '').replace('}', '')
+                    s2 = s.split(':')
+                    if s2[0] == if_id:
+                        result = s2[1].split('|')
 
-        if len(result) > 1:
-            user_reviews[0] = str_to_list(result[0], False, _df)
-            user_reviews[1] = str_to_list(result[1], False, _df)
-
+                if not result:
+                    result = sp[0].replace('{', '').replace('}', '').split(':')[1].split('|')
+            else:
+                read_str = read_str.replace('{', '').replace('}', '')
+                sp = read_str.split(':')
+                if sp[0] == if_id:
+                    result = sp[1].split('|')
+        else:
+            result = read_str.split('|')
 
         f.close()
+
         return result
     else:
         return []
@@ -1118,7 +1253,7 @@ def ask_exercise():
         return ask_exercise()
 
 # 사용자 정보 변수(기본 값으로 초기화)
-my_id = 'user_data'
+my_id = 'admin_user'
 my_age = 20
 my_weight = 64
 my_height = 170
@@ -1214,8 +1349,8 @@ hidden_layer_count = 3
 hidden_count = 3
 
 #쓰레드로 백그라운드에서 인공지능 학습 진행
-all_ai = th.Thread(target=train_ai, args=[training_count, weights_path, hidden_layer_count, hidden_count, weights_path])
-user_ai = th.Thread(target=train_ai, args=[training_count, like_weights_path, hidden_layer_count, hidden_count, like_weights_path])
+all_ai = th.Thread(target=train_ai, args=[training_count, weights_path, hidden_layer_count, hidden_count, save_default_data_path, ''])
+user_ai = th.Thread(target=train_ai, args=[training_count, like_weights_path, hidden_layer_count, hidden_count, save_user_data_path, my_id])
 
 #주기적으로 swgic프로젝트가 사용할 식단 데이터들을 저장 및 갱신하는 함수
 def save_sharing_datas(update_cool_time, _hidden_layer_count, _hidden_count):
@@ -1239,8 +1374,8 @@ def save_sharing_datas(update_cool_time, _hidden_layer_count, _hidden_count):
         #save_sharing_updating_food_menu()를 일정 주기로 호출하는 코드
         timer_for_updating = datetime.datetime.now() + datetime.timedelta(seconds=1)
         if datetime.datetime.now() >= timer_for_updating:
-            _df1 = pd.read_json(data_path)
-            save_sharing_updating_food_menu(_df1, _hidden_layer_count, _hidden_count)
+            _df2 = pd.read_json(data_path)
+            save_sharing_updating_food_menu(_df2, _hidden_layer_count, _hidden_count)
             timer_for_updating = datetime.datetime.now() + datetime.timedelta(seconds=1)
 
         #save_sharing_initializing_food_menu()를 일정 주기로 호출하는 코드
@@ -1269,11 +1404,11 @@ def save_sharing_initializing_food_menu(_df, _hidden_layer_count, _hidden_count)
     saving_path = 'Resources/Sharing_files/initializingFoodMenu.json'
 
     if all_ai.is_alive():
-        _saved_data = read_weights_file(weights_path)
+        _saved_data = read_weights_file(weights_path, '')
         if len(_saved_data) > 1:
             _saved_data = [str_to_list(_saved_data[0], False, _df), str_to_list(_saved_data[1], False, _df)]
 
-        _food_menu = create_menu_from_ai(_df, _saved_data, True, _hidden_layer_count, _hidden_count)
+        _food_menu = create_menu_from_ai(_df, _saved_data, False, _hidden_layer_count, _hidden_count)
         _food_menu_str = str(_food_menu)
 
         open(saving_path, 'w', encoding='utf-8').close()
@@ -1313,7 +1448,7 @@ if is_test:
         w_path = "Resources/Saved_files/test_weights.txt"
         _data_path = "Resources/Saved_files/test_data.txt"
 
-        _data = read_weights_file(_data_path)
+        _data = read_weights_file(_data_path, '')
 
         _input_data = str_to_list(_data[0], True, _df1)
 
@@ -1328,7 +1463,7 @@ if is_test:
             if 'test ' in comm:
                 result_count = 1
 
-                saved_data = read_weights_file(w_path)
+                saved_data = read_weights_file(w_path, '')
                 _in_data = str_to_list(comm[5:], False, _df1)
 
                 #테스트 결과
@@ -1376,10 +1511,10 @@ if is_test:
 
         _df = pd.read_json(data_path)
 
-        load_user_choice(_df, 'Resources/Saved_files/' + str(my_id) + '.txt')
+        load_user_choice(_df, save_default_data_path, '')
 
         #저장된 가중치 변수
-        saved_data = read_weights_file(weights_path)
+        saved_data = read_weights_file(weights_path, '')
         if len(saved_data) > 1:
             saved_data = [str_to_list(saved_data[0], False, _df), str_to_list(saved_data[1], False, _df)]
 
@@ -1416,7 +1551,7 @@ if is_test:
                 answer_count.append('y')
                 y_count += 1
 
-                save_user_choice('Resources/Saved_files/' + str(my_id) + '.txt')
+                save_user_choice(save_default_data_path, '')
 
                 if y_count >= max_y_count:
                     print('\n' + bcolors.CYAN + str(max_y_count) + bcolors.ENDC + '번 연속 성공하여 학습을 종료합니다')
@@ -1433,19 +1568,21 @@ if is_test:
                 answer_count.append('n')
                 y_count = 0
 
-                save_user_choice('Resources/Saved_files/' + str(my_id) + '.txt')
+                save_user_choice(save_default_data_path, '')
             else:
                 print('\n총 ' + bcolors.BLUE + str(len(answer_count)) + bcolors.ENDC + '번 식단을 산출하여 ' + bcolors.GREEN + str(answer_count.count('y')) + bcolors.ENDC + '번 적합한 식단이 나왔고, ' + bcolors.RED + str(answer_count.count('n')) + bcolors.ENDC + '번 적합하지 않은 식단이 나왔습니다.')
                 print('\n\n프로그램 종료 중...')
 
-                save_user_choice('Resources/Saved_files/' + str(my_id) + '.txt')
+                save_user_choice(save_default_data_path, '')
                 stop_event.set()
 
-            saved_data = read_weights_file(weights_path)
+            saved_data = read_weights_file(weights_path, '')
             if len(saved_data) > 1:
                 saved_data = [str_to_list(saved_data[0], False, _df), str_to_list(saved_data[1], False, _df)]
 
         all_ai.join()
+
+        stop_event.clear()
 
     elif '2' in str(is_mode):
         is_default_mode = input('\n임시 사용자 정보를 입력하시겠습니까? (' + bcolors.GREEN + 'y' + bcolors.ENDC + '/' + bcolors.RED + 'n' + bcolors.ENDC + ') : ')
@@ -1459,8 +1596,9 @@ if is_test:
             my_weight = float(input('\n체중(몸무게)을 입력해주세요(kg) : ').lower().replace(' ', '').replace('k', '').replace('g', ''))
             my_exercise = ask_exercise()
         elif 'n' in is_default_mode and not 'y' in is_default_mode:
-            my_id = 'default_user'
+            my_id = 'admin_user'
 
+        user_ai = th.Thread(target=train_ai, args=[training_count, like_weights_path, hidden_layer_count, hidden_count, save_user_data_path, my_id])
 
         #백그라운드에서 인공지능 학습 시작
         user_ai.start()
@@ -1478,17 +1616,17 @@ if is_test:
 
         _df = pd.read_json(data_path)
 
-        load_user_choice(_df, 'Resources/Saved_files/' + str(my_id) + '.txt')
+        load_user_choice(_df, save_user_data_path, my_id)
 
         # 저장된 가중치 변수
         saved_data = []
 
-        saved_data_normal = read_weights_file(weights_path)
+        saved_data_normal = read_weights_file(weights_path, '')
         if len(saved_data_normal) > 1:
             saved_data_normal = [str_to_list(saved_data_normal[0], False, _df), str_to_list(saved_data_normal[1], False, _df)]
             saved_data.append(saved_data_normal)
 
-        saved_data_like = read_weights_file(like_weights_path)
+        saved_data_like = read_weights_file(like_weights_path, my_id)
         if len(saved_data_like) > 1:
             saved_data_like = [str_to_list(saved_data_like[0], False, _df), str_to_list(saved_data_like[1], False, _df)]
             saved_data.append(saved_data_like)
@@ -1527,11 +1665,15 @@ if is_test:
                 answer_count.append('y')
                 y_count += 1
 
-                save_user_choice('Resources/Saved_files/' + str(my_id) + '.txt')
+                save_user_choice(save_user_data_path, my_id)
 
                 if y_count >= max_y_count:
                     print('\n' + str(max_y_count) + '번 연속 성공하여 학습을 종료합니다')
-                    print('\n총 ' + str(len(answer_count)) + '번 식단을 산출하여 ' + str(answer_count.count('y')) + '번 마음에 드는 식단이 나왔고, ' + str(answer_count.count('n')) + '번 마음에 들지 않는 식단이 나왔습니다.')
+                    print('\n총 ' + bcolors.BLUE + str(
+                        len(answer_count)) + bcolors.ENDC + '번 식단을 산출하여 ' + bcolors.GREEN + str(
+                        answer_count.count('y')) + bcolors.ENDC + '번 마음에 드는 식단이 나왔고, ' + bcolors.RED + str(
+                        answer_count.count('n')) + bcolors.ENDC + '번 마음에 들지 않는 식단이 나왔습니다.')
+                    print('\n\n프로그램 종료 중...')
                     stop_event.set()
 
             elif 'n' in reviews.lower():
@@ -1541,32 +1683,39 @@ if is_test:
                 answer_count.append('n')
                 y_count = 0
 
-                save_user_choice('Resources/Saved_files/' + str(my_id) + '.txt')
+                save_user_choice(save_user_data_path, my_id)
             else:
-                print('\n총 ' + str(len(answer_count)) + '번 식단을 산출하여 ' + str(answer_count.count('y')) + '번 마음에 드는 식단이 나왔고, ' + str(answer_count.count('n')) + '번 마음에 들지 않는 식단이 나왔습니다.')
+                print('\n총 ' + bcolors.BLUE + str(
+                    len(answer_count)) + bcolors.ENDC + '번 식단을 산출하여 ' + bcolors.GREEN + str(
+                    answer_count.count('y')) + bcolors.ENDC + '번 마음에 드는 식단이 나왔고, ' + bcolors.RED + str(
+                    answer_count.count('n')) + bcolors.ENDC + '번 마음에 들지 않는 식단이 나왔습니다.')
                 print('\n\n프로그램 종료 중...')
 
-                save_user_choice('Resources/Saved_files/' + str(my_id) + '.txt')
+                save_user_choice(save_user_data_path, my_id)
                 stop_event.set()
 
             saved_data = []
 
-            saved_data_normal = read_weights_file(weights_path)
+            saved_data_normal = read_weights_file(weights_path, my_id)
             if len(saved_data_normal) > 1:
                 saved_data_normal = [str_to_list(saved_data_normal[0], False, _df),
                                      str_to_list(saved_data_normal[1], False, _df)]
                 saved_data.append(saved_data_normal)
 
-            saved_data_like = read_weights_file(like_weights_path)
+            saved_data_like = read_weights_file(like_weights_path, my_id)
             if len(saved_data_like) > 1:
                 saved_data_like = [str_to_list(saved_data_like[0], False, _df),
                                    str_to_list(saved_data_like[1], False, _df)]
                 saved_data.append(saved_data_like)
 
         user_ai.join()
+
+        stop_event.clear()
 else:
     # 백그라운드에서 인공지능 학습 시작
     all_ai.start()
+
+    user_ai = th.Thread(target=train_ai, args=[training_count, like_weights_path, hidden_layer_count, hidden_count, save_user_data_path, [my_id]])
     user_ai.start()
 
     #swgic프로젝트가 사용할 식단 데이터들을 파일로 저장하는 주기(초 단위로 설정)변수
