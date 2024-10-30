@@ -81,7 +81,7 @@ public class MemberDeleteController {
 
 		}
 		// 탈퇴 결과 페이지
-		return "redirect:/loginForm";	// TODO 임의로 정함(나중에 수정)
+		return "redirect:/home";	// TODO 임의로 정함(나중에 수정)
 	}
 
 	// social 회원 탈퇴 처리
