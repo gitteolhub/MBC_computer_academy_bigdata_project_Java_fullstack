@@ -101,7 +101,7 @@ public class MemberServiceImpl implements MemberService {
 						// 회원가입시 초기 식단 추가
 						JsonService jsonService = new JsonService();
 
-						String InitializingFoodMenuFilePath="D:/coding/test.txt";
+						String InitializingFoodMenuFilePath="";
 						String foodMenu = jsonService.readFoodMenuJson(InitializingFoodMenuFilePath);
 						objMemberVO.setFoodmenu(foodMenu);
 						memberDAO.updateInitializingFoodMenu(objMemberVO);
