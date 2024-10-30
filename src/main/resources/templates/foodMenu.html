@@ -94,27 +94,31 @@
 
 			<!-- 식단 메뉴 출력 -->
             <div>
-            	<p id="foodMenuOutput" th:text="${foodMenu}"></p>
+            	<p id="foodMenuOutput" th:text="${foodMenu}">1</p>
             </div>
             <input 	type="submit"
 					class="btn btn-primary"
 					id="like"
 					name="like"
+<<<<<<< HEAD
 					onclick="switchValues();sendFoodMenu()"
+=======
+					onclick="nextButton()"
+>>>>>>> refs/heads/YSJANG26
 					value="좋아요"/>
 
 			<input 	type="submit"
 					class="btn btn-primary"
 					id="refresh"
 					name="refresh"
-					onclick="switchValues()"
+					onclick="nextButton()"
 					value="새로고침"/>
 
 			<input 	type="submit"
 					class="btn btn-primary"
 					id="dislike"
 					name="dislike"
-					onclick="switchValues()"
+					onclick="nextButton()"
 					value="싫어요"/>
         </div>
         <script>
@@ -124,7 +128,7 @@
         document.getElementById('nextButton').onclick = function() {
             currentIndex++;
             if (currentIndex < menuItems.length) {
-                document.getElementById('currentFood').innerText = menuItems[currentIndex];
+                document.getElementById('foodMenuOutput').innerText = menuItems[currentIndex];
             } else {
                 document.getElementById('msg').innerText = "더 이상 음식이 없습니다.";
             }
