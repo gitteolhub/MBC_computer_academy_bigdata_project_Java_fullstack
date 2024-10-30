@@ -252,9 +252,11 @@ public class AuthController {
 		}
 		loginErrorCount += 1;
 		log.info("[loginErrorCount_4]: {}", loginErrorCount);
+
 		// 세션 변수에 반영
 		httpSession.setAttribute("loginErrorCount", loginErrorCount);
 		log.info("[loginErrorCount_5: {}]", loginErrorCount);
+
 		if(loginErrorCount >= maxCount) {
 			log.info("[if(loginErrorCount >= maxCount)]");
 			captchaController.login(model);
