@@ -182,7 +182,6 @@ public class AuthController {
 		String movePath="";
 
 		if(auth.getPrincipal() == null || auth.getPrincipal().toString().equals("anonymousUser")) {
-
 //			loginErrorCount += 1;
 //			log.info("[loginErrorCount_2]: {}", loginErrorCount);
 //
@@ -194,7 +193,6 @@ public class AuthController {
 			model.addAttribute("msg", msg);
 
 			log.info("[loginErrorCount_2: {}]", loginErrorCount);
-
 			if(loginErrorCount >= maxCount) {
 				log.info("[if(loginErrorCount >= maxCount)]");
 				captchaController.login(model);
@@ -212,7 +210,7 @@ public class AuthController {
 
 	// 로그아웃 처리 메서드
 	@GetMapping("/logoutProc")
-	public String logout(ModelMap model, HttpServletRequest request, HttpServletResponse response, HttpSession httpSession) {
+	public String logout(ModelMap model, HttpServletRequest request, HttpServletResponse response,  HttpSession httpSession) {
 
 		log.info("[logout]");
 
@@ -252,7 +250,6 @@ public class AuthController {
 			loginErrorCount = (Integer)httpSession.getAttribute("loginErrorCount");
 			log.info("[loginErrorCount_3]: {}", loginErrorCount);
 		}
-
 		loginErrorCount += 1;
 		log.info("[loginErrorCount_4]: {}", loginErrorCount);
 
