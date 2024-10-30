@@ -22,14 +22,14 @@
     "enabled": 1
   },
   {
-    "name": "테스트",
-    "email": "test@test.com",
-    "gender": "남자",
-    "num": "125",
-    "id": "test",
-    "phone": "010-1234-1234",
-    "birthday": "10월 9, 2024",
-    "joindate": "10월 23, 2024",
+    "name": "이민주",
+    "email": "abcd5555@abcd.com",
+    "gender": "여자",
+    "num": "129",
+    "id": "abcd5555",
+    "phone": "010-5555-5555",
+    "birthday": "4월 13, 1997",
+    "joindate": "10월 30, 2024",
     "enabled": 1
   },
   {
