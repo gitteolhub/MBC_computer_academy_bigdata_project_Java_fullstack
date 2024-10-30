@@ -1,7 +1,5 @@
 package com.javateam.healthyFoodProject.controller;
 
-import java.util.HashMap;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,7 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.javateam.healthyFoodProject.service.ChosenFoodMenuService;
 import com.javateam.healthyFoodProject.service.CustomOAuth2UserService;
 import com.javateam.healthyFoodProject.service.MemberService;
-import com.javateam.healthyFoodProject.service.MemberServiceImpl;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -34,10 +31,6 @@ public class FoodMenuController {
 	private CustomOAuth2UserService customOAuth2UserService;
 
 	private String foodMenu;
-
-	public HashMap<String, String> savedFoodMenu = new HashMap<String, String>();
-
-	public HashMap<String, String> savedFoodMenuResult = new HashMap<String, String>();
 
 	// 선택할 foodMenu 조회
 	@GetMapping("/foodMenu/viewJson")
@@ -74,10 +67,7 @@ public class FoodMenuController {
 
 	// chosenFoodMenu 데이터를 map 형식으로
 		public String mergeFoodData (String strId, String newChosenFoodData){
-			String data = savedFoodMenu.get(strId);
-			if(data == null) {
-				data = showFoodData(strId);
-			}
+			String data = showFoodData(strId);
 			String foodData;
 
 			if(data == null) {
@@ -90,30 +80,26 @@ public class FoodMenuController {
 
 			}
 
-			savedFoodMenu.put(strId, foodData);
-
 			return foodData;
 		}
 
 	//
 	public String mergeFoodResultData (String strId, String newChosenFoodMenuResult) {
-		String data = savedFoodMenuResult.get(strId);
-		if(data == null) {
-			data = showFoodMenuResult(strId);
-		}
+		String data = showFoodMenuResult(strId);
+		log.info("[data null 여부]: {}", data == null);
+
 		String foodDataResult;
 
 		if(data == null) {
 			foodDataResult = "[" + newChosenFoodMenuResult + "]";
 		} else {
 			foodDataResult = data;
-			log.info("[FoodMenuController][mergeFoodResultData]foodDataResult: ", foodDataResult);
+			log.info("[FoodMenuController][mergeFoodResultData]foodDataResult: {}", foodDataResult);
 			foodDataResult = foodDataResult.replace("[", "").replace("]", "") + "," + newChosenFoodMenuResult;
 			foodDataResult = "[" + foodDataResult + "]";
+			log.info("[FoodMenuController][foodDataResult]: {}", foodDataResult);
 
 		}
-
-		savedFoodMenuResult.put(strId, foodDataResult);
 
 		return foodDataResult;
 	}
@@ -185,8 +171,9 @@ public class FoodMenuController {
 		log.info("[FoodMenuController][dislikeFoodMenu]");
 		String msg = "";
 		String updatingFoodData = mergeFoodData(strId, foodMenu);
+		String updatingFoodDataResult = mergeFoodResultData(strId, "0");
 
-		boolean success = chosenFoodMenuService.insertChosenFoodMenu(strId, updatingFoodData, "0");
+		boolean success = chosenFoodMenuService.insertChosenFoodMenu(strId, updatingFoodData, updatingFoodDataResult);
 		msg = success ? "회원이 안 좋아하는 식단입니다." : "에러(안 좋아하는 식단)";
 
 		// 결과를 보여줄 뷰 이름
@@ -200,8 +187,9 @@ public class FoodMenuController {
 		log.info("[FoodMenuController][refreshFoodMenu]");
 		String msg = "";
 		String updatingFoodData = mergeFoodData(strId, foodMenu);
+		String updatingFoodDataResult = mergeFoodResultData(strId, "-1");
 
-		boolean success = chosenFoodMenuService.insertChosenFoodMenu(strId, updatingFoodData, "-1");
+		boolean success = chosenFoodMenuService.insertChosenFoodMenu(strId, updatingFoodData, updatingFoodDataResult);
 		msg = success ? "당뇨식단이 아닙니다." : "에러(당뇨식단이 아닙니다.)";
 
 		// 결과를 보여줄 뷰 이름
