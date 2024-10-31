@@ -26,14 +26,14 @@ class InsertMemberServiceTest {
 	public void setUp() {
 
 	memberVO = MemberVO.builder()
-					   .id("abcd9999")
-					   .pw("#Abcd9999")
-					   .name("우진")
-					   .gender("남자")
+					   .id("abcd5555")
+					   .pw("#Abcd5555")
+					   .name("이민주")
+					   .gender("여자")
 
-					   .email("abcd9999@abcd.com")
-					   .phone("010-9999-1234")
-					   .birthday(Date.valueOf("1999-09-23"))
+					   .email("abcd5555@abcd.com")
+					   .phone("010-5555-5555")
+					   .birthday(Date.valueOf("1997-04-13"))
 					   .build();
 	}
 

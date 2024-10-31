@@ -14,37 +14,28 @@
      <script>
      /*
      window.onload = function(e) {
-
     		// console.log("id: ", e.target.id);
-
     		let strId='[[${#authentication.name}]]';
-
     		axios.get(`/healthyFoodProject/foodMenu/viewJson?strId=${strId}`)
     			 .then(function(response) {
-
     				console.log("response.data : ", response.data);
-
     				let foodMenuOutput = document.getElementById('foodMenuOutput');
     				foodMenuOutput.innerHTML=`<b>${response.data}</b>`;
-
     				// 오류 있을 때만 팝업으로 출력하도록 조치
     				// if (response.data === true) {
     				//	msg = "새로운 회원의 초기 식단 데이터를 무사히 불러왔습니다.";
-
     				// }
-
     				// 화면 갱신 : refresh
     				// location.reload();
-
     			 })
     			 .catch(function(err) {
     				console.error("초기 식단 데이터를 불러오는 중 서버 에러가 발견되었습니다.");
     			 });
     			// axios
-
     	} // onload
     	*/
      </script>
+
       <style>
         body {
             font-family: Arial, sans-serif;
@@ -92,79 +83,44 @@
         	<p th:text="${msg}"></p>
     		</div>
 
-			<!-- 식단 메뉴 출력 -->
             <div>
-            	<p id="foodMenuOutput" th:text="${foodMenu}"></p>
+            	<p id="foodMenuOutput" th:text="${foodMenu}">1</p>
             </div>
-   			<div id="second" class="hidden" >2번 값</div>
-
             <input 	type="submit"
 					class="btn btn-primary"
 					id="like"
 					name="like"
-					onclick="switchValues();sendFoodMenu()"
+					onclick="nextButton()"
 					value="좋아요"/>
 
 			<input 	type="submit"
 					class="btn btn-primary"
 					id="refresh"
 					name="refresh"
-					onclick="switchValues()"
+					onclick="nextButton()"
 					value="새로고침"/>
 
 			<input 	type="submit"
 					class="btn btn-primary"
 					id="dislike"
 					name="dislike"
-					onclick="switchValues()"
+					onclick="nextButton()"
 					value="싫어요"/>
         </div>
         <script>
-        function switchValues() {
-            const foodMenuOutput = document.getElementById('foodMenuOutput');
-            const second = document.getElementById('second');
+        const switchValues = /*[[${menuItems}]]*/ []; // 서버에서 전달된 음식 배열
+        let currentIndex = 0;
 
-            // 스위칭
-            if (foodMenuOutput.classList.contains('hidden')) {
-            	foodMenuOutput.classList.remove('hidden'); // 1번 보이기
-                second.classList.add('hidden'); // 2번 숨기기
+        document.getElementById('nextButton').onclick = function() {
+            currentIndex++;
+            if (currentIndex < menuItems.length) {
+                document.getElementById('foodMenuOutput').innerText = menuItems[currentIndex];
             } else {
-            	foodMenuOutput.classList.add('hidden'); // 1번 숨기기
-                second.classList.remove('hidden'); // 2번 보이기
+                document.getElementById('msg').innerText = "더 이상 음식이 없습니다.";
             }
-        }
+        };
         
-        function sendFoodMenu(){
-        			
-        	let id = '[[${#authentication.name}]]';
-        	let foodMenu = '[[${foodMenu}]]';
-        	
-        	axios({
-				method : "post",
-				url    : '/healthyFoodProject/foodMenu/like',
-				data   : {strId : id, foodMenu : foodMenu},
-				headers: {"Content-Type":'multipart/form-data'}
-			 })
-   		 		.then(function(response) {
-
-	   			console.log("response.data : ", response.data);
-	   			alert(response.data);
-	
-	   			// 오류 있을 때만 팝업으로 출력하도록 조치
-	   			/* if (response.data === true) {
-	   				msg = "새로운 회원의 초기 식단 데이터를 무사히 불러왔습니다.";
-	
-	   			} */
-	
-	   			// 화면 갱신 : refresh
-	   			// location.reload();
-	
-	   		 	})
-	   		 	.catch(function(err) {
-	   			console.error("초기 식단 데이터를 불러오는 중 서버 에러가 발견되었습니다.");
-	   		 });
-        }
-    </script>
+        </script>
     <h1>AI 맞춤 식단</h1>
     <div class="meal-container">
         <div class="meal-card">
