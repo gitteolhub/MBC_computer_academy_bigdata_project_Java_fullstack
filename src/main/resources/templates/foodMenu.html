@@ -90,6 +90,7 @@
 					class="btn btn-primary"
 					id="like"
 					name="like"
+					onclick="sendLike()"
 					onclick="nextButton()"
 					value="좋아요"/>
 
@@ -119,6 +120,20 @@
                 document.getElementById('msg').innerText = "더 이상 음식이 없습니다.";
             }
         };
+        
+        // 푸드메뉴 좋아요 데이터 전송
+        function sendLike() {
+            fetch('/foodMenu/like', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `strId=${userId}&foodMenu=${foodMenu}&foodMenuIndex=currentIndex`
+            })
+            .then(response => response.text())
+            .then(data => alert(data))
+            .catch(error => console.error('Error:', error));
+        }
         
         </script>
     <h1>AI 맞춤 식단</h1>
