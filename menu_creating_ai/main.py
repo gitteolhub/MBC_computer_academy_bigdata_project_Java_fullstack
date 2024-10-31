@@ -718,7 +718,7 @@ def print_meal(meal):
             log_ctrl.debug_log('추천 식단 : ' + str(_menu_str))
 
 #지정된 갯수만큼 식단을 반환하는 함수(returns_id : 식품명 또는 아이디 형태로 반환할지 지정하는 매개변수)
-def find_meal(c, returns_id, _df):
+def find_meal(c, returns_id, _df, is_colored=False):
     debug_process = False
     meal = [[my_age], [my_gender]]
     for x in range(c):
@@ -740,11 +740,12 @@ def find_meal(c, returns_id, _df):
             milk = milks[ind][ran.randint(0, len(milks[ind]) - 1)]
             fruit = fruits[ind][ran.randint(0, len(fruits[ind]) - 1)]
 
-            rice = bcolors.YELLOW + rice + bcolors.ENDC
-            meat = bcolors.RED + meat + bcolors.ENDC
-            vegetable = bcolors.GREEN + vegetable + bcolors.ENDC
-            milk = bcolors.BLUE + milk + bcolors.ENDC
-            fruit = bcolors.PINK + fruit + bcolors.ENDC
+            if is_colored:
+                rice = bcolors.YELLOW + rice + bcolors.ENDC
+                meat = bcolors.RED + meat + bcolors.ENDC
+                vegetable = bcolors.GREEN + vegetable + bcolors.ENDC
+                milk = bcolors.BLUE + milk + bcolors.ENDC
+                fruit = bcolors.PINK + fruit + bcolors.ENDC
 
             meal.append([rice, meat, vegetable, fruit, milk])
 
@@ -896,7 +897,7 @@ def train_ai(train_count, _w_path, _hidden_layer_count, _hidden_count, _user_pat
                     ai_ctrl.train(train_count, input_learning_data, _hidden_layer_count, _hidden_count, output_learning_data, _df2, _saved_data, _w_path, _if_id)
 
 #인공지능에 입력할 식단 데이터를 생성 및 입력하여, 적합한지 판별하는 함수
-def create_menu_from_ai(_df, _saved_data, is_favorite, _hidden_layer_count, _hidden_count):
+def create_menu_from_ai(_df, _saved_data, is_favorite, _hidden_layer_count, _hidden_count, is_colored=False):
     if is_favorite and len(_saved_data) >= 2:
         # 인공지능에 입력할 식단 데이터 갯수
         menu_count = 20
@@ -904,10 +905,10 @@ def create_menu_from_ai(_df, _saved_data, is_favorite, _hidden_layer_count, _hid
         result_count0 = 8
 
         # 인공지능에 입력할 아이디 형태의 식단 데이터
-        _test_data = find_meal(menu_count, True, _df)
+        _test_data = find_meal(menu_count, True, _df, is_colored)
 
         # 인공지능이 판단한 후 표시할 식품명 형태의 식단 데이터
-        _test_data2 = find_meal(menu_count, False, _df)
+        _test_data2 = find_meal(menu_count, False, _df, is_colored)
 
         # 인공지능의 판단에 의하여 반환된 식단 데이터들
         ai_result_id = []
@@ -1025,10 +1026,10 @@ def create_menu_from_ai(_df, _saved_data, is_favorite, _hidden_layer_count, _hid
         log_ctrl.debug_log('\n=============================================식단 짜는 중=======================================================')
 
         #인공지능에 입력할 아이디 형태의 식단 데이터
-        _test_data = find_meal(menu_count, True, _df)
+        _test_data = find_meal(menu_count, True, _df, is_colored)
 
         #인공지능이 판단한 후 표시할 식품명 형태의 식단 데이터
-        _test_data2 = find_meal(menu_count, False, _df)
+        _test_data2 = find_meal(menu_count, False, _df, is_colored)
 
         log_ctrl.debug_log('식품군이 골고루 들어간 당뇨병 식단만으로 필터링 중...')
 
@@ -1139,6 +1140,7 @@ def save_user_choice(path, if_id, food_menu_data=''):
 
     if food_menu_data != '':
         add_str += food_menu_data
+
     else:
         add_str += str('[')
         for _i in range(len(user_reviews[0])):
@@ -1182,6 +1184,9 @@ def save_user_choice(path, if_id, food_menu_data=''):
                     add_str += sp2[1].replace(' ', '')
 
     add_str = ai_ctrl.check_str_ok_and_fix(add_str)
+
+    if food_menu_data != '':
+        add_str = add_str.replace("\'", '\"').replace(' ', '')
 
     f.write(add_str)
 
@@ -1339,7 +1344,7 @@ milks_id = get_milk_per_day(False, True, df)
 fruits_id = get_fruit_per_day(False, True, df)
 
 
-test_data = find_meal(test_data_count, True, df)
+#test_data = find_meal(test_data_count, True, df, False)
 
 hidden_layer_count = 3
 hidden_count = 3
@@ -1351,20 +1356,6 @@ user_ai = th.Thread(target=train_ai, args=[training_count, like_weights_path, hi
 #주기적으로 swgic프로젝트가 사용할 식단 데이터들을 저장 및 갱신하는 함수
 def save_sharing_datas(update_cool_time, _hidden_layer_count, _hidden_count):
     update_timer = datetime.datetime.now()
-
-    cool_time_second = int(update_cool_time % 60)
-    cool_time_minute = int(update_cool_time / 60)
-    cool_time_hour = int(update_cool_time / 3600)
-    cool_time_day = int(update_cool_time / 86400)
-    
-    if cool_time_day > 0:
-        update_timer = update_timer + datetime.timedelta(days=cool_time_day)
-    if cool_time_hour > 0:
-        update_timer = update_timer + datetime.timedelta(hours=cool_time_hour)
-    if cool_time_minute > 0:
-        update_timer = update_timer + datetime.timedelta(minutes=cool_time_minute)
-    if cool_time_second > 0:
-        update_timer = update_timer + datetime.timedelta(seconds=cool_time_second)
 
     while not stop_event.is_set():
         #save_sharing_updating_food_menu()를 일정 주기로 호출하는 코드
@@ -1405,12 +1396,12 @@ def save_sharing_initializing_food_menu(_df, _hidden_layer_count, _hidden_count)
             _saved_data = [str_to_list(_saved_data[0], False, _df), str_to_list(_saved_data[1], False, _df)]
 
         _food_menu = create_menu_from_ai(_df, _saved_data, False, _hidden_layer_count, _hidden_count)
-        _food_menu_str = str(_food_menu)
+        _food_menu_str = erase_color_from_str(str(_food_menu))
 
         open(saving_path, 'w', encoding='utf-8').close()
         f = open(saving_path, 'w', encoding='utf-8')
 
-        f.write(_food_menu_str)
+        f.write(_food_menu_str.replace("\'", '\"').replace(' ', ''))
 
         f.close()
 
@@ -1512,7 +1503,7 @@ else:
                     save_time = save_time + datetime.timedelta(days=1)
 
                 debug_delay = datetime.datetime.now()
-                menu = create_menu_from_ai(_df, saved_data, False, hidden_layer_count, hidden_count)
+                menu = create_menu_from_ai(_df, saved_data, False, hidden_layer_count, hidden_count, True)
                 print('\n======================================================================================================================\nAI가 식단을 산출하는데에 걸린 시간 : ' + bcolors.CYAN + str(datetime.datetime.now() - debug_delay) + 's' + bcolors.ENDC)
 
                 _menu = []
@@ -1623,7 +1614,7 @@ else:
                     save_time = save_time + datetime.timedelta(days=1)
 
                 debug_delay = datetime.datetime.now()
-                menu = create_menu_from_ai(_df, saved_data, True, hidden_layer_count, hidden_count)
+                menu = create_menu_from_ai(_df, saved_data, True, hidden_layer_count, hidden_count, True)
                 print('\n======================================================================================================================\nAI가 식단을 산출하는데에 걸린 시간 : ' + bcolors.CYAN + str(datetime.datetime.now() - debug_delay) + 's' + bcolors.ENDC)
 
                 breakfast = ''
@@ -1706,7 +1697,7 @@ else:
 
         #swgic프로젝트가 사용할 식단 데이터들을 파일로 저장하는 주기(초 단위로 설정)변수
         updating_cool_time = 600
-        back_file_saving = th.Thread(target=save_sharing_datas, args=[updating_cool_time, hidden_layer_count, hidden_count, like_weights_path])
+        back_file_saving = th.Thread(target=save_sharing_datas, args=[updating_cool_time, hidden_layer_count, hidden_count])
 
         back_file_saving.start()
         print('Saving default food menu data and food menu by user data to json file module has started...')
