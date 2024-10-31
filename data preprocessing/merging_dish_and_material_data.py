@@ -1,10 +1,12 @@
 import os
 import pandas as pd
+from pathlib import Path
 
-# 파일 경로 설정(PC에 따라 알맞은 경로 설정)
-preprocessed_dish_data_file_path = 'D:/student/LHT/works/crawling/preprocessed_dish_data.json'
-preprocessed_material_data_file_path = 'D:/student/LHT/works/crawling/preprocessed_material_data.json'
-food_data_file_path = 'D:/student/LHT/works/crawling/food_data.json'
+# 파일 경로 설정
+preprocessed_dish_data_file_path = Path('data/preprocessed_dish_data.json')
+preprocessed_material_data_file_path = Path('data/preprocessed_material_data.json')
+Path('data').mkdir(exist_ok=True)  # data 폴더 없을 시 생성
+food_data_file_path = Path('data/food_data.json')
 
 # 파일의 수정 시간을 변수에 저장. 병합된 파일이 없을 경우 0을 저장하여 병합 진행.
 preprocessed_dish_data_mtime = os.path.getmtime(preprocessed_dish_data_file_path)
