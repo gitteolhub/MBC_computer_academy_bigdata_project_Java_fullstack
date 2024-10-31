@@ -1,6 +1,7 @@
 import os
-import pandas as pd
 from pathlib import Path
+
+import pandas as pd
 
 # 파일 경로 설정
 preprocessed_dish_data_file_path = Path('data/preprocessed_dish_data.json')
