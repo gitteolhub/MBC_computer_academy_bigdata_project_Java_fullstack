@@ -135,10 +135,10 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
 
 				log.info("회원정보 존재하지 않을때");
 
-				//TODO FilePath 지정 필요
+				// initializingFoodMenuFilePath 지정
 				// 회원가입시 초기 식단 추가
-				String foodMenuFilePath = "";
-				String foodMenu = jsonService.readFoodMenuJson(foodMenuFilePath);
+				String initializingFoodMenuFilePath = "tonicjh/menu_creating_ai/Sharing_files/initializingFoodMenu.json";
+				String foodMenu = jsonService.readFoodMenuJson(initializingFoodMenuFilePath);
 				socialUser.setFoodmenu(foodMenu);   // foodmenu 초기값 설정(null 방지)
 				socialUserMybatisDAO.insertSocialUser(socialUser);
 				log.info("[socialUser]: {}", socialUser);
@@ -168,11 +168,11 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
 	public boolean updateFoodMenuBySocialUser(int id) {
 		boolean blRetVal = false;
 
-		// TODO FilePath 지정 필요
-		String updatingFoodMenuFilePath = "";
+		// updatingFoodMenuByUsersFilePath 지정
+		String updatingFoodMenuByUsersFilePath = "tonicjh/menu_creating_ai/Sharing_files/updatingFoodMenuByUsers.json";
 
 		try {
-			String updateFoodMenuJson = jsonService.readUpdateFoodMenuJson(updatingFoodMenuFilePath);
+			String updateFoodMenuJson = jsonService.readUpdateFoodMenuJson(updatingFoodMenuByUsersFilePath);
             log.info("[updateFoodMenuBySocialUser][updateFoodMenuJson]:{}", updateFoodMenuJson);
 
             SocialUser socialUser = socialUserMybatisDAO.selectSocialUserById(id);
@@ -193,8 +193,8 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
 	public boolean updateFoodMenuBySocialUserID() {
 		boolean blRetVal = false;
 
-		// TODO FilePath 지정 필요
-		String updatingFoodMenuByUsersFilePath = "";
+		// updatingFoodMenuByUsersFilePath 지정
+		String updatingFoodMenuByUsersFilePath = "tonicjh/menu_creating_ai/Sharing_files/updatingFoodMenuByUsers.json";
 
 		try {
 
