@@ -1,7 +1,9 @@
-import requests
 import json
 import os
 from datetime import datetime
+from pathlib import Path
+
+import requests
 
 # 공공데이터포털에서 제공하는 식품(원재료성식품) 영양성분 API URL
 url = 'http://api.data.go.kr/openapi/tn_pubr_public_nutri_material_info_api'
@@ -16,8 +18,9 @@ params = {
 }
 
 # 데이터를 저장할 파일 경로
-file_path = 'D:/student/LHT/works/crawling/material_data.json'
-log_file_path = 'D:/student/LHT/works/crawling/material_update_log.txt'
+Path('data').mkdir(exist_ok=True)  # data 폴더 없을 시 생성
+file_path = Path('data/material_data.json')
+log_file_path = Path('data/material_update_log.txt')
 
 # 모든 페이지의 데이터를 저장할 리스트 초기화
 all_items = []
