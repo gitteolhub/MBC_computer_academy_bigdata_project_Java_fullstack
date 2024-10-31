@@ -90,8 +90,8 @@
 					class="btn btn-primary"
 					id="like"
 					name="like"
-					onclick="nextButton()"
 					onclick="sendLike()"
+					onclick="nextButton()"
 					value="좋아요"/>
 
 			<input 	type="submit"
@@ -128,7 +128,7 @@
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
-                body: `userId=${userId}&foodMenu=${foodMenu}`
+                body: `strId=${userId}&foodMenu=${foodMenu}&foodMenuIndex=currentIndex`
             })
             .then(response => response.text())
             .then(data => alert(data))
