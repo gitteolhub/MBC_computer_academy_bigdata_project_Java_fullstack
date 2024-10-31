@@ -150,7 +150,7 @@ public class FoodMenuController {
 	// 식단을 좋아할 경우
 	@PostMapping("/foodMenu/like") // TODO 임의로 정함(나중에 수정)
 	@ResponseBody
-	public ResponseEntity<String> likeFoodMenu(@RequestParam String strId, @RequestParam String foodMenu, @RequestParam int foodMenuIndex) {
+	public ResponseEntity<String> likeFoodMenu(@RequestParam String strId, @RequestParam String foodMenu, @RequestParam String foodMenuIndex) {
 
 		log.info("[FoodMenuController][likeFoodMenu]");
 		String msg = "";
@@ -160,10 +160,11 @@ public class FoodMenuController {
 		boolean success = chosenFoodMenuService.insertChosenFoodMenu(strId, updatingFoodData, updatingFoodDataResult);
 		msg = success ? "회원이 좋아하는 식단입니다." : "에러(좋아하는 식단)";
 
-		if(foodMenuIndex == 0) {
+		int foodMenuIndexInt = Integer.valueOf(foodMenuIndex);
+		if(foodMenuIndexInt == 0) {
 			JsonService jsonService = new JsonService();
 			jsonService.saveChosenFoodMenuJson(strId);
-		} else if (foodMenuIndex == 1) {
+		} else if (foodMenuIndexInt == 1) {
 
 			// social Id일 경우
 			// 아이디 첫 글지가 (0~9)
@@ -183,7 +184,7 @@ public class FoodMenuController {
 
 	// 식단을 싫어할 경우
 	@PostMapping("/foodMenu/dislike") // TODO 임의로 정함(나중에 수정)
-	public ResponseEntity<String> dislikeFoodMenu(@RequestParam String strId, @RequestParam String foodMenu, @RequestParam int foodMenuIndex) {
+	public ResponseEntity<String> dislikeFoodMenu(@RequestParam String strId, @RequestParam String foodMenu, @RequestParam String foodMenuIndex) {
 
 		log.info("[FoodMenuController][dislikeFoodMenu]");
 		String msg = "";
@@ -193,10 +194,11 @@ public class FoodMenuController {
 		boolean success = chosenFoodMenuService.insertChosenFoodMenu(strId, updatingFoodData, updatingFoodDataResult);
 		msg = success ? "회원이 안 좋아하는 식단입니다." : "에러(안 좋아하는 식단)";
 
-		if(foodMenuIndex == 0) {
+		int foodMenuIndexInt = Integer.valueOf(foodMenuIndex);
+		if(foodMenuIndexInt == 0) {
 			JsonService jsonService = new JsonService();
 			jsonService.saveChosenFoodMenuJson(strId);
-		} else if (foodMenuIndex == 1) {
+		} else if (foodMenuIndexInt == 1) {
 
 			// social Id일 경우
 			// 아이디 첫 글지가 (0~9)
@@ -215,7 +217,7 @@ public class FoodMenuController {
 
 	// 당뇨식단이 아닌 경우
 	@PostMapping("/foodMenu/refresh") // TODO 임의로 정함(나중에 수정)
-	public ResponseEntity<String> refreshFoodMenu(@RequestParam String strId, @RequestParam String foodMenu, @RequestParam int foodMenuIndex) {
+	public ResponseEntity<String> refreshFoodMenu(@RequestParam String strId, @RequestParam String foodMenu, @RequestParam String foodMenuIndex) {
 
 		log.info("[FoodMenuController][refreshFoodMenu]");
 		String msg = "";
@@ -225,10 +227,11 @@ public class FoodMenuController {
 		boolean success = chosenFoodMenuService.insertChosenFoodMenu(strId, updatingFoodData, updatingFoodDataResult);
 		msg = success ? "당뇨식단이 아닙니다." : "에러(당뇨식단이 아닙니다.)";
 
-		if(foodMenuIndex == 0) {
+		int foodMenuIndexInt = Integer.valueOf(foodMenuIndex);
+		if(foodMenuIndexInt == 0) {
 			JsonService jsonService = new JsonService();
 			jsonService.saveChosenFoodMenuJson(strId);
-		} else if (foodMenuIndex == 1) {
+		} else if (foodMenuIndexInt == 1) {
 
 			// social Id일 경우
 			// 아이디 첫 글지가 (0~9)
