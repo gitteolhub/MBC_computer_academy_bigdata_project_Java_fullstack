@@ -91,28 +91,25 @@
 					id="like"
 					name="like"
 					onclick="sendLike()"
-					onclick="nextButton()"
 					value="좋아요"/>
 
 			<input 	type="submit"
 					class="btn btn-primary"
 					id="refresh"
 					name="refresh"
-					onclick="nextButton()"
 					value="새로고침"/>
 
 			<input 	type="submit"
 					class="btn btn-primary"
 					id="dislike"
 					name="dislike"
-					onclick="nextButton()"
 					value="싫어요"/>
         </div>
         <script>
         const switchValues = /*[[${menuItems}]]*/ []; // 서버에서 전달된 음식 배열
         let currentIndex = 0;
 
-      /*   document.getElementById('nextButton').onclick = */function nextButton() { 
+        document.getElementById('like').onclick = function() {
             currentIndex++;
             if (currentIndex < menuItems.length) {
                 document.getElementById('foodMenuOutput').innerText = menuItems[currentIndex];
@@ -128,7 +125,7 @@
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
-                body: `strId=${userId}&foodMenu=${foodMenu}&foodMenuIndex=currentIndex`
+                body: `strId=${userId}&foodMenu=${foodMenu}&foodMenuIndex=currentIndex}`
             })
             .then(response => response.text())
             .then(data => alert(data))
