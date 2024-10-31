@@ -97,11 +97,11 @@ public class MemberServiceImpl implements MemberService {
 					// foodmenu가 null인 경우 초기값 설정
 					if(blRetVal && objMemberVO.getFoodmenu() == null) {
 
-						//TODO FilePath 지정 필요
+						// initializingFoodMenuFilePath 지정
 						// 회원가입시 초기 식단 추가
 						JsonService jsonService = new JsonService();
 
-						String InitializingFoodMenuFilePath="";
+						String InitializingFoodMenuFilePath = "tonicjh/menu_creating_ai/Sharing_files/initializingFoodMenu.json";
 						String foodMenu = jsonService.readFoodMenuJson(InitializingFoodMenuFilePath);
 						objMemberVO.setFoodmenu(foodMenu);
 						memberDAO.updateInitializingFoodMenu(objMemberVO);
@@ -163,6 +163,8 @@ public class MemberServiceImpl implements MemberService {
 			}
 		});
 	}
+
+
 
 	// 회원정보 삭제
 	@Override
@@ -456,8 +458,8 @@ public class MemberServiceImpl implements MemberService {
 	public boolean updateFoodMenuByUser(String strId) {
 		boolean blRetVal = false;
 
-		// TODO FilePath 지정 필요
-		String updatingFoodMenuByUsersFilePath = "";
+		// updatingFoodMenuByUsersFilePath 지정
+		String updatingFoodMenuByUsersFilePath = "tonicjh/menu_creating_ai/Sharing_files/updatingFoodMenuByUsers.json";
 
 		try {
 			// updatingFoodMenuByUsers.json 파일에서 음식 메뉴 읽기
@@ -487,8 +489,8 @@ public class MemberServiceImpl implements MemberService {
 	public boolean updateFoodMenuByUserID() {
 		boolean blRetVal = false;
 
-		// TODO FilePath 지정 필요
-		String updatingFoodMenuByUsersFilePath = "";
+		// updatingFoodMenuByUsersFilePath 지정
+		String updatingFoodMenuByUsersFilePath = "tonicjh/menu_creating_ai/Sharing_files/updatingFoodMenuByUsers.json";
 
 		try {
 			JsonService jsonService = new JsonService();
