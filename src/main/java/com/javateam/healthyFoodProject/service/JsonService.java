@@ -33,10 +33,11 @@ public class JsonService {
 	public ChosenFoodMenuDAO chosenFoodMenuDAO;
 
 	public ArrayList<String> updatingStrId = new ArrayList<String>();
-
+	
 	public void saveMemberDataJson() {
+		log.info("saveMemberDataJson:");
 		List<MemberJsonVO> allUserData = memberService.selectAllMembersJson();
-		log.info("allUserData:"+allUserData);
+		log.info("allUserData크기:"+allUserData.size());
 			
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
