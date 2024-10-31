@@ -108,7 +108,7 @@ window.onload = function() {
 
 			// 로그인 3회 실패 시 캡차 필드 노출
  window.onload = function() {
-        if (loginErrorCount >= 3) {
+        if ([[${session.loginErrorCount}]] >= 3) {
             document.getElementById("captcha-field").style.display = "block";
         } else {
             document.getElementById("captcha-field").style.display = "none";
@@ -163,7 +163,7 @@ window.onload = function() {
 
 
 
-									    <!-- 추후 hidden으로 변환할 것 -->
+									    <!-- 추후 hdden으로 변환할 것 -->
 				<div id = "captcha-field" style="display:none;">
 				<input type="text" class="form-control w-25 m-2" id="key" name="key" th:value="${key}" readonly />
 
