@@ -1689,18 +1689,18 @@ else:
     else:
         # 백그라운드에서 인공지능 학습 시작
         all_ai.start()
-        print('Creating default food menu AI training module has started...')
+        log_ctrl.debug_log('Creating default food menu AI training module has started...', True)
 
         user_ai = th.Thread(target=train_ai, args=[training_count, like_weights_path, hidden_layer_count, hidden_count, save_user_data_path, [my_id]])
         user_ai.start()
-        print('Creating food menu by user AI training module has started...')
+        log_ctrl.debug_log('Creating food menu by user AI training module has started...', True)
 
         #swgic프로젝트가 사용할 식단 데이터들을 파일로 저장하는 주기(초 단위로 설정)변수
         updating_cool_time = 600
         back_file_saving = th.Thread(target=save_sharing_datas, args=[updating_cool_time, hidden_layer_count, hidden_count])
 
         back_file_saving.start()
-        print('Saving default food menu data and food menu by user data to json file module has started...')
+        log_ctrl.debug_log('Saving default food menu data and food menu by user data to json file module has started...', True)
 
         while not stop_event.is_set():
             comm = input('\nFood Menu Recommending AI >> ')
@@ -1709,7 +1709,11 @@ else:
                 print('\nShut down AI Training...')
                 stop_event.set()
 
-            if comm.lower() == 'log':
+            if comm.lower() == 'show log':
+                read_str = log_ctrl.read_log_file()
+                print(read_str)
+
+            if comm.lower() == 'clear log':
                 read_str = log_ctrl.read_log_file()
                 print(read_str)
 

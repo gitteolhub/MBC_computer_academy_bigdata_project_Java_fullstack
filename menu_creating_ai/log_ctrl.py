@@ -2,6 +2,10 @@ import datetime
 #로그 파일 경로
 log_file_path = 'Resources/Saved_files/Logs/log.txt'
 
+#로그 파일 삭제
+def clear_log_file():
+    open(log_file_path, 'w', encoding='utf-8').close()
+
 #과정을 기록하고 저장하는 로그 파일 생성 함수
 def add_log_file(s):
     origin_log = read_log_file()
@@ -25,6 +29,8 @@ def read_log_file():
         line = f.readline()
         if not line: break
         log_body += line.replace(' ', '').replace('array(', '').replace(')', '').replace('\n', '').replace('\r', '')
+
+    f.close()
 
     return log_body
 
