@@ -101,7 +101,7 @@ public class MemberServiceImpl implements MemberService {
 						// 회원가입시 초기 식단 추가
 						JsonService jsonService = new JsonService();
 
-						String InitializingFoodMenuFilePath = "tonicjh/menu_creating_ai/Sharing_files/initializingFoodMenu.json";
+						String InitializingFoodMenuFilePath = "menu_creating_ai/Sharing_files/initializingFoodMenu.json";
 						String foodMenu = jsonService.readFoodMenuJson(InitializingFoodMenuFilePath);
 						objMemberVO.setFoodmenu(foodMenu);
 						memberDAO.updateInitializingFoodMenu(objMemberVO);
@@ -459,7 +459,7 @@ public class MemberServiceImpl implements MemberService {
 		boolean blRetVal = false;
 
 		// updatingFoodMenuByUsersFilePath 지정
-		String updatingFoodMenuByUsersFilePath = "tonicjh/menu_creating_ai/Sharing_files/updatingFoodMenuByUsers.json";
+		String updatingFoodMenuByUsersFilePath = "menu_creating_ai/Sharing_files/updatingFoodMenuByUsers.json";
 
 		try {
 			// updatingFoodMenuByUsers.json 파일에서 음식 메뉴 읽기
@@ -490,7 +490,7 @@ public class MemberServiceImpl implements MemberService {
 		boolean blRetVal = false;
 
 		// updatingFoodMenuByUsersFilePath 지정
-		String updatingFoodMenuByUsersFilePath = "tonicjh/menu_creating_ai/Sharing_files/updatingFoodMenuByUsers.json";
+		String updatingFoodMenuByUsersFilePath = "menu_creating_ai/Sharing_files/updatingFoodMenuByUsers.json";
 
 		try {
 			JsonService jsonService = new JsonService();
