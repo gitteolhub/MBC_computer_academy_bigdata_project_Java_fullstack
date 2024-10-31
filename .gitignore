@@ -478,3 +478,4 @@ gradle-app.setting
 /crawling/data/material_update_log.txt
 /data preprocessing/data/preprocessed_dish_data.json
 /data preprocessing/data/preprocessed_material_data.json
+/data preprocessing/data/food_data.json
