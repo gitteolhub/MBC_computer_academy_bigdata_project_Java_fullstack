@@ -4,12 +4,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class PwGenTest {
 	public static void main(String[] args) {
-		
+
 		BCryptPasswordEncoder pwEncoder = new BCryptPasswordEncoder();
-		
+
 		// 암호화할 비밀번호 문자열
 		String strPw = "#Abcd2345";
-		
+
 		// 비밀번호를 10번 암호화하여 출력
 		for (int i=0; i < 10; i++) {
 			// encode 메서드를 사용하여 비밀번호를 암호화하고 출력
@@ -32,4 +32,3 @@ public class PwGenTest {
 // $2a$10$RtIntRneiR7bzkynq.tUC.1Gnd2M.WHW96XTD.UEYqePdO.QCNyES
 
 
-// commit test
