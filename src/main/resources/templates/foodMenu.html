@@ -112,7 +112,7 @@
         const switchValues = /*[[${menuItems}]]*/ []; // 서버에서 전달된 음식 배열
         let currentIndex = 0;
 
-        document.getElementById('nextButton').onclick = function() {
+      /*   document.getElementById('nextButton').onclick = */function nextButton() { 
             currentIndex++;
             if (currentIndex < menuItems.length) {
                 document.getElementById('foodMenuOutput').innerText = menuItems[currentIndex];
