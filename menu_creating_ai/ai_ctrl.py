@@ -1,10 +1,14 @@
 import numpy as np
 import random as ran
+import log_ctrl
 
 data_path = 'Resources/food_data.json'
 
 #가중치 저장 파일 경로
 file_path = 'Resources/Saved_files/weights.txt'
+
+#사용자가 좋아하는 식단 가중치 저장 파일 경로
+like_file_path = 'Resources/Saved_files/like_weights.txt'
 
 #입력 노드 갯수
 input_count = 1
@@ -19,10 +23,6 @@ learning_rate = 0.3
 bios = []
 hidden_net_layer = []
 hidden_layer = []
-
-def debug_log(s, is_debug):
-    if is_debug:
-        print(s)
 
 #식품명을 학습 데이터로 사용 가능하도록 실수로 변환하는 함수
 def name_to_id(n, _df):
@@ -81,7 +81,7 @@ def sign_bios_value(hid_count):
 #순전파 함수
 def calculate_straight(weights, biases, input_data, _hidden_layer_count, _hidden_count, is_debug=False):
 
-    debug_log('weights : ' + str(weights), is_debug)
+    log_ctrl.debug_log('weights : ' + str(weights), is_debug)
 
     #variable to return
     result = [0.0]
@@ -91,7 +91,7 @@ def calculate_straight(weights, biases, input_data, _hidden_layer_count, _hidden
     for k in range(_hidden_layer_count):
         _datas.append(hidden_layer[k])
 
-    debug_log('_datas : ' + str(_datas), is_debug)
+    log_ctrl.debug_log('_datas : ' + str(_datas), is_debug)
 
     # First hidden layer = [x0 * w0 + x1 * w1 + x2 * w2 + x3 * w3, x0 * w4 + x1 * w5 + x2 * w6...]
     for k in range(len(_datas)):
@@ -105,16 +105,17 @@ def calculate_straight(weights, biases, input_data, _hidden_layer_count, _hidden
         # calculate and put result into node
         for w in range(len(weights[weights_index])):
             val = 0
+
             for x in _datas[k]:
                 if '[' in str(x):
-                    val += x[0] * weights[weights_index][w]
+                    val += float(x[0]) * float(str(weights[weights_index][w]).replace("'", ""))
                 else:
                     val += float(x) * float(str(weights[weights_index][w]).replace("'", ""))
 
             if k != len(_datas) - 1:
                 weights_count_by_k = (len(weights[weights_index]) / (_hidden_layer_count - 1))
                 h_index = abs(k - 1) * int(w / len(input_data)) + max(0, int(w / weights_count_by_k)) * _hidden_count + max(1, k) * int(w % weights_count_by_k / _hidden_count)
-                debug_log('int(w % (len(weights[weights_index]) / (_hidden_layer_count - 1)) / _hidden_count) = h_index : int(' + str(w) + ' % (' + str(len(weights[weights_index])) + ' / (' + str(_hidden_layer_count) + ' - 1)) / ' + str(_hidden_count) + ' ) = ' + str(h_index), is_debug)
+                log_ctrl.debug_log('int(w % (len(weights[weights_index]) / (_hidden_layer_count - 1)) / _hidden_count) = h_index : int(' + str(w) + ' % (' + str(len(weights[weights_index])) + ' / (' + str(_hidden_layer_count) + ' - 1)) / ' + str(_hidden_count) + ' ) = ' + str(h_index), is_debug)
 
                 if len(hidden_layer[k]) < (h_index + 1):
                     hidden_net_layer[k].append(val + float(str(biases[k]).replace("'", "")))
@@ -123,9 +124,9 @@ def calculate_straight(weights, biases, input_data, _hidden_layer_count, _hidden
                     hidden_net_layer[k][h_index] = (val + float(str(biases[k]).replace("'", "")))
                     hidden_layer[k][h_index] = (sigmoid_function(val + float(str(biases[k]).replace("'", ""))))
 
-                debug_log('hidden_layer[' + str(k) + '] : ' + str(hidden_layer[k]), is_debug)
+                log_ctrl.debug_log('hidden_layer[' + str(k) + '] : ' + str(hidden_layer[k]), is_debug)
             else:
-                result[0] = (sigmoid_function(val + float(str(biases[k]).replace("'", ""))))
+                result[0] = (sigmoid_function(val + float(str(biases[k]).replace("'", "").replace(' ', '').replace(']', ''))))
 
         _datas = [input_data]
         for j in range(_hidden_layer_count):
@@ -164,13 +165,6 @@ def calculate_back_term3(weights, out_h, hidden_layer_count, hidden_count):
         for i in range(len(weight_area) - 1, 1, -1):
             if weight_area[i - 1] <= wi < weight_area[i]:
                 out_h_index = len(out_h) - (len(weight_area) - i)
-
-    is_debug = False
-    if is_debug:
-        if type(out_h) == float:
-            print("out_h : " + str(out_h) + ", out_h_index : " + str(out_h_index))
-        else:
-            print("len(out_h) : " + str(len(out_h)) + ", out_h[out_h_index] : " + str(out_h[out_h_index]))
 
     if type(out_h) == float:
         return out_h
@@ -232,11 +226,93 @@ def calculate_backward(_datas, weights, hidden_layer_count, hidden_count):
 
     return weights
 
+def check_str_ok_and_fix(in_str):
+    result = ''
+    big_count_op = 0
+    big_count_ed = 0
+
+    mid_count_op = 0
+    mid_count_ed = 0
+
+    sma_count_op = 0
+    sma_count_ed = 0
+
+    last_s = ''
+
+    for s in in_str:
+        if s == '[':
+            big_count_op += 1
+            result += s
+            last_s = s
+        elif s == ']':
+            if big_count_op > big_count_ed and last_s != '{' and last_s != '(':
+                result += s
+                last_s = s
+                big_count_ed += 1
+        elif s == '{':
+            mid_count_op += 1
+            result += s
+            last_s = s
+        elif s == '}':
+            if mid_count_op > mid_count_ed and last_s != '(' and last_s != '[':
+                result += s
+                last_s = s
+                mid_count_ed += 1
+        elif s == '(':
+            sma_count_op += 1
+            result += s
+            last_s = s
+        elif s == ')':
+            if sma_count_op > sma_count_ed and last_s != '{' and last_s != '[':
+                result += s
+                last_s = s
+                sma_count_ed += 1
+        else:
+            result += s
+
+    return result
+
 #학습된 가중치 데이터들을 파일 형태로 저장하는 함수
-def save_weights_file(weights, _bios):
-    f = open(file_path, 'w')
-    
+def save_weights_file(path, weights, _bios, if_id):
+    origin_str = open(path, 'r', encoding='utf-8')
+
+    read_str = ''
+
     add_str = ''
+
+    while True:
+        line = origin_str.readline()
+        if not line: break
+        read_str += line.replace(' ', '').replace('\n', '').replace('\r', '')
+
+    if '{' in read_str and if_id != '':
+        if '},{' in read_str:
+            sp = read_str.split('},{')
+            for s in sp:
+                if str(if_id) == str(s.replace(' ', '').replace('{', '').replace('}', '').replace("\'", '').replace('\"', '').split(':')[0]):
+                    if add_str == '':
+                        add_str = '{' + str(if_id) + ':'
+                    else:
+                        add_str += str(if_id) + ':'
+
+                    break
+                else:
+                    add_str += str(s) + '},{'
+            if not str(if_id) in add_str:
+                add_str += str(if_id) + ':'
+        else:
+            if if_id in read_str:
+                add_str = '{' + str(if_id) + ':'
+            else:
+                add_str = str(read_str) + ',{' + str(if_id) + ':'
+    else:
+        if if_id == '':
+            add_str = ''
+        else:
+            add_str = '{' + str(if_id) + ':'
+
+    open(path, 'w', encoding='utf-8').close()
+    f = open(path, 'w', encoding='utf-8')
 
     #write weight data into save file
     add_str += str('[')
@@ -261,25 +337,26 @@ def save_weights_file(weights, _bios):
             add_str += str(',')
     add_str += str(']')
 
+    if '{' in add_str:
+        add_str += '}'
+
+        if '},{' in read_str:
+            regex = ''
+            sp = read_str.split('},{')
+            for s in sp:
+                if str(if_id) == str(s.replace(' ', '').replace('{', '').replace('}', '').replace("\'", '').replace('\"', '').split(':')[0]):
+                    regex = str(s) + '}'
+                    break
+            if regex != '':
+                sp2 = read_str.split(regex)
+                if len(sp2) > 1:
+                    add_str += sp2[1].replace(' ', '')
+
+    add_str = check_str_ok_and_fix(add_str)
+
     f.write(add_str)
 
     f.close()
-
-#저장된 가중치와 바이오스 데이터들을 파일로부터 읽는 함수
-def read_weights_file():
-    f = open(file_path, 'r')
-    read_str = ''
-
-    while True:
-        line = f.readline()
-        if not line: break
-        read_str += line.replace(' ', '').replace('array(', '').replace(')', '').replace('\n', '').replace('\r', '')
-
-    sp = read_str.split('|')
-    result = sp
-
-    f.close()
-    return result
 
 def two_to_one_list(arr):
     result = []
@@ -366,7 +443,7 @@ def str_to_list(s, to_id, _df):
         return result0
 
 #사용자의 취향 데이터를 학습하는 함수
-def train(train_count, input_data, _hidden_layer_count, hidden_count, output_data, _df, saved_data):
+def train(train_count, input_data, _hidden_layer_count, hidden_count, output_data, _df, saved_data, save_file_path, _if_id):
     _input_count = len(input_data[0])
     _output_count = len(output_data)
     if len(hidden_layer) <= 0:
@@ -396,13 +473,10 @@ def train(train_count, input_data, _hidden_layer_count, hidden_count, output_dat
         _datas.append(output_data[output_index])
         _weight = calculate_backward(_datas, _weight, _hidden_layer_count, hidden_count)
 
-        save_weights_file(_weight, _bios)
+        save_weights_file(save_file_path, _weight, _bios, _if_id)
 
 #일정 갯수의 식단을 받아와 학습된 인공지능으로 판단하는 함수
 def detect_favorite_menu(_hidden_layer_count, hidden_count, input_data, _df, saved_data):
-    menu_result = 0.0
-    debug_process = True
-
     _input_count = len(input_data)
 
     if len(hidden_layer) <= 0:
@@ -417,13 +491,11 @@ def detect_favorite_menu(_hidden_layer_count, hidden_count, input_data, _df, sav
         _weight = sign_weight_value(_input_count, _hidden_layer_count, 1, hidden_count)
         _bios = sign_bios_value(_hidden_layer_count)
 
-
-
-    result = calculate_straight(_weight, _bios, input_data, _hidden_layer_count, hidden_count, False)
+    result = calculate_straight(_weight, _bios, input_data, _hidden_layer_count, hidden_count)
 
     menu_result = result[0]
 
-    debug_log('menu_result : ' + str(menu_result), False)
+    log_ctrl.debug_log('menu_result : ' + str(menu_result))
 
     return menu_result
 
