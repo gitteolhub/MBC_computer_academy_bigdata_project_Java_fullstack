@@ -10,14 +10,38 @@
     <title>당뇨 식단</title>
      <link rel="stylesheet" th:href="@{/bootstrap/5.3.3/css/bootstrap.min.css}">
      <script th:src="@{'/axios/1.7.4/dist/axios.min.js'}"></script>
-
-     <script th:inline="javascript">
-     /*<![CDATA[*/
-     window.onload = function (){
+		
+	<script th:inline="javascript">
 	     var currentIndex = 0;
-	     var menuItems = /*[[${menuItems}]]*/;
+	     var menuItems = [[${menuItems}]];
+	     console.log("menuItems:",menuItems);
 	     
-	     document.getElementById('like').onclick = function() {
+	     function switchValues(id) {
+	     	
+	    	alert("전송");
+	     	axios({
+	 			method : "post",
+	 			url    : '/healthyFoodProject/foodMenu/like',
+	 			data   : {strId : id, foodMenu : menuItems[currentIndex], foodMenuIndex: currentIndex},
+	 			//headers: {"Content-Type":'multipart/form-data'}
+	 		 }).then(function(response) {
+
+	    			console.log("response.data : ", response.data);
+	    			alert(response.data);
+
+	    			// 오류 있을 때만 팝업으로 출력하도록 조치
+	    			/* if (response.data === true) {
+	    				msg = "새로운 회원의 초기 식단 데이터를 무사히 불러왔습니다.";
+
+	    			} */
+
+	    			// 화면 갱신 : refresh
+	    			// location.reload();
+
+	    		 	}).catch(function(err) {
+	    			console.error("초기 식단 데이터를 불러오는 중 서버 에러가 발견되었습니다.");
+	    		 });
+	     	
 	         currentIndex++;
 	         if (currentIndex < menuItems.length) {
 	         	document.getElementById('foodMenuOutput').innerHTML = menuItems[currentIndex];
@@ -27,12 +51,9 @@
 	         }
 	     };
 	     
-	     
-     };
-    	
-    /*]]>*/
      </script>
-
+     
+     
       <style>
         body {
             font-family: Arial, sans-serif;
@@ -70,6 +91,7 @@
 </head>
 
 <body>
+
 <div layout:fragment="content">
     <h1>오늘의 식단</h1>
 
@@ -87,42 +109,25 @@
 					class="btn btn-primary"
 					id="like"
 					name="like"
-					onclick="sendLike()"
+					th:onclick="switchValues('[[${#authentication.name}]]')"
 					value="좋아요"/>
 
 			<input 	type="submit"
 					class="btn btn-primary"
 					id="refresh"
 					name="refresh"
+					onclick="switchValues()"
 					value="새로고침"/>
 
 			<input 	type="submit"
 					class="btn btn-primary"
 					id="dislike"
 					name="dislike"
+					onclick="switchValues()"
 					value="싫어요"/>
         </div>
         
-    <script>
-    	var currentIndex = 1;
-    	
-		 // 푸드메뉴 좋아요 데이터 전송
-		    document.getElementById('dislike').onclick = function() {
-			 	currentIndex = currentIndex * -1;
-			 	var sendIndex = Math.max(0, currentIndex);
-			 	
-		        fetch('/foodMenu/like', {
-		            method: 'POST',
-		            headers: {
-		                'Content-Type': 'application/x-www-form-urlencoded',
-		            },
-		            body: `strId=${userId}&foodMenu=${menuItems[sendIndex]}&foodMenuIndex=sendIndex}`
-		        })
-		        .then(response => response.text())
-		        .then(data => alert(data))
-		        .catch(error => console.error('Error:', error));
-			};
-    </script>
+    
         
     <h1>AI 맞춤 식단</h1>
     <div class="meal-container">
