@@ -1,9 +1,12 @@
 import os
+from pathlib import Path
+
 import pandas as pd
 
-# 파일 경로 설정(PC에 따라 알맞은 경로 설정)
-original_file_path = 'D:/student/LHT/works/crawling/dish_data.json'
-preprocessed_file_path = 'D:/student/LHT/works/crawling/preprocessed_dish_data.json'
+# 파일 경로 설정
+original_file_path = Path('../crawling/data/dish_data.json')
+Path('data').mkdir(exist_ok=True)  # data 폴더 없을 시 생성
+preprocessed_file_path = Path('data/preprocessed_dish_data.json')
 
 # 파일의 수정 시간을 변수에 저장. 전처리 된 파일이 없을 경우 0을 저장하여 전처리 진행.
 original_mtime = os.path.getmtime(original_file_path)
