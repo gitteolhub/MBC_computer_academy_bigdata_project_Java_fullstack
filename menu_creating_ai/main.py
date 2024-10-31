@@ -899,9 +899,9 @@ def train_ai(train_count, _w_path, _hidden_layer_count, _hidden_count, _user_pat
 def create_menu_from_ai(_df, _saved_data, is_favorite, _hidden_layer_count, _hidden_count):
     if is_favorite and len(_saved_data) >= 2:
         # 인공지능에 입력할 식단 데이터 갯수
-        menu_count = 300
+        menu_count = 20
         # 뽑아낼 식단 갯수
-        result_count0 = 100
+        result_count0 = 8
 
         # 인공지능에 입력할 아이디 형태의 식단 데이터
         _test_data = find_meal(menu_count, True, _df)
@@ -1018,14 +1018,11 @@ def create_menu_from_ai(_df, _saved_data, is_favorite, _hidden_layer_count, _hid
             return ai_result0
     else:
         #인공지능에 입력할 식단 데이터 갯수
-        menu_count = 300
+        menu_count = 20
         #뽑아낼 식단 갯수
         result_count = 2
 
-        #과정을 출력할지 지정하는 변수
-        debug_process = False
-        if debug_process:
-            log_ctrl.debug_log('\n=============================================식단 짜는 중=======================================================')
+        log_ctrl.debug_log('\n=============================================식단 짜는 중=======================================================')
 
         #인공지능에 입력할 아이디 형태의 식단 데이터
         _test_data = find_meal(menu_count, True, _df)
@@ -1033,8 +1030,7 @@ def create_menu_from_ai(_df, _saved_data, is_favorite, _hidden_layer_count, _hid
         #인공지능이 판단한 후 표시할 식품명 형태의 식단 데이터
         _test_data2 = find_meal(menu_count, False, _df)
 
-        if debug_process:
-            log_ctrl.debug_log('식품군이 골고루 들어간 당뇨병 식단만으로 필터링 중...')
+        log_ctrl.debug_log('식품군이 골고루 들어간 당뇨병 식단만으로 필터링 중...')
 
         #인공지능의 판단에 의하여 반환된 식단 데이터들
         ai_result0 = []
@@ -1472,256 +1468,260 @@ c_dt = [count_time, delta_time]
 
 #명령 프롬프트에서 테스트 모드로 실행할지 정하는 코드
 _test_mode = input('테스트 모드로 실행하시겠습니까? (' + bcolors.GREEN + 'y' + bcolors.ENDC + '/' + bcolors.RED + 'n' + bcolors.ENDC + ') : ')
-if 'y' in str(_test_mode):
-    is_test = True
+
+if not 'y' in _test_mode and not 'n' in _test_mode:
+    print('Quiting AI Program...')
 else:
-    is_test = False
+    if 'y' in str(_test_mode):
+        is_test = True
+    elif 'n' in str(_test_mode):
+        is_test = False
 
 
-if is_test:
-    is_mode = input('1.식품군이 골고루 들어간 당뇨병 식단으로 추천 되었는지 테스트\n2.임시 사용자로써 자신의 취향이 반영된 식단이 추천 되는지 테스트\n\n위 1,2번 중 테스트 모드를 골라주세요 : ')
+    if is_test:
+        is_mode = input('1.식품군이 골고루 들어간 당뇨병 식단으로 추천 되었는지 테스트\n2.임시 사용자로써 자신의 취향이 반영된 식단이 추천 되는지 테스트\n\n위 1,2번 중 테스트 모드를 골라주세요 : ')
 
-    if '1' in str(is_mode):
-        # 백그라운드에서 인공지능 학습 시작
-        all_ai.start()
+        if '1' in str(is_mode):
+            # 백그라운드에서 인공지능 학습 시작
+            all_ai.start()
 
-        # 판단 기록 변수
-        answer_count = []
-        #연속으로 y를 선택한 횟수
-        y_count = 0
-        #몇 번 연속으로 y를 선택해야 성공인지
-        max_y_count = 30
-        #df를 갱신하는 시간 변수
-        save_time = datetime.datetime.now()
-        #가중치 변수를 갱신하는 시간 변수
-        save_time2 = datetime.datetime.now()
+            # 판단 기록 변수
+            answer_count = []
+            #연속으로 y를 선택한 횟수
+            y_count = 0
+            #몇 번 연속으로 y를 선택해야 성공인지
+            max_y_count = 30
+            #df를 갱신하는 시간 변수
+            save_time = datetime.datetime.now()
+            #가중치 변수를 갱신하는 시간 변수
+            save_time2 = datetime.datetime.now()
 
-        _df = pd.read_json(data_path)
+            _df = pd.read_json(data_path)
 
-        load_user_choice(_df, save_default_data_path, '')
+            load_user_choice(_df, save_default_data_path, '')
 
-        #저장된 가중치 변수
-        saved_data = read_weights_file(weights_path, '')
-        if len(saved_data) > 1:
-            saved_data = [str_to_list(saved_data[0], False, _df), str_to_list(saved_data[1], False, _df)]
-
-        save_time = save_time + datetime.timedelta(days=1)
-        while not stop_event.is_set():
-            if save_time <= datetime.datetime.now():
-                _df = pd.read_json(data_path)
-                save_time = save_time + datetime.timedelta(days=1)
-
-            debug_delay = datetime.datetime.now()
-            menu = create_menu_from_ai(_df, saved_data, False, hidden_layer_count, hidden_count)
-            log_ctrl.debug_log('\n======================================================================================================================\nAI가 식단을 산출하는데에 걸린 시간 : ' + bcolors.CYAN + str(datetime.datetime.now() - debug_delay) + 's' + bcolors.ENDC)
-
-            _menu = []
-            for i in range(len(menu)):
-                _foods = ''
-                for j in range(len(menu[i])):
-                    if len(menu[i][j]) > 0:
-                        _foods += food_naming(str(menu[i][j]))
-                        if j < len(menu[i]) - 1:
-                            if len(menu[i][j]) > 0:
-                                _foods += ', '
-                _menu.append(_foods)
-            log_ctrl.debug_log('\n추천 식단 : ' + str(_menu[0]))
-
-            reviews = input('식품군이 골고루 들어간 당뇨병 식단으로 추천되었나요? (' + bcolors.GREEN + 'y' + bcolors.ENDC + '/' + bcolors.RED + 'n' + bcolors.ENDC + ') : ')
-            if 'y' in reviews.lower():
-                user_reviews[0].append(menu[0])
-                user_reviews[1].append('1')
-
-                answer_count.append('y')
-                y_count += 1
-
-                save_user_choice(save_default_data_path, '')
-
-                if y_count >= max_y_count:
-                    log_ctrl.debug_log('\n' + bcolors.CYAN + str(max_y_count) + bcolors.ENDC + '번 연속 성공하여 학습을 종료합니다')
-                    log_ctrl.debug_log('\n총 ' + bcolors.BLUE + str(
-                        len(answer_count)) + bcolors.ENDC + '번 식단을 산출하여 ' + bcolors.GREEN + str(
-                        answer_count.count('y')) + bcolors.ENDC + '번 적합한 식단이 나왔고, ' + bcolors.RED + str(
-                        answer_count.count('n')) + bcolors.ENDC + '번 적합하지 않은 식단이 나왔습니다.')
-                    stop_event.set()
-
-            elif 'n' in reviews.lower():
-                user_reviews[0].append(menu[0])
-                user_reviews[1].append('0')
-
-                answer_count.append('n')
-                y_count = 0
-
-                save_user_choice(save_default_data_path, '')
-            else:
-                log_ctrl.debug_log('\n총 ' + bcolors.BLUE + str(len(answer_count)) + bcolors.ENDC + '번 식단을 산출하여 ' + bcolors.GREEN + str(answer_count.count('y')) + bcolors.ENDC + '번 적합한 식단이 나왔고, ' + bcolors.RED + str(answer_count.count('n')) + bcolors.ENDC + '번 적합하지 않은 식단이 나왔습니다.')
-                log_ctrl.debug_log('\n\n프로그램 종료 중...')
-
-                save_user_choice(save_default_data_path, '')
-                stop_event.set()
-
+            #저장된 가중치 변수
             saved_data = read_weights_file(weights_path, '')
             if len(saved_data) > 1:
                 saved_data = [str_to_list(saved_data[0], False, _df), str_to_list(saved_data[1], False, _df)]
 
-        all_ai.join()
+            save_time = save_time + datetime.timedelta(days=1)
+            while not stop_event.is_set():
+                if save_time <= datetime.datetime.now():
+                    _df = pd.read_json(data_path)
+                    save_time = save_time + datetime.timedelta(days=1)
 
-        stop_event.clear()
+                debug_delay = datetime.datetime.now()
+                menu = create_menu_from_ai(_df, saved_data, False, hidden_layer_count, hidden_count)
+                print('\n======================================================================================================================\nAI가 식단을 산출하는데에 걸린 시간 : ' + bcolors.CYAN + str(datetime.datetime.now() - debug_delay) + 's' + bcolors.ENDC)
 
-    elif '2' in str(is_mode):
-        is_default_mode = input('\n임시 사용자 정보를 입력하시겠습니까? (' + bcolors.GREEN + 'y' + bcolors.ENDC + '/' + bcolors.RED + 'n' + bcolors.ENDC + ') : ')
-        is_default_mode = is_default_mode.lower()
+                _menu = []
+                for i in range(len(menu)):
+                    _foods = ''
+                    for j in range(len(menu[i])):
+                        if len(menu[i][j]) > 0:
+                            _foods += food_naming(str(menu[i][j]))
+                            if j < len(menu[i]) - 1:
+                                if len(menu[i][j]) > 0:
+                                    _foods += ', '
+                    _menu.append(_foods)
+                print('\n추천 식단 : ' + str(_menu[0]))
 
-        if 'y' in is_default_mode and not 'n' in is_default_mode:
-            my_id = input('\n아이디를 입력해주세요 : ')
-            my_gender = ask_gender()
-            my_age = int(input('\n나이를 입력해주세요(세) : ').replace(' ', '').replace('세', '').replace('살', ''))
-            my_height = float(input('\n신장(키)을 입력해주세요(cm) : ').lower().replace(' ', '').replace('c', '').replace('m', ''))
-            my_weight = float(input('\n체중(몸무게)을 입력해주세요(kg) : ').lower().replace(' ', '').replace('k', '').replace('g', ''))
-            my_exercise = ask_exercise()
-        elif 'n' in is_default_mode and not 'y' in is_default_mode:
-            my_id = 'admin_user'
+                reviews = input('식품군이 골고루 들어간 당뇨병 식단으로 추천되었나요? (' + bcolors.GREEN + 'y' + bcolors.ENDC + '/' + bcolors.RED + 'n' + bcolors.ENDC + ') : ')
+                if 'y' in reviews.lower():
+                    user_reviews[0].append(menu[0])
+                    user_reviews[1].append('1')
 
-        user_ai = th.Thread(target=train_ai, args=[training_count, like_weights_path, hidden_layer_count, hidden_count, save_user_data_path, my_id])
+                    answer_count.append('y')
+                    y_count += 1
 
-        #백그라운드에서 인공지능 학습 시작
-        user_ai.start()
+                    save_user_choice(save_default_data_path, '')
 
-        #판단 기록 변수
-        answer_count = []
-        # 연속으로 y를 선택한 횟수
-        y_count = 0
-        # 몇 번 연속으로 y를 선택해야 성공인지
-        max_y_count = 30
-        # df를 갱신하는 시간 변수
-        save_time = datetime.datetime.now()
-        # 가중치 변수를 갱신하는 시간 변수
-        save_time2 = datetime.datetime.now()
+                    if y_count >= max_y_count:
+                        print('\n' + bcolors.CYAN + str(max_y_count) + bcolors.ENDC + '번 연속 성공하여 학습을 종료합니다')
+                        print('\n총 ' + bcolors.BLUE + str(
+                            len(answer_count)) + bcolors.ENDC + '번 식단을 산출하여 ' + bcolors.GREEN + str(
+                            answer_count.count('y')) + bcolors.ENDC + '번 적합한 식단이 나왔고, ' + bcolors.RED + str(
+                            answer_count.count('n')) + bcolors.ENDC + '번 적합하지 않은 식단이 나왔습니다.')
+                        stop_event.set()
 
-        _df = pd.read_json(data_path)
+                elif 'n' in reviews.lower():
+                    user_reviews[0].append(menu[0])
+                    user_reviews[1].append('0')
 
-        load_user_choice(_df, save_user_data_path, my_id)
+                    answer_count.append('n')
+                    y_count = 0
 
-        # 저장된 가중치 변수
-        saved_data = []
+                    save_user_choice(save_default_data_path, '')
+                else:
+                    print('\n총 ' + bcolors.BLUE + str(len(answer_count)) + bcolors.ENDC + '번 식단을 산출하여 ' + bcolors.GREEN + str(answer_count.count('y')) + bcolors.ENDC + '번 적합한 식단이 나왔고, ' + bcolors.RED + str(answer_count.count('n')) + bcolors.ENDC + '번 적합하지 않은 식단이 나왔습니다.')
+                    print('\n\n프로그램 종료 중...')
 
-        saved_data_normal = read_weights_file(weights_path, '')
-        if len(saved_data_normal) > 1:
-            saved_data_normal = [str_to_list(saved_data_normal[0], False, _df), str_to_list(saved_data_normal[1], False, _df)]
-            saved_data.append(saved_data_normal)
-
-        saved_data_like = read_weights_file(like_weights_path, my_id)
-        if len(saved_data_like) > 1:
-            saved_data_like = [str_to_list(saved_data_like[0], False, _df), str_to_list(saved_data_like[1], False, _df)]
-            saved_data.append(saved_data_like)
-
-        save_time = save_time + datetime.timedelta(days=1)
-
-        while not stop_event.is_set():
-            if save_time <= datetime.datetime.now():
-                _df = pd.read_json(data_path)
-                save_time = save_time + datetime.timedelta(days=1)
-
-            debug_delay = datetime.datetime.now()
-            menu = create_menu_from_ai(_df, saved_data, True, hidden_layer_count, hidden_count)
-            log_ctrl.debug_log('\n======================================================================================================================\nAI가 식단을 산출하는데에 걸린 시간 : ' + bcolors.CYAN + str(datetime.datetime.now() - debug_delay) + 's' + bcolors.ENDC)
-
-            breakfast = ''
-            lunch = ''
-            dinner = ''
-            _menu = []
-            for i in range(len(menu)):
-                _foods = ''
-                for j in range(len(menu[i])):
-                    if len(menu[i][j]) > 0:
-                        _foods += food_naming(str(menu[i][j]))
-                        if j < len(menu[i]) - 1:
-                            if len(menu[i][j]) > 0:
-                                _foods += ', '
-                _menu.append(_foods)
-            log_ctrl.debug_log('\n추천 식단 : ' + str(_menu[0]))
-
-            reviews = input('추천된 식단이 마음에 들었나요? (' + bcolors.GREEN + 'y' + bcolors.ENDC + '/' + bcolors.RED + 'n' + bcolors.ENDC + ') : ')
-            if 'y' in reviews.lower():
-                user_reviews[0].append(menu[0])
-                user_reviews[1].append('1')
-
-                answer_count.append('y')
-                y_count += 1
-
-                save_user_choice(save_user_data_path, my_id)
-
-                if y_count >= max_y_count:
-                    log_ctrl.debug_log('\n' + str(max_y_count) + '번 연속 성공하여 학습을 종료합니다')
-                    log_ctrl.debug_log('\n총 ' + bcolors.BLUE + str(
-                        len(answer_count)) + bcolors.ENDC + '번 식단을 산출하여 ' + bcolors.GREEN + str(
-                        answer_count.count('y')) + bcolors.ENDC + '번 마음에 드는 식단이 나왔고, ' + bcolors.RED + str(
-                        answer_count.count('n')) + bcolors.ENDC + '번 마음에 들지 않는 식단이 나왔습니다.')
-                    log_ctrl.debug_log('\n\n프로그램 종료 중...')
+                    save_user_choice(save_default_data_path, '')
                     stop_event.set()
 
-            elif 'n' in reviews.lower():
-                user_reviews[0].append(menu[0])
-                user_reviews[1].append('0')
+                saved_data = read_weights_file(weights_path, '')
+                if len(saved_data) > 1:
+                    saved_data = [str_to_list(saved_data[0], False, _df), str_to_list(saved_data[1], False, _df)]
 
-                answer_count.append('n')
-                y_count = 0
+            all_ai.join()
 
-                save_user_choice(save_user_data_path, my_id)
-            else:
-                log_ctrl.debug_log('\n총 ' + bcolors.BLUE + str(
-                    len(answer_count)) + bcolors.ENDC + '번 식단을 산출하여 ' + bcolors.GREEN + str(
-                    answer_count.count('y')) + bcolors.ENDC + '번 마음에 드는 식단이 나왔고, ' + bcolors.RED + str(
-                    answer_count.count('n')) + bcolors.ENDC + '번 마음에 들지 않는 식단이 나왔습니다.')
-                log_ctrl.debug_log('\n\n프로그램 종료 중...')
+            stop_event.clear()
 
-                save_user_choice(save_user_data_path, my_id)
-                stop_event.set()
+        elif '2' in str(is_mode):
+            is_default_mode = input('\n임시 사용자 정보를 입력하시겠습니까? (' + bcolors.GREEN + 'y' + bcolors.ENDC + '/' + bcolors.RED + 'n' + bcolors.ENDC + ') : ')
+            is_default_mode = is_default_mode.lower()
 
+            if 'y' in is_default_mode and not 'n' in is_default_mode:
+                my_id = input('\n아이디를 입력해주세요 : ')
+                my_gender = ask_gender()
+                my_age = int(input('\n나이를 입력해주세요(세) : ').replace(' ', '').replace('세', '').replace('살', ''))
+                my_height = float(input('\n신장(키)을 입력해주세요(cm) : ').lower().replace(' ', '').replace('c', '').replace('m', ''))
+                my_weight = float(input('\n체중(몸무게)을 입력해주세요(kg) : ').lower().replace(' ', '').replace('k', '').replace('g', ''))
+                my_exercise = ask_exercise()
+            elif 'n' in is_default_mode and not 'y' in is_default_mode:
+                my_id = 'admin_user'
+
+            user_ai = th.Thread(target=train_ai, args=[training_count, like_weights_path, hidden_layer_count, hidden_count, save_user_data_path, my_id])
+
+            #백그라운드에서 인공지능 학습 시작
+            user_ai.start()
+
+            #판단 기록 변수
+            answer_count = []
+            # 연속으로 y를 선택한 횟수
+            y_count = 0
+            # 몇 번 연속으로 y를 선택해야 성공인지
+            max_y_count = 30
+            # df를 갱신하는 시간 변수
+            save_time = datetime.datetime.now()
+            # 가중치 변수를 갱신하는 시간 변수
+            save_time2 = datetime.datetime.now()
+
+            _df = pd.read_json(data_path)
+
+            load_user_choice(_df, save_user_data_path, my_id)
+
+            # 저장된 가중치 변수
             saved_data = []
 
-            saved_data_normal = read_weights_file(weights_path, my_id)
+            saved_data_normal = read_weights_file(weights_path, '')
             if len(saved_data_normal) > 1:
-                saved_data_normal = [str_to_list(saved_data_normal[0], False, _df),
-                                     str_to_list(saved_data_normal[1], False, _df)]
+                saved_data_normal = [str_to_list(saved_data_normal[0], False, _df), str_to_list(saved_data_normal[1], False, _df)]
                 saved_data.append(saved_data_normal)
 
             saved_data_like = read_weights_file(like_weights_path, my_id)
             if len(saved_data_like) > 1:
-                saved_data_like = [str_to_list(saved_data_like[0], False, _df),
-                                   str_to_list(saved_data_like[1], False, _df)]
+                saved_data_like = [str_to_list(saved_data_like[0], False, _df), str_to_list(saved_data_like[1], False, _df)]
                 saved_data.append(saved_data_like)
 
+            save_time = save_time + datetime.timedelta(days=1)
+
+            while not stop_event.is_set():
+                if save_time <= datetime.datetime.now():
+                    _df = pd.read_json(data_path)
+                    save_time = save_time + datetime.timedelta(days=1)
+
+                debug_delay = datetime.datetime.now()
+                menu = create_menu_from_ai(_df, saved_data, True, hidden_layer_count, hidden_count)
+                print('\n======================================================================================================================\nAI가 식단을 산출하는데에 걸린 시간 : ' + bcolors.CYAN + str(datetime.datetime.now() - debug_delay) + 's' + bcolors.ENDC)
+
+                breakfast = ''
+                lunch = ''
+                dinner = ''
+                _menu = []
+                for i in range(len(menu)):
+                    _foods = ''
+                    for j in range(len(menu[i])):
+                        if len(menu[i][j]) > 0:
+                            _foods += food_naming(str(menu[i][j]))
+                            if j < len(menu[i]) - 1:
+                                if len(menu[i][j]) > 0:
+                                    _foods += ', '
+                    _menu.append(_foods)
+                print('\n추천 식단 : ' + str(_menu[0]))
+
+                reviews = input('추천된 식단이 마음에 들었나요? (' + bcolors.GREEN + 'y' + bcolors.ENDC + '/' + bcolors.RED + 'n' + bcolors.ENDC + ') : ')
+                if 'y' in reviews.lower():
+                    user_reviews[0].append(menu[0])
+                    user_reviews[1].append('1')
+
+                    answer_count.append('y')
+                    y_count += 1
+
+                    save_user_choice(save_user_data_path, my_id)
+
+                    if y_count >= max_y_count:
+                        print('\n' + str(max_y_count) + '번 연속 성공하여 학습을 종료합니다')
+                        print('\n총 ' + bcolors.BLUE + str(
+                            len(answer_count)) + bcolors.ENDC + '번 식단을 산출하여 ' + bcolors.GREEN + str(
+                            answer_count.count('y')) + bcolors.ENDC + '번 마음에 드는 식단이 나왔고, ' + bcolors.RED + str(
+                            answer_count.count('n')) + bcolors.ENDC + '번 마음에 들지 않는 식단이 나왔습니다.')
+                        print('\n\n프로그램 종료 중...')
+                        stop_event.set()
+
+                elif 'n' in reviews.lower():
+                    user_reviews[0].append(menu[0])
+                    user_reviews[1].append('0')
+
+                    answer_count.append('n')
+                    y_count = 0
+
+                    save_user_choice(save_user_data_path, my_id)
+                else:
+                    print('\n총 ' + bcolors.BLUE + str(
+                        len(answer_count)) + bcolors.ENDC + '번 식단을 산출하여 ' + bcolors.GREEN + str(
+                        answer_count.count('y')) + bcolors.ENDC + '번 마음에 드는 식단이 나왔고, ' + bcolors.RED + str(
+                        answer_count.count('n')) + bcolors.ENDC + '번 마음에 들지 않는 식단이 나왔습니다.')
+                    print('\n\n프로그램 종료 중...')
+
+                    save_user_choice(save_user_data_path, my_id)
+                    stop_event.set()
+
+                saved_data = []
+
+                saved_data_normal = read_weights_file(weights_path, my_id)
+                if len(saved_data_normal) > 1:
+                    saved_data_normal = [str_to_list(saved_data_normal[0], False, _df),
+                                         str_to_list(saved_data_normal[1], False, _df)]
+                    saved_data.append(saved_data_normal)
+
+                saved_data_like = read_weights_file(like_weights_path, my_id)
+                if len(saved_data_like) > 1:
+                    saved_data_like = [str_to_list(saved_data_like[0], False, _df),
+                                       str_to_list(saved_data_like[1], False, _df)]
+                    saved_data.append(saved_data_like)
+
+            user_ai.join()
+
+            stop_event.clear()
+    else:
+        # 백그라운드에서 인공지능 학습 시작
+        all_ai.start()
+        print('Creating default food menu AI training module has started...')
+
+        user_ai = th.Thread(target=train_ai, args=[training_count, like_weights_path, hidden_layer_count, hidden_count, save_user_data_path, [my_id]])
+        user_ai.start()
+        print('Creating food menu by user AI training module has started...')
+
+        #swgic프로젝트가 사용할 식단 데이터들을 파일로 저장하는 주기(초 단위로 설정)변수
+        updating_cool_time = 600
+        back_file_saving = th.Thread(target=save_sharing_datas, args=[updating_cool_time, hidden_layer_count, hidden_count, like_weights_path])
+
+        back_file_saving.start()
+        print('Saving default food menu data and food menu by user data to json file module has started...')
+
+        while not stop_event.is_set():
+            comm = input('\nFood Menu Recommending AI >> ')
+
+            if comm.lower() == 'stop':
+                print('\nShut down AI Training...')
+                stop_event.set()
+
+            if comm.lower() == 'log':
+                read_str = log_ctrl.read_log_file()
+                print(read_str)
+
+        all_ai.join()
         user_ai.join()
-
-        stop_event.clear()
-else:
-    # 백그라운드에서 인공지능 학습 시작
-    all_ai.start()
-    log_ctrl.debug_log('Creating default food menu AI training module has started...')
-
-    user_ai = th.Thread(target=train_ai, args=[training_count, like_weights_path, hidden_layer_count, hidden_count, save_user_data_path, [my_id]])
-    user_ai.start()
-    log_ctrl.debug_log('Creating food menu by user AI training module has started...')
-
-    #swgic프로젝트가 사용할 식단 데이터들을 파일로 저장하는 주기(초 단위로 설정)변수
-    updating_cool_time = 600
-    back_file_saving = th.Thread(target=save_sharing_datas, args=[updating_cool_time, hidden_layer_count, hidden_count, like_weights_path])
-
-    back_file_saving.start()
-    log_ctrl.debug_log('Saving default food menu data and food menu by user data to json file module has started...')
-
-    while not stop_event.is_set():
-        comm = input('\nFood Menu Recommending AI >> ')
-
-        if comm.lower() == 'stop':
-            log_ctrl.debug_log('\nShut down AI Training...')
-            stop_event.set()
-
-        if comm.lower() == 'log':
-            read_str = log_ctrl.read_log_file()
-            log_ctrl.debug_log(read_str)
-
-    all_ai.join()
-    user_ai.join()
-    back_file_saving.join()
+        back_file_saving.join()
