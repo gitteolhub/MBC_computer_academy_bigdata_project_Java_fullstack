@@ -474,3 +474,5 @@ gradle-app.setting
 /crawling/food_data.json
 /crawling/data/dish_data.json
 /crawling/data/dish_update_log.txt
+/crawling/data/material_data.json
+/crawling/data/material_update_log.txt
