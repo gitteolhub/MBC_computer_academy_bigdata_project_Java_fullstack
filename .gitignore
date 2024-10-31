@@ -472,3 +472,5 @@ gradle-app.setting
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,python,pycharm,jupyternotebooks,java,eclipse,gradle,dbeaver,visualstudiocode
 /crawling/food_data.json
+/crawling/data/dish_data.json
+/crawling/data/dish_update_log.txt
