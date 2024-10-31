@@ -179,7 +179,7 @@ public class FoodMenuController {
 
 		// 결과를 보여줄 뷰 이름
 		//		return "/foodMenu/result"; // TODO 임의로 정함(나중에 수정)
-		return new ResponseEntity<>(msg,HttpStatus.OK);
+		return new ResponseEntity<>(msg, HttpStatus.OK);
 	}
 
 	// 식단을 싫어할 경우
