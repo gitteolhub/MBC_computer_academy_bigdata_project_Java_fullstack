@@ -11,29 +11,26 @@
      <link rel="stylesheet" th:href="@{/bootstrap/5.3.3/css/bootstrap.min.css}">
      <script th:src="@{'/axios/1.7.4/dist/axios.min.js'}"></script>
 
-     <script>
-     /*
-     window.onload = function(e) {
-    		// console.log("id: ", e.target.id);
-    		let strId='[[${#authentication.name}]]';
-    		axios.get(`/healthyFoodProject/foodMenu/viewJson?strId=${strId}`)
-    			 .then(function(response) {
-    				console.log("response.data : ", response.data);
-    				let foodMenuOutput = document.getElementById('foodMenuOutput');
-    				foodMenuOutput.innerHTML=`<b>${response.data}</b>`;
-    				// 오류 있을 때만 팝업으로 출력하도록 조치
-    				// if (response.data === true) {
-    				//	msg = "새로운 회원의 초기 식단 데이터를 무사히 불러왔습니다.";
-    				// }
-    				// 화면 갱신 : refresh
-    				// location.reload();
-    			 })
-    			 .catch(function(err) {
-    				console.error("초기 식단 데이터를 불러오는 중 서버 에러가 발견되었습니다.");
-    			 });
-    			// axios
-    	} // onload
-    	*/
+     <script th:inline="javascript">
+     /*<![CDATA[*/
+     window.onload = function (){
+	     var currentIndex = 0;
+	     var menuItems = /*[[${menuItems}]]*/;
+	     
+	     document.getElementById('like').onclick = function() {
+	         currentIndex++;
+	         if (currentIndex < menuItems.length) {
+	         	document.getElementById('foodMenuOutput').innerHTML = menuItems[currentIndex];
+	         } else {
+	         	currentIndex = 0;
+	         	document.getElementById('foodMenuOutput').innerHTML = menuItems[currentIndex];
+	         }
+	     };
+	     
+	     
+     };
+    	
+    /*]]>*/
      </script>
 
       <style>
@@ -84,7 +81,7 @@
     		</div>
 
             <div>
-            	<p id="foodMenuOutput" th:text="${foodMenu}">1</p>
+            	<p id="foodMenuOutput" th:text="${menuItems[0]}"></p>
             </div>
             <input 	type="submit"
 					class="btn btn-primary"
@@ -105,34 +102,28 @@
 					name="dislike"
 					value="싫어요"/>
         </div>
-        <script>
-        const switchValues = /*[[${menuItems}]]*/ []; // 서버에서 전달된 음식 배열
-        let currentIndex = 0;
-
-        document.getElementById('like').onclick = function() {
-            currentIndex++;
-            if (currentIndex < menuItems.length) {
-                document.getElementById('foodMenuOutput').innerText = menuItems[currentIndex];
-            } else {
-                document.getElementById('msg').innerText = "더 이상 음식이 없습니다.";
-            }
-        };
         
-        // 푸드메뉴 좋아요 데이터 전송
-        function sendLike() {
-            fetch('/foodMenu/like', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                body: `strId=${userId}&foodMenu=${foodMenu}&foodMenuIndex=currentIndex}`
-            })
-            .then(response => response.text())
-            .then(data => alert(data))
-            .catch(error => console.error('Error:', error));
-        }
+    <script>
+    	var currentIndex = 1;
+    	
+		 // 푸드메뉴 좋아요 데이터 전송
+		    document.getElementById('dislike').onclick = function() {
+			 	currentIndex = currentIndex * -1;
+			 	var sendIndex = Math.max(0, currentIndex);
+			 	
+		        fetch('/foodMenu/like', {
+		            method: 'POST',
+		            headers: {
+		                'Content-Type': 'application/x-www-form-urlencoded',
+		            },
+		            body: `strId=${userId}&foodMenu=${menuItems[sendIndex]}&foodMenuIndex=sendIndex}`
+		        })
+		        .then(response => response.text())
+		        .then(data => alert(data))
+		        .catch(error => console.error('Error:', error));
+			};
+    </script>
         
-        </script>
     <h1>AI 맞춤 식단</h1>
     <div class="meal-container">
         <div class="meal-card">
