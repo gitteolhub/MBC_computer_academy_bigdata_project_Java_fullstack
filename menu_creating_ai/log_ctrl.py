@@ -28,7 +28,7 @@ def read_log_file():
     while True:
         line = f.readline()
         if not line: break
-        log_body += line.replace(' ', '').replace('array(', '').replace(')', '').replace('\n', '').replace('\r', '')
+        log_body += line.replace('\n', '').replace('\r', '')
 
     f.close()
 
@@ -40,3 +40,19 @@ def debug_log(s, is_debug=False):
 
     if is_debug:
         print(s)
+
+def read_file_by_path(_path):
+    read_str = ''
+    f = open(_path, 'r', encoding='utf-8')
+
+    while True:
+        line = f.readline()
+        if not line: break
+        read_str += line.replace('\n', '').replace('\r', '')
+
+    f.close()
+
+    return read_str
+
+def clear_file_by_path(_path):
+    open(_path, 'w', encoding='utf-8').close()

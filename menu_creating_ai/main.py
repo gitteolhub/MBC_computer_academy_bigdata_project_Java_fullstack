@@ -353,7 +353,7 @@ def get_all_user_id():
     while True:
         line = f.readline()
         if not line: break
-        read_str += line.replace(' ', '').replace('array(', '').replace(')', '').replace('\n', '').replace('\r', '')
+        read_str += line.replace(' ', '').replace('\n', '').replace('\r', '')
 
     sp = read_str.split('{')
     if len(sp) > 0:
@@ -372,7 +372,7 @@ def read_weights_file(path, if_id):
     while True:
         line = f.readline()
         if not line: break
-        read_str += line.replace(' ', '').replace('array(', '').replace(')', '').replace('\n', '').replace('\r', '')
+        read_str += line.replace(' ', '').replace('\n', '').replace('\r', '')
 
     if '{' in read_str and if_id != '':
         if '},{' in read_str:
@@ -1103,7 +1103,7 @@ def save_user_choice(path, if_id, food_menu_data=''):
         while True:
             line = origin_str.readline()
             if not line: break
-            read_str += line.replace(' ', '').replace('array(', '').replace(')', '').replace('\n', '').replace('\r', '')
+            read_str += line.replace(' ', '').replace('\n', '').replace('\r', '')
     else:
         read_str = ''
 
@@ -1202,7 +1202,7 @@ def load_user_choice(_df, path, if_id):
         while True:
             line = f.readline()
             if not line: break
-            read_str += line.replace(' ', '').replace('array(', '').replace(')', '').replace('\n', '').replace('\r', '')
+            read_str += line.replace(' ', '').replace('\n', '').replace('\r', '')
 
         if '{' in read_str and if_id != '':
             if '},{' in read_str:
@@ -1416,7 +1416,7 @@ def save_sharing_updating_food_menu(_df, _hidden_layer_count, _hidden_count):
         while True:
             line = f.readline()
             if not line: break
-            read_str += line.replace(' ', '').replace('array(', '').replace(')', '').replace('\n', '').replace('\r', '')
+            read_str += line.replace(' ', '').replace('\n', '').replace('\r', '')
 
         if '},{' in read_str:
             users_chosen_menu = read_str.split('},{')
@@ -1706,16 +1706,26 @@ else:
             comm = input('\nFood Menu Recommending AI >> ')
 
             if comm.lower() == 'stop':
-                print('\nShut down AI Training...')
+                log_ctrl.debug_log('\nShut down AI Training...', True)
                 stop_event.set()
 
             if comm.lower() == 'show log':
-                read_str = log_ctrl.read_log_file()
-                print(read_str)
+                _read_str = log_ctrl.read_log_file()
+                log_ctrl.debug_log(_read_str, True)
 
             if comm.lower() == 'clear log':
-                read_str = log_ctrl.read_log_file()
-                print(read_str)
+                log_ctrl.clear_log_file()
+                log_ctrl.debug_log('Log file has successfully cleared.', True)
+
+            if 'show data ' in comm.lower():
+                show_file_path = comm.lower().replace('show data ', '')
+                _read_str = log_ctrl.read_file_by_path(show_file_path)
+                log_ctrl.debug_log(_read_str, True)
+
+            if 'clear data ' in comm.lower():
+                clear_file_path = comm.lower().replace('clear data ', '')
+                log_ctrl.clear_file_by_path(clear_file_path)
+                log_ctrl.debug_log('File has successfully cleared.', True)
 
         all_ai.join()
         user_ai.join()

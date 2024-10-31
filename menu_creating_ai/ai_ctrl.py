@@ -283,7 +283,7 @@ def save_weights_file(path, weights, _bios, if_id):
     while True:
         line = origin_str.readline()
         if not line: break
-        read_str += line.replace(' ', '').replace('array(', '').replace(')', '').replace('\n', '').replace('\r', '')
+        read_str += line.replace(' ', '').replace('\n', '').replace('\r', '')
 
     if '{' in read_str and if_id != '':
         if '},{' in read_str:
