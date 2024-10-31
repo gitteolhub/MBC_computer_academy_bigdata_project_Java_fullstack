@@ -212,7 +212,7 @@ public class FoodMenuController {
 		}
 
 		// 결과를 보여줄 뷰 이름
-		return new ResponseEntity<>(msg,HttpStatus.OK); // TODO 임의로 정함(나중에 수정)
+		return new ResponseEntity<>(msg, HttpStatus.OK); // TODO 임의로 정함(나중에 수정)
 	}
 
 	// 당뇨식단이 아닌 경우
@@ -245,6 +245,6 @@ public class FoodMenuController {
 		}
 
 		// 결과를 보여줄 뷰 이름
-		return new ResponseEntity<>(msg,HttpStatus.OK); // TODO 임의로 정함(나중에 수정)
+		return new ResponseEntity<>(msg, HttpStatus.OK); // TODO 임의로 정함(나중에 수정)
 	}
 }
