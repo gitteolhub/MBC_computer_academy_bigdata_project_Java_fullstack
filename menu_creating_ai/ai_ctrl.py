@@ -1,5 +1,6 @@
 import numpy as np
 import random as ran
+import log_ctrl
 
 data_path = 'Resources/food_data.json'
 
@@ -22,10 +23,6 @@ learning_rate = 0.3
 bios = []
 hidden_net_layer = []
 hidden_layer = []
-
-def debug_log(s, is_debug):
-    if is_debug:
-        print(s)
 
 #식품명을 학습 데이터로 사용 가능하도록 실수로 변환하는 함수
 def name_to_id(n, _df):
@@ -84,7 +81,7 @@ def sign_bios_value(hid_count):
 #순전파 함수
 def calculate_straight(weights, biases, input_data, _hidden_layer_count, _hidden_count, is_debug=False):
 
-    debug_log('weights : ' + str(weights), is_debug)
+    log_ctrl.debug_log('weights : ' + str(weights), is_debug)
 
     #variable to return
     result = [0.0]
@@ -94,7 +91,7 @@ def calculate_straight(weights, biases, input_data, _hidden_layer_count, _hidden
     for k in range(_hidden_layer_count):
         _datas.append(hidden_layer[k])
 
-    debug_log('_datas : ' + str(_datas), is_debug)
+    log_ctrl.debug_log('_datas : ' + str(_datas), is_debug)
 
     # First hidden layer = [x0 * w0 + x1 * w1 + x2 * w2 + x3 * w3, x0 * w4 + x1 * w5 + x2 * w6...]
     for k in range(len(_datas)):
@@ -118,7 +115,7 @@ def calculate_straight(weights, biases, input_data, _hidden_layer_count, _hidden
             if k != len(_datas) - 1:
                 weights_count_by_k = (len(weights[weights_index]) / (_hidden_layer_count - 1))
                 h_index = abs(k - 1) * int(w / len(input_data)) + max(0, int(w / weights_count_by_k)) * _hidden_count + max(1, k) * int(w % weights_count_by_k / _hidden_count)
-                debug_log('int(w % (len(weights[weights_index]) / (_hidden_layer_count - 1)) / _hidden_count) = h_index : int(' + str(w) + ' % (' + str(len(weights[weights_index])) + ' / (' + str(_hidden_layer_count) + ' - 1)) / ' + str(_hidden_count) + ' ) = ' + str(h_index), is_debug)
+                log_ctrl.debug_log('int(w % (len(weights[weights_index]) / (_hidden_layer_count - 1)) / _hidden_count) = h_index : int(' + str(w) + ' % (' + str(len(weights[weights_index])) + ' / (' + str(_hidden_layer_count) + ' - 1)) / ' + str(_hidden_count) + ' ) = ' + str(h_index), is_debug)
 
                 if len(hidden_layer[k]) < (h_index + 1):
                     hidden_net_layer[k].append(val + float(str(biases[k]).replace("'", "")))
@@ -127,7 +124,7 @@ def calculate_straight(weights, biases, input_data, _hidden_layer_count, _hidden
                     hidden_net_layer[k][h_index] = (val + float(str(biases[k]).replace("'", "")))
                     hidden_layer[k][h_index] = (sigmoid_function(val + float(str(biases[k]).replace("'", ""))))
 
-                debug_log('hidden_layer[' + str(k) + '] : ' + str(hidden_layer[k]), is_debug)
+                log_ctrl.debug_log('hidden_layer[' + str(k) + '] : ' + str(hidden_layer[k]), is_debug)
             else:
                 result[0] = (sigmoid_function(val + float(str(biases[k]).replace("'", "").replace(' ', '').replace(']', ''))))
 
@@ -480,9 +477,6 @@ def train(train_count, input_data, _hidden_layer_count, hidden_count, output_dat
 
 #일정 갯수의 식단을 받아와 학습된 인공지능으로 판단하는 함수
 def detect_favorite_menu(_hidden_layer_count, hidden_count, input_data, _df, saved_data):
-    menu_result = 0.0
-    debug_process = True
-
     _input_count = len(input_data)
 
     if len(hidden_layer) <= 0:
@@ -497,13 +491,11 @@ def detect_favorite_menu(_hidden_layer_count, hidden_count, input_data, _df, sav
         _weight = sign_weight_value(_input_count, _hidden_layer_count, 1, hidden_count)
         _bios = sign_bios_value(_hidden_layer_count)
 
-
-
-    result = calculate_straight(_weight, _bios, input_data, _hidden_layer_count, hidden_count, False)
+    result = calculate_straight(_weight, _bios, input_data, _hidden_layer_count, hidden_count)
 
     menu_result = result[0]
 
-    debug_log('menu_result : ' + str(menu_result), False)
+    log_ctrl.debug_log('menu_result : ' + str(menu_result))
 
     return menu_result
 
