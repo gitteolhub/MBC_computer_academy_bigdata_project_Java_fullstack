@@ -1,9 +1,17 @@
+import datetime
 #로그 파일 경로
 log_file_path = 'Resources/Saved_files/Logs/log.txt'
 
 #과정을 기록하고 저장하는 로그 파일 생성 함수
-def add_log_file(add_str):
+def add_log_file(s):
+    origin_log = read_log_file()
+    origin_log = '[' + str(datetime.datetime.now()) + '] ' + origin_log + '\n'
+    
+    
     f = open(log_file_path, 'w', encoding='utf-8')
+    
+    add_str = origin_log + '[' + str(datetime.datetime.now()) + '] ' + str(s)
+    
     f.write(add_str)
     f.close()
 
