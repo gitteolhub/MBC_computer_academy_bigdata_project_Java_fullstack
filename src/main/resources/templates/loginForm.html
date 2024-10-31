@@ -18,21 +18,21 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-        
+
         }
 
         #login-box {
-            width: 350px; 
-            padding: 30px; 
-            background: #fff; 
-            border: 1px solid #000; 
-            border-radius: 5px; 
+            width: 350px;
+            padding: 30px;
+            background: #fff;
+            border: 1px solid #000;
+            border-radius: 5px;
         }
         button {
         	margin : 10px;
-        	
+
         }
-        	
+
     </style>
 <!-- 로그인 에러 메시지 -->
 <script th:inline="javascript" th:if="${session.SPRING_SECURITY_LAST_EXCEPTION != null}">
@@ -153,24 +153,24 @@ window.onload = function() {
 					<tr>
 						<td colspan="2">
 
-							
-						 
+
+
 									    <!-- 추후 hidden으로 변환할 것 -->
 				<input type="text" class="form-control w-25 m-2" id="key" name="key" th:value="${key}" readonly />
-			
+
 				<div class="m-3" style="width:30vw">
-			
+
 					<div class="d-flex">
 						<div>
 							<img id="captcha_img" th:src="@{'/captcha/image/' + ${captchaImage}}">
 						</div>
-			
+
 						<!-- 리프레쉬(refresh) 버튼 : captcha 서비스 재요청 -->
 						<div class="pt-2 px-2" id="refresh_btn">
 							<i class="bi bi-arrow-clockwise pt-2" style="font-size:3em"></i>
 						</div>
 					</div>
-			
+
 					<div class="d-flex row mt-2">
 						<div class="col-8 pe-0">
 							<input class="form-control" type="text" id="captchaVal" name="captchaVal" />
@@ -181,8 +181,9 @@ window.onload = function() {
 						</div>
 					</div>
 				</div>
-				<!-- 캡챠 끝 -->
 		
+					<!-- 캡챠 끝 -->
+
 				<div class="d-flex justify-content-evenly">
 
 								<input type="submit"
@@ -195,7 +196,7 @@ window.onload = function() {
 							    <a th:href="@{/join}" class="btn btn-primary">회원가입</a>
 
 						    </div>
-						    
+
 						</td>
 					</tr>
 
