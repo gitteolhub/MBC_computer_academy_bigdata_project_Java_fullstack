@@ -30,13 +30,13 @@ public class JsonService {
 
 	@Autowired
 	public MemberService memberService;
-	
+
 	@Autowired
 	ChosenFoodMenuDAO chosenFoodMenuDAO;
 
 	// private final MemberService memberService;
 	// private final ChosenFoodMenuDAO chosenFoodMenuDAO;
-	
+
  	public void saveMemberDataJson() {
 		log.info("[JsonService][saveMemberDataJson]");
 
@@ -74,6 +74,7 @@ public class JsonService {
 			strJson += str;
 		}
 		strRetVal = strJson;
+		bufferedReader.close();
 		return strRetVal;
 	}
 
@@ -83,20 +84,23 @@ public class JsonService {
 
 	// 선택된 식단 전체 json 파일로 저장
 	public void saveChosenFoodMenuJson(String strId) {
-		log.info("[saveChosenFoodMenuJson]");
-		
+		log.info("[JsonService][saveChosenFoodMenuJson]");
+
 		ArrayList<String> updatingStrId = new ArrayList<String>();
-		
+
 		updatingStrId.add(strId);
 		String strFoodMenu = "";
 		String strFoodMenuResult = "";
-		log.info("chosenFoodMenuDAO 객체:"+chosenFoodMenuDAO);
-		
-		List<ChosenFoodMenuVO> chosenFoodMenus = chosenFoodMenuDAO.selectAllFoodMenu(); //
-		log.info("chosenFoodMenus 크기:"+chosenFoodMenus.size());
-		
+
+		log.info("[saveChosenFoodMenuJson][chosenFoodMenuDAO 객체]: {}", chosenFoodMenuDAO);
+		List<ChosenFoodMenuVO> chosenFoodMenus = chosenFoodMenuDAO.selectAllFoodMenu();
+
+		log.info("[saveChosenFoodMenuJson][chosenFoodMenus.size()]: {}", chosenFoodMenus.size());
+
 		for (int i=0; i < chosenFoodMenus.size(); i++) {
-			if(!updatingStrId.contains(chosenFoodMenus.get(i).getId())) {
+			log.info("[saveChosenFoodMenuJson][chosenFoodMenus.get(i)]: {}", chosenFoodMenus.get(i));
+
+			if(updatingStrId.contains(chosenFoodMenus.get(i).getId())) {
 				strFoodMenu = chosenFoodMenus.get(i).getFoodmenu();
 				strFoodMenuResult = chosenFoodMenus.get(i).getFoodmenuResult();
 			}
@@ -105,31 +109,41 @@ public class JsonService {
 		String chosenFoodMenuFilePath = "src/main/resources/JsonDataFiles/chosenFoodMenu_Json.json";
 
 		File file = new File(chosenFoodMenuFilePath);
+		log.info("[JsonService][file]");
+
 		try {
-			 FileWriter fileWriter = new FileWriter(file, true);
-			 BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+			if(file.createNewFile()) {
+				log.info("[chosenFoodMenu_Json 파일이 없어 새로 만들었습니다.]");
 
-			 String strWriting = "";
+			} else {
+				log.info("[chosenFoodMenu_Json 파일이  있습니다.]");
+			}
 
-			 if(file.createNewFile()) {
-				 log.info("[chosenFoodMenu_Json 파일이 없어 새로 만들었습니다.]");
+			String strRead = readFoodMenuJson(chosenFoodMenuFilePath);
 
-				 strWriting = "{";
+			log.info("[JsonService][strRead]: {}", strRead);
 
-			 } else {
-				 log.info("[chosenFoodMenu_Json 파일이  있습니다.]");
-				 strWriting = ",{";
-			 }
-			 strWriting += strId + ":";
-			 strWriting += "[" + strFoodMenu + "]|";
-			 strWriting += strFoodMenuResult + "}";
+			FileWriter fileWriter = new FileWriter(file, true);
+			BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
-			 bufferedWriter.write(strWriting);
-			 bufferedWriter.close();
+			String strWriting = "";
 
-		 } catch(IOException ex) {
+			if(strRead.length() == 0) {
+				strWriting = "{";
+			} else {
+				strWriting = ",{";
+			}
+
+			strWriting += strId + ":";
+			strWriting += "[" + strFoodMenu + "]|";
+			strWriting += strFoodMenuResult + "}";
+
+			bufferedWriter.write(strWriting);
+			bufferedWriter.close();
+
+		} catch(IOException ex) {
 			log.error("[saveChosenFoodMenuJson][IOException]: {}", ex);
-		 }
+		}
 
 	}
 

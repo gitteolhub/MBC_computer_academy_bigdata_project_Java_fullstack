@@ -32,8 +32,8 @@ public class FoodMenuController {
 	private CustomOAuth2UserService customOAuth2UserService;
 
 	@Autowired
-	JsonService jsonService;
-	
+	JsonService jsonService;	// @@Autowired 로 변경
+
 	private String foodMenu;
 
 	// 선택할 foodMenu 조회
@@ -151,7 +151,7 @@ public class FoodMenuController {
 	}
 
 	// 식단을 좋아할 경우
-	@GetMapping("/foodMenu/like") // TODO 임의로 정함(나중에 수정)
+	@PostMapping("/foodMenu/like") // TODO 임의로 정함(나중에 수정)
 	@ResponseBody
 	public ResponseEntity<String> likeFoodMenu(@RequestParam("strId") String strId, @RequestParam("foodMenu") String foodMenu, @RequestParam("foodMenuIndex") String foodMenuIndex) {
 
@@ -167,9 +167,9 @@ public class FoodMenuController {
 		log.info("[foodMenuIndexInt]: {}", foodMenuIndexInt);
 
 		if(foodMenuIndexInt == 0) {
-			// JsonService jsonService = new JsonService();
 			jsonService.saveChosenFoodMenuJson(strId);
-			log.info("saveChosenFoodMenuJson 실행 끝");
+			log.info("[saveChosenFoodMenuJson 실행 끝]");
+
 		} else if (foodMenuIndexInt == 1) {
 
 			// social Id일 경우
@@ -204,7 +204,6 @@ public class FoodMenuController {
 
 		int foodMenuIndexInt = Integer.valueOf(foodMenuIndex);
 		if(foodMenuIndexInt == 0) {
-			// JsonService jsonService = new JsonService();
 			jsonService.saveChosenFoodMenuJson(strId);
 		} else if (foodMenuIndexInt == 1) {
 
@@ -237,7 +236,6 @@ public class FoodMenuController {
 
 		int foodMenuIndexInt = Integer.valueOf(foodMenuIndex);
 		if(foodMenuIndexInt == 0) {
-			// JsonService jsonService = new JsonService();
 			jsonService.saveChosenFoodMenuJson(strId);
 		} else if (foodMenuIndexInt == 1) {
 
