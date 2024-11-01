@@ -161,8 +161,8 @@ public class FoodMenuController {
 		msg = success ? "회원이 좋아하는 식단입니다." : "에러(좋아하는 식단)";
 
 		int foodMenuIndexInt = Integer.valueOf(foodMenuIndex);
-		log.info("foodMenuIndexInt:"+foodMenuIndexInt);
-		
+		log.info("[foodMenuIndexInt]: {}", foodMenuIndexInt);
+
 		if(foodMenuIndexInt == 0) {
 			JsonService jsonService = new JsonService();
 			jsonService.saveChosenFoodMenuJson(strId);
@@ -178,12 +178,12 @@ public class FoodMenuController {
 				memberService.updateFoodMenuByUser(strId);
 			}
 		}
-			
-		
-		log.info("msg:"+msg);
+
+		log.info("[FoodMenuController][msg]: {}", msg);
+
 		// 결과를 보여줄 뷰 이름
 		//		return "/foodMenu/result"; // TODO 임의로 정함(나중에 수정)
-		return new ResponseEntity<>(msg,HttpStatus.OK);
+		return new ResponseEntity<>(msg, HttpStatus.OK);
 	}
 
 	// 식단을 싫어할 경우
@@ -216,7 +216,7 @@ public class FoodMenuController {
 		}
 
 		// 결과를 보여줄 뷰 이름
-		return new ResponseEntity<>(msg,HttpStatus.OK); // TODO 임의로 정함(나중에 수정)
+		return new ResponseEntity<>(msg, HttpStatus.OK); // TODO 임의로 정함(나중에 수정)
 	}
 
 	// 당뇨식단이 아닌 경우
@@ -249,6 +249,6 @@ public class FoodMenuController {
 		}
 
 		// 결과를 보여줄 뷰 이름
-		return new ResponseEntity<>(msg,HttpStatus.OK); // TODO 임의로 정함(나중에 수정)
+		return new ResponseEntity<>(msg, HttpStatus.OK); // TODO 임의로 정함(나중에 수정)
 	}
 }
