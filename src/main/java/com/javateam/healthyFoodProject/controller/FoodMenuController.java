@@ -31,6 +31,9 @@ public class FoodMenuController {
 	@Autowired
 	private CustomOAuth2UserService customOAuth2UserService;
 
+	@Autowired
+	JsonService jsonService;	// @@Autowired 로 변경
+
 	private String foodMenu;
 
 	// 선택할 foodMenu 조회
@@ -164,8 +167,9 @@ public class FoodMenuController {
 		log.info("[foodMenuIndexInt]: {}", foodMenuIndexInt);
 
 		if(foodMenuIndexInt == 0) {
-			JsonService jsonService = new JsonService();
 			jsonService.saveChosenFoodMenuJson(strId);
+			log.info("[saveChosenFoodMenuJson 실행 끝]");
+
 		} else if (foodMenuIndexInt == 1) {
 
 			// social Id일 경우
@@ -200,7 +204,6 @@ public class FoodMenuController {
 
 		int foodMenuIndexInt = Integer.valueOf(foodMenuIndex);
 		if(foodMenuIndexInt == 0) {
-			JsonService jsonService = new JsonService();
 			jsonService.saveChosenFoodMenuJson(strId);
 		} else if (foodMenuIndexInt == 1) {
 
@@ -233,7 +236,6 @@ public class FoodMenuController {
 
 		int foodMenuIndexInt = Integer.valueOf(foodMenuIndex);
 		if(foodMenuIndexInt == 0) {
-			JsonService jsonService = new JsonService();
 			jsonService.saveChosenFoodMenuJson(strId);
 		} else if (foodMenuIndexInt == 1) {
 

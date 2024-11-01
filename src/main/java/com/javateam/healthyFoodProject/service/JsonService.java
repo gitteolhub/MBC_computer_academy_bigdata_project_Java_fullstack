@@ -30,7 +30,7 @@ public class JsonService {
 	public MemberService memberService;
 
 	@Autowired
-	public ChosenFoodMenuDAO chosenFoodMenuDAO;
+	ChosenFoodMenuDAO chosenFoodMenuDAO;
 
 	public ArrayList<String> updatingStrId = new ArrayList<String>();
 
@@ -80,11 +80,18 @@ public class JsonService {
 
 	// 선택된 식단 전체 json 파일로 저장
 	public void saveChosenFoodMenuJson(String strId) {
+		log.info("[JsonService][saveChosenFoodMenuJson]");
+
+		ArrayList<String> updatingStrId = new ArrayList<String>();
+
 		updatingStrId.add(strId);
 		String strFoodMenu = "";
 		String strFoodMenuResult = "";
 
+		log.info("[saveChosenFoodMenuJson][chosenFoodMenuDAO 객체]: {}", chosenFoodMenuDAO);
 		List<ChosenFoodMenuVO> chosenFoodMenus = chosenFoodMenuDAO.selectAllFoodMenu();
+
+		log.info("[saveChosenFoodMenuJson][chosenFoodMenus.size()]: {}", chosenFoodMenus.size());
 
 		for (int i=0; i < chosenFoodMenus.size(); i++) {
 			if(!updatingStrId.contains(chosenFoodMenus.get(i).getId())) {
@@ -95,8 +102,8 @@ public class JsonService {
 
 		String chosenFoodMenuFilePath = "src/main/resources/JsonDataFiles/chosenFoodMenu_Json.json";
 
-		 File file = new File(chosenFoodMenuFilePath);
-		 try {
+		File file = new File(chosenFoodMenuFilePath);
+		try {
 			 FileWriter fileWriter = new FileWriter(file, true);
 			 BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
