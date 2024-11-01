@@ -16,7 +16,7 @@
 	     var menuItems = [[${menuItems}]];
 	     console.log("menuItems:",menuItems);
 
-	     // 좋아요 코드
+	     // 좋아요(like) 코드
 	     function switchValues(id) {
 
 	    	// "id"에서 id("" 제거)
@@ -63,7 +63,7 @@
 	         }
 	     };
 	     
-	     // 새로고침 코드
+	     // 새로고침(refresh) 코드
 	     function switchValues2(id) {
 
 		    	// "id"에서 id("" 제거)
@@ -95,7 +95,7 @@
 		         }
 		     };
 	
-		     // 싫어요 코드
+		     // 싫어요(dislike) 코드
 		     function switchValues3(id) {
 
 			    	// "id"에서 id("" 제거)
@@ -106,7 +106,7 @@
 
 			     	 axios({
 			 			method : "post",
-			 			url    : '/healthyFoodProject/foodMenu/like',
+			 			url    : '/healthyFoodProject/foodMenu/dislike',
 			 			data   : {strId : id, foodMenu : menuItems[currentIndex], foodMenuIndex: currentIndex},
 			 			headers: {"Content-Type":'multipart/form-data'}
 			 		 }).then(function(response) {
