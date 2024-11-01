@@ -16,6 +16,7 @@
 	     var menuItems = [[${menuItems}]];
 	     console.log("menuItems:",menuItems);
 
+	     // 좋아요(like) 코드
 	     function switchValues(id) {
 
 	    	// "id"에서 id("" 제거)
@@ -36,9 +37,6 @@
 	 			headers: {"Content-Type":'multipart/form-data'}
 	 		 }).then(function(response) {
 	 		//).then(function(response) {
-
-	 			alert("수신완료");
-
 
 	    			console.log("response.data : ", response.data);
 	    			alert(response.data);
@@ -64,6 +62,70 @@
 	         	document.getElementById('foodMenuOutput').innerHTML = menuItems[currentIndex];
 	         }
 	     };
+	     
+	     // 새로고침(refresh) 코드
+	     function switchValues2(id) {
+
+		    	// "id"에서 id("" 제거)
+		    	id = id.replaceAll('"','');
+		    	console.log("id: ", id);
+
+		    	console.log("Sending data:", { strId: id, foodMenu: menuItems[currentIndex], foodMenuIndex: currentIndex });
+
+		     	 axios({
+		 			method : "post",
+		 			url    : '/healthyFoodProject/foodMenu/refresh',
+		 			data   : {strId : id, foodMenu : menuItems[currentIndex], foodMenuIndex: currentIndex},
+		 			headers: {"Content-Type":'multipart/form-data'}
+		 		 }).then(function(response) {
+
+		    			console.log("response.data : ", response.data);
+		    			alert(response.data);
+
+		    		 	}).catch(function(err) {
+		    			console.error("초기 식단 데이터를 불러오는 중 서버 에러가 발견되었습니다.");
+		    		 });
+
+		         currentIndex++;
+		         if (currentIndex < menuItems.length) {
+		         	document.getElementById('foodMenuOutput').innerHTML = menuItems[currentIndex];
+		         } else {
+		         	currentIndex = 0;
+		         	document.getElementById('foodMenuOutput').innerHTML = menuItems[currentIndex];
+		         }
+		     };
+	
+		     // 싫어요(dislike) 코드
+		     function switchValues3(id) {
+
+			    	// "id"에서 id("" 제거)
+			    	id = id.replaceAll('"','');
+			    	console.log("id: ", id);
+
+			    	console.log("Sending data:", { strId: id, foodMenu: menuItems[currentIndex], foodMenuIndex: currentIndex });
+
+			     	 axios({
+			 			method : "post",
+			 			url    : '/healthyFoodProject/foodMenu/dislike',
+			 			data   : {strId : id, foodMenu : menuItems[currentIndex], foodMenuIndex: currentIndex},
+			 			headers: {"Content-Type":'multipart/form-data'}
+			 		 }).then(function(response) {
+
+			    			console.log("response.data : ", response.data);
+			    			alert(response.data);
+
+			    		 	}).catch(function(err) {
+			    			console.error("초기 식단 데이터를 불러오는 중 서버 에러가 발견되었습니다.");
+			    		 });
+
+			         currentIndex++;
+			         if (currentIndex < menuItems.length) {
+			         	document.getElementById('foodMenuOutput').innerHTML = menuItems[currentIndex];
+			         } else {
+			         	currentIndex = 0;
+			         	document.getElementById('foodMenuOutput').innerHTML = menuItems[currentIndex];
+			         }
+			     };
 
      </script>
 
@@ -130,14 +192,14 @@
 					class="btn btn-primary"
 					id="refresh"
 					name="refresh"
-					th:onclick="switchValues('[[${#authentication.name}]]')"
+					th:onclick="switchValues2('[[${#authentication.name}]]')"
 					value="새로고침"/>
 
 			<input 	type="submit"
 					class="btn btn-primary"
 					id="dislike"
 					name="dislike"
-					th:onclick="switchValues('[[${#authentication.name}]]')"
+					th:onclick="switchValues3('[[${#authentication.name}]]')"
 					value="싫어요"/>
         </div>
 
