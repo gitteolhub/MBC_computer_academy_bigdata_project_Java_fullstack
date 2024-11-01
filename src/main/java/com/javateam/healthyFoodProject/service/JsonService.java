@@ -20,21 +20,24 @@ import com.javateam.healthyFoodProject.repository.ChosenFoodMenuDAO;
 import com.nimbusds.jose.shaded.gson.Gson;
 import com.nimbusds.jose.shaded.gson.GsonBuilder;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class JsonService {
 
 	@Autowired
 	public MemberService memberService;
-
+	
 	@Autowired
-	public ChosenFoodMenuDAO chosenFoodMenuDAO;
+	ChosenFoodMenuDAO chosenFoodMenuDAO;
 
-	public ArrayList<String> updatingStrId = new ArrayList<String>();
-
-	public void saveMemberDataJson() {
+	// private final MemberService memberService;
+	// private final ChosenFoodMenuDAO chosenFoodMenuDAO;
+	
+ 	public void saveMemberDataJson() {
 		log.info("[JsonService][saveMemberDataJson]");
 
 		List<MemberJsonVO> allUserData = memberService.selectAllMembersJson();
@@ -80,12 +83,18 @@ public class JsonService {
 
 	// 선택된 식단 전체 json 파일로 저장
 	public void saveChosenFoodMenuJson(String strId) {
+		log.info("[saveChosenFoodMenuJson]");
+		
+		ArrayList<String> updatingStrId = new ArrayList<String>();
+		
 		updatingStrId.add(strId);
 		String strFoodMenu = "";
 		String strFoodMenuResult = "";
-
-		List<ChosenFoodMenuVO> chosenFoodMenus = chosenFoodMenuDAO.selectAllFoodMenu();
-
+		log.info("chosenFoodMenuDAO 객체:"+chosenFoodMenuDAO);
+		
+		List<ChosenFoodMenuVO> chosenFoodMenus = chosenFoodMenuDAO.selectAllFoodMenu(); //
+		log.info("chosenFoodMenus 크기:"+chosenFoodMenus.size());
+		
 		for (int i=0; i < chosenFoodMenus.size(); i++) {
 			if(!updatingStrId.contains(chosenFoodMenus.get(i).getId())) {
 				strFoodMenu = chosenFoodMenus.get(i).getFoodmenu();
@@ -95,8 +104,8 @@ public class JsonService {
 
 		String chosenFoodMenuFilePath = "src/main/resources/JsonDataFiles/chosenFoodMenu_Json.json";
 
-		 File file = new File(chosenFoodMenuFilePath);
-		 try {
+		File file = new File(chosenFoodMenuFilePath);
+		try {
 			 FileWriter fileWriter = new FileWriter(file, true);
 			 BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
@@ -108,7 +117,7 @@ public class JsonService {
 				 strWriting = "{";
 
 			 } else {
-				 log.info("[chosenFoodMenu_Json 파일이 있습니다.]");
+				 log.info("[chosenFoodMenu_Json 파일이  있습니다.]");
 				 strWriting = ",{";
 			 }
 			 strWriting += strId + ":";
