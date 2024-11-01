@@ -98,6 +98,8 @@ public class JsonService {
 		log.info("[saveChosenFoodMenuJson][chosenFoodMenus.size()]: {}", chosenFoodMenus.size());
 
 		for (int i=0; i < chosenFoodMenus.size(); i++) {
+
+
 			log.info("[saveChosenFoodMenuJson][chosenFoodMenus.get(i)]: {}", chosenFoodMenus.get(i));
 
 			if(updatingStrId.contains(chosenFoodMenus.get(i).getId())) {
@@ -133,18 +135,15 @@ public class JsonService {
 			} else {
 				strWriting = ",{";
 			}
-
 			strWriting += strId + ":";
 			strWriting += "[" + strFoodMenu + "]|";
 			strWriting += strFoodMenuResult + "}";
 
 			bufferedWriter.write(strWriting);
 			bufferedWriter.close();
-
 		} catch(IOException ex) {
 			log.error("[saveChosenFoodMenuJson][IOException]: {}", ex);
 		}
 
 	}
-
 }
