@@ -35,8 +35,10 @@ public class JsonService {
 	public ArrayList<String> updatingStrId = new ArrayList<String>();
 
 	public void saveMemberDataJson() {
+		log.info("[JsonService][saveMemberDataJson]");
+
 		List<MemberJsonVO> allUserData = memberService.selectAllMembersJson();
-		log.info("[JsonService][allUserData]: {}", allUserData);
+		log.info("[JsonService][allUserData.size()]: {}", allUserData.size());
 
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
