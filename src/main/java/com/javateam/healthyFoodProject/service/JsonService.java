@@ -102,7 +102,7 @@ public class JsonService {
 
 			log.info("[saveChosenFoodMenuJson][chosenFoodMenus.get(i)]: {}", chosenFoodMenus.get(i));
 
-			if(!updatingStrId.contains(chosenFoodMenus.get(i).getId())) {
+			if(updatingStrId.contains(chosenFoodMenus.get(i).getId())) {
 				strFoodMenu = chosenFoodMenus.get(i).getFoodmenu();
 				strFoodMenuResult = chosenFoodMenus.get(i).getFoodmenuResult();
 			}
