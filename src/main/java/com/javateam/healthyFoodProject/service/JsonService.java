@@ -95,6 +95,7 @@ public class JsonService {
 		log.info("[saveChosenFoodMenuJson][chosenFoodMenus.size()]: {}", chosenFoodMenus.size());
 
 		for (int i=0; i < chosenFoodMenus.size(); i++) {
+
 			log.info("[saveChosenFoodMenuJson][chosenFoodMenus.get(i)]: {}", chosenFoodMenus.get(i));
 
 			if(strId.equals(chosenFoodMenus.get(i).getId())) {
@@ -113,7 +114,6 @@ public class JsonService {
 		try {
 			if(file.createNewFile()) {
 				log.info("[chosenFoodMenu_Json 파일이 없어 새로 만들었습니다.]");
-
 			} else {
 				log.info("[chosenFoodMenu_Json 파일이 있습니다.]");
 			}
