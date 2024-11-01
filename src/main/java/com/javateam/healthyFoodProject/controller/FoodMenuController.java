@@ -203,8 +203,12 @@ public class FoodMenuController {
 		msg = success ? "회원이 안 좋아하는 식단입니다." : "에러(안 좋아하는 식단)";
 
 		int foodMenuIndexInt = Integer.valueOf(foodMenuIndex);
+		log.info("[foodMenuIndexInt]: {}", foodMenuIndexInt);
+
 		if(foodMenuIndexInt == 0) {
 			jsonService.saveChosenFoodMenuJson(strId);
+			log.info("[saveChosenFoodMenuJson 실행 끝]");
+
 		} else if (foodMenuIndexInt == 1) {
 
 			// social Id일 경우
@@ -218,8 +222,11 @@ public class FoodMenuController {
 			}
 		}
 
+		log.info("[FoodMenuController][msg]: {}", msg);
+
 		// 결과를 보여줄 뷰 이름
-		return new ResponseEntity<>(msg, HttpStatus.OK); // TODO 임의로 정함(나중에 수정)
+		//		return "/foodMenu/result"; // TODO 임의로 정함(나중에 수정)
+		return new ResponseEntity<>(msg, HttpStatus.OK);
 	}
 
 	// 당뇨식단이 아닌 경우
@@ -232,11 +239,15 @@ public class FoodMenuController {
 		String updatingFoodDataResult = mergeFoodResultData(strId, "-1");
 
 		boolean success = chosenFoodMenuService.insertChosenFoodMenu(strId, updatingFoodData, updatingFoodDataResult);
-		msg = success ? "당뇨식단이 아닙니다." : "에러(당뇨식단이 아닙니다.)";
+		msg = success ? "당뇨식단이 아닙니다." : "에러(당뇨식단이 아닙니다)";
 
 		int foodMenuIndexInt = Integer.valueOf(foodMenuIndex);
+		log.info("[foodMenuIndexInt]: {}", foodMenuIndexInt);
+
 		if(foodMenuIndexInt == 0) {
 			jsonService.saveChosenFoodMenuJson(strId);
+			log.info("[saveChosenFoodMenuJson 실행 끝]");
+
 		} else if (foodMenuIndexInt == 1) {
 
 			// social Id일 경우
@@ -250,7 +261,10 @@ public class FoodMenuController {
 			}
 		}
 
+		log.info("[FoodMenuController][msg]: {}", msg);
+
 		// 결과를 보여줄 뷰 이름
-		return new ResponseEntity<>(msg, HttpStatus.OK); // TODO 임의로 정함(나중에 수정)
+		//		return "/foodMenu/result"; // TODO 임의로 정함(나중에 수정)
+		return new ResponseEntity<>(msg, HttpStatus.OK);
 	}
 }
