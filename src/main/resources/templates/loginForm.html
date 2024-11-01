@@ -37,28 +37,7 @@
 <!-- 로그인 에러 메시지 -->
 <script th:inline="javascript" th:if="${session.SPRING_SECURITY_LAST_EXCEPTION != null}">
 //captcha 이미지 리프레쉬(갱신) 함수
-function refreshImage() {
 
-	axios.get('/healthyFoodProject/refreshImage')
-	  .then(function (response) {
-
-		  console.log(response.data);
-
-		  let json = response.data;
-
-	      // 이미지 갱신
-	      captcha_img.src = '/healthyFoodProject/captcha/image/' + json.captchaImage;
-
-	      console.log("captchaImage : ", json.captchaImage);
-
-	      // 키(key) 재입력
-	      key.value = json.key;
-
-	  })
-	  .catch(function (error) {
-	      console.log(error);
-	  });
-}
 
 window.onload = function() {
 
@@ -104,16 +83,40 @@ window.onload = function() {
 
 	refresh_btn.onclick = refreshImage; // 그림 리프레쉬(갱신) 함수 호출
 
-}//
+	}//
 
-			// 로그인 3회 실패 시 캡차 필드 노출
-  window.onload = function() {
-        if ([[${session.loginErrorCount}]] >= 3) {
-            document.getElementById("captcha-field").style.display = "block";
-        } else {
-            document.getElementById("captcha-field").style.display = "none";
-        }
-    }; 
+	function refreshImage() {
+	
+		
+		axios.get('/healthyFoodProject/refreshImage')
+		  .then(function (response) {
+	
+			  console.log(response.data);
+	
+			  let json = response.data;
+	
+		      // 이미지 갱신
+		      captcha_img.src = '/healthyFoodProject/captcha/image/' + json.captchaImage;
+	
+		      console.log("captchaImage : ", json.captchaImage);
+	
+		      // 키(key) 재입력
+		      key.value = json.key;
+	
+		  })
+		  .catch(function (error) {
+		      console.log(error);
+		  });
+	};
+	
+				// 로그인 3회 실패 시 캡차 필드 노출
+	 /* window.onload = function() {
+	        if ([[${session.loginErrorCount}]] >= 3) {
+	            document.getElementById("captcha-field").style.display = "block";
+	        } else {
+	            document.getElementById("captcha-field").style.display = "none";
+	        }
+	    }; */
 </script>
 </head>
 
