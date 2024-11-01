@@ -203,7 +203,7 @@ public class FoodMenuController {
 		msg = success ? "회원이 안 좋아하는 식단입니다." : "에러(안 좋아하는 식단)";
 
 		int foodMenuIndexInt = Integer.valueOf(foodMenuIndex);
-		log.info("[foodMenuIndexInt]: {}", foodMenuIndexInt);
+		log.info("[FoodMenuController][foodMenuIndexInt]: {}", foodMenuIndexInt);
 
 		if(foodMenuIndexInt == 0) {
 			jsonService.saveChosenFoodMenuJson(strId);

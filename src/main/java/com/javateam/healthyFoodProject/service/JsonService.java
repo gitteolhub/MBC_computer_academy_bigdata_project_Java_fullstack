@@ -125,8 +125,8 @@ public class JsonService {
 			if(strRead.contains(strId)){
 				FileWriter fileWriter = new FileWriter(file, false);
 				BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-
 				String[] strStarting = strRead.split(strId);
+
 				String strWriting = strStarting[0] + strId + ":";
 				strWriting += "[" + strFoodMenu + "]|";
 				strWriting += strFoodMenuResult;
@@ -134,19 +134,21 @@ public class JsonService {
 
 				if(strRead.contains("},{")) {
 					log.info("[strRead.contains_1]");
+
 					String[] splitedById = strRead.split(strId);
 
 					log.info("[splitedById[1]]: {}", splitedById[1]);
 					String[] splitedByUsers = splitedById[1].split("\\},\\{");
 					log.info("[strRead.contains_2]");
+
 					for(int i = 1 ; i < splitedByUsers.length; i++) {
 						strWriting += "},{" + splitedByUsers[i];
 					}
 					log.info("[strRead.contains_3]");
+
 				}else {
 					strWriting += "}";
 				}
-
 				bufferedWriter.write(strWriting);
 				bufferedWriter.close();
 
@@ -160,6 +162,7 @@ public class JsonService {
 				} else {
 					strWriting = ",{";
 				}
+
 				strWriting += strId + ":";
 				strWriting += "[" + strFoodMenu + "]|";
 				strWriting += strFoodMenuResult + "}";
@@ -171,6 +174,5 @@ public class JsonService {
 		} catch(IOException ex) {
 			log.error("[saveChosenFoodMenuJson][IOException]: {}", ex);
 		}
-
 	}
 }
