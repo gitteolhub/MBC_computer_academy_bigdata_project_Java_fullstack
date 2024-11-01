@@ -83,9 +83,6 @@ public class JsonService {
 	public void saveChosenFoodMenuJson(String strId) {
 		log.info("[JsonService][saveChosenFoodMenuJson]");
 
-		ArrayList<String> updatingStrId = new ArrayList<String>();
-
-		updatingStrId.add(strId);
 		String strFoodMenu = "";
 		String strFoodMenuResult = "";
 
@@ -98,9 +95,11 @@ public class JsonService {
 
 			log.info("[saveChosenFoodMenuJson][chosenFoodMenus.get(i)]: {}", chosenFoodMenus.get(i));
 
-			if(updatingStrId.contains(chosenFoodMenus.get(i).getId())) {
+			if(strId.equals(chosenFoodMenus.get(i).getId())) {
 				strFoodMenu = chosenFoodMenus.get(i).getFoodmenu();
 				strFoodMenuResult = chosenFoodMenus.get(i).getFoodmenuResult();
+
+				log.info("[saveChosenFoodMenuJson][strFoodMenu]: {}", strFoodMenu);
 			}
 		}
 
@@ -113,32 +112,64 @@ public class JsonService {
 			if(file.createNewFile()) {
 				log.info("[chosenFoodMenu_Json 파일이 없어 새로 만들었습니다.]");
 			} else {
-				log.info("[chosenFoodMenu_Json 파일이  있습니다.]");
+				log.info("[chosenFoodMenu_Json 파일이 있습니다.]");
 			}
 
 			String strRead = readFoodMenuJson(chosenFoodMenuFilePath);
 
 			log.info("[JsonService][strRead]: {}", strRead);
 
-			FileWriter fileWriter = new FileWriter(file, true);
-			BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+			if(strRead.contains(strId)){
+				FileWriter fileWriter = new FileWriter(file, false);
+				BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+				String[] strStarting = strRead.split(strId);
 
-			String strWriting = "";
+				String strWriting = strStarting[0] + strId + ":";
+				strWriting += "[" + strFoodMenu + "]|";
+				strWriting += strFoodMenuResult;
+				log.info("[strRead.contains)]: {}", strRead.contains("},{"));
 
-			if(strRead.length() == 0) {
-				strWriting = "{";
+				if(strRead.contains("},{")) {
+					log.info("[strRead.contains_1]");
+
+					String[] splitedById = strRead.split(strId);
+					log.info("[splitedById[1]]: {}", splitedById[1]);
+
+					String[] splitedByUsers = splitedById[1].split("\\},\\{");
+					log.info("[strRead.contains_2]");
+
+					for(int i = 1 ; i < splitedByUsers.length; i++) {
+						strWriting += "},{" + splitedByUsers[i];
+					}
+					log.info("[strRead.contains_3]");
+
+				}else {
+					strWriting += "}";
+				}
+				bufferedWriter.write(strWriting);
+				bufferedWriter.close();
+
 			} else {
-				strWriting = ",{";
-			}
-			strWriting += strId + ":";
-			strWriting += "[" + strFoodMenu + "]|";
-			strWriting += strFoodMenuResult + "}";
+				FileWriter fileWriter = new FileWriter(file, true);
+				BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+				String strWriting = "";
 
-			bufferedWriter.write(strWriting);
-			bufferedWriter.close();
+				if(strRead.length() == 0) {
+					strWriting = "{";
+				} else {
+					strWriting = ",{";
+				}
+
+				strWriting += strId + ":";
+				strWriting += "[" + strFoodMenu + "]|";
+				strWriting += strFoodMenuResult + "}";
+
+				bufferedWriter.write(strWriting);
+				bufferedWriter.close();
+			}
+
 		} catch(IOException ex) {
 			log.error("[saveChosenFoodMenuJson][IOException]: {}", ex);
 		}
-
 	}
 }
