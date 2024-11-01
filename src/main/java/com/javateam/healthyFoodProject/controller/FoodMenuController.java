@@ -151,7 +151,7 @@ public class FoodMenuController {
 	}
 
 	// 식단을 좋아할 경우
-	@GetMapping("/foodMenu/like") // TODO 임의로 정함(나중에 수정)
+	@PostMapping("/foodMenu/like") // TODO 임의로 정함(나중에 수정)
 	@ResponseBody
 	public ResponseEntity<String> likeFoodMenu(@RequestParam("strId") String strId, @RequestParam("foodMenu") String foodMenu, @RequestParam("foodMenuIndex") String foodMenuIndex) {
 
