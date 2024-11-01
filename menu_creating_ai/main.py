@@ -4,6 +4,7 @@ import random as ran
 import threading as th
 from os import remove
 from os.path import exists
+
 import log_ctrl
 
 import pandas as pd
@@ -65,6 +66,7 @@ allMembers_path = 'src/main/resources/JsonDataFiles/AllMembersDump.json'
 
 #과일류 식품 데이터와 그 외에 식품 데이터를 병합한 json 데이터 파일의 경로
 data_path = 'Resources/food_data.json'
+# data_path = 'data preprocessing/data/food_data.json'
 
 #과일류 식품 데이터만 다룬 json 데이터 파일 경로
 fruit_data_path = 'Resources/preprocessed_food_data.json'
@@ -1703,29 +1705,47 @@ else:
         log_ctrl.debug_log('Saving default food menu data and food menu by user data to json file module has started...', True)
 
         while not stop_event.is_set():
+            comm_list = ['help', 'stop', 'show log', 'clear log', 'show data ', 'clear data ']
+            comm_list_explain = ['Show available commands.', 'Stop AI training process and quit this program', 'Show logs from log.txt file.', 'Clear logs from log.txt file.', 'Show data from given file path.', 'Clear data at given file path.']
             comm = input('\nFood Menu Recommending AI >> ')
 
-            if comm.lower() == 'stop':
+            if comm.lower() == comm_list[0]:
+                add_str = '[Command list]'
+                for c in range(len(comm_list)):
+                    if str(comm_list[c])[-1] == ' ':
+                        add_str += '\n' + str(comm_list[c]) + '[File path] : ' + str(comm_list_explain[c])
+                    else:
+                        add_str += '\n' + str(comm_list[c]) + ' : ' + str(comm_list_explain[c])
+
+                log_ctrl.debug_log('\n' + add_str, True)
+
+            if comm.lower() == comm_list[1]:
                 log_ctrl.debug_log('\nShut down AI Training...', True)
                 stop_event.set()
 
-            if comm.lower() == 'show log':
+            if comm.lower() == comm_list[2]:
                 _read_str = log_ctrl.read_log_file()
                 log_ctrl.debug_log(_read_str, True)
 
-            if comm.lower() == 'clear log':
+            if comm.lower() == comm_list[3]:
                 log_ctrl.clear_log_file()
                 log_ctrl.debug_log('Log file has successfully cleared.', True)
 
-            if 'show data ' in comm.lower():
+            if comm_list[4] in comm.lower():
                 show_file_path = comm.lower().replace('show data ', '')
-                _read_str = log_ctrl.read_file_by_path(show_file_path)
-                log_ctrl.debug_log(_read_str, True)
+                if exists(show_file_path):
+                    _read_str = log_ctrl.read_file_by_path(show_file_path)
+                    log_ctrl.debug_log(_read_str, True)
+                else:
+                    log_ctrl.debug_log('File does not exist.', True)
 
-            if 'clear data ' in comm.lower():
+            if comm_list[5] in comm.lower():
                 clear_file_path = comm.lower().replace('clear data ', '')
-                log_ctrl.clear_file_by_path(clear_file_path)
-                log_ctrl.debug_log('File has successfully cleared.', True)
+                if exists(clear_file_path):
+                    log_ctrl.clear_file_by_path(clear_file_path)
+                    log_ctrl.debug_log('File has successfully cleared.', True)
+                else:
+                    log_ctrl.debug_log('File does not exist.', True)
 
         all_ai.join()
         user_ai.join()
