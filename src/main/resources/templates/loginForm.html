@@ -33,59 +33,12 @@
 
         }
 
-    </style>
+</style>
+    
 <!-- 로그인 에러 메시지 -->
 <script th:inline="javascript" th:if="${session.SPRING_SECURITY_LAST_EXCEPTION != null}">
 //captcha 이미지 리프레쉬(갱신) 함수
-
-
-window.onload = function() {
-
-	let submit_btn = document.getElementById("submit_btn");
-	let key = document.getElementById("key");
-
-	submit_btn.onclick = function() {
-
-		let captchaVal = document.getElementById("captchaVal");
-
-		alert(captchaVal.value);
-
-		// const crossOriginIsolated = { withCredentials: true }
-
-		// 입력값 검증 :
-		// https://developers.naver.com/docs/utils/captcha/reference/#%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%9E%85%EB%A0%A5%EA%B0%92-%EA%B2%80%EC%A6%9D-%EC%9A%94%EC%B2%AD
-		// https://developers.naver.com/docs/utils/captcha/examples/
-		axios.get('/healthyFoodProject/checkCaptcha', {
-				 	params: {
-				 		captchaVal : captchaVal.value,
-						key : key.value
-				    }
-				  })
-		  .then(function (response) {
-
-			  console.log('response.data :',response.data);
-			  let json = response.data;
-			  alert(json.result);
-
-		  })
-		  .catch(function (error) {
-		      console.log(error);
-		  });
-
-		refreshImage();
-		captchaVal.value = ""; // 입력 필드 초기화
-
-	} //
-
-
-	let refresh_btn = document.getElementById("refresh_btn");
-	let captcha_img = document.getElementById("captcha_img");
-
-	refresh_btn.onclick = refreshImage; // 그림 리프레쉬(갱신) 함수 호출
-
-	}//
-
-	function refreshImage() {
+function refreshImage() {
 	
 		
 		axios.get('/healthyFoodProject/refreshImage')
@@ -107,16 +60,61 @@ window.onload = function() {
 		  .catch(function (error) {
 		      console.log(error);
 		  });
-	};
-	
+		}
+
+		window.onload = function() {
+		
+			let submit_btn = document.getElementById("submit_btn");
+			let key = document.getElementById("key");
+		
+			submit_btn.onclick = function() {
+		
+				let captchaVal = document.getElementById("captchaVal");
+		
+				alert(captchaVal.value);
+		
+				// const crossOriginIsolated = { withCredentials: true }
+		
+				// 입력값 검증 :
+				// https://developers.naver.com/docs/utils/captcha/reference/#%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%9E%85%EB%A0%A5%EA%B0%92-%EA%B2%80%EC%A6%9D-%EC%9A%94%EC%B2%AD
+				// https://developers.naver.com/docs/utils/captcha/examples/
+				axios.get('/healthyFoodProject/checkCaptcha', {
+						 	params: {
+						 		captchaVal : captchaVal.value,
+								key : key.value
+						    }
+						  })
+				  .then(function (response) {
+		
+					  console.log('response.data :',response.data);
+					  let json = response.data;
+					  alert(json.result);
+		
+				  })
+				  .catch(function (error) {
+				      console.log(error);
+				  });
+		
+				refreshImage();
+				captchaVal.value = ""; // 입력 필드 초기화
+		
+			} //
+		
+		
+			let refresh_btn = document.getElementById("refresh_btn");
+			let captcha_img = document.getElementById("captcha_img");
+		
+			refresh_btn.onclick = refreshImage; // 그림 리프레쉬(갱신) 함수 호출
+		
+		};//
 				// 로그인 3회 실패 시 캡차 필드 노출
-	 /* window.onload = function() {
+	 	window.onload = function() {
 	        if ([[${session.loginErrorCount}]] >= 3) {
 	            document.getElementById("captcha-field").style.display = "block";
 	        } else {
 	            document.getElementById("captcha-field").style.display = "none";
 	        }
-	    }; */
+	    };
 </script>
 </head>
 
@@ -164,14 +162,13 @@ window.onload = function() {
 					<tr>
 						<td colspan="2">
 
-
-
-									    <!-- 추후 hdden으로 변환할 것 -->
+				<!-- 캡차 시작 -->
 		 		<div id = "captcha-field" style="display:none;">
 				<div class="m-3" style="width:30vw">
-
+					
 					<div class="d-flex">
 						<div>
+							<!-- 캡차 이미지 노출 -->
 							<img id="captcha_img" th:src="@{'/captcha/image/' + ${captchaImage}}">
 						</div>
 
@@ -183,6 +180,7 @@ window.onload = function() {
 
 					<div class="d-flex row mt-2">
 						<div class="col-8 pe-0">
+							<!-- 캡차 텍스트 입력란 -->
 							<input class="form-control" type="text" id="captchaVal" name="captchaVal" />
 						</div>
 						<!-- 캡차 전송 버튼 -->
