@@ -25,5 +25,9 @@ class JsonServiceTest {
 	void testSaveMemberDataJson() {
 		jsonService.saveMemberDataJson();
 	}
-
+	
+	@Test
+	void testSaveChosenFoodMenuJson() {
+		jsonService.saveChosenFoodMenuJson("abcd2222");
+	}
 }

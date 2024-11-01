@@ -148,9 +148,9 @@ public class FoodMenuController {
 	}
 
 	// 식단을 좋아할 경우
-	@PostMapping("/foodMenu/like") // TODO 임의로 정함(나중에 수정)
+	@GetMapping("/foodMenu/like") // TODO 임의로 정함(나중에 수정)
 	@ResponseBody
-	public ResponseEntity<String> likeFoodMenu(@RequestParam String strId, @RequestParam String foodMenu, @RequestParam String foodMenuIndex) {
+	public ResponseEntity<String> likeFoodMenu(@RequestParam("strId") String strId, @RequestParam("foodMenu") String foodMenu, @RequestParam("foodMenuIndex") String foodMenuIndex) {
 
 		log.info("[FoodMenuController][likeFoodMenu]");
 		String msg = "";
@@ -161,6 +161,8 @@ public class FoodMenuController {
 		msg = success ? "회원이 좋아하는 식단입니다." : "에러(좋아하는 식단)";
 
 		int foodMenuIndexInt = Integer.valueOf(foodMenuIndex);
+		log.info("[foodMenuIndexInt]: {}", foodMenuIndexInt);
+
 		if(foodMenuIndexInt == 0) {
 			JsonService jsonService = new JsonService();
 			jsonService.saveChosenFoodMenuJson(strId);
@@ -176,6 +178,8 @@ public class FoodMenuController {
 				memberService.updateFoodMenuByUser(strId);
 			}
 		}
+
+		log.info("[FoodMenuController][msg]: {}", msg);
 
 		// 결과를 보여줄 뷰 이름
 		//		return "/foodMenu/result"; // TODO 임의로 정함(나중에 수정)

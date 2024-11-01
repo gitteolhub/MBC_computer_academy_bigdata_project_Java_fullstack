@@ -404,7 +404,7 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public List<MemberJsonVO> selectAllMembersJson() {
 		List<MemberJsonVO> members = new ArrayList<>();
-
+		
 		// 자체 회원정보 (비밀번호 제외)
 		members.addAll(this.selectAllMembers().stream().map(x -> MemberJsonVO.toEntity(x)).toList());
 
