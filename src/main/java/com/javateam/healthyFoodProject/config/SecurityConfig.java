@@ -72,11 +72,11 @@ public class SecurityConfig {
 											   authorizeHttpRequests.requestMatchers("/",              "/resources/**",    "/loginError",       "/join",                "/joinDemo",
 													   								 "/joinAjaxDemo",  "/member/joinProc", "/member/joinProc2", "/member/joinProcDemo", "/member/joinProcAjax",
 													   								 "/login/idCheck", "/loginForm",       "/member/hasFld/**", "/home",                "/captcha",
-													   								 "/checkCaptcha", "/foodMenu/like") 	
+													   								 "/checkCaptcha")
 											   						.permitAll()
 											   						.requestMatchers("/admin/**").hasAnyAuthority("ROLE_ADMIN")				// ROLE_ADMIN 권한이 필요한 경로
 											   						.requestMatchers("/secured/**",        "/myPage",   "/member/view",   "/member/hasFldForUpdate/**", "/member/update",
-											   										 "/member/updateProc", "/foodMenu",  "/foodMenu/dislike",          "/foodMenu/refresh",
+											   										 "/member/updateProc", "/foodMenu",  "/foodMenu/dislike",   "/foodMenu/like",        "/foodMenu/refresh",
 											   										 "/foodMenu/view",     "/foodMenu/viewJson")
 											   						.hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")	// ROLE_USER, ROLE_ADMIN 권한이 필요한 경로
 											   						.anyRequest().authenticated());
