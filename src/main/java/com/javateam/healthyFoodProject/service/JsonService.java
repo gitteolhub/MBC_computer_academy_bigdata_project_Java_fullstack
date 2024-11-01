@@ -36,6 +36,7 @@ public class JsonService {
 
 	public void saveMemberDataJson() {
 		List<MemberJsonVO> allUserData = memberService.selectAllMembersJson();
+		log.info("[JsonService][allUserData]: {}", allUserData);
 
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
