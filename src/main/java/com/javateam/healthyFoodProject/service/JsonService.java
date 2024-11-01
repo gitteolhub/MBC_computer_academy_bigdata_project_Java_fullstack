@@ -30,13 +30,13 @@ public class JsonService {
 
 	@Autowired
 	public MemberService memberService;
-	
+
 	@Autowired
 	ChosenFoodMenuDAO chosenFoodMenuDAO;
 
 	// private final MemberService memberService;
 	// private final ChosenFoodMenuDAO chosenFoodMenuDAO;
-	
+
  	public void saveMemberDataJson() {
 		log.info("[JsonService][saveMemberDataJson]");
 
@@ -83,18 +83,19 @@ public class JsonService {
 
 	// 선택된 식단 전체 json 파일로 저장
 	public void saveChosenFoodMenuJson(String strId) {
-		log.info("[saveChosenFoodMenuJson]");
-		
+		log.info("[JsonService][saveChosenFoodMenuJson]");
+
 		ArrayList<String> updatingStrId = new ArrayList<String>();
-		
+
 		updatingStrId.add(strId);
 		String strFoodMenu = "";
 		String strFoodMenuResult = "";
-		log.info("chosenFoodMenuDAO 객체:"+chosenFoodMenuDAO);
-		
-		List<ChosenFoodMenuVO> chosenFoodMenus = chosenFoodMenuDAO.selectAllFoodMenu(); //
-		log.info("chosenFoodMenus 크기:"+chosenFoodMenus.size());
-		
+
+		log.info("[saveChosenFoodMenuJson][chosenFoodMenuDAO 객체]: {}", chosenFoodMenuDAO);
+		List<ChosenFoodMenuVO> chosenFoodMenus = chosenFoodMenuDAO.selectAllFoodMenu();
+
+		log.info("[saveChosenFoodMenuJson][chosenFoodMenus.size()]: {}", chosenFoodMenus.size());
+
 		for (int i=0; i < chosenFoodMenus.size(); i++) {
 			if(!updatingStrId.contains(chosenFoodMenus.get(i).getId())) {
 				strFoodMenu = chosenFoodMenus.get(i).getFoodmenu();
