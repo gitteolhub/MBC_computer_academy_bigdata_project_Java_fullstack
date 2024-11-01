@@ -95,6 +95,10 @@ dependencies {
 	// JSON
 	implementation 'org.json:json:20210307'
 
+	// spring doc : rest tester
+	// https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-ui
+	implementation 'org.springdoc:springdoc-openapi-ui:2.6.0'
+		
 }
 
 tasks.named('test') {
