@@ -68,13 +68,6 @@
 		 WHERE USERID = #{userid}
 	</delete>
 
-	<!-- 회원 Role 업데이트 -->
-	<update id="updateRole" parameterType="map">
-	    UPDATE USER_ROLES
-  		   SET ROLE = #{role}
-  		WHERE USERID = #{userid}
-	</update>
-
 	<!-- 회원정보 삭제 -->
 	<delete id = "deleteMemberById" parameterType = "String">
 		DELETE FROM USER_TBL

@@ -27,9 +27,6 @@ public interface MemberDAO {
 	// 회원 Role 삭제
 	boolean deleteRoles(String strId);
 
-	// 회원 Role 업데이트
-	boolean updateRole(String strId, String strRole);
-
 	// 회원 정보 삭제
 	boolean deleteMemberById(String strId);
 

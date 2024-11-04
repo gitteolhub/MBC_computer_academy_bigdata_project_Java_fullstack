@@ -37,8 +37,6 @@ public interface MemberService {
 	// 회원 role 삭제
 	boolean deleteRoleById(String strId, String strRole);
 
-	// 회원 role 업데이트
-	boolean updateRole(String strId, String strRole);
 
 	// 회원 enabled 상태 변경
 	boolean changeEnabled(String strId, int intEnabled);
