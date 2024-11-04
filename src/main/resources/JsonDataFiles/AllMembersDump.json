@@ -22,6 +22,17 @@
     "enabled": 1
   },
   {
+    "name": "테스트",
+    "email": "abcd7777@abcd.com",
+    "gender": "여자",
+    "num": "155",
+    "id": "abcd7777",
+    "phone": "010-7777-7777",
+    "birthday": "11월 1, 2024",
+    "joindate": "11월 4, 2024",
+    "enabled": 1
+  },
+  {
     "name": "회원",
     "email": "AAAA1234@abcd.com",
     "gender": "남자",
