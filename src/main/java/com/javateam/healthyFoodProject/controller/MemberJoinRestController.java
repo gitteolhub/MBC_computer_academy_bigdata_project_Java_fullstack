@@ -35,7 +35,7 @@ public class MemberJoinRestController {
 			movePath = "/loginForm";
 		} else {
 			msg  = "회원가입에 실패하였습니다.";
-			movePath = "/loginForm";
+			movePath = "/join";
 		}
 
 		model.addAttribute("msg", msg);
