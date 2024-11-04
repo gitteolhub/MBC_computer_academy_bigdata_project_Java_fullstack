@@ -48,10 +48,9 @@ public class SecurityConfig {
 
 		// 요청 권한 설정
 		objHttpSecurity.authorizeHttpRequests((authorizeHttpRequests) ->
-											   authorizeHttpRequests.requestMatchers("/",               "/resources/**",    "/loginError",       "/join",                "/joinDemo",
-													   								 "/member/joinProc", "/member/joinProc2", "/member/joinProcDemo", "/member/joinProcAjax",
-													   								 "/login/idCheck", "/loginForm",       "/member/hasFld/**", "/home",                "/captcha",
-													   								 "/checkCaptcha")
+											   authorizeHttpRequests.requestMatchers("/",                 "/resources/**",        "/loginError",          "/join",          "/member/joinProc",
+													   								 "/member/joinProc2", "/member/joinProcDemo", "/member/joinProcAjax", "/login/idCheck", "/loginForm",
+													   								 "/member/hasFld/**", "/home",                "/captcha",             "/checkCaptcha")
 											   						.permitAll()
 											   						.requestMatchers("/admin/**").hasAnyAuthority("ROLE_ADMIN")				// ROLE_ADMIN 권한이 필요한 경로
 											   						.requestMatchers("/secured/**",        "/myPage",   "/member/view",   "/member/hasFldForUpdate/**", "/member/update",
