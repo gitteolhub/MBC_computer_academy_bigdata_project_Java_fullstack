@@ -250,23 +250,6 @@ public class MemberServiceImpl implements MemberService {
 		return blRetVal;
 	}
 
-	// 회원 role 업데이트
-	@Override
-	public boolean updateRole(String strId, String strRole) {
-	    boolean blRetVal = false;
-	    try {
-	    	// 역할 업데이트를 DAO에 요청
-	        blRetVal = memberDAO.updateRole(strId, strRole);
-	        if(!blRetVal) {
-	        	log.info("회원 role 업데이트 실패: ID = {}, Role = {}", strId, strRole);
-	        }
-	    } catch (Exception ex) {
-	        log.error("[MemberService][updateRole] Exception: {}", ex);
-	        ex.printStackTrace();
-	    }
-	    return blRetVal;
-	}
-
 	// 회원 role 수정(관리자 권한)
 	@Override
 	public boolean updateRoles(String strId, boolean blRoleUserYn, boolean blRoleAdminYn) {
@@ -279,11 +262,11 @@ public class MemberServiceImpl implements MemberService {
 								   && roles.contains("ROLE_ADMIN") == false) {
 				log.info("관리자 권한 할당");
 
-				String role = "ROLE_ADMIN";
-//				role.setUserid(strId);
-//				role.setRole("ROLE_ADMIN");
+				Role role = new Role();
+				role.setUserid(strId);
+				role.setRole("ROLE_ADMIN");
 
-				blRetVal = this.updateRole(strId, role);
+				blRetVal = this.insertRole(role);
 		}
 		// 회원(ROLE_USER)이면서 관리자 권한을 회수할 경우(관리자 권한 삭제)
 		else if (blRoleAdminYn == false && roles.contains("ROLE_USER") == false
