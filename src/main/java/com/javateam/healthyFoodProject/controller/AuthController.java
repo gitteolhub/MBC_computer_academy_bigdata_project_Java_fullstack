@@ -138,8 +138,6 @@ public class AuthController {
 		return "join";
 	}
 
-
-
 	// 로그인 폼
 	@GetMapping("/loginForm")
 	public String login( HttpServletRequest request, Model model, HttpSession httpSession) {	//RedirectAttributes redirectAttributes
