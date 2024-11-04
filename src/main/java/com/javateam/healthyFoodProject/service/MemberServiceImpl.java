@@ -290,7 +290,7 @@ public class MemberServiceImpl implements MemberService {
 			log.info("관리자 권한 회수");
 
 			String role = "ROLE_ADMIN";
-			blRetVal = this.updateRole(strId, role);
+			blRetVal = this.deleteRoleById(strId, role);
 		}
 		return blRetVal;
 	}
