@@ -157,14 +157,15 @@ body {
                         <td th:utext="${#dates.format(member.get('JOINDATE'), 'yyyy년 MM월 dd일 HH:mm:ss')}"></td>
                         <td>
                             <div class="form-check">
-                                <input type="checkbox" class="form-check-input"
+                                <input type="radio" class="form-check-input"
                               			th:id="${'role1_' + member.get('ID')}"
-                              			name="role" value="ROLE_USER"
+                              			th:name="${'role1_' + member.get('ID')}" value="ROLE_USER"
 										th:checked="${#strings.contains(member.get('ROLE'),'ROLE_USER')}" >
                                 <label class="form-check-label">회원</label>
-                                <input type="checkbox" class="form-check-input"
+                                
+                                <input type="radio" class="form-check-input"
                               			th:id="${'role2_' + member.get('ID')}"
-                              			name="role" value="ROLE_ADMIN"
+                              			th:name="${'role1_' + member.get('ID')}" value="ROLE_ADMIN"
 										th:checked="${#strings.contains(member.get('ROLE'),'ROLE_ADMIN')}" >
                                 <label class="form-check-label">관리자</label>
                             </div>
