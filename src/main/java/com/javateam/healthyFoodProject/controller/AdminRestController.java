@@ -27,7 +27,7 @@ public class AdminRestController {
 	public MemberService memberService;
 
 	// 회원 role 수정
-	@GetMapping("/updateRoles/{id}/roleUser/(roleUserYn)/roleAdmin/{roleAdminYn}")
+	@GetMapping("/updateRoles/{id}/roleUser/{roleUserYn}/roleAdmin/{roleAdminYn}")
 	public ResponseEntity<Boolean> updateRoles(@Parameter(name = "id", required = true)          @PathVariable("id") String strId,
 											   @Parameter(name = "roleUserYn",  required = true) @PathVariable("roleUserYn")  boolean blRoleUserYn,
 											   @Parameter(name = "roleAdminYn", required = true) @PathVariable("roleAdminYn") boolean blRoleAdminYn) {
