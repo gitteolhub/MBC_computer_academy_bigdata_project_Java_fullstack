@@ -250,6 +250,22 @@ public class MemberServiceImpl implements MemberService {
 		return blRetVal;
 	}
 
+	@Override
+	public boolean updateRole(String strId, String strRole) {
+		boolean blRetVal = false;
+	    try {
+	    	// 역할 업데이트를 DAO에 요청
+	        blRetVal = memberDAO.updateRole(strId, strRole);
+	        if(!blRetVal) {
+	        	log.info("회원 role 업데이트 실패: ID = {}, Role = {}", strId, strRole);
+	        }
+	    } catch (Exception ex) {
+	        log.error("[MemberService][updateRole] Exception: {}", ex);
+	        ex.printStackTrace();
+	    }
+	    return blRetVal;
+	}
+
 	// 회원 role 수정(관리자 권한)
 	@Override
 	public boolean updateRoles(String strId, boolean blRoleUserYn, boolean blRoleAdminYn) {
@@ -529,6 +545,8 @@ public class MemberServiceImpl implements MemberService {
 
 		return blRetVal;
 	}
+
+
 
 
 }
