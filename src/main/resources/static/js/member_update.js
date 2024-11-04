@@ -89,10 +89,10 @@ window.onload = function(e) {
 
     // 패쓰워드 필드 인식
 	// 회원 정보 수정 패쓰워드 필드
-    let pw1Fld = document.getElementById("password1");
+    let pw1Fld = document.getElementById("passwordUpdate");
 
 	// 회원 정보 수정 패쓰워드(확인) 필드
-	let pw2Fld = document.getElementById("password2");
+	let pw2Fld = document.getElementById("passwordVerify");
 	
     // 패쓰워드 에러 패널 인식
     let pwFldErrPnl = document.getElementById("password_fld_err_pnl");
