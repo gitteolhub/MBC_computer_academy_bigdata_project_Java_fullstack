@@ -138,25 +138,7 @@ public class AuthController {
 		return "join";
 	}
 
-//	// 회원가입 폼(Demo)
-//	@GetMapping("/joinDemo")
-//	public String joinDemo(Model model) {
-//
-//		log.info("회원가입 폼(Demo)");
-//		model.addAttribute("memberDTO", new MemberDTO());
-//
-//		return "joinDemo";
-//	}
 
-//	// 회원가입 폼(Ajax)
-//		@GetMapping("/joinAjax")
-//		public String joinAjax(Model model) {
-//
-//			log.info("회원가입 폼(Ajax)");
-//			model.addAttribute("memberDTO", new MemberDTO());
-//
-//			return "joinAjax";
-//		}
 
 	// 로그인 폼
 	@GetMapping("/loginForm")
@@ -182,11 +164,6 @@ public class AuthController {
 		String movePath="";
 
 		if(auth.getPrincipal() == null || auth.getPrincipal().toString().equals("anonymousUser")) {
-//			loginErrorCount += 1;
-//			log.info("[loginErrorCount_2]: {}", loginErrorCount);
-//
-//			// 세션 변수에 반영
-//			httpSession.setAttribute("loginErrorCount", loginErrorCount);
 
 			log.info("로그인 인증 안됨");
 			model.addAttribute("error", error);
@@ -294,4 +271,3 @@ public class AuthController {
 	}
 }
 
-// 깃 테스트
