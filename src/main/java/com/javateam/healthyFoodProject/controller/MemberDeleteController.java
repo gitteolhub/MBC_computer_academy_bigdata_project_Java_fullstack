@@ -44,22 +44,6 @@ public class MemberDeleteController {
 			return "redirect:/member/delete";	// TODO 임의로 정함(나중에 수정)
 		}
 
-//		try {
-//			boolean blRetVal = memberService.deleteMember(id);
-//			log.info("회원 탈퇴 성공 여부: {}", blRetVal);
-//
-//
-//
-//			if(blRetVal == true) {
-//				redirectAttributes.addFlashAttribute("msg", "회원 탈퇴가 완료 되었습니다.");
-//			} else {
-//				redirectAttributes.addFlashAttribute("msg", "회원 탈퇴가 실패했습니다.");
-//			}
-//
-//		} catch(Exception ex) {
-//			log.error("[MemberDeleteController][deleteMember] Exception: {}", ex);
-//		}
-
 		try {
 			boolean blRetVal = memberService.deleteMember(id);
 			log.info("회원 탈퇴 성공 여부: {}", blRetVal);
