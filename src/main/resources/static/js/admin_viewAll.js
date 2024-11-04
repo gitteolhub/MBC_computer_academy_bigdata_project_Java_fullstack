@@ -318,7 +318,7 @@ window.onload = function() {
 
 						 })
 						 .catch(function(err) {
-							 
+
 							console.error("회원 정보 수정 중 서버 에러가 발견되었습니다.");
 							alert("회원 정보 수정 처리에 실패하였습니다.");
 						 });
@@ -390,7 +390,7 @@ window.onload = function() {
 	searchKey.onchange = function() {
 
 		switch (searchKey.value) {
- 
+
   		case "id"       : guideText = "8~20자로 영문/숫자로 작성합니다"      ; break;
 		case "name"     : guideText = "한글로 입력합니다"                  ; break;
 		case "gender"   : guideText = "'남' 혹은 '여'로 입력합니다"         ; break;
@@ -412,5 +412,5 @@ window.onload = function() {
 		} //
 
 	}
-	
+
 } // onload
