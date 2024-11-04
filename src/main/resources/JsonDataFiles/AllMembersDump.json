@@ -1,0 +1,24 @@
+[
+  {
+    "name": "일일일",
+    "email": "abcd1111@abcd.com",
+    "gender": "남자",
+    "num": "34",
+    "id": "abcd1111",
+    "phone": "010-1111-1111",
+    "birthday": "11월 11, 2000",
+    "joindate": "11월 1, 2024",
+    "enabled": 1
+  },
+  {
+    "name": "이이이",
+    "email": "abcd2222@abcd.com",
+    "gender": "여자",
+    "num": "35",
+    "id": "abcd2222",
+    "phone": "010-2222-2222",
+    "birthday": "2월 2, 2000",
+    "joindate": "11월 1, 2024",
+    "enabled": 1
+  }
+]
