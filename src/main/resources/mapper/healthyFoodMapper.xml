@@ -74,13 +74,6 @@
 		 WHERE ID = #{id}
 	</delete>
 
-	<!-- 회원 Role 조회 -->
-	<select id = "selectRolesById" parameterType="String" resultType = "String">
-		SELECT ROLE
-		  FROM USER_ROLES
-		 WHERE USERID = #{id}
-	</select>
-
 	<!-- 회원 Role 삭제 -->
 	<delete id="deleteRoleById" parameterType="map">
 		DELETE FROM USER_ROLES
