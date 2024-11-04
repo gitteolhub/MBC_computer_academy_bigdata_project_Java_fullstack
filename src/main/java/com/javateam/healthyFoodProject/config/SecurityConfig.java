@@ -34,13 +34,6 @@ public class SecurityConfig {
 //	private final UserDetailsService userDetailsService;
 	private final DataSource dataSource;
 
-//	// 생성자 주입을 통해 UserDetailsService와 DataSource를 초기화
-//	public SecurityConfig(UserDetailsService objUserDetailsService, DataSource objDataSource) {
-//		log.info("생성자 주입 wiring");
-//		this.dataSource         = objDataSource;
-//		this.userDetailsService = objUserDetailsService;
-//	}
-
 	// 비밀번호를 안전하게 암호화하기 위해 BCryptPasswordEncoder 빈 생성
 	@Bean
 	public BCryptPasswordEncoder bCryptPasswordEncoder() {
@@ -50,29 +43,14 @@ public class SecurityConfig {
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity objHttpSecurity) throws Exception {
 
-		// 사용자 세부 정보를 제공하는 서비스 설정
-//		objHttpSecurity.userDetailsService(userDetailsService);
-
-		// custom 인증 제공자 설정
-//		objHttpSecurity.authenticationProvider(customProviderService);
-
-		// HTTP 헤더 설정 (10.11)
-//		objHttpSecurity.headers(headers -> headers
-//					   		.frameOptions(frameOptions -> frameOptions
-//					   				.sameOrigin()
-//					   		)
-//						);
-
-
 		objHttpSecurity.headers(headersCustomizer -> headersCustomizer
 					   .frameOptions(Customizer.withDefaults()).disable());
 
 		// 요청 권한 설정
 		objHttpSecurity.authorizeHttpRequests((authorizeHttpRequests) ->
-											   authorizeHttpRequests.requestMatchers("/",              "/resources/**",    "/loginError",       "/join",                "/joinDemo",
-													   								 "/joinAjaxDemo",  "/member/joinProc", "/member/joinProc2", "/member/joinProcDemo", "/member/joinProcAjax",
-													   								 "/login/idCheck", "/loginForm",       "/member/hasFld/**", "/home",                "/captcha",
-													   								 "/checkCaptcha")
+											   authorizeHttpRequests.requestMatchers("/",                 "/resources/**",        "/loginError",          "/join",          "/member/joinProc",
+													   								 "/member/joinProc2", "/member/joinProcDemo", "/member/joinProcAjax", "/login/idCheck", "/loginForm",
+													   								 "/member/hasFld/**", "/home",                "/captcha",             "/checkCaptcha")
 											   						.permitAll()
 											   						.requestMatchers("/admin/**").hasAnyAuthority("ROLE_ADMIN")				// ROLE_ADMIN 권한이 필요한 경로
 											   						.requestMatchers("/secured/**",        "/myPage",   "/member/view",      "/member/hasFldForUpdate/**", "/member/update",
@@ -109,11 +87,6 @@ public class SecurityConfig {
 		// 예외처리 이용 주소
 		objHttpSecurity.exceptionHandling(handler -> handler.accessDeniedPage("/403"));
 
-		// Remember-Me 설정
-//		objHttpSecurity.rememberMe((remember) -> remember.key("javateam")							// Remember-Me 키
-//														 .userDetailsService(userDetailsService)	// 사용자 세부 정보 서비스 설정
-//														 .tokenRepository(getJDBCRepository())		// 토큰 저장소 설정
-//														 .tokenValiditySeconds(60 * 60 * 24));		// 토큰 유효 기간 설정 (24시간)
 
 		return objHttpSecurity.build();
 	}
@@ -127,16 +100,6 @@ public class SecurityConfig {
 		return repo;
 	}
 
-	// token 기반 remember-me 서비스
-//	@Bean
-//	RememberMeServices rememberMeServices(UserDetailsService userDetailsService) {
-//
-//		RememberMeTokenAlgorithm encodingAlgorithm = RememberMeTokenAlgorithm.SHA256; // SHA256알고리즘 사용
-//		TokenBasedRememberMeServices rememberMe = new TokenBasedRememberMeServices("javateam", userDetailsService, encodingAlgorithm);
-//		rememberMe.setMatchingAlgorithm(RememberMeTokenAlgorithm.MD5);	//매칭 알고리즘 사용
-//
-//		return rememberMe;
-//	}
 
 	// security URL 열외(제외)
 	@Bean

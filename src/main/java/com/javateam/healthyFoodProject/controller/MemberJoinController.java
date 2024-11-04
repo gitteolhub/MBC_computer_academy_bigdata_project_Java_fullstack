@@ -39,7 +39,7 @@ public class MemberJoinController {
 			movePath = "/login";
 		} else {
 			msg  = "회원가입에 실패하였습니다.";
-			movePath = "/joinDemo";
+			movePath = "/loginForm";
 		}
 
 		model.addAttribute("msg",  msg);
