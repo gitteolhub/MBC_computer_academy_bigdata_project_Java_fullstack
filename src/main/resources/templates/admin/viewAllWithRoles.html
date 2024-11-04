@@ -65,8 +65,8 @@ body {
 <body>
     <div layout:fragment="content" class="main_sect_pnl">
         <div class="content_sect_pnl">
-        <
-        !-- (검색할) 회원 정보가 없을 경우 -->
+        
+        <!-- (검색할) 회원 정보가 없을 경우 -->
 			<div th:if="${#lists.isEmpty(members)}">
 
 				<script>
@@ -87,17 +87,11 @@ body {
 				<table class="table table-sm table-striped">
 					<tr>
 					    <th style="width:150px;">총 인원 수</th><td th:text="${pageVO.listCount}"></td>
-						<th style="width:150px;">이전 페이지</th><td th:text="${pageVO.prePage}"></td>
-						<th style="width:150px;">현재 페이지</th><td th:text="${pageVO.currPage}"></td>
+						<th style="width:150px;">이전 페이지</th><td th:text="${pageVO.previousPage}"></td>
+						<th style="width:150px;">현재 페이지</th><td th:text="${pageVO.currentPage}"></td>
 						<th style="width:150px;">이후 페이지</th><td th:text="${pageVO.nextPage}"></td>
 						<th style="width:150px;">처음 페이지</th><td th:text="${pageVO.startPage}"></td>
 						<th style="width:150px;">마지막 페이지</th><td th:text="${pageVO.endPage}"></td>
-					</tr>
-					<tr th:each="member, st : ${members}">
-						<th colspan="1">회원 정보</th>
-						<td colspan="11">
-							<span th:text="${member}"></span><br>
-						</td>
 					</tr>
 				</table>
 			</div>
@@ -145,7 +139,8 @@ body {
                         <th>생일</th>
                         <th>가입일</th>
                         <th>등급(role)</th>
-                        <th>액션</th>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -162,15 +157,26 @@ body {
                         <td th:utext="${#dates.format(member.get('JOINDATE'), 'yyyy년 MM월 dd일 HH:mm:ss')}"></td>
                         <td>
                             <div class="form-check">
-                                <input type="checkbox" class="form-check-input" th:checked="${#strings.contains(member.get('ROLE'),'ROLE_USER')}" disabled>
+                                <input type="checkbox" class="form-check-input"
+                              			th:id="${'role1_' + member.get('ID')}"
+                              			name="role" value="ROLE_USER"
+										th:checked="${#strings.contains(member.get('ROLE'),'ROLE_USER')}" >
                                 <label class="form-check-label">회원</label>
-                                <input type="checkbox" class="form-check-input" th:checked="${#strings.contains(member.get('ROLE'),'ROLE_ADMIN')}" disabled>
+                                <input type="checkbox" class="form-check-input"
+                              			th:id="${'role2_' + member.get('ID')}"
+                              			name="role" value="ROLE_ADMIN"
+										th:checked="${#strings.contains(member.get('ROLE'),'ROLE_ADMIN')}" >
                                 <label class="form-check-label">관리자</label>
                             </div>
                         </td>
                         <td>
-                            <button class="btn btn-sm btn-primary">수정</button>
-                            <button class="btn btn-sm btn-danger">삭제</button>
+                            <button type="button" th:id="${'role_update_btn_' + member.get('ID')}" 
+                            		class="btn btn-sm btn-primary">수정</button>
+                        </td>
+                        
+                        <td>
+                        <button class="btn btn-sm btn-danger" 
+                            		th:id="${'delete_btn' + member.get('ID')}">삭제</button>
                         </td>
                     </tr>
                     <tr th:if="${#lists.isEmpty(members)}">
@@ -182,20 +188,35 @@ body {
             <div class="d-flex justify-content-center mt-4">
                 <nav aria-label="Page navigation">
                     <ul class="pagination">
+                    
+                    	<!-- 첫 페이지 -->
                         <li class="page-item">
-                            <a class="page-link" th:href="@{/admin/viewAllWithRoles?currentPage=1}" aria-label="Start"></a>
+                            <a class="page-link"
+				      	 th:href="@{'/admin/seacrhAllWithRoles?currPage=1&searchKey='+${searchKey}+'&searchWord='+${searchWord}}" aria-label="Start">
+				        <span aria-hidden="true">&Lt;</span>
                         </li>
+                        
+                        <!-- 이전 페이지 -->
                         <li class="page-item">
-                            <a class="page-link" th:href="@{'/admin/viewAllWithRoles?currentPage=' + pageVO.previousPage}" aria-label="Previous"></a>
+                            <a class="page-link" th:href="@{'/admin/viewAllWithRoles?currentPage=' + pageVO.previousPage}" aria-label="Previous">
+                            <span aria-hidden="true">&lt;</span>
                         </li>
+                        
+                        <!-- 현재 페이지 -->
                         <li class="page-item active">
-                            <a class="page-link" th:href="@{'/admin/viewAllWithRoles?currentPage=' + pageVO.currentPage}">[[${pageVO.currentPage}]]</a>
+                            <a class="page-link" th:href="@{'/admin/viewAllWithRoles?currentPage=' + pageVO.currentPage}" th:utext="${pageVO.currentPage}"></a>
                         </li>
+                        
+                        <!-- 다음 페이지 -->
                         <li class="page-item">
-                            <a class="page-link" th:href="@{'/admin/viewAllWithRoles?currentPage=' + pageVO.nextPage}" aria-label="Next">></a>
+                            <a class="page-link" th:href="@{'/admin/viewAllWithRoles?currentPage=' + pageVO.nextPage}" aria-label="Next">
+                            <span aria-hidden="true">&gt;</span></a>
                         </li>
+                        
+                        <!-- 마지막 페이지 -->
                         <li class="page-item">
-                            <a class="page-link" th:href="@{'/admin/viewAllWithRoles?currentPage=' + pageVO.endPage}" aria-label="End">>></a>
+                            <a class="page-link" th:href="@{'/admin/viewAllWithRoles?currentPage=' + pageVO.endPage}" aria-label="End">
+                            <span aria-hidden="true">&gt;</span></a>
                         </li>
                     </ul>
                 </nav>
