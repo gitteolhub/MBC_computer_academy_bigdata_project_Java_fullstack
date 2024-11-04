@@ -259,7 +259,7 @@ window.onload = function(e) {
             3) 메시징 : 회원 이메일을 제시된 예와 같이 작성해주세요.
         */
         emailCheckFlag = isCheckFldValid(emailFld,
-                        /^[a-zA-Z0-9_+.-]+@([a-zA-Z0-9-]+\.)+[a-zA-Z0-9]{2,4}$/,
+                        /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
                         emailFld.value,
                         emailFldErrPnl,
                         "회원 이메일을 제시된 예와 같이 작성해주세요.");
