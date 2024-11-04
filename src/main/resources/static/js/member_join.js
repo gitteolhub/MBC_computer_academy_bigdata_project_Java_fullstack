@@ -2,6 +2,7 @@
  * 비밀번호 확인 기능
  */
 
+// 비밀번호가 일치하지 않을 시 폼 제출이 되지 않음
  document.getElementById('frm').addEventListener('submit', function(event) {
     const pw = document.getElementById('pw').value;
     const pwConfirm = document.getElementById('pw_confirm').value;
@@ -12,20 +13,4 @@
     }
 });
 
-document.getElementById('pw').addEventListener('input', checkPasswordMatch);
-document.getElementById('pw_confirm').addEventListener('input', checkPasswordMatch);
-
-function checkPasswordMatch() {
-    const pw = document.getElementById('pw').value;
-    const pwConfirm = document.getElementById('pw_confirm').value;
-    const pwConfirmField = document.getElementById('pw_confirm_fld_pnl');
-    const errorField = document.getElementById('pw_confirm_fld_err_pnl');
-
-    if (pw === pwConfirm) {
-        pwConfirmField.classList.remove('has-error');
-        errorField.textContent = '';
-    } else {
-        pwConfirmField.classList.add('has-error');
-        errorField.textContent = '비밀번호가 일치하지 않습니다';
-    }
-}
+//TODO 비밀번호 확인이 일치하지 않을 경우 에러 메시지 출력(다른 에러메시지와 같은 양식 사용)
