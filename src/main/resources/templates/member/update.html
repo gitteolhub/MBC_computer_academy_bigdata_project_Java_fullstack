@@ -32,7 +32,7 @@
         <!-- 비밀번호 (신규) -->
         <div class="mb-3">
             <label for="passwordUpdate" class="form-label">비밀번호(신규)</label>
-            <input type="password" id="passwordUpdate" name="passwordUpdate" th:field="*{passwordUpdate}" class="form-control" required />
+            <input type="password" id="passwordUpdate" name="passwordUpdate" th:field="*{passwordUpdate}" class="form-control" />
             <div class="invalid-feedback">
                 비밀번호를 입력하세요.
             </div>
@@ -41,13 +41,12 @@
         <!-- 비밀번호(확인) -->
         <div class="mb-3">
             <label for="passwordVerify" class="form-label">비밀번호(확인)</label>
-            <input type="password" id="passwordVerify" name="passwordVerify" th:field="*{passwordVerify}" class="form-control" required />
+            <input type="password" id="passwordVerify" name="passwordVerify" th:field="*{passwordVerify}" class="form-control" />
             <div class="invalid-feedback">
             </div>
         </div>
 		<!-- 회원 패쓰워드 에러 메시징 -->
-        <div id="password_fld_err_pnl">
-        </div>
+       <div id="password_fld_err_pnl" class="text-danger" style="display:none;"></div>
         
         <!-- 회원 이름 -->
         <div class="mb-3">
@@ -58,7 +57,7 @@
         <!-- 회원 이메일 -->
         <div class="mb-3">
             <label for="email" class="form-label">이메일</label>
-            <input type="email" id="email" name="email" th:field="*{email}" class="form-control" required />
+            <input type="email" id="email" name="email" th:field="*{email}" class="form-control" />
             <div class="invalid-feedback">
             </div>
         </div>
@@ -66,10 +65,13 @@
         <!-- 회원 연락처 -->
         <div class="mb-3">
             <label for="phone" class="form-label">휴대폰</label>
-            <input type="text" id="phone" name="phone" th:field="*{phone}" class="form-control" required />
+            <input type="text" id="phone" name="phone" th:field="*{phone}" class="form-control" />
             <div class="invalid-feedback">
             </div>
         </div>
+        <!-- 회원 연락처(휴대폰) 에러 메시징 -->
+  	      <div id="phone_fld_err_pnl">
+    	    </div>
 
         <!-- 회원정보 수정, 취소 버튼 -->
         <div>
