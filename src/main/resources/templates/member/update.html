@@ -32,7 +32,7 @@
         <!-- 비밀번호 (신규) -->
         <div class="mb-3">
             <label for="passwordUpdate" class="form-label">비밀번호(신규)</label>
-            <input type="password" id="passwordUpdate" name="passwordUpdate" th:field="*{passwordUpdate}" class="form-control" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,20}" required />
+            <input type="password" id="passwordUpdate" name="passwordUpdate" th:field="*{passwordUpdate}" class="form-control" required />
             <div class="invalid-feedback">
                 비밀번호를 입력하세요.
             </div>
