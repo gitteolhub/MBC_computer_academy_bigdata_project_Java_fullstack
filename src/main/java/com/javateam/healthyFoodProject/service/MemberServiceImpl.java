@@ -259,7 +259,7 @@ public class MemberServiceImpl implements MemberService {
 		List<String> roles = memberDAO.selectRolesById(strId);
 		// 회원(ROLE_USER)이면서 관리자 권한이 없는 경우
 		if (blRoleAdminYn == false && roles.contains("ROLE_USER") == true
-								   && roles.contains("ROLE_ABMIN") == false) {
+								   && roles.contains("ROLE_ADMIN") == false) {
 				log.info("관리자 권한 할당");
 
 				Role role = new Role();
@@ -270,7 +270,7 @@ public class MemberServiceImpl implements MemberService {
 		}
 		// 회원(ROLE_USER)이면서 관리자 권한을 회수할 경우(관리자 권한 삭제)
 		else if (blRoleAdminYn == false && roles.contains("ROLE_USER") == true
-										&& roles.contains("ROLE_ABMIN") == true) {
+										&& roles.contains("ROLE_ADMIN") == true) {
 			log.info("관리자 권한 회수");
 
 			String role = "ROLE_ADMIN";
