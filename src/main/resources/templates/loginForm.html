@@ -68,36 +68,75 @@ function refreshImage() {
 		    let refresh_btn = document.getElementById("refresh_btn");
 		    let captcha_img = document.getElementById("captcha_img");
 		    let captchaVal = document.getElementById("captchaVal");
+		    let captchaResult = "false"; // 캡차 점검 여부
 		
 		    submit_btn.onclick = function() {
 		        alert(captchaVal.value);
-		        axios.get('/healthyFoodProject/checkCaptcha', {
-		            params: {
-		                captchaVal: captchaVal.value,
-		                key: key.value
-		            }
-		        })
-		        .then(function(response) {
-		            console.log('response.data :', response.data);
-		            let json = response.data;
-		            alert(json.result);
-		        })
-		        .catch(function(error) {
-		            console.log(error);
-		        });
-		
-		        refreshImage();
-		        captchaVal.value = ""; // 입력 필드 초기화
-		    };
-		
+		        
+		        let captchaFunc = () => {
+		        	
+		        	return axios.get('/healthyFoodProject/checkCaptcha', {
+		        	
+					            params: {
+					                captchaVal: captchaVal.value,
+					                key: key.value
+					            }
+					        })
+					        .then(function(response) {
+					            console.log('response.data :', response.data);
+					            let json = response.data;
+					            alert("수신 결과:"+json.result);
+					            
+						         refreshImage();
+						         captchaVal.value = ""; // 입력 필드 초기화
+					            
+								return json.result; // 수신 결과(true/false)        
+					        })
+					        .catch(function(error) {
+					            console.log(error);
+					        });
+		        	
+		        	} // captchaFunc 끝
+		        
+		        	captchaResult = async () => {
+			        	console.log("캡차 점검 여부1:", await captchaFunc());
+			        }
+			        
+			        // captchaResult = wait();
+					console.log("captchaResult:"+captchaResult);
+					
+			    } // submit_btn.onclick
+		    
+		    console.log("확인");
+		    console.log("캡차 점검 여부2:"+captchaResult);
+		    
 		    refresh_btn.onclick = refreshImage; // 그림 리프레쉬(갱신) 함수 호출
-		
+			
 		    if ([[${session.loginErrorCount}]] >= 3) {
 		        document.getElementById("captcha-field").style.display = "block";
 		    } else {
 		        document.getElementById("captcha-field").style.display = "none";
 		    }
-		};
+		    
+		    
+		    
+		    // 로그인 전송시
+		    let loginForm = document.getElementById("loginForm");
+		    loginForm.onsubmit = function(){
+		    	console.log("로그인 전송");
+		    	
+				// 로그인 에러 카운트(loginErrorCount),캡차 점검 여부 확인
+				// 로그인 3회 이상 틀렸을 때 : loginErrorCount >= 3 && captchㅁResult == true
+				// 로그인 틀리지 않았을 때 : loginErrorCount == 0
+				if ([[${session.loginErrorCount}]] < 3){
+					console.log("전송");
+				} else {
+					
+					return false;
+				}
+				
+		    }//
+		}
 </script>
 </head>
 
@@ -146,6 +185,10 @@ function refreshImage() {
 						<td colspan="2">
 
 				<!-- 캡차 시작 -->
+				<!-- 캡차 key -->
+				<input type="hidden" id="key" th:value="${key}">
+				
+				
 		 		<div id = "captcha-field" style="display:none;">
 				<div class="m-3" style="width:30vw">
 					
