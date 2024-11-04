@@ -145,6 +145,26 @@ public class MemberDAOImpl implements MemberDAO {
 		return blRetVal;
 	}
 
+	// 회원 Role 업데이트
+	@Override
+	public boolean updateRole(String strId, String strRole) {
+		boolean blRetVal = false;
+	    try {
+	        // 역할 정보를 담을 맵 생성
+	        Map<String, String> params = new HashMap<>();
+	        params.put("userid", strId);
+	        params.put("role", strRole);
+	        // MyBatis를 통해 역할 업데이트 쿼리 실행
+	        int result = sqlSession.update(MAPPER_PATH + "updateRole", params);
+	        // 업데이트된 행이 있을 경우 true 반환
+	        blRetVal = result > 0;
+	    } catch (Exception ex) {
+	        log.error("[MemberDAOImpl][updateRole] Exception: {}", ex);
+	        ex.printStackTrace();
+	    }
+	    return blRetVal;
+	}
+
 	// 회원 정보 삭제
 	@Override
 	public boolean deleteMemberById(String strId) {
