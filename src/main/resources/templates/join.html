@@ -54,8 +54,8 @@
 		                        <label for="pw">비밀번호</label>
 		                    </div>
 		                    <div class="col-10 fld_content">
-		                        <input type="text" class="form-control" id="pw" name="pw" maxlength="20" th:field="*{pw}" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,20}"
-								   title="비밀변호는 영문 대소문자 및 숫자, 특수문자를 최소 1개 이상 포함하여 8~20 사이로 작성하여 주십시오." required/>
+		                        <input type="password" class="form-control" id="pw" name="pw" maxlength="20" th:field="*{pw}" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,20}"
+								   title="비밀번호는 영문 대소문자 및 숫자, 특수문자를 최소 1개 이상 포함하여 8~20 사이로 작성하여 주십시오." required/>
 		                    </div>
 		                </div>
 		                
@@ -63,6 +63,21 @@
 		                <div id="pw_fld_err_pnl">
 		                </div>
 		                <!--// 회원 패쓰워드 -->
+		                
+		                <!-- 회원 패쓰워드 확인 -->
+						<div id="pw_confirm_fld_pnl" class="row py-2">  
+						    <div class="col-2 pt-1 fld_label">
+						        <label for="pw_confirm">비밀번호 확인</label>
+						    </div>
+						    <div class="col-10 fld_content">
+						        <input type="password" class="form-control" id="pw_confirm" name="pw_confirm" maxlength="20" required/>
+						    </div>
+						</div>
+						
+						<!-- 회원 패쓰워드 확인 에러 메시징 -->
+						<div id="pw_confirm_fld_err_pnl">
+						</div>
+						<!--// 회원 패쓰워드 확인 -->
 		                
 		                <!-- 회원 이름-->
 		                <!-- 이름 용례 추가 -->	
@@ -154,10 +169,10 @@
 		                </div>
 		                <!--// 회원 생일 -->
 		                
-		                <!-- 회원 가입/취소 버튼 -->	
+		                <!-- 회원 가입/초기화 버튼 -->	
 		                <div id="buttons_fld_pnl" class="d-flex justify-content-center py-2">	
 		                    <button class="btn btn-primary me-2" id="submit_btn" type="submit">회원 가입</button>
-		                    <button class="btn btn-primary" id="reset_btn" type="reset">취소</button>
+		                    <button class="btn btn-primary" id="reset_btn" type="reset">초기화</button>
 		                </div>
 		                <!--// 회원 가입/취소 버튼 -->
 		            
