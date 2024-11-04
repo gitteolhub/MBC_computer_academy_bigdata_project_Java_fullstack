@@ -65,6 +65,44 @@ body {
 <body>
     <div layout:fragment="content" class="main_sect_pnl">
         <div class="content_sect_pnl">
+        <
+        !-- (검색할) 회원 정보가 없을 경우 -->
+			<div th:if="${#lists.isEmpty(members)}">
+
+				<script>
+					alert('검색 결과가 없습니다.')
+				</script>
+
+			</div>
+			<!--// (검색할) 회원 정보가 없을 경우 -->
+
+			<!-- (검색할) 회원 정보가 있을 경우 -->
+
+			<!--
+				인자 현황판 (collapse)
+				: https://getbootstrap.com/docs/5.3/components/collapse/
+			-->
+			<div id="demo" class="collapse" th:if="${#lists.isEmpty(members) == false}">
+
+				<table class="table table-sm table-striped">
+					<tr>
+					    <th style="width:150px;">총 인원 수</th><td th:text="${pageVO.listCount}"></td>
+						<th style="width:150px;">이전 페이지</th><td th:text="${pageVO.prePage}"></td>
+						<th style="width:150px;">현재 페이지</th><td th:text="${pageVO.currPage}"></td>
+						<th style="width:150px;">이후 페이지</th><td th:text="${pageVO.nextPage}"></td>
+						<th style="width:150px;">처음 페이지</th><td th:text="${pageVO.startPage}"></td>
+						<th style="width:150px;">마지막 페이지</th><td th:text="${pageVO.endPage}"></td>
+					</tr>
+					<tr th:each="member, st : ${members}">
+						<th colspan="1">회원 정보</th>
+						<td colspan="11">
+							<span th:text="${member}"></span><br>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<!-- 인자 현황판 끝 -->
+        
             <h2 class="text-center mt-4">회원 관리</h2>
 
             <form th:action="@{/admin/seacrhAllWithRoles}" method="get" class="mb-4">
