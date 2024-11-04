@@ -40,8 +40,8 @@ public class MemberUpdateController {
 
 		CustomUser customUser = (CustomUser)principal;
 
-		log.info("principal : ()", principal);
-		log.info("id : {}", customUser.getUsername());	// 로그인 아이디
+		log.info("[principal] : {}", principal);
+		log.info("[customUser.getUsername()][id] : {}", customUser.getUsername());	// 로그인 아이디
 
 		String id = customUser.getUsername();
 
@@ -81,7 +81,7 @@ public class MemberUpdateController {
 			msg      = "회원정보 수정에 실패했습니다.";
 			movePath = "redirect:/member/update";
 		}
-		log.info("result : {}", msg);
+		log.info("[updateProc][result] : {}", msg);
 		redirectAttributes.addAttribute("msg", msg);
 
 		return movePath;
@@ -115,7 +115,7 @@ public class MemberUpdateController {
 			msg      = "회원정보 수정에 실패했습니다.";
 			movePath = "redirect:/myPage";
 		}
-		log.info("result : {}", msg);
+		log.info("[updateGoogle][result] : {}", msg);
 		redirectAttributes.addAttribute("msg", msg);
 
 
