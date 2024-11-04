@@ -60,6 +60,37 @@ body {
 .btn-danger:hover {
     background-color: #c82333;
 }
+
+/* 페이지 이동 버튼 */
+.pagination {
+    display: flex;
+    justify-content: center; /* 수평 가운데 정렬 */
+    padding: 0; /* 패딩 제거 */
+    margin: 0; /* 마진 제거 */
+    list-style: none; /* 리스트 스타일 제거 */
+}
+
+.page-item {
+    margin: 0 5px; /* 페이지 아이템 간의 여백 추가 */
+}
+
+.page-link {
+    text-decoration: none; /* 링크의 밑줄 제거 */
+    padding: 8px 12px; /* 클릭 영역을 넓히기 위한 패딩 추가 */
+    border: 1px solid #007bff; /* 링크의 테두리 추가 (Bootstrap 스타일) */
+    border-radius: 5px; /* 모서리 둥글게 */
+    color: #007bff; /* 링크 색상 */
+}
+
+.page-item.active .page-link {
+    background-color: #007bff; /* 현재 페이지 배경색 */
+    color: white; /* 현재 페이지 글자색 */
+}
+
+.page-link:hover {
+    background-color: #e9ecef; /* 링크에 마우스 오버 시 색상 변경 */
+}
+/* 페이지 이동 버튼 끝 */
 </style>
 </head>
 <body>
@@ -187,41 +218,43 @@ body {
             </table>
 
             <div class="d-flex justify-content-center mt-4">
-                <nav aria-label="Page navigation">
-                    <ul class="pagination">
-                    
-                    	<!-- 첫 페이지 -->
-                        <li class="page-item">
-                            <a class="page-link"
-				      	 th:href="@{'/admin/seacrhAllWithRoles?currPage=1&searchKey='+${searchKey}+'&searchWord='+${searchWord}}" aria-label="Start">
-				        <span aria-hidden="true">&Lt;</span>
-                        </li>
-                        
-                        <!-- 이전 페이지 -->
-                        <li class="page-item">
-                            <a class="page-link" th:href="@{'/admin/viewAllWithRoles?currentPage=' + pageVO.previousPage}" aria-label="Previous">
-                            <span aria-hidden="true">&lt;</span>
-                        </li>
-                        
-                        <!-- 현재 페이지 -->
-                        <li class="page-item active">
-                            <a class="page-link" th:href="@{'/admin/viewAllWithRoles?currentPage=' + pageVO.currentPage}" th:utext="${pageVO.currentPage}"></a>
-                        </li>
-                        
-                        <!-- 다음 페이지 -->
-                        <li class="page-item">
-                            <a class="page-link" th:href="@{'/admin/viewAllWithRoles?currentPage=' + pageVO.nextPage}" aria-label="Next">
-                            <span aria-hidden="true">&gt;</span></a>
-                        </li>
-                        
-                        <!-- 마지막 페이지 -->
-                        <li class="page-item">
-                            <a class="page-link" th:href="@{'/admin/viewAllWithRoles?currentPage=' + pageVO.endPage}" aria-label="End">
-                            <span aria-hidden="true">&gt;</span></a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
+			    <nav aria-label="Page navigation">
+			        <div class="pagination justify-content-center">
+			            <!-- 첫 페이지 -->
+			            <span class="page-item">
+			                <a class="page-link" th:href="@{'/admin/seacrhAllWithRoles?currPage=1&searchKey='+${searchKey}+'&searchWord='+${searchWord}}" aria-label="Start">
+			                    <span aria-hidden="true">&Lt;</span>
+			                </a>
+			            </span>
+			
+			            <!-- 이전 페이지 -->
+			            <span class="page-item">
+			                <a class="page-link" th:href="@{'/admin/viewAllWithRoles?currentPage=' + pageVO.previousPage}" aria-label="Previous">
+			                    <span aria-hidden="true">&lt;</span>
+			                </a>
+			            </span>
+			
+			            <!-- 현재 페이지 -->
+			            <span class="page-item active">
+			                <a class="page-link" th:href="@{'/admin/viewAllWithRoles?currentPage=' + pageVO.currentPage}" th:utext="${pageVO.currentPage}"></a>
+			            </span>
+			
+			            <!-- 다음 페이지 -->
+			            <span class="page-item">
+			                <a class="page-link" th:href="@{'/admin/viewAllWithRoles?currentPage=' + pageVO.nextPage}" aria-label="Next">
+			                    <span aria-hidden="true">&gt;</span>
+			                </a>
+			            </span>
+			
+			            <!-- 마지막 페이지 -->
+			            <span class="page-item">
+			                <a class="page-link" th:href="@{'/admin/viewAllWithRoles?currentPage=' + pageVO.endPage}" aria-label="End">
+			                    <span aria-hidden="true">&Gt;</span>
+			                </a>
+			            </span>
+			        </div>
+			    </nav>
+			</div>
         </div>
     </div>
 </body>
