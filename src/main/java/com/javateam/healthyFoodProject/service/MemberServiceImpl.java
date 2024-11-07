@@ -301,6 +301,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	// 회원 Role 수정 (관리자 화면에서)
+	@Transactional
 	@Override
 	public boolean updateRole(Role role) {
 		boolean blRetVal = false;
