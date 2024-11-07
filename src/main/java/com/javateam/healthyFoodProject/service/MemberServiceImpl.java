@@ -266,15 +266,18 @@ public class MemberServiceImpl implements MemberService {
 				role.setUserid(strId);
 				role.setRole("ROLE_ADMIN");
 
-				blRetVal = this.insertRole(role);
+				blRetVal = this.updateRole(role);
 		}
 		// 회원(ROLE_USER)이면서 관리자 권한을 회수할 경우(관리자 권한 삭제)
 		else if (blRoleAdminYn == false && roles.contains("ROLE_USER") == false
 										&& roles.contains("ROLE_ADMIN") == true) {
-			log.info("관리자 권한 회수");
+			log.info("ROLE_USER로 변경");
 
-			String role = "ROLE_ADMIN";
-			blRetVal = this.deleteRoleById(strId, role);
+			Role role = new Role();
+			role.setUserid(strId);
+			role.setRole("ROLE_USER");
+
+			blRetVal = this.updateRole(role);
 		}
 		return blRetVal;
 	}
@@ -294,6 +297,26 @@ public class MemberServiceImpl implements MemberService {
 			log.error("[MemberService][deleteRoleById] : {}", ex);
 			ex.printStackTrace();
 		}
+		return blRetVal;
+	}
+
+	// 회원 Role 수정 (관리자 화면에서)
+	@Transactional
+	@Override
+	public boolean updateRole(Role role) {
+		boolean blRetVal = false;
+
+		// Role 객체의 유효성 검사
+		if(role == null || role.getUserid() == null || role.getRole() == null) {
+			log.info("[MemberService][updateRole] Role 정보가 없습니다.");
+		}
+
+		try {
+			blRetVal = memberDAO.updateRole(role.getUserid(), role.getRole());
+		} catch (Exception ex) {
+			log.error("[MemberService][updateRole] Exception: {}", ex);
+		}
+
 		return blRetVal;
 	}
 

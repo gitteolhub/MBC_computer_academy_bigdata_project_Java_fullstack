@@ -145,6 +145,25 @@ public class MemberDAOImpl implements MemberDAO {
 		return blRetVal;
 	}
 
+	// 회원 Role 수정 (관리자 화면에서)
+	public boolean updateRole(String strId, String strRole) {
+		boolean blRetVal = false;
+
+		try {
+			 Map<String, String> map = new HashMap<>();
+		     map.put("id", strId);
+		     map.put("role", strRole);
+
+		     int intResult = sqlSession.update(MAPPER_PATH + "updateRole", map);
+		     blRetVal = intResult == 1; // 업데이트 성공 여부 확인
+		} catch (Exception ex) {
+			log.error("[MemberDAOImpl][updateRole] Exception: {}", ex);
+
+		}
+
+		return blRetVal;
+	}
+
 	// 회원 정보 삭제
 	@Override
 	public boolean deleteMemberById(String strId) {
