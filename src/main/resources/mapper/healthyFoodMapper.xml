@@ -74,19 +74,19 @@
 		 WHERE ID = #{id}
 	</delete>
 
-	<!-- 회원 Role 조회 -->
-	<select id = "selectRolesById" parameterType="String" resultType = "String">
-		SELECT ROLE
-		  FROM USER_ROLES
-		 WHERE USERID = #{id}
-	</select>
-
 	<!-- 회원 Role 삭제 -->
 	<delete id="deleteRoleById" parameterType="map">
 		DELETE FROM USER_ROLES
 		 WHERE USERID = #{id}
 		   AND ROLE = #{role}
 	</delete>
+
+	<!-- 회원 Role 수정 (관리자 화면에서) -->
+	<update id = "updateRole" parameterType="map">
+		UPDATE USER_ROLES
+		   SET ROLE = #{role}
+		 WHERE USERID = #{id}
+	</update>
 
 	<!-- 회원 활동/휴면  상태(enabled) 변경 -->
 	<update id = "changeEnabled" parameterType="map">
