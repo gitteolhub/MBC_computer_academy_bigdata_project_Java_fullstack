@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.javateam.healthyFoodProject.domain.MemberVO;
+import com.javateam.healthyFoodProject.domain.Role;
 import com.javateam.healthyFoodProject.service.MemberService;
 
 import io.swagger.v3.oas.annotations.Parameter;
@@ -36,27 +37,56 @@ public class AdminRestController {
 
 		ResponseEntity<Boolean> responseEntity = null;
 
+//		try {
+//			boolean blRetVal = memberService.updateRoles(strId, blRoleUserYn, blRoleAdminYn);
+//
+//			log.info("[AdminRestController][updateRoles] blRetVal: {}", blRetVal);
+//
+//			if (blRetVal == true) {
+//				// 중복된 아이디가 있음: 성공 코드(200)
+//				responseEntity = new ResponseEntity<>(blRetVal, HttpStatus.OK);
+//			} else {
+//				// 중복된 아이디가 없음: 실패 코드(204)
+//				responseEntity = new ResponseEntity<>(blRetVal, HttpStatus.NO_CONTENT);
+//			}
+//		} catch (Exception ex) {
+//			log.error("[AdminRestController][updateRoles] error: {}", ex);
+//			ex.printStackTrace();
+//
+//			// 내부 서버 에러: 실패 코드(417)
+//			responseEntity = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+//		}
+//
+//		return responseEntity;
+
 		try {
-			boolean blRetVal = memberService.updateRoles(strId, blRoleUserYn, blRoleAdminYn);
+			// Role 객체 생성
+			Role role = new Role();
+			role.setUserid(strId);
 
-			log.info("[AdminRestController][updateRoles] blRetVal: {}", blRetVal);
-
-			if (blRetVal == true) {
-				// 중복된 아이디가 있음: 성공 코드(200)
-				responseEntity = new ResponseEntity<>(blRetVal, HttpStatus.OK);
+			if(blRoleAdminYn) {
+				role.setRole("ROLE_ADMIN");
 			} else {
-				// 중복된 아이디가 없음: 실패 코드(204)
-				responseEntity = new ResponseEntity<>(blRetVal, HttpStatus.NO_CONTENT);
+				role.setRole("ROLE_USER");
 			}
-		} catch (Exception ex) {
-			log.error("[AdminRestController][updateRoles] error: {}", ex);
-			ex.printStackTrace();
+			// updateRole 메소드 호출
+            boolean blRetVal = memberService.updateRole(role);
 
-			// 내부 서버 에러: 실패 코드(417)
-			responseEntity = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-		}
+            log.info("[AdminRestController][updateRoles] blRetVal: {}", blRetVal);
 
-		return responseEntity;
+            if (blRetVal) {
+                responseEntity = new ResponseEntity<>(blRetVal, HttpStatus.OK);
+            } else {
+                responseEntity = new ResponseEntity<>(blRetVal, HttpStatus.NO_CONTENT);
+            }
+        } catch (Exception ex) {
+            log.error("[AdminRestController][updateRoles] error: {}", ex);
+            ex.printStackTrace();
+            responseEntity = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        return responseEntity;
+
 	}
 
 	// 회원 활동, 휴먼 변경
