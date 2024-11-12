@@ -30,8 +30,8 @@ public class MemberViewController {
 												.getPrincipal();
 
 		CustomUser customUser = (CustomUser)principal;
-		log.info("principal : {}", principal);
-		log.info("id : {}", customUser.getUsername()); // 로그인 아이디
+		log.info("[MemberViewController][principal] : {}", principal);
+		log.info("[MemberViewController][id] : {}", customUser.getUsername()); // 로그인 아이디
 
 		String id = customUser.getUsername();
 
@@ -40,7 +40,7 @@ public class MemberViewController {
 		if (memberVO == null) {
 			// 에러 처리
 			model.addAttribute("errorMsg", "회원 정보가 존재하지 않습니다.");
-			return "/error/error";
+			return "/error";
 
 		} else {
 			model.addAttribute("memberDTO", memberVO);
