@@ -81,13 +81,6 @@
 		   AND ROLE = #{role}
 	</delete>
 
-	<!-- 회원 Role 업데이트 -->
-	<update id="updateRole" parameterType="map">
-	    UPDATE USER_ROLES
-  		   SET ROLE = #{role}
-  		WHERE USERID = #{userid}
-  		</update>
-  		
 	<!-- 회원 Role 수정 (관리자 화면에서) -->
 	<update id = "updateRole" parameterType="map">
 		UPDATE USER_ROLES
