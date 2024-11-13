@@ -1,16 +1,23 @@
 package com.javateam.healthyFoodProject.controller;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.javateam.healthyFoodProject.domain.CustomUser;
 import com.javateam.healthyFoodProject.domain.MemberVO;
+import com.javateam.healthyFoodProject.domain.SessionUser;
+import com.javateam.healthyFoodProject.domain.SocialUser;
 import com.javateam.healthyFoodProject.service.MemberService;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
@@ -21,6 +28,7 @@ public class MemberViewController {
 	@Autowired
 	public MemberService memberService;
 
+	// 자체 로그인 회원정보 조회
 	@GetMapping("/view")
 	public String view(Model model) {
 
@@ -49,4 +57,21 @@ public class MemberViewController {
 		return "/member/view";
 	}
 
+	// 소셜 로그인 회원정보 조회
+	@GetMapping("/viewSocial")
+	public String viewSocial(Model model, HttpSession httpSession) {
+
+		log.info("[SessionUser]: {}", httpSession.getAttribute("socialUser"));
+		SessionUser sessionUser = (SessionUser)httpSession.getAttribute("socialUser");
+
+		SocialUser socialUser = memberService.selectSocialUser(sessionUser.getEmail(), sessionUser.getAuthVendor());
+		log.info("[socialUser]: {}", socialUser);
+
+		String birthyear = new SimpleDateFormat("yyyy년 MM월 dd일").format(Date.valueOf(socialUser.getBirthyear()));
+		socialUser.setBirthyear(birthyear); // 2000-06-02 >> 2000년 06월 02일
+
+		model.addAttribute("socialMember", socialUser);
+
+		return "/member/viewSocial";
+	}
 }

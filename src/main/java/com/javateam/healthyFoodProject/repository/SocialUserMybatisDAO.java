@@ -51,7 +51,7 @@ public class SocialUserMybatisDAO {
 	}
 
 	// social (google) 회원정보 삭제
-	public void deletSocialUser(SocialUser socialUser) {
+	public void deleteSocialUser(SocialUser socialUser) {
 		sqlSession.delete(MAPPER_PATH + "deleteSocialUser", socialUser);
 	}
 

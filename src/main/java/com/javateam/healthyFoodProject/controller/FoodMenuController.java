@@ -11,11 +11,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.javateam.healthyFoodProject.domain.SessionUser;
+import com.javateam.healthyFoodProject.domain.SocialUser;
 import com.javateam.healthyFoodProject.service.ChosenFoodMenuService;
 import com.javateam.healthyFoodProject.service.CustomOAuth2UserService;
 import com.javateam.healthyFoodProject.service.JsonService;
 import com.javateam.healthyFoodProject.service.MemberService;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
@@ -53,8 +56,9 @@ public class FoodMenuController {
 		return new ResponseEntity<>(result,HttpStatus.OK);
 	}
 
+	// 음식데어터 조회
 	public String showFoodData(String strId) {
-		log.info("[showFoodMenuResult]");
+		log.info("[showFoodData]");
 
 		String result = chosenFoodMenuService.selectChosenFoodMenuById(strId).getFoodmenu();
 
@@ -70,22 +74,22 @@ public class FoodMenuController {
 	}
 
 	// chosenFoodMenu 데이터를 map 형식으로
-		public String mergeFoodData (String strId, String newChosenFoodData){
-			String data = showFoodData(strId);
-			String foodData;
+	public String mergeFoodData (String strId, String newChosenFoodData){
+		String data = showFoodData(strId);
+		String foodData;
 
-			if(data == null) {
-				foodData = "[" + newChosenFoodData + "]";
-			} else {
-				foodData = data;
-				log.info("[FoodMenuController][dataToMap]foodData: ", foodData);
-				foodData = foodData + ",";
-				foodData = foodData + "[" + newChosenFoodData + "]";
+		if(data == null) {
+			foodData = "[" + newChosenFoodData + "]";
+		} else {
+			foodData = data;
+			log.info("[FoodMenuController][dataToMap]foodData: ", foodData);
+			foodData = foodData + ",";
+			foodData = foodData + "[" + newChosenFoodData + "]";
 
-			}
-
-			return foodData;
 		}
+
+		return foodData;
+	}
 
 	//
 	public String mergeFoodResultData (String strId, String newChosenFoodMenuResult) {
@@ -108,7 +112,7 @@ public class FoodMenuController {
 		return foodDataResult;
 	}
 
-	// 선택할 foodMenu 조회
+	// 선택할 foodMenu 조회(자체 로그인)
 	@GetMapping("/foodMenu/view")
 	public String showFoodMenu(@RequestParam String strId, Model model) {
 		log.info("[showFoodMenu]");
@@ -123,7 +127,8 @@ public class FoodMenuController {
 			model.addAttribute("menuItems", menuItems);
 			model.addAttribute("foodMenu", menuItems[0]); // 첫번재 음식
 
-		} else {
+		}
+		/*else {
 			// 소셜 회원일 경우
 			foodMenu = customOAuth2UserService.selectFoodMenuBySocialId(Integer.parseInt(strId));
 			if(foodMenu == null) {
@@ -134,8 +139,30 @@ public class FoodMenuController {
 				model.addAttribute("menuItems", menuItems);
 				model.addAttribute("foodMenu", menuItems[0]); // 첫번재 음식
 			}
-		}
+		}*/
 		return "foodMenu";
+	}
+
+	// 선택할 foodMenu 조회(소셜 로그인)
+	@GetMapping("/foodMenu/viewSocial")
+	public String showFoodMenuSocial(Model model, HttpSession httpSession) {
+		log.info("[showFoodMenuSocial]");
+
+		// 자체 회원의 foodMenu 조회
+		SessionUser sessionUser = (SessionUser)httpSession.getAttribute("socialUser");
+		SocialUser socialUser =  memberService.selectSocialUser(sessionUser.getEmail(), sessionUser.getAuthVendor());
+		foodMenu = socialUser.getFoodmenu();
+
+		if(foodMenu == null) {
+			model.addAttribute("msg", "당뇨 식단 메뉴를 찾을 수 없습니다");
+		} else {
+//					model.addAttribute("foodMenu", processFoodMenu(foodMenu));
+			String[] menuItems = processFoodMenu(foodMenu);
+			model.addAttribute("menuItems", menuItems);
+			model.addAttribute("foodMenu", menuItems[0]); // 첫번재 음식
+		}
+
+		return "foodMenuSocial";
 	}
 
 	private String[] processFoodMenu(String strFoodMenu) {
@@ -150,7 +177,7 @@ public class FoodMenuController {
 		return menuItems;
 	}
 
-	// 식단을 좋아할 경우
+	// 식단을 좋아할 경우(자체 로그인)
 	@PostMapping("/foodMenu/like") // TODO 임의로 정함(나중에 수정)
 	@ResponseBody
 	public ResponseEntity<String> likeFoodMenu(@RequestParam("strId") String strId, @RequestParam("foodMenu") String foodMenu, @RequestParam("foodMenuIndex") String foodMenuIndex) {
@@ -190,7 +217,50 @@ public class FoodMenuController {
 		return new ResponseEntity<>(msg, HttpStatus.OK);
 	}
 
-	// 식단을 싫어할 경우
+	// 식단을 좋아할 경우(소셜 로그인)
+	@PostMapping("/foodMenu/likeSocial")
+	@ResponseBody
+	public ResponseEntity<String> likeFoodMenuSocial(@RequestParam("foodMenu") String foodMenu, @RequestParam("foodMenuIndex") String foodMenuIndex, HttpSession httpSession) {
+
+		log.info("[FoodMenuController][likeFoodMenuSocial]");
+		SessionUser sessionUser = (SessionUser)httpSession.getAttribute("socialUser");
+		String strId = memberService.selectSocialUser(sessionUser.getEmail(), sessionUser.getAuthVendor()).getId() + "";
+
+		String msg = "";
+		String updatingFoodData = mergeFoodData(strId, foodMenu);
+		String updatingFoodDataResult = mergeFoodResultData(strId, "1");
+
+		boolean success = chosenFoodMenuService.insertChosenFoodMenu(strId, updatingFoodData, updatingFoodDataResult);
+		msg = success ? "회원이 좋아하는 식단입니다." : "에러(좋아하는 식단)";
+
+		int foodMenuIndexInt = Integer.valueOf(foodMenuIndex);
+		log.info("[foodMenuIndexInt]: {}", foodMenuIndexInt);
+
+		if(foodMenuIndexInt == 0) {
+			jsonService.saveChosenFoodMenuJson(strId);
+			log.info("[saveChosenFoodMenuJson 실행 끝]");
+
+		} else if (foodMenuIndexInt == 1) {
+
+			// social Id일 경우
+			// 아이디 첫 글지가 (0~9)
+			if(strId.charAt(0) >= 48 && strId.charAt(0) <= 57) {
+				int idInteger = Integer.valueOf(strId);
+				customOAuth2UserService.updateFoodMenuBySocialUser(idInteger);
+			// 자제 로그인 Id일 경우
+			} else {
+				memberService.updateFoodMenuByUser(strId);
+			}
+		}
+
+		log.info("[FoodMenuController][msg]: {}", msg);
+
+		// 결과를 보여줄 뷰 이름
+		//		return "/foodMenu/result"; // TODO 임의로 정함(나중에 수정)
+		return new ResponseEntity<>(msg, HttpStatus.OK);
+	}
+
+	// 식단을 싫어할 경우(자체 로그인)
 	@PostMapping("/foodMenu/dislike") // TODO 임의로 정함(나중에 수정)
 	public ResponseEntity<String> dislikeFoodMenu(@RequestParam String strId, @RequestParam String foodMenu, @RequestParam String foodMenuIndex) {
 
@@ -229,7 +299,49 @@ public class FoodMenuController {
 		return new ResponseEntity<>(msg, HttpStatus.OK);
 	}
 
-	// 당뇨식단이 아닌 경우
+	// 식단을 싫어할 경우(소셜 로그인)
+	@PostMapping("/foodMenu/dislikeSocial")
+	public ResponseEntity<String> dislikeFoodMenuSocial(@RequestParam String foodMenu, @RequestParam String foodMenuIndex, HttpSession httpSession) {
+
+		log.info("[FoodMenuController][dislikeFoodMenuSocial]");
+		SessionUser sessionUser = (SessionUser)httpSession.getAttribute("socialUser");
+		String strId = memberService.selectSocialUser(sessionUser.getEmail(), sessionUser.getAuthVendor()).getId() + "";
+
+		String msg = "";
+		String updatingFoodData = mergeFoodData(strId, foodMenu);
+		String updatingFoodDataResult = mergeFoodResultData(strId, "0");
+
+		boolean success = chosenFoodMenuService.insertChosenFoodMenu(strId, updatingFoodData, updatingFoodDataResult);
+		msg = success ? "회원이 안 좋아하는 식단입니다." : "에러(안 좋아하는 식단)";
+
+		int foodMenuIndexInt = Integer.valueOf(foodMenuIndex);
+		log.info("[FoodMenuController][foodMenuIndexInt]: {}", foodMenuIndexInt);
+
+		if(foodMenuIndexInt == 0) {
+			jsonService.saveChosenFoodMenuJson(strId);
+			log.info("[saveChosenFoodMenuJson 실행 끝]");
+
+		} else if (foodMenuIndexInt == 1) {
+
+			// social Id일 경우
+			// 아이디 첫 글지가 (0~9)
+			if(strId.charAt(0) >= 48 && strId.charAt(0) <= 57) {
+				int idInteger = Integer.valueOf(strId);
+				customOAuth2UserService.updateFoodMenuBySocialUser(idInteger);
+			// 자제 로그인 Id일 경우
+			} else {
+				memberService.updateFoodMenuByUser(strId);
+			}
+		}
+
+		log.info("[FoodMenuController][msg]: {}", msg);
+
+		// 결과를 보여줄 뷰 이름
+		//		return "/foodMenu/result"; // TODO 임의로 정함(나중에 수정)
+		return new ResponseEntity<>(msg, HttpStatus.OK);
+	}
+
+	// 당뇨식단이 아닌 경우(자체 로그인)
 	@PostMapping("/foodMenu/refresh") // TODO 임의로 정함(나중에 수정)
 	public ResponseEntity<String> refreshFoodMenu(@RequestParam String strId, @RequestParam String foodMenu, @RequestParam String foodMenuIndex) {
 
@@ -267,4 +379,47 @@ public class FoodMenuController {
 		//		return "/foodMenu/result"; // TODO 임의로 정함(나중에 수정)
 		return new ResponseEntity<>(msg, HttpStatus.OK);
 	}
+
+	// 당뇨식단이 아닌 경우(소셜 로그인)
+	@PostMapping("/foodMenu/refreshSocial")
+	public ResponseEntity<String> refreshFoodMenuSocial(@RequestParam String foodMenu, @RequestParam String foodMenuIndex, HttpSession httpSession) {
+
+		log.info("[FoodMenuController][refreshFoodMenuSocial]");
+		SessionUser sessionUser = (SessionUser)httpSession.getAttribute("socialUser");
+		String strId = memberService.selectSocialUser(sessionUser.getEmail(), sessionUser.getAuthVendor()).getId() + "";
+
+		String msg = "";
+		String updatingFoodData = mergeFoodData(strId, foodMenu);
+		String updatingFoodDataResult = mergeFoodResultData(strId, "-1");
+
+		boolean success = chosenFoodMenuService.insertChosenFoodMenu(strId, updatingFoodData, updatingFoodDataResult);
+		msg = success ? "당뇨식단이 아닙니다." : "에러(당뇨식단이 아닙니다)";
+
+		int foodMenuIndexInt = Integer.valueOf(foodMenuIndex);
+		log.info("[foodMenuIndexInt]: {}", foodMenuIndexInt);
+
+		if(foodMenuIndexInt == 0) {
+			jsonService.saveChosenFoodMenuJson(strId);
+			log.info("[saveChosenFoodMenuJson 실행 끝]");
+
+		} else if (foodMenuIndexInt == 1) {
+
+			// social Id일 경우
+			// 아이디 첫 글지가 (0~9)
+			if(strId.charAt(0) >= 48 && strId.charAt(0) <= 57) {
+				int idInteger = Integer.valueOf(strId);
+				customOAuth2UserService.updateFoodMenuBySocialUser(idInteger);
+			// 자제 로그인 Id일 경우
+			} else {
+				memberService.updateFoodMenuByUser(strId);
+			}
+		}
+
+		log.info("[FoodMenuController][msg]: {}", msg);
+
+		// 결과를 보여줄 뷰 이름
+		//		return "/foodMenu/result"; // TODO 임의로 정함(나중에 수정)
+		return new ResponseEntity<>(msg, HttpStatus.OK);
+	}
+
 }
