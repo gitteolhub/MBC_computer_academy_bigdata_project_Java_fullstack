@@ -34,9 +34,6 @@ public class JsonService {
 	@Autowired
 	ChosenFoodMenuDAO chosenFoodMenuDAO;
 
-	// private final MemberService memberService;
-	// private final ChosenFoodMenuDAO chosenFoodMenuDAO;
-
  	public void saveMemberDataJson() {
 		log.info("[JsonService][saveMemberDataJson]");
 
@@ -45,7 +42,7 @@ public class JsonService {
 
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-		 String filePath="src/main/resources/JsonDataFiles/AllMembersDump.json";
+		String filePath="src/main/resources/JsonDataFiles/AllMembersDump.json";
 
 		try{
 			String json = gson.toJson(allUserData);

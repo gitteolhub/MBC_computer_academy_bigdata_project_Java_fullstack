@@ -139,7 +139,9 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
 				// 회원가입시 초기 식단 추가
 				String initializingFoodMenuFilePath = "menu_creating_ai/Sharing_files/initializingFoodMenu.json";
 				String foodMenu = jsonService.readFoodMenuJson(initializingFoodMenuFilePath);
-				socialUser.setFoodmenu(foodMenu);   // foodmenu 초기값 설정(null 방지)
+
+				// foodmenu 초기값 설정(null 방지)
+				socialUser.setFoodmenu(foodMenu);
 				socialUserMybatisDAO.insertSocialUser(socialUser);
 				log.info("[socialUser]: {}", socialUser);
 

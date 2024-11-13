@@ -30,20 +30,20 @@ public class MemberDeleteController {
 	@Autowired
 	SocialUserMybatisDAO socialUserMybatisDAO;
 
-	@GetMapping("/member/delete")	// TODO 임의로 정함(나중에 수정)
+	@GetMapping("/member/delete")
 	public String showDeletePage() {
-		return "member/delete";		// TODO 임의로 정함(나중에 수정)
+		return "member/delete";
 	}
 
 	// 자체 회원 탈퇴 처리
-	@PostMapping("/member/delete")	// TODO 임의로 정함(나중에 수정)
+	@PostMapping("/member/delete")
 	public String deleteMember(@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
 
 		log.info("회원 탈퇴 처리");
 
 		if(id == null || id.trim().isEmpty()) {
 			redirectAttributes.addFlashAttribute("msg", "회원 정보를 찾을 수 없습니다.");
-			return "redirect:/member/delete";	// TODO 임의로 정함(나중에 수정)
+			return "redirect:/member/delete";
 		}
 
 		try {
@@ -67,11 +67,11 @@ public class MemberDeleteController {
 
 		}
 		// 탈퇴 결과 페이지
-		return "redirect:/member/deleteResult";	// TODO 임의로 정함(나중에 수정)
+		return "redirect:/member/deleteResult";
 	}
 
 	// social 회원 탈퇴 처리
-	@PostMapping("/social/delete")  // TODO 임의로 정함(나중에 수정)
+	@PostMapping("/social/delete")
 	public String deletSocialUser(@RequestParam("email") String email, @RequestParam("authVendor") String authVendor, RedirectAttributes redirectAttributes) {
 
 		log.info("social회원 탈퇴 처리");
@@ -80,7 +80,7 @@ public class MemberDeleteController {
 		SocialUser socialUser = socialUserMybatisDAO.selectSocialUserByEmailAndAuthVendor(email, authVendor);
 		if (socialUser == null ) {
 			redirectAttributes.addFlashAttribute("msg", "social 회원 정보를 찾을 수 없습니다.");
-			return "redirect:/social/delete"; // TODO 임의로 정함(나중에 수정)
+			return "redirect:/social/delete";
 		}
 
 		try {

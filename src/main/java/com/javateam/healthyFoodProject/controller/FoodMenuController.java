@@ -35,7 +35,7 @@ public class FoodMenuController {
 	private CustomOAuth2UserService customOAuth2UserService;
 
 	@Autowired
-	JsonService jsonService;	// @@Autowired 로 변경
+	JsonService jsonService;
 
 	private String foodMenu;
 
@@ -128,18 +128,7 @@ public class FoodMenuController {
 			model.addAttribute("foodMenu", menuItems[0]); // 첫번재 음식
 
 		}
-		/*else {
-			// 소셜 회원일 경우
-			foodMenu = customOAuth2UserService.selectFoodMenuBySocialId(Integer.parseInt(strId));
-			if(foodMenu == null) {
-				model.addAttribute("msg", "당뇨 식단 메뉴를 찾을 수 없습니다");
-			} else {
-//				model.addAttribute("foodMenu", processFoodMenu(foodMenu));
-				String[] menuItems = processFoodMenu(foodMenu);
-				model.addAttribute("menuItems", menuItems);
-				model.addAttribute("foodMenu", menuItems[0]); // 첫번재 음식
-			}
-		}*/
+
 		return "foodMenu";
 	}
 
@@ -178,7 +167,7 @@ public class FoodMenuController {
 	}
 
 	// 식단을 좋아할 경우(자체 로그인)
-	@PostMapping("/foodMenu/like") // TODO 임의로 정함(나중에 수정)
+	@PostMapping("/foodMenu/like")
 	@ResponseBody
 	public ResponseEntity<String> likeFoodMenu(@RequestParam("strId") String strId, @RequestParam("foodMenu") String foodMenu, @RequestParam("foodMenuIndex") String foodMenuIndex) {
 
@@ -212,8 +201,6 @@ public class FoodMenuController {
 
 		log.info("[FoodMenuController][msg]: {}", msg);
 
-		// 결과를 보여줄 뷰 이름
-		//		return "/foodMenu/result"; // TODO 임의로 정함(나중에 수정)
 		return new ResponseEntity<>(msg, HttpStatus.OK);
 	}
 
@@ -247,21 +234,19 @@ public class FoodMenuController {
 			if(strId.charAt(0) >= 48 && strId.charAt(0) <= 57) {
 				int idInteger = Integer.valueOf(strId);
 				customOAuth2UserService.updateFoodMenuBySocialUser(idInteger);
-			// 자제 로그인 Id일 경우
+			// 소셜 로그인 Id일 경우
 			} else {
 				memberService.updateFoodMenuByUser(strId);
 			}
 		}
 
-		log.info("[FoodMenuController][msg]: {}", msg);
+		log.info("[FoodMenuController][Social/Msg]: {}", msg);
 
-		// 결과를 보여줄 뷰 이름
-		//		return "/foodMenu/result"; // TODO 임의로 정함(나중에 수정)
 		return new ResponseEntity<>(msg, HttpStatus.OK);
 	}
 
 	// 식단을 싫어할 경우(자체 로그인)
-	@PostMapping("/foodMenu/dislike") // TODO 임의로 정함(나중에 수정)
+	@PostMapping("/foodMenu/dislike")
 	public ResponseEntity<String> dislikeFoodMenu(@RequestParam String strId, @RequestParam String foodMenu, @RequestParam String foodMenuIndex) {
 
 		log.info("[FoodMenuController][dislikeFoodMenu]");
@@ -294,8 +279,6 @@ public class FoodMenuController {
 
 		log.info("[FoodMenuController][msg]: {}", msg);
 
-		// 결과를 보여줄 뷰 이름
-		//		return "/foodMenu/result"; // TODO 임의로 정함(나중에 수정)
 		return new ResponseEntity<>(msg, HttpStatus.OK);
 	}
 
@@ -328,21 +311,19 @@ public class FoodMenuController {
 			if(strId.charAt(0) >= 48 && strId.charAt(0) <= 57) {
 				int idInteger = Integer.valueOf(strId);
 				customOAuth2UserService.updateFoodMenuBySocialUser(idInteger);
-			// 자제 로그인 Id일 경우
+			// 소셜 로그인 Id일 경우
 			} else {
 				memberService.updateFoodMenuByUser(strId);
 			}
 		}
 
-		log.info("[FoodMenuController][msg]: {}", msg);
+		log.info("[FoodMenuController][Social/msg]: {}", msg);
 
-		// 결과를 보여줄 뷰 이름
-		//		return "/foodMenu/result"; // TODO 임의로 정함(나중에 수정)
 		return new ResponseEntity<>(msg, HttpStatus.OK);
 	}
 
 	// 당뇨식단이 아닌 경우(자체 로그인)
-	@PostMapping("/foodMenu/refresh") // TODO 임의로 정함(나중에 수정)
+	@PostMapping("/foodMenu/refresh")
 	public ResponseEntity<String> refreshFoodMenu(@RequestParam String strId, @RequestParam String foodMenu, @RequestParam String foodMenuIndex) {
 
 		log.info("[FoodMenuController][refreshFoodMenu]");
@@ -375,8 +356,6 @@ public class FoodMenuController {
 
 		log.info("[FoodMenuController][msg]: {}", msg);
 
-		// 결과를 보여줄 뷰 이름
-		//		return "/foodMenu/result"; // TODO 임의로 정함(나중에 수정)
 		return new ResponseEntity<>(msg, HttpStatus.OK);
 	}
 
@@ -409,16 +388,14 @@ public class FoodMenuController {
 			if(strId.charAt(0) >= 48 && strId.charAt(0) <= 57) {
 				int idInteger = Integer.valueOf(strId);
 				customOAuth2UserService.updateFoodMenuBySocialUser(idInteger);
-			// 자제 로그인 Id일 경우
+			// 소셜 로그인 Id일 경우
 			} else {
 				memberService.updateFoodMenuByUser(strId);
 			}
 		}
 
-		log.info("[FoodMenuController][msg]: {}", msg);
+		log.info("[FoodMenuController][Social/msg]: {}", msg);
 
-		// 결과를 보여줄 뷰 이름
-		//		return "/foodMenu/result"; // TODO 임의로 정함(나중에 수정)
 		return new ResponseEntity<>(msg, HttpStatus.OK);
 	}
 

@@ -94,11 +94,10 @@ public class SocialUser extends BaseTimeEntity {	 			// BaseTimeEntity를 상속
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("SocialUser [id=").append(id).append(", name=").append(name).append(", email=").append(email)
-				.append(", gender=").append(gender).append(", birthyear=").append(birthyear).append(", authVendor=")
-				.append(authVendor).append(", foodmenu=").append(foodmenu).append(", role=").append(role)
-				.append(", createdDate=").append(getCreatedDate()).append(", modifiedDate=")
-				.append(getModifiedDate()).append("]");
+		builder.append("SocialUser [id=").append(id)  .append(", name=").append(name)          .append(", email=").append(email)
+			   .append(", gender=").append(gender)    .append(", birthyear=").append(birthyear).append(", authVendor=").append(authVendor)
+			   .append(", foodmenu=").append(foodmenu).append(", role=").append(role)          .append(", createdDate=").append(getCreatedDate())
+			   .append(", modifiedDate=").append(getModifiedDate()).append("]");
 		return builder.toString();
 	}
 

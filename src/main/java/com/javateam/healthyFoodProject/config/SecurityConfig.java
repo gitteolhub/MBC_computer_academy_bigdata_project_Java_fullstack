@@ -54,11 +54,10 @@ public class SecurityConfig {
 													   								 "/refreshImage")
 											   						.permitAll()
 											   						.requestMatchers("/admin/**").hasAnyAuthority("ROLE_ADMIN")				// ROLE_ADMIN 권한이 필요한 경로
-											   						.requestMatchers("/secured/**",        "/myPage",   "/member/view",      "/member/hasFldForUpdate/**", "/member/update",
-											   										 "/member/updateProc", "/foodMenu", "/foodMenu/dislike", "/foodMenu/like",             "/foodMenu/refresh",
-											   										 "/foodMenu/dislikeSocial", "/foodMenu/likeSocial",      "/foodMenu/refreshSocial",
-											   										 "/foodMenu/view",     "/foodMenu/viewJson", "/member/viewSocial", "/social/delete", "/social/deleteResult",
-											   										 "/foodMenu/viewSocial")
+											   						.requestMatchers("/secured/**",             "/myPage",              "/member/view",            "/member/hasFldForUpdate/**", "/member/update",
+											   										 "/member/updateProc",      "/foodMenu",            "/foodMenu/dislike",       "/foodMenu/like",             "/foodMenu/refresh",
+											   										 "/foodMenu/dislikeSocial", "/foodMenu/likeSocial", "/foodMenu/refreshSocial", "/foodMenu/view",             "/foodMenu/viewJson",
+											   										 "/member/viewSocial",      "/social/delete",       "/social/deleteResult",    "/foodMenu/viewSocial")
 											   						.hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")	// ROLE_USER, ROLE_ADMIN 권한이 필요한 경로
 											   						.anyRequest().authenticated());
 
