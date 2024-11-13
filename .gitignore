@@ -1,3 +1,4 @@
+
 # .idea 폴더 일괄 무시
 .idea/
 
@@ -471,3 +472,4 @@ gradle-app.setting
 *.hprof
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,python,pycharm,jupyternotebooks,java,eclipse,gradle,dbeaver,visualstudiocode
+/crawling/food_data.json
