@@ -122,22 +122,22 @@ public class CustomProviderService implements AuthenticationProvider, UserDetail
 
 		} catch (InternalAuthenticationServiceException ex)  {
 
-			log.info("회원 아이디 미입력: ", ex.toString());
+			log.info("회원 아이디 미입력: {}", ex.toString());
 			throw new InternalAuthenticationServiceException(ex.getMessage());
 
 		} catch(UsernameNotFoundException ex) {
 
-			log.info("회원 아이디가 없음: ", ex.toString());
+			log.info("회원 아이디가 없음: {}", ex.toString());
 			throw new InternalAuthenticationServiceException(ex.getMessage());
 
 		} catch(BadCredentialsException ex) {
 
-			log.info("비밀번호가 잘못되었음: ", ex.toString());
+			log.info("비밀번호가 잘못되었음: {}", ex.toString());
 			throw new BadCredentialsException(ex.getMessage());
 
 		} catch(Exception ex) {
 
-			log.info("다른 종류 에러: ", ex.toString());
+			log.info("다른 종류 에러: {}", ex.toString());
 			ex.printStackTrace();
 		}
 
