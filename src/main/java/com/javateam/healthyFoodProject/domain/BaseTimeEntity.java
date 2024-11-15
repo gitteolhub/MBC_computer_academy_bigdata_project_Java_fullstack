@@ -6,6 +6,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
 import lombok.Getter;
@@ -17,10 +18,12 @@ import lombok.Getter;
 public abstract class BaseTimeEntity {
 
 	// 엔티티가 생성될 때 자동으로 현재 시간을 설정
+	@Column(name="created_date")
 	@CreatedDate
 	private LocalDateTime createdDate;
 
 	// 엔티티가 수정될 때 자동으로 현재 시간을 설정
+	@Column(name="modified_date")
 	@LastModifiedDate
 	private LocalDateTime modifiedDate;
 

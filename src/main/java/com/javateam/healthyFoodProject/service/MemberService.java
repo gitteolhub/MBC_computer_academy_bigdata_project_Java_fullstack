@@ -72,7 +72,10 @@ public interface MemberService {
 	boolean updateSocialUser(SocialUser socialUser);
 
 	// social (google) 회원정보 삭제(탈퇴)
-	boolean deletSocialUser(SocialUser socialUser);
+	boolean deleteSocialUser(SocialUser socialUser);
+
+	// social (naver, google) 회원정보 조회
+	SocialUser selectSocialUser(String email, String authVendor);
 
 	// social(naver, google) 전체 회원정보 조회(ex, json 정보 생성용)
 	List<SocialUser> selectAllSocialUsers();

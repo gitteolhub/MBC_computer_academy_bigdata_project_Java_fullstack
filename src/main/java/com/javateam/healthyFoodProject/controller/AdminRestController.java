@@ -37,28 +37,6 @@ public class AdminRestController {
 
 		ResponseEntity<Boolean> responseEntity = null;
 
-//		try {
-//			boolean blRetVal = memberService.updateRoles(strId, blRoleUserYn, blRoleAdminYn);
-//
-//			log.info("[AdminRestController][updateRoles] blRetVal: {}", blRetVal);
-//
-//			if (blRetVal == true) {
-//				// 중복된 아이디가 있음: 성공 코드(200)
-//				responseEntity = new ResponseEntity<>(blRetVal, HttpStatus.OK);
-//			} else {
-//				// 중복된 아이디가 없음: 실패 코드(204)
-//				responseEntity = new ResponseEntity<>(blRetVal, HttpStatus.NO_CONTENT);
-//			}
-//		} catch (Exception ex) {
-//			log.error("[AdminRestController][updateRoles] error: {}", ex);
-//			ex.printStackTrace();
-//
-//			// 내부 서버 에러: 실패 코드(417)
-//			responseEntity = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-//		}
-//
-//		return responseEntity;
-
 		try {
 			// Role 객체 생성
 			Role role = new Role();

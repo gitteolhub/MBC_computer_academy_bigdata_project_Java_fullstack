@@ -1,6 +1,10 @@
 package com.javateam.healthyFoodProject.domain;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
+
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -56,6 +60,7 @@ public class SocialUser extends BaseTimeEntity {	 			// BaseTimeEntity를 상속
 	@Column(nullable = false)
 	private SocialRole role;
 
+
 	// 객체 생성
 	@Builder
 	public SocialUser(String strName, String strEmail, String strGender, String strBirthyear, SocialRole role,
@@ -91,8 +96,8 @@ public class SocialUser extends BaseTimeEntity {	 			// BaseTimeEntity를 상속
 		StringBuilder builder = new StringBuilder();
 		builder.append("SocialUser [id=").append(id)  .append(", name=").append(name)          .append(", email=").append(email)
 			   .append(", gender=").append(gender)    .append(", birthyear=").append(birthyear).append(", authVendor=").append(authVendor)
-			   .append(", foodmenu=").append(foodmenu).append(", role=").append(role)          .append(", getCreatedDate()=").append(getCreatedDate())
-			   .append(", getModifiedDate()=").append(getModifiedDate()).append("]");
+			   .append(", foodmenu=").append(foodmenu).append(", role=").append(role)          .append(", createdDate=").append(getCreatedDate())
+			   .append(", modifiedDate=").append(getModifiedDate()).append("]");
 		return builder.toString();
 	}
 

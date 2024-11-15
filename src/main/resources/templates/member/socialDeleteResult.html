@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>result</title>
+
+<script type="text/javascript">
+
+	var naverLoginPopup;
+
+	function naverLogout() {
+
+		console.log("naverLogout()");
+		let maxX = screen.availWidth;
+		let maxY = screen.availHeight;
+
+		console.log("maxX = ", maxX, ", maxY = ", maxY);
+
+		naverLoginPopup = window.open("https://nid.naver.com/nidlogin.logout", "_blank",
+									  "toolbar=0,scrollbars=0,resizable=0,toolbar=0,location=0," +
+									  "status=0,menubar=0,width=1,height=1," + 'left=${maxX}, top=${maxY}');
+
+		setTimeout(function() {
+
+			naverLoginPopup.close();
+			alert("로그아웃 되었습니다");
+			location.href = "/healthyFoodProject/logoutProc";
+
+		}, 1000); // 1초 후에 팝업을 닫고 로그아웃
+	}
+
+	window.onload = function(){
+		alert("[[${msg}]]");
+		naverLogout();
+	}
+
+</script>
+</head>
+<body>
+네이버
+</body>
+</html>

@@ -57,36 +57,20 @@
 
     <div class="content_sect_pnl">
 
-        <!-- 회원 번호 -->
-        <div class="row">
-            <div class="fld_label">
-                <label for="id">회원번호</label>
-            </div>
-            <div class="fld_content" th:text="${memberDTO.num}"></div>
-        </div>
-
-        <!-- 회원 아이디 -->
-        <div class="row">
-            <div class="fld_label">
-                <label for="id">아이디</label>
-            </div>
-            <div class="fld_content" th:text="${memberDTO.id}"></div>
-        </div>
-
         <!-- 회원 이름 -->
         <div class="row">
             <div class="fld_label">
                 <label for="name">이름</label>
             </div>
-            <div class="fld_content" th:text="${memberDTO.name}"></div>
+            <div class="fld_content" th:text="${socialMember.name}"></div>
         </div>
 
-        <!-- 회원 성별 -->
+		<!-- 회원 성별 -->
         <div class="row">
             <div class="fld_label">
                 <label>성별</label>
             </div>
-            <div class="fld_content" th:text="${memberDTO.gender == '남자' ? '남자' : '여자'}"></div>
+            <div class="fld_content" th:text="${socialMember.gender == 'F' ? '여자' : '남자'}"></div>
         </div>
 
         <!-- 회원 이메일 -->
@@ -94,15 +78,7 @@
             <div class="fld_label">
                 <label for="email">이메일</label>
             </div>
-            <div class="fld_content" th:text="${memberDTO.email}"></div>
-        </div>
-
-        <!-- 회원 연락처 -->
-        <div class="row">
-            <div class="fld_label">
-                <label for="phone">휴대폰</label>
-            </div>
-            <div class="fld_content" th:text="${memberDTO.phone}"></div>
+            <div class="fld_content" th:text="${socialMember.email}"></div>
         </div>
 
         <!-- 회원 생일 -->
@@ -110,7 +86,7 @@
             <div class="fld_label">
                 <label>생일</label>
             </div>
-            <div class="fld_content" th:text="${#dates.format(memberDTO.birthday, 'yyyy년 MM월 dd일')}"></div>
+            <div class="fld_content" th:text="${socialMember.birthyear}"></div>
         </div>
 
         <!-- 가입일 -->
@@ -118,13 +94,14 @@
             <div class="fld_label">
                 <label>가입일</label>
             </div>
-            <div class="fld_content" th:text="${#dates.format(memberDTO.joindate, 'yyyy년 MM월 dd일')}"></div>
+            <div class="fld_content" th:text="${#temporals.format(socialMember.createdDate, 'yyyy년 MM월 dd일')}"></div>
         </div>
 
     <!-- TODO 소셜 회원 탈퇴는 컨트롤러가 따로 있는데 어떻게 할 지 결정 -->
-	<form th:action="@{/member/delete}" method="post" onsubmit="return confirm('정말 탈퇴하시겠습니까?');">
-    <input type="hidden" name="id" th:value="${memberDTO.id}"/>
-    <button class="btn btn-primary" type="submit">회원 탈퇴</button>
+	<form th:action="@{/social/delete}" method="post" onsubmit="return confirm('정말 탈퇴하시겠습니까?');">
+    	<input type="hidden" name="authVendor" th:value="${socialMember.authVendor}"/>
+    	<input type="hidden" name="email" th:value="${socialMember.email}"/>
+    	<button class="btn btn-primary" type="submit">회원 탈퇴</button>
 	</form>
 
     </div>

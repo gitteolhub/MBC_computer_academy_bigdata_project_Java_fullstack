@@ -247,7 +247,7 @@
 	</select>
 
 	<!-- social(naver, google) 회원 삭제 -->
-	<delete id="deletSocialUser" parameterType="com.javateam.healthyFoodProject.domain.SocialUser">
+	<delete id="deleteSocialUser" parameterType="com.javateam.healthyFoodProject.domain.SocialUser">
 		DELETE SOCIAL_USER
 		<if test = "id != null">
 			WHERE ID = #{id}
@@ -266,7 +266,13 @@
 
 	<!-- social(naver, google) 회원 조회(email, authVendor로 조회) -->
 	<select id="selectSocialUserByEmailAndAuthVendor" parameterType="map" resultType="com.javateam.healthyFoodProject.domain.SocialUser">
-		SELECT *
+		SELECT
+			ID, NAME, EMAIL, GENDER, BIRTHYEAR,
+			AUTH_VENDOR AS "authVendor",
+			CREATED_DATE AS "createdDate",
+			MODIFIED_DATE AS "modifiedDate",
+			FOODMENU,
+			ROLE
 		  FROM SOCIAL_USER
 		 WHERE EMAIL = #{email} AND AUTH_VENDOR = #{authVendor}
 	</select>

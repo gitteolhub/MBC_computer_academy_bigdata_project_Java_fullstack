@@ -185,9 +185,6 @@ public class MemberServiceImpl implements MemberService {
 					// 탈퇴한 회원 아이디를 파일에 저장
 					saveDeletedUSerIdToFile(strId);
 
-//					// 선택된 식단 삭제
-//		            chosenFoodMenuDAO.deleteChosenFoodMenuById(strId);
-
 					if ( memberDAO.deleteRoles(strId) == true && memberDAO.deleteMemberById(strId) == true) {
 						blRetVal = true;
 					}
@@ -257,6 +254,7 @@ public class MemberServiceImpl implements MemberService {
 		boolean blRetVal = false;
 
 		List<String> roles = memberDAO.selectRolesById(strId);
+
 		// 회원(ROLE_USER)이면서 관리자 권한이 없는 경우
 		if (blRoleAdminYn == false && roles.contains("ROLE_USER") == true
 								   && roles.contains("ROLE_ADMIN") == false) {
@@ -455,18 +453,16 @@ public class MemberServiceImpl implements MemberService {
 	// social (google) 회원정보 삭제(탈퇴)
 	@Transactional
 	@Override
-	public boolean deletSocialUser(SocialUser socialUser) {
+	public boolean deleteSocialUser(SocialUser socialUser) {
 		boolean blRetVal = false;
 
 		try {
-			// 탈퇴한 회원 아이디를 파일에 저장
-			saveDeletedUSerIdToFile(socialUser.getId().toString());
-
-//			// 선택된 식단 삭제
-//			chosenFoodMenuDAO.deleteChosenFoodMenuById(socialUser.getId().toString());
+			// TODO 탈퇴한 회원 아이디를 파일에 저장
+			//saveDeletedUSerIdToFile(socialUser.getId().toString());
 
 			// 탈회한 회원 정보 삭제
-			socialUserMybatisDAO.deletSocialUser(socialUser);
+			socialUser.setId(null); // email, authVendor로 삭제하기 위해 아이디를 null값으로 설정
+			socialUserMybatisDAO.deleteSocialUser(socialUser);
 			blRetVal = true;
 
 		} catch (Exception ex) {
@@ -553,7 +549,11 @@ public class MemberServiceImpl implements MemberService {
 		return blRetVal;
 	}
 
+	@Transactional(readOnly = true)
+	@Override
+	public SocialUser selectSocialUser(String email, String authVendor) {
 
-
+		return socialUserMybatisDAO.selectSocialUserByEmailAndAuthVendor(email, authVendor);
+	}
 
 }
