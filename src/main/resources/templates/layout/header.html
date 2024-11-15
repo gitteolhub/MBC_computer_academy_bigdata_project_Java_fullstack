@@ -97,12 +97,12 @@ loginErrorCount: [[${session.loginErrorCount}]] <br>
 
 						<span th:if="${session.socialUser != null}">
 
-						<!-- Google 로그아웃 -->
+						<!-- Google 식단 -->
 						<li th:if="${session.socialUser.authVendor != 'naver'}">
 							<a th:href="@{'/foodMenu/viewSocial'}">식단(google)</a>
 						</li>
 
-						<!--  Naver 로그아웃 -->
+						<!--  Naver 식단 -->
 						<li th:if="${session.socialUser.authVendor == 'naver'}">
 							<a th:href="@{'/foodMenu/viewSocial'}">식단(Naver)</a>
 						</li>
@@ -114,7 +114,7 @@ loginErrorCount: [[${session.loginErrorCount}]] <br>
 					<!-- 회원정보 조회 -->
 					<div sec:authorize="isAuthenticated()">
 
-						<!-- 자체 로그아웃 -->
+						<!-- 자체회원 정보 조회 -->
 						<li th:if="${session.socialUser == null}">
 							<a th:href="@{/member/view}">회원정보 조회(자체)</a>
 						</li>
