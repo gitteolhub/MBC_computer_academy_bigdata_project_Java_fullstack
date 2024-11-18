@@ -30,7 +30,6 @@ public class AuthController {
 
 	@Autowired
 	private MemberService memberService;
-//	private int loginErrorCount = -1;
 	private int loginErrorCount = 0;	// -1에서 0으로 수정
 	private final int maxCount = 3;
 

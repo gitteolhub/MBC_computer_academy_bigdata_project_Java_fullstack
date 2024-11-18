@@ -35,7 +35,6 @@ public class CaptchaController {
 	@Autowired
 	public ServletContext servletContext;
 
-//	@GetMapping
 	@GetMapping("/captcha")
 	public String login(Model model) {
 

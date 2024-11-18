@@ -34,28 +34,28 @@
         }
 
 </style>
-    
+
 <!-- 로그인 에러 메시지 -->
 <script th:inline="javascript" th:if="${session.SPRING_SECURITY_LAST_EXCEPTION != null}">
 //captcha 이미지 리프레쉬(갱신) 함수
 function refreshImage() {
-	
-		
+
+
 		axios.get('/healthyFoodProject/refreshImage')
 		  .then(function (response) {
-	
+
 			  console.log(response.data);
-	
+
 			  let json = response.data;
-	
+
 		      // 이미지 갱신
 		      captcha_img.src = '/healthyFoodProject/captcha/image/' + json.captchaImage;
-	
+
 		      console.log("captchaImage : ", json.captchaImage);
-	
+
 		      // 키(key) 재입력
 		      key.value = json.key;
-	
+
 		  })
 		  .catch(function (error) {
 		      console.log(error);
@@ -69,14 +69,14 @@ function refreshImage() {
 		    let captcha_img = document.getElementById("captcha_img");
 		    let captchaVal = document.getElementById("captchaVal");
 		    let captchaResult = "false"; // 캡차 점검 여부
-		
+
 		    submit_btn.onclick = function() {
 		        alert(captchaVal.value);
-		        
+
 		        let captchaFunc = async () => {
-		        	
+
 		        	await axios.get('/healthyFoodProject/checkCaptcha', {
-		        	
+
 					            params: {
 					                captchaVal: captchaVal.value,
 					                key: key.value
@@ -86,50 +86,50 @@ function refreshImage() {
 					            console.log('response.data :', response.data);
 					            let json = response.data;
 					            alert("수신 결과:"+json.result);
-					            
+
 						        refreshImage();
 						        captchaVal.value = ""; // 입력 필드 초기화
-					            
-						        captchaResult = json.result; // 수신 결과(true/false)        
+
+						        captchaResult = json.result; // 수신 결과(true/false)
 					        })
 					        .catch(function(error) {
 					            console.log(error);
 					        });
-		        	
+
 		        	} // captchaFunc 끝
-		        
+
 		        	captchaFunc().then(function(data) {
 			        	console.log("캡차 점검 여부1:",data);
 			        });
-			        
+
 			} // submit_btn.onclick
-		    
+
 		    refresh_btn.onclick = refreshImage; // 그림 리프레쉬(갱신) 함수 호출
-			
+
 		    if ([[${session.loginErrorCount}]] >= 3) {
 		        document.getElementById("captcha-field").style.display = "block";
 		    } else {
 		        document.getElementById("captcha-field").style.display = "none";
 		    }
-		    
-		    
-		    
+
+
+
 		    // 로그인 전송시
 		    let loginForm = document.getElementById("loginForm");
-		    
+
 		    loginForm.onsubmit = function(){
-		    	
+
 		    	console.log("로그인 전송");
 		    	console.log("session.loginErrorCount:",[[${session.loginErrorCount}]])
 				console.log("captchaResult2:",captchaResult)
-		    	
+
 				// 로그인 에러 카운트(loginErrorCount),캡차 점검 여부 확인
 				// 로그인 3회 이상 틀렸을 때 : loginErrorCount >= 3 && captchaResult == true
 				// 로그인 틀리지 않았을 때 : loginErrorCount == 0
-				
+
 				if ([[${session.loginErrorCount}]] <= 2){
 					console.log("전송");
-					
+
 				} else if (captchaResult == true) {
 					console.log("캡차 전송")
 					alert("캡차 완료")
@@ -189,11 +189,11 @@ function refreshImage() {
 				<!-- 캡차 시작 -->
 				<!-- 캡차 key -->
 				<input type="hidden" id="key" th:value="${key}">
-				
-				
+
+
 		 		<div id = "captcha-field" style="display:none;">
 				<div class="m-3" style="width:30vw">
-					
+
 					<div class="d-flex">
 						<div>
 							<!-- 캡차 이미지 노출 -->
