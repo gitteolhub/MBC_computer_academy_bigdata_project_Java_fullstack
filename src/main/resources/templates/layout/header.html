@@ -10,14 +10,46 @@
         - Spring Security : Auth Method(인증/인가 관련 메서드)
         : www.classum.com/main/space/126296/community/396-->
 
+
+
 <div th:fragment="header">
 authentication:[[${#authentication}]] <br>
 socialUser:[[${session.socialUser}]] <br>
 loginErrorCount: [[${session.loginErrorCount}]] <br>
 
+<script type="text/javascript">
+
+	var naverLoginPopup;
+
+	function openPopUp() {
+		let maxX = screen.availWidth;
+		let maxY = screen.availHeight;
+
+		console.log("maxX = ", maxX, ", maxY = ", maxY);
+
+		naverLoginPopup = window.open("https://nid.naver.com/nidlogin.logout", "_blank",
+									  "toolbar=0,scrollbars=0,resizable=0,toolbar=0,location=0," +
+									  "status=0,menubar=0,width=1,height=1," + 'left=${maxX}, top=${maxY}');
+	}
+
+	function naverLogout() {
+		console.log("naverLogout()");
+		openPopUp();
+
+		setTimeout(function() {
+
+			naverLoginPopup.close();
+			alert("로그아웃 되었습니다");
+			location.href = "/healthyFoodProject/logoutProc";
+
+		}, 1000); <!-- 1초 후에 팝업을 닫고 로그아웃  -->
+	}
+
+</script>
 
         <div class="header_sect_pnl" style="background-color:cyan">
-         <!-- id:[[${#authentication.name}]] <br>
+
+        <!-- id:[[${#authentication.name}]] <br>
         authentication: [[${#authentication}]] <br>
         user: [[${session.user==null}]] <br>
 		socialUser: [[${session.socialUser==null}]] <br> -->
@@ -54,11 +86,59 @@ loginErrorCount: [[${session.loginErrorCount}]] <br>
 						</span>
 
 					</div>
-					 <li sec:authorize="isAuthenticated()"><a th:href="@{'/foodMenu/view?strId='+${#authentication.name}}">식 단</a></li>
 
-                     <li sec:authorize="isAuthenticated()"><a th:href="@{/member/view}">회원정보 조회</a></li>
+					<!-- 식단 -->
+					<div sec:authorize="isAuthenticated()">
 
-                     <li sec:authorize="isAuthenticated()"><a th:href="@{/member/update}">회원정보 수정</a></li>
+						<!-- 자체 로그아웃 -->
+						<li th:if="${session.socialUser == null}">
+							<a th:href="@{'/foodMenu/view?strId='+${#authentication.name}}">식단(자체)</a>
+						</li>
+
+						<span th:if="${session.socialUser != null}">
+
+						<!-- Google 로그아웃 -->
+						<li th:if="${session.socialUser.authVendor != 'naver'}">
+							<a th:href="@{'/foodMenu/viewSocial'}">식단(google)</a>
+						</li>
+
+						<!--  Naver 로그아웃 -->
+						<li th:if="${session.socialUser.authVendor == 'naver'}">
+							<a th:href="@{'/foodMenu/viewSocial'}">식단(Naver)</a>
+						</li>
+
+						</span>
+
+					</div>
+
+					<!-- 회원정보 조회 -->
+					<div sec:authorize="isAuthenticated()">
+
+						<!-- 자체 로그아웃 -->
+						<li th:if="${session.socialUser == null}">
+							<a th:href="@{/member/view}">회원정보 조회(자체)</a>
+						</li>
+
+						<span th:if="${session.socialUser != null}">
+
+						<!-- Google 회원 조회 -->
+						<li th:if="${session.socialUser.authVendor != 'naver'}">
+							<a th:href="@{/member/viewSocial}">회원정보 조회(google)</a>
+						</li>
+
+						<!--  Naver 회원 조회 -->
+						<li th:if="${session.socialUser.authVendor == 'naver'}">
+							<a th:href="@{/member/viewSocial}">회원정보 조회(Naver)</a>
+						</li>
+
+						</span>
+
+					</div>
+
+					<!-- 자체로그인 회원은 수정 가능, 소셜 로그인은 수정 불가 -->
+                    <li sec:authorize="isAuthenticated()" th:if="${session.socialUser == null}">
+                    	<a th:href="@{/member/update}">회원정보 수정</a>
+                    </li>
 
                      <!-- 등급(롤:role)이 관리자일 경우 -->
                      <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/admin/viewAllWithRoles}">회원 관리</a></li>
@@ -66,3 +146,4 @@ loginErrorCount: [[${session.loginErrorCount}]] <br>
                 </ul>
         </div>
  </div>
+

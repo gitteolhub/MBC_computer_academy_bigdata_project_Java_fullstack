@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.healthyFoodMapper">
+
+	<!-- ID로 회원 정보를 조회하는 쿼리 -->
+	<select id = "selectMemberById" parameterType = "String" resultType = "com.javateam.healthyFoodProject.domain.MemberVO">
+		SELECT *
+		  FROM USER_TBL
+ 		 WHERE ID = #{id}
+	</select>
+
+	<!-- 특정 필드에 대한 회원 중복 체크 쿼리 -->
+	<select id = "hasMemberByFld" parameterType = "map" resultType = "int">
+		SELECT COUNT(*)
+		  FROM USER_TBL
+		 WHERE ${fld} = #{val}
+
+	</select>
+
+	<!-- 회원정보 삽입(생성) -->
+	<insert id = "insertMember" parameterType = "com.javateam.healthyFoodProject.domain.MemberVO">
+		INSERT INTO USER_TBL(
+                           NUM,   ID,    PW,       NAME,     GENDER,
+                           EMAIL, PHONE, BIRTHDAY, JOINDATE, ENABLED
+	                       )
+	                VALUES(
+	   	  	               USER_NUM_SEQ.NEXTVAL, #{id},    #{pw},       #{name},  #{gender},
+	   	  	               #{email},             #{phone}, #{birthday}, SYSDATE,  #{enabled}
+	                       )
+	</insert>
+
+	<!-- 회원정보 수정 -->
+	<update id = "updateMember" parameterType = "com.javateam.healthyFoodProject.domain.MemberVO">
+		UPDATE USER_TBL
+		<set>
+			<if test = "pw != null">
+				PW = #{pw}
+			</if>
+			<if test = "email != null">
+				,EMAIL = #{email}
+			</if>
+			<if test = "phone != null">
+				,PHONE = #{phone}
+			</if>
+		</set>
+		WHERE ID = #{id}
+
+	</update>
+
+	<!-- 회원정보 중복 점검(수정) -->
+	<select id = "hasMemberForUpdate" parameterType = "map" resultType = "int">
+		SELECT COUNT(*)
+	  	  FROM (SELECT ${fld}
+	  			  FROM USER_TBL
+	  			 WHERE ID != #{id})
+		 WHERE ${fld} = #{val}
+	</select>
+
+	<!-- 회원 Role 생성 -->
+	<insert id = "insertRole" parameterType = "map">
+		INSERT INTO USER_ROLES (User_Role_Num, usernum, userid, role)
+						VALUES (USER_ROLES_SEQ.NEXTVAL, #{num,jdbcType=VARCHAR}, #{id,jdbcType=VARCHAR}, #{role,jdbcType=VARCHAR})
+	</insert>
+
+	<!-- 회원 Role 삭제 -->
+	<delete id = "deleteRoles" parameterType ="String">
+		DELETE FROM USER_ROLES
+		 WHERE USERID = #{userid}
+	</delete>
+
+	<!-- 회원정보 삭제 -->
+	<delete id = "deleteMemberById" parameterType = "String">
+		DELETE FROM USER_TBL
+		 WHERE ID = #{id}
+	</delete>
+
+	<!-- 회원 Role 삭제 -->
+	<delete id="deleteRoleById" parameterType="map">
+		DELETE FROM USER_ROLES
+		 WHERE USERID = #{id}
+		   AND ROLE = #{role}
+	</delete>
+
+	<!-- 회원 Role 수정 (관리자 화면에서) -->
+	<update id = "updateRole" parameterType="map">
+		UPDATE USER_ROLES
+		   SET ROLE = #{role}
+		 WHERE USERID = #{id}
+	</update>
+
+	<!-- 회원 활동/휴면  상태(enabled) 변경 -->
+	<update id = "changeEnabled" parameterType="map">
+		UPDATE USER_TBL
+		   SET ENABLED = #{enabled}
+		 WHERE ID = #{id}
+	</update>
+
+	<!-- 회원정보 조회(role 포함) -->
+	<!-- <select id = "selectMemberByFld" parameterType = "map" resultType = "map" >
+	SELECT DISTINCT u3.*
+         ,(
+           SELECT LISTAGG(r2.ROLE, ',') WITHIN GROUP (ORDER BY u2.ID)
+             FROM USER_TBL u2
+                 ,USER_ROLES r2
+            WHERE r2.USERID = u2.ID
+              AND r2.USERID = u3.ID
+            ) AS "ROLE"
+  	  FROM  USER_TBL u3
+  	       ,USER_ROLES r3
+  	  WHERE u3.ID  = r3.USERID
+   	    AND ${fld} = #{val}
+	</select>
+	-->
+	<select id = "selectMemberByFld" parameterType = "map" resultType = "map" >
+	SELECT DISTINCT u3.*
+         ,(
+           SELECT LISTAGG(r2.ROLE, ',') WITHIN GROUP (ORDER BY u2.ID)
+             FROM USER_TBL u2
+                 ,USER_ROLES r2
+            WHERE r2.USERID = u2.ID
+              AND r2.USERID = u3.ID
+            ) AS "ROLE"
+  	  FROM  USER_TBL u3
+  	       ,USER_ROLES r3
+  	  WHERE u3.ID  = r3.USERID
+   	    AND ${fld} = #{val}
+	</select>
+
+	<!-- 페이징에 의해(페이지 별) 회원정보 조회(검색) -->
+	<select id="selectMembersByPaging" parameterType="hashMap" resultType="com.javateam.healthyFoodProject.domain.MemberVO">
+		SELECT *
+		  FROM (SELECT u.*,
+	         	       FLOOR((ROWNUM - 1) / #{limit} + 1) PAGE
+	      	      FROM(
+	             	   SELECT *
+				 	     FROM USER_TBL) u
+	   			   )
+		 WHERE PAGE = #{page}
+	</select>
+
+	<!-- 전체 회원 조회 -->
+	<select id="selectAllMembers" resultType="com.javateam.healthyFoodProject.domain.MemberVO">
+		 SELECT *
+		   FROM USER_TBL
+	</select>
+
+	<select id="selectMembersBySearchingAndPaging" parameterType="map" resultType="map">
+		SELECT  *
+	  	  FROM  (
+	  	        SELECT u.*
+	                    ,FLOOR((ROWNUM - 1) / #{limit} + 1) PAGE
+	              FROM (
+	                    SELECT DISTINCT u3.*
+	                       ,(
+	                         SELECT  LISTAGG(r2.ROLE, ',') WITHIN GROUP (ORDER BY u2.ID)
+	                           FROM  USER_TBL u2
+	                                ,USER_ROLES r2
+	                          WHERE  r2.USERID = u2.ID
+	                            AND  r2.USERID = u3.ID
+	                          )  AS  "ROLE"
+	                     FROM  USER_TBL u3
+	                          ,USER_ROLES r3
+	                    WHERE  u3.ID = r3.USERID
+
+	                    <if test="searchKey == 'JOINDATE'">
+			           AND JOINDATE LIKE TO_DATE(#{searchWord}, 'YYYY-MM-DD')
+			           </if>
+
+			      ORDER BY ID ${ordering} ) u
+	            )
+	 	 WHERE PAGE = #{page}
+	</select>
+
+	<!-- 전체 회원수 조회 -->
+	<select id="selectCountAll"	resultType="int">
+		SELECT COUNT(*)
+	   	  FROM USER_TBL
+	</select>
+
+	<!-- 검색된 전체 회원정보 수 -->
+	<select id="selectCountBySearching" parameterType="map" resultType="int">
+		SELECT COUNT(*)
+		  FROM
+		<if test="searchKey == 'role'">
+		       USER_ROLES
+		</if>
+		<if test="searchKey != 'role'">
+		       USER_TBL
+		</if>
+		 WHERE
+		 <if test="searchKey == 'name'">
+			   NAME LIKE '%${searchWord}%'
+   		</if>
+   		<if test="searchKey == 'joindate'">
+			   JOINDATE LIKE TO_DATE(#{searchWord}, 'YYYY-MM-DD')
+  		</if>
+  		<if test="searchKey != 'name' and searchKey != 'joindate'">
+			   ${searchKey} = #{searchWord}
+  		</if>
+  	</select>
+
+	<!-- 회원가입시 초기foodMenu 정보 저장 -->
+  	<update id="updateInitializingFoodMenu" parameterType="com.javateam.healthyFoodProject.domain.MemberVO">
+  		UPDATE USER_TBL
+  		   SET FOODMENU = #{foodmenu}
+  		 WHERE ID = #{id}
+  	</update>
+
+  	<!-- 선택할 foodMenu 조회 -->
+	<select id="selectFoodMenuById" resultType="String">
+		SELECT FOODMENU
+		  FROM USER_TBL
+		 WHERE ID = #{id}
+	</select>
+
+  	<!-- 사용자별로 바뀔 식단 업데이트 -->
+  	<update id="updateFoodMenuByUser" parameterType="com.javateam.healthyFoodProject.domain.MemberVO">
+  		UPDATE USER_TBL
+  		   SET FOODMENU = #{foodmenu}
+  		 WHERE ID = #{id}
+  	</update>
+
+  	<!-- social(naver, google) 회원정보 저장 -->
+  	<insert id="insertSocialUser" parameterType="com.javateam.healthyFoodProject.domain.SocialUser">
+  	 	INSERT INTO SOCIAL_USER
+  	 					 VALUES (SOCIAL_USER_SEQ.NEXTVAL, #{name}, #{email}, #{gender}, #{birthyear},
+  	 							#{role}, SYSDATE, SYSDATE,  #{authVendor}, #{foodmenu})
+  	</insert>
+
+  	<!-- social(google) 회원정보 수정 -->
+  	<update id="updateSocialUser" parameterType="com.javateam.healthyFoodProject.domain.SocialUser">
+  	 	UPDATE SOCIAL_USER
+  	 	   SET GENDER        = #{gender},
+  	 	       BIRTHYEAR     = #{birthyear},
+  	 	       MODIFIED_DATE = SYSDATE
+  	 	 WHERE NAME = #{name} AND EMAIL = #{email} AND AUTH_VENDOR = #{authVendor}
+  	</update>
+
+	<!-- social(naver, google)  전체 회원 조회 -->
+	<select id="selectAllSocialUsers" resultType="com.javateam.healthyFoodProject.domain.SocialUser">
+		SELECT ID, NAME, EMAIL, GENDER, BIRTHYEAR,
+			   AUTH_VENDOR AS "authVendor",
+			   CREATED_DATE AS "createdDate",
+			   MODIFIED_DATE AS "modifiedDate",
+			   ROLE
+		  FROM SOCIAL_USER
+	</select>
+
+	<!-- social(naver, google) 회원 삭제 -->
+	<delete id="deleteSocialUser" parameterType="com.javateam.healthyFoodProject.domain.SocialUser">
+		DELETE SOCIAL_USER
+		<if test = "id != null">
+			WHERE ID = #{id}
+		</if>
+		<if test = "email != null and authVendor != null">
+			WHERE EMAIL = #{email} AND AUTH_VENDOR = #{authVendor}
+		</if>
+	</delete>
+
+	<!-- social(naver, google) 회원 조회(id로 조회) -->
+	<select id="selectSocialUserById" parameterType="int" resultType="com.javateam.healthyFoodProject.domain.SocialUser">
+		SELECT *
+		  FROM SOCIAL_USER
+		 WHERE ID = #{id}
+	</select>
+
+	<!-- social(naver, google) 회원 조회(email, authVendor로 조회) -->
+	<select id="selectSocialUserByEmailAndAuthVendor" parameterType="map" resultType="com.javateam.healthyFoodProject.domain.SocialUser">
+		SELECT
+			ID, NAME, EMAIL, GENDER, BIRTHYEAR,
+			AUTH_VENDOR AS "authVendor",
+			CREATED_DATE AS "createdDate",
+			MODIFIED_DATE AS "modifiedDate",
+			FOODMENU,
+			ROLE
+		  FROM SOCIAL_USER
+		 WHERE EMAIL = #{email} AND AUTH_VENDOR = #{authVendor}
+	</select>
+
+	<!-- social 회원 별로 바뀔 식단 업데이트 -->
+  	<update id="updateFoodMenuBySocialUser" parameterType="com.javateam.healthyFoodProject.domain.SocialUser">
+  		UPDATE SOCIAL_USER
+  		   SET FOODMENU = #{foodmenu}
+  		 WHERE ID = #{id}
+  	</update>
+
+  	<!-- social 회원이 선택할 foodMenu 조회 -->
+	<select id="selectFoodMenuBySocialId" resultType="String">
+		SELECT FOODMENU
+		  FROM SOCIAL_USER
+		 WHERE ID = #{id}
+	</select>
+
+	<!-- ID로 선택된 식단 조회 -->
+	<select id = "selectChosenFoodMenuById" parameterType = "String" resultType = "com.javateam.healthyFoodProject.domain.ChosenFoodMenuVO">
+		SELECT ID, FOODMENU, FOODMENU_RESULT AS "foodmenuResult"
+		  FROM CHOSENFOODMENU
+ 		 WHERE ID = #{id}
+	</select>
+
+	<!-- 선택된 식단 정보 삽입(생성) -->
+	<insert id = "insertIdChosenFoodMenu" parameterType = "com.javateam.healthyFoodProject.domain.ChosenFoodMenuVO">
+		INSERT INTO CHOSENFOODMENU(ID)
+	                VALUES(#{id})
+	</insert>
+
+	<!-- 선택된 식단 정보 삽입(생성) -->
+	<insert id = "insertChosenFoodMenu" parameterType = "hashmap">
+		INSERT INTO CHOSENFOODMENU(
+                           ID, FOODMENU, FOODMENU_RESULT
+	                       )
+	                VALUES(
+	   	  	               #{strId}, #{strFoodmenu}, #{strFoodmenuResult}
+	                       )
+	</insert>
+
+	<!-- 선택된 식단 정보 수정(업데이트) -->
+	<update id = "updateChosenFoodMenu" parameterType = "com.javateam.healthyFoodProject.domain.ChosenFoodMenuVO">
+		UPDATE CHOSENFOODMENU
+		   SET FOODMENU = #{foodmenu},
+		       FOODMENU_RESULT = #{foodmenuResult}
+		 WHERE ID = #{id}
+	</update>
+
+	<!-- 선택된 식단 정보 삭제 -->
+	<delete id = "deleteChosenFoodMenuById" parameterType = "String">
+		DELETE FROM CHOSENFOODMENU
+		 WHERE ID = #{id}
+	</delete>
+
+	<!-- 선택된 식단 정보 전체 조회 -->
+	<select id="selectAllFoodMenu" resultType="com.javateam.healthyFoodProject.domain.ChosenFoodMenuVO">
+		 SELECT ID, FOODMENU, FOODMENU_RESULT AS "foodmenuResult"
+		   FROM CHOSENFOODMENU
+	</select>
+
+</mapper>

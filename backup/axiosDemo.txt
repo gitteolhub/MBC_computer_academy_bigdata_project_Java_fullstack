@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+
+<script>
+window.onload = function() {
+
+	let global_result = "";
+
+	let btn = document.getElementById("btn");
+
+	btn.onclick = function() {
+
+		let result = "";
+
+		let resFunc = async () => {
+
+
+			 let innerResult = await axios.get('/axiosDemo/restSvc?sendParam=y')
+							 .then(function(response) {
+
+
+								 // console.log("수신");
+								 let msg = response.data;
+								 // console.log("msg(inner) : " + msg);
+
+
+								 result = msg;
+
+
+								 global_result = result;
+							 })
+							 .catch(function(error) {
+								 console.error("수신 실패");
+							 }); // return await axios.get
+
+
+			 console.log("result : " + result);
+
+			 // global_result = result;
+
+			 return result;
+
+		} // restFunc
+
+
+		// Promise 객체 = resFunc()
+		// 참고) https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Promise
+		resFunc().then(function(data) {
+
+			console.log("data : "+ data);
+			console.log("result : " + result);
+			console.log("global_result : " + global_result);
+
+			return data;
+		});
+
+
+		// console.log("global_result-2 : " + global_result);
+
+
+	} // btn.onclick
+
+
+	let form_btn = document.getElementById("form_btn");
+
+	form_btn.onclick = function() {
+
+		console.log("폼전송");
+
+		console.log("global_result-3 : " + global_result);
+	} // form_btn.onclick = function() {
+
+
+} // window.onload
+</script>
+</head>
+<body>
+
+	<button type="button" id="btn">axios 전송</button>
+
+	<button type="button" id="form_btn">real 전송</button>
+
+</body>
+</html>
