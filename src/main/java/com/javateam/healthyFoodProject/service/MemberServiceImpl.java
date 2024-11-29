@@ -139,7 +139,7 @@ public class MemberServiceImpl implements MemberService {
 
 	// 회원정보 수정
 	@Override
-	public boolean updateMember (MemberVO objmemberVO) {
+	public boolean updateMember (MemberVO objMemberVO) {
 
 		return transactionTemplate.execute(new TransactionCallback<Boolean>() {
 
@@ -149,10 +149,16 @@ public class MemberServiceImpl implements MemberService {
 
 				try {
 					//  기존 회원 존재 여부
-					if(memberDAO.hasMemberByFld("ID", objmemberVO.getId()) == false) {
+					if(memberDAO.hasMemberByFld("ID", objMemberVO.getId()) == false) {
 						throw new Exception("수정할 회원정보가 존재하지 않습니다.");
 					}
-					blRetVal = memberDAO.updateMember(objmemberVO);
+					
+					// 수정한 비밀번호 암호화
+					BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+                    String encodedPassword = bCryptPasswordEncoder.encode(objMemberVO.getPw());
+                    objMemberVO.setPw(encodedPassword); // 암호화된 비밀번호를 설정
+					
+					blRetVal = memberDAO.updateMember(objMemberVO);
 
 				} catch (Exception ex) {
 					log.error("[MemberService][updateMember] Exception : " + ex);
