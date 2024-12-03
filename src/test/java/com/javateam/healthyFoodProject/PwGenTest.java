@@ -7,8 +7,8 @@ public class PwGenTest {
 
 		BCryptPasswordEncoder pwEncoder = new BCryptPasswordEncoder();
 
-		// 암호화할 비밀번호 문자열
-		String strPw = "#Abcd2345";
+		// 암호화할 비밀번호 문자열 입력
+		String strPw = "Asdf1234!";
 
 		// 비밀번호를 10번 암호화하여 출력
 		for (int i=0; i < 10; i++) {
