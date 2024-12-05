@@ -114,6 +114,7 @@
             padding: 20px;
         }
         h1 {
+        	margin-top: 30px;
             text-align: center;
             color: #333;
         }
@@ -148,7 +149,7 @@
 <div layout:fragment="content">
     <h1>오늘의 식단</h1>
 
-        <div class="meal-card">
+        <div class="meal-card" style="margin: 0 auto;">
             <div class="meal-name">A 식단</div>
             <!--  메뉴 에러 메세지 -->
             <div th:if="${msg}" class="alert alert-warning">

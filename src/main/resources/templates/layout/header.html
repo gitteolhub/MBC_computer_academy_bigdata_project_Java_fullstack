@@ -13,9 +13,9 @@
 
 
 <div th:fragment="header">
-authentication:[[${#authentication}]] <br>
+<!-- authentication:[[${#authentication}]] <br>
 socialUser:[[${session.socialUser}]] <br>
-loginErrorCount: [[${session.loginErrorCount}]] <br>
+loginErrorCount: [[${session.loginErrorCount}]] <br> -->
 
 <script type="text/javascript">
 
@@ -68,19 +68,19 @@ loginErrorCount: [[${session.loginErrorCount}]] <br>
 
 						<!-- 자체 로그아웃 -->
 						<li th:if="${session.socialUser == null}">
-							<a th:href="@{/logoutProc}">로그아웃(자체)</a>
+							<a th:href="@{/logoutProc}">로그아웃</a>
 						</li>
 
 						<span th:if="${session.socialUser != null}">
 
 						<!-- Google 로그아웃 -->
 						<li th:if="${session.socialUser.authVendor != 'naver'}">
-							<a th:href="@{/logoutProc}">로그아웃(google)</a>
+							<a th:href="@{/logoutProc}">로그아웃</a>
 						</li>
 
 						<!--  Naver 로그아웃 -->
 						<li th:if="${session.socialUser.authVendor == 'naver'}">
-							<a href="#" onclick="naverLogout()">로그아웃(Naver)</a>
+							<a href="#" onclick="naverLogout()">로그아웃</a>
 						</li>
 
 						</span>
@@ -92,19 +92,19 @@ loginErrorCount: [[${session.loginErrorCount}]] <br>
 
 						<!-- 자체 로그아웃 -->
 						<li th:if="${session.socialUser == null}">
-							<a th:href="@{'/foodMenu/view?strId='+${#authentication.name}}">식단(자체)</a>
+							<a th:href="@{'/foodMenu/view?strId='+${#authentication.name}}">식단</a>
 						</li>
 
 						<span th:if="${session.socialUser != null}">
 
 						<!-- Google 로그아웃 -->
 						<li th:if="${session.socialUser.authVendor != 'naver'}">
-							<a th:href="@{'/foodMenu/viewSocial'}">식단(google)</a>
+							<a th:href="@{'/foodMenu/viewSocial'}">식단</a>
 						</li>
 
 						<!--  Naver 로그아웃 -->
 						<li th:if="${session.socialUser.authVendor == 'naver'}">
-							<a th:href="@{'/foodMenu/viewSocial'}">식단(Naver)</a>
+							<a th:href="@{'/foodMenu/viewSocial'}">식단</a>
 						</li>
 
 						</span>
@@ -116,19 +116,19 @@ loginErrorCount: [[${session.loginErrorCount}]] <br>
 
 						<!-- 자체 로그아웃 -->
 						<li th:if="${session.socialUser == null}">
-							<a th:href="@{/member/view}">회원정보 조회(자체)</a>
+							<a th:href="@{/member/view}">회원정보 조회</a>
 						</li>
 
 						<span th:if="${session.socialUser != null}">
 
 						<!-- Google 회원 조회 -->
 						<li th:if="${session.socialUser.authVendor != 'naver'}">
-							<a th:href="@{/member/viewSocial}">회원정보 조회(google)</a>
+							<a th:href="@{/member/viewSocial}">회원정보 조회</a>
 						</li>
 
 						<!--  Naver 회원 조회 -->
 						<li th:if="${session.socialUser.authVendor == 'naver'}">
-							<a th:href="@{/member/viewSocial}">회원정보 조회(Naver)</a>
+							<a th:href="@{/member/viewSocial}">회원정보 조회</a>
 						</li>
 
 						</span>

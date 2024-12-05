@@ -37,8 +37,8 @@
 </head>
 <body>
 	<div layout:fragment="content" class = "main_sect_pnl">
-		user: [[${session.user==null}]] <br>
-		socialUser: [[${session.socialUser}]] <br>
+		<!-- user: [[${session.user==null}]] <br>
+		socialUser: [[${session.socialUser}]] <br> -->
 
 		<div sec:authorize="isAuthenticated()">
 			<b>
