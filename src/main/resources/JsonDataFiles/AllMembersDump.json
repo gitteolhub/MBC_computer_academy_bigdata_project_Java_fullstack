@@ -88,25 +88,14 @@
     "enabled": 1
   },
   {
-    "name": "진소원",
-    "email": "tgdcom7@naver.com",
-    "gender": "F",
-    "birthyear": "2000-06-02",
-    "authVendor": "naver",
-    "createdDate": "2024년 11월 13일 14:42:23",
-    "modifiedDate": "2024년 11월 13일 14:42:23",
-    "id": "51",
-    "enabled": 0
-  },
-  {
     "name": "소원",
     "email": "jinsowon82@gmail.com",
     "gender": "F",
     "birthyear": "2000-06-02",
     "authVendor": "google",
-    "createdDate": "2024년 11월 13일 15:15:13",
-    "modifiedDate": "2024년 11월 13일 15:15:29",
-    "id": "52",
+    "createdDate": "2024년 11월 15일 16:34:23",
+    "modifiedDate": "2024년 11월 15일 16:34:35",
+    "id": "56",
     "enabled": 0
   }
 ]
